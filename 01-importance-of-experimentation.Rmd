@@ -1,0 +1,84 @@
+# Importance of Experimentation
+
+> Why do we conduct experiments?
+> 
+> What is the value of making a causal statement? 
+> 
+> This is a data science program, with enough data and a savvy enough model, can't we just generate a causal statement that will be right? Can't I generate a statement that converges in probability to the *correct* value?
+
+## Learning Objectives 
+
+At the end of this live session, students will be able to
+
+1. *Remember* (or find) the goals of the course, the assessment structure, and the learning model. 
+2. *Define*, in non-technical language, what it means for an action to cause an outcome. 
+3. *Understand* the difference between a causal statement, and an association statement. 
+4. *Apply* the framework of causal thinking against a series of studies to determine whether the study has achieved the goal that it intends. 
+
+## Class Introductions 
+
+In no more than 2 minutes, could each student please: 
+
+- Introduce themselves, announcing their name as they would like it to be pronounced; 
+- Tell us where in the world they are studying; 
+- State what semester they are in the program; 
+- Any descriptive features that they would like the class to know about them (for example, gender pronouns); and, 
+- [Instructor's choice]
+
+## Course Plan 
+
+The course is built out into three distinct phases
+
+- **Part 1** Develops causal theory, potential outcomes, and a permutation-based uncertainty measurement
+- **Part 2** Further develops the idea of a treatment effect, and teaches how the careful  design of experiments can improve the efficiency, and easy of analysis
+- **Part 3** Presents practical considerations when conducting an experiment, including problems that may arise, and how to design an experiment in anticipation of those problems. 
+
+## Course Logistics 
+
+- bCourses 
+  - Learning Modules attached to weeks 
+  - Modules contain async lectures, coding exercises, and quizzes
+- GitHub
+  - All the course materials are available in a GitHub repository
+  - We have protected the `main` branch, so you can't do anything destructive 
+  - Use that as empowerment! This is your class, propose changes that you would like to see! 
+- Github Classroom 
+  - Assignments will all be applied programming assignments against simulated and real data
+  - All assignment code will be distributed through GitHub Classroom
+- Gradescope
+  - All assignments will be submitted to Gradescope where we'll read your solutions and provide scores and feedback
+  
+### Learning model for the class 
+
+The course assignments are designed to put what we have learned in reading, async, and live session into practice in code. In our ideal version of your studying, we would have you working hard together with your  classmates in a study group on the assignments, coming to office hours to talk candidly about what is and isn't working, and then *every single student* arriving at a full solution. 
+
+### Feedback model for the class 
+
+We want to get you feedback *very* quickly after you turn your assignments. 
+
+1. We will release a solution set the day that you turn your assignment in
+2. We will hold a problem set debrief office hour the Friday (i.e. next day) after the problem set it submitted
+3. We will have light-feedback on your assignments within 7 days of when you submitted them. 
+4. You should bring your assignment to office hours after you have turned it in so that we can talk about any differences between your approach, and the instructors approach.
+
+### Office hour model for the class 
+
+- We will hold office hours Sunday through Thursday at 5:30. 
+- We will hold more than 10 hours of office hours every week; they will all be recorded, and any student is welcome in any office hour
+
+## Article Discussion 
+
+### Do the suburbs make you fat? 
+
+1. What is the causal claim being made in this article? 
+2. If you had to draw out this causal claim, using arrow, what would it look like? 
+3. Do you acknowledge the association that the authors present? Is there *actually* a difference between the BMI of people who live in cities and the suburbs? 
+4. If you acknowledge the association, does that compel you to believe the causal claim? 
+5. Name, and draw, five alternative *confounding* variables that might make you skeptical that the claimed relationship exists. 
+6. (Optional) Name, and draw two *mechanisms* that might exist between suburbs and BMI. Why does the existence (or not) of these mechanisms *not* pose a fundimental problem to the causal claim that the authors make? 
+
+### Nike Shoes 
+
+### Feynman's View of Science 
+
+

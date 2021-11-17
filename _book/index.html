@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Experiments and Causality</title>
+  <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Experiments and Causality" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="/images/coffee.jpeg" />
+  <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
+  <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Experiments and Causality" />
+  
+  <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
+  <meta name="twitter:image" content="/images/coffee.jpeg" />
+
+<meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, Micah Gell-Redman, Scott Guenther, &amp; David Wheeler" />
+
+
+<meta name="date" content="2021-11-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="importance-of-experimentation.html"/>
+<script src="libs/header-attrs-2.6.4/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Live Session Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#blooms-taxonomy"><i class="fa fa-check"></i><b>1.1</b> Bloom’s Taxonomy</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="importance-of-experimentation.html"><a href="importance-of-experimentation.html"><i class="fa fa-check"></i><b>2</b> Importance of Experimentation</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="importance-of-experimentation.html"><a href="importance-of-experimentation.html#learning-objectives"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="2.2" data-path="importance-of-experimentation.html"><a href="importance-of-experimentation.html#class-introductions"><i class="fa fa-check"></i><b>2.2</b> Class Introductions</a></li>
+<li class="chapter" data-level="2.3" data-path="importance-of-experimentation.html"><a href="importance-of-experimentation.html#course-plan"><i class="fa fa-check"></i><b>2.3</b> Course Plan</a></li>
+<li class="chapter" data-level="2.4" data-path="importance-of-experimentation.html"><a href="importance-of-experimentation.html#course-logistics"><i class="fa fa-check"></i><b>2.4</b> Course Logistics</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="apples-to-apples.html"><a href="apples-to-apples.html"><i class="fa fa-check"></i><b>3</b> Apples to Apples</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="apples-to-apples.html"><a href="apples-to-apples.html#learning-objectives-1"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="quantifying-uncertainty.html"><a href="quantifying-uncertainty.html"><i class="fa fa-check"></i><b>4</b> Quantifying Uncertainty</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="quantifying-uncertainty.html"><a href="quantifying-uncertainty.html#learning-objectives-2"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="blocking-and-clustering.html"><a href="blocking-and-clustering.html"><i class="fa fa-check"></i><b>5</b> Blocking and Clustering</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="blocking-and-clustering.html"><a href="blocking-and-clustering.html#learning-objectives-3"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="covariates-and-regression.html"><a href="covariates-and-regression.html"><i class="fa fa-check"></i><b>6</b> Covariates and Regression</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="covariates-and-regression.html"><a href="covariates-and-regression.html#learning-objectives-4"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="regression-and-multifactor-experiments.html"><a href="regression-and-multifactor-experiments.html"><i class="fa fa-check"></i><b>7</b> Regression and Multifactor Experiments</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="regression-and-multifactor-experiments.html"><a href="regression-and-multifactor-experiments.html#learning-objectives-5"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="heterogeneous-treatment-effects.html"><a href="heterogeneous-treatment-effects.html"><i class="fa fa-check"></i><b>8</b> Heterogeneous Treatment Effects</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="heterogeneous-treatment-effects.html"><a href="heterogeneous-treatment-effects.html#learning-objectives-6"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="treatment-noncompliance.html"><a href="treatment-noncompliance.html"><i class="fa fa-check"></i><b>9</b> Treatment Noncompliance</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="treatment-noncompliance.html"><a href="treatment-noncompliance.html#learning-objectives-7"><i class="fa fa-check"></i><b>9.1</b> Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="spillover-and-interference.html"><a href="spillover-and-interference.html"><i class="fa fa-check"></i><b>10</b> Spillover and Interference</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="spillover-and-interference.html"><a href="spillover-and-interference.html#learning-objectives-8"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="causality-from-observational-data.html"><a href="causality-from-observational-data.html"><i class="fa fa-check"></i><b>11</b> Causality from Observational Data</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="causality-from-observational-data.html"><a href="causality-from-observational-data.html#learning-objectives-9"><i class="fa fa-check"></i><b>11.1</b> Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="problems-and-diagnostics.html"><a href="problems-and-diagnostics.html"><i class="fa fa-check"></i><b>12</b> Problems and Diagnostics</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="problems-and-diagnostics.html"><a href="problems-and-diagnostics.html#learning-objectives-10"><i class="fa fa-check"></i><b>12.1</b> Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="attrition-mediation-and-generalizability.html"><a href="attrition-mediation-and-generalizability.html"><i class="fa fa-check"></i><b>13</b> Attrition, Mediation, and Generalizability</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="attrition-mediation-and-generalizability.html"><a href="attrition-mediation-and-generalizability.html#learning-objectives-11"><i class="fa fa-check"></i><b>13.1</b> Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="applications-of-experiments.html"><a href="applications-of-experiments.html"><i class="fa fa-check"></i><b>14</b> Applications of Experiments</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="applications-of-experiments.html"><a href="applications-of-experiments.html#learning-objectives-12"><i class="fa fa-check"></i><b>14.1</b> Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="review-of-the-course.html"><a href="review-of-the-course.html"><i class="fa fa-check"></i><b>15</b> Review of the Course</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="review-of-the-course.html"><a href="review-of-the-course.html#learning-objectives-13"><i class="fa fa-check"></i><b>15.1</b> Learning Objectives</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Experiments and Causality</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Experiments and Causality</h1>
+<p class="author"><em>David Reiley, David Broockman, D. Alex Hughes, Micah Gell-Redman, Scott Guenther, &amp; David Wheeler</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>2021-11-17</em></p>
+</div>
+<div id="live-session-introduction" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Live Session Introduction</h1>
+<p>This is the live session work space for the course. Our goal with this repository, is that we’re able to communicate <em>ahead of time</em> our aims for each week, and that you can prepare accordingly.</p>
+<div id="blooms-taxonomy" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Bloom’s Taxonomy</h2>
+<p>An effective rubric for student understanding is attributed to Bloom (1956). Referred to as <em>Bloom’s Taxonomy</em>, this proposes that there is a hierarchy of student understanding; that a student may have one <em>level</em> of reasoning skill with a concept, but not another. The taxonomy proposes to be ordered: some levels of reasoning build upon other levels of reasoning.</p>
+<p>In the learning objective that we present in for each live session, we will also identify the level of reasoning that we hope students will achieve at the conclusion of the live session.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Remember</strong> A student can remember that the concept exists. This might require the student to define, duplicate, or memorize a set of concepts or facts.</li>
+<li><strong>Understand</strong> A student can understand the concept, and can produce a working technical and non-technical statement of the concept. The student can explain why the concept <em>is</em>, or why the concept works in the way that it does.</li>
+<li><strong>Apply</strong> A student can use the concept as it is intended to be used against a novel problem.</li>
+<li><strong>Analyze</strong> A student can assess whether the concept has worked as it should have. This requires both an understanding of the intended goal, an application against a novel problem, and then the ability to introspect or reflect on whether the result is as it should be.</li>
+<li><strong>Evaluate</strong> A student can analyze multiple approaches, and from this analysis evaluate whether one or another approach has better succeeded at achieving its goals.</li>
+<li><strong>Create</strong> A student can create a new or novel method from axioms or experience, and can evaluate the performance of this new method against existing appraoches or methods.</li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="importance-of-experimentation.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "serif",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>
