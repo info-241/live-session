@@ -71,11 +71,11 @@ We want to get you feedback *very* quickly after you turn your assignments.
 ### Predict or Cause 
 
 - What are a few examples that Athey raises of causal questions masquerading as prediction questions? 
-  1. 
+  1.  
   2. 
   3. 
 - Which of these examples is the most surprising to you? 
-- Is there something that is common to each of these examples? Is this a general phenonemon, or is Athey very clever in picking examples? Said differently, is Athey making a clever argument or is a lot of what we do as data scientists actually causal work in disguise? 
+- Is there something that is common to each of these examples? Is this a general phenomenon, or is Athey very clever in picking examples? Said differently, is Athey making a clever argument or is a lot of what we do as data scientists actually causal work in disguise? 
 
 ### Do the suburbs make you fat? 
 
@@ -94,10 +94,12 @@ We want to get you feedback *very* quickly after you turn your assignments.
 3. Do you acknowledge the association that the authors present? Is there actually a difference in the finish time between people who are running with the Nike shoes vs. other shoes? 
 4.  If you acknowledge the association, does that compel you to believe the causal claim? Why or why not? 
 5. What are some of the confounding relationships that the authors identify? How do they adjust their analyses once they acknowledge the confounding problem? 
+  
   1. 
   2. 
   3. 
   4. 
+
 6. At the conclusion of reading this paper, do you believe that there is a causal relationship between shoes and finish time? If so, what compels you to to believe this; if not, why are you not compelled to believe this? 
 
 ### What is Science: Feynman's View

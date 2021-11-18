@@ -8,6 +8,11 @@ course-logistics
 learning-model-for-the-class
 feedback-model-for-the-class
 office-hour-model-for-the-class
+article-discussion
+predict-or-cause
+do-the-suburbs-make-you-fat
+nike-shoes
+what-is-science-feynmans-view
 apples-to-apples
 learning-objectives-1
 quantifying-uncertainty
@@ -34,7 +39,3 @@ applications-of-experiments
 learning-objectives-12
 review-of-the-course
 learning-objectives-13
-article-discussion
-do-the-suburbs-make-you-fat
-nike-shoes
-feynmans-view-of-science
