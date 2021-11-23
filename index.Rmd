@@ -28,11 +28,20 @@ description: "This is the live-session notebook for class discussion for the UC 
 tags: [Linear models, Econometrics, Causal Analysis, R Programming, Live Session Discussion]
 ---
 
-# Live Session Introduction 
+```{r load packages, eval=FALSE, echo=FALSE}
+library(data.table)
+library(ggplot2) 
+```
+
+```{r set themes, echo=FALSE, }
+theme_set(theme_minimal())
+```
+
+# Live Session Introduction {-}
 
 This is the live session work space for the course. Our goal with this repository, is that we're able to communicate *ahead of time* our aims for each week, and that you can prepare accordingly. 
 
-## Bloom's Taxonomy
+## Bloom's Taxonomy {-}
 
 An effective rubric for student understanding is attributed to Bloom (1956). Referred to as *Bloom's Taxonomy*, this proposes that there is a hierarchy of student understanding; that a student may have one *level* of reasoning skill with a concept, but not another. The taxonomy proposes to be ordered: some levels of reasoning build upon other levels of reasoning. 
 

@@ -1,7 +1,221 @@
 # Quantifying Uncertainty
 
+When we are working with a sample of data, estimates produced by an estimator might change -- sometimes being higher than the *true* value, other times lower than the *true* value. 
+
+In Frequentist inference, we understand the variance in these estimates as *sampling based variance of the sample estimator*. In this week, we present a different inferential paradigm, **Randomization Inference**. 
+
+In randomization inference, there is no uncertainty about the parameter estimate that is generated in the experiment: The estimate that we observe is the estimate that we observe. Uncertainty, instead, comes from the acknowledgment that different *randomization* could have been realized, even from within the same sample. 
+
 ## Learning Objectives 
 
-1. 
-2. 
-3. 
+At the end of this week's live session, students will be able to 
+
+1. *Understand* the sharp null, and how to apply it in an argument using randomization inference.
+2. *Describe* how randomization creates uncertainty, and *assess* how this uncertainty differs from that in Frequentist paradigm
+3. *Apply* the sharp null and randomization inference to data
+4. *Assess* the assumptions necessary for Frequentist inference to produce nominal coverage on confidence intervals; *assess* the assumptions necessary for randomization inference to produce nominal coverage on confidence intervals; and, *evaluate* which of the two approaches is appropriate given a set of data.
+5. *Describe* the concept of statistical power and what it means in the context of conducting an experiment.
+
+## Value of Theory
+
+Suppose that you are evaluating the effect of coffee on students' alertness in class. You reason that drinking coffee will increase students' alertness in class. 
+
+!["Damn Fine Coffee."](./images/damn-fine-coffee.jpeg)
+
+One might be a radical behaviorist (Skinner is perhaps the most famous in this line of thinking) that says, "In matters of human behavior, if I cannot see it, then I cannot reason or know about."  If this is your view, then you would simply stop your investigation (and reasoning) at the conclusion of your experiment. 
+
+In many ways, experiments suited only to answer empirical, observable questions. These are the questions, and lens proposed by the radical behaviorist paradigm. 
+
+### Limits of Behaviorist Reasoning
+
+If you accept only that coffee has this effect, and that it is measurable, are you able to translate this knowledge to a new context? 
+
+- Suppose that your experiments finds an effect of coffee on alertness: those who drink a cup of coffee are more alert in class. 
+- Suppose, though, that you're out of coffee *tonight*. A radical behaviorist would simply say, "I know not what to drink then to increase my alertness." 
+
+### Value of Theory
+
+- Can you produce several theories (some of them might be silly) about why coffee might increase alertness in class? 
+  - Proposed theory #1: 
+  - Proposed theory #2:
+  - Proposed theory #3:
+- Does Feynman's approach to *Science* provide a method to adjudicate which of these theories is consonant with the evidence, and which are not consonant with the evidence? - Does Lakatos' approach to *Science* provide such a method? 
+
+### Evaluating Theories 
+
+- What data might you be able to produce that would allow you to "drive a wedge" between the different theories? 
+- This ability to proactively deign an experiment to distinguish between theories is the goal you're striving to achieve, *and it is very hard to accomplish*. 
+
+## Stating the sharp null
+
+Continue with our idea of an experiment to evaluate if coffee produces alertness in class. Here, we are going to further develop this notional experiment into something that we might actually be able to conduct. 
+
+- What is the *sharp null* hypothesis that is at risk in this investigation? 
+- How, if at all, does this sharp null differ from the null hypothesis you might be more familiar with? 
+- Is the sharp null hypothesis a concept that ever makes sense? Is the sharp null hypothesis a concept that is ever, actually, true? 
+
+## Randomization Inference 
+
+### Stating the process of Randomization Inference
+
+Randomization inference is a method of understanding the variability of results in an experiment that you have conducted. It specifically acknowledges several facts: 
+
+1. The sample of data that you collected or used in your experiment is, quite simply, the sample of data that you collected for your experiment. There might be a larger population; there might be an infinite population; or, there might not. 
+2. The observed outcomes that you observe are, quite simply, the outcomes that you observed. There is no uncertainty about having seen these. 
+3. When the experiment assigned some units to treatment and others to the control, it revealed some outcomes, for some people. Specifically, it revealed the potential outcoems to treatment, denoted $Y_{i}(1)$ for those who were assigned to the treatment group and the potential outcomes to control, denoted $Y_{i}(0)$ for those who were assigned to the control group. 
+4. The experimenter chose one *out of many possible* treatment assignments. 
+5. If the *sharp null hypothesis* were to be true (note the subjunctive verb tense there) then, the particular revelation of potential outcomes to treatment and control are inconsequential. Despite seeing only half the data (referred to as the **Fundimental Problem of Causal Inference**) we actually posess all the data. After all, if the sharp null were true, $Y_{Alex}(1) = Y_{Alex}(0)$, and $Y_{David}(1) = Y_{David}(0)$, $Y_{i}(1) = Y_{i}(0)$ for all of the $i = {1, \dots, N}$ people who are a part of the experiment. 
+
+### Questions about Randomization Inference
+
+- Where does uncertainty come from in an experiment that is evaluated using randomization inference? 
+- How is the ATE estimand defined? 
+- What is the feasible method that we use to write down an estimator (call it $\theta$) for this quantity?   
+  - Which of the following properties does this feasible method possess? 
+    a. Unbiasedness: $E[\theta] = ATE$
+    b. Convergence: $\theta \overset{p}\rightarrow ATE$, where $\overset{p}\rightarrow$ means converges in probabilty
+    c. Efficiency: The mean squared error of $\theta$ is either (i) smaller than some other estimator, or (ii) as small is theoretically possible. 
+
+## Applying Randomization Inference
+
+### Make Data 
+
+```{r make data}
+set.seed(1)
+d <- data.table(
+  id = 1:100, 
+  D  = rep(0:1, each = 50), 
+  Y  = c(rnorm(n=50, mean=0, sd=2.5), rnorm(n=50, mean=1, sd=2.5))
+)
+```
+
+### Plot Data 
+
+In the following plot, are you able to assess whether there is a treatment effect simply by looking at the distributions?
+
+```{r plot data}
+ggplot(d) + 
+  aes(x=Y, fill=as.factor(D)) + 
+  geom_density(alpha=0.5) + 
+  labs(
+    x        = 'Distribution of outcomes', 
+    y        = NULL, 
+    title    = 'Distribution of outcomes, by treatment', 
+    fill    = 'Treatment\nAssignment') + 
+  scale_fill_manual(
+    values = c('#003262', '#FDB515')
+  )
+```
+
+### Classic Test 
+
+If you were to write a *classic* test against this data, given what you know about how it was generated, what would be the classic test? What do you learn from this test, and what is the interpretation? 
+
+```{r classic test}
+d[ , t.test(Y ~ D)]
+```
+
+### Randomization Inference Test 
+
+Now, instead suppose that you were to conduct the randomization inference. What are the steps to the algorithm for producing a result using randomization? 
+
+1. State the null hypothesis
+2. Compute the statistic of interest using the observed data
+3. Fill in data, under the statement of the null hypothesis
+4. Permute the treatment assignment labels to generate a new sample of the treatment assignment vector, and then estimate the statistic of interest
+5. Repeat the permutation and estimation (step 4) process repeatedly to sample from the randomization inference distribution of the statistic
+6. Examine randomization inference distribution
+
+```{r, cache=TRUE}
+## 1. The sharp null is that tau = 0
+## 2. Compute the statistic of interest
+true_ate <- d[ , .(group_mean = mean(Y)), keyby = .(D)][ , group_mean[D==1] - group_mean[D==0]]
+## 3, 4, 5. Permute the treatment assignment labels and repeatedly compute the statistic of interest 
+ri_distribution <- replicate(
+  n=10000, 
+  expr = d[ , .(group_mean = mean(Y)), keyby = .(ri_treatment = sample(D))][ , 
+            group_mean[ri_treatment==1] - group_mean[ri_treatment==0]]
+  )
+# 6. Examine distribution
+ggplot() + 
+  geom_density(aes(x=ri_distribution), fill = '#003262', alpha = 0.5) + 
+  geom_vline(xintercept = true_ate, color = '#FDB515') + 
+  labs(
+    x     = 'Randomization Inference Distribution and Estimated ATE', 
+    y     =  NULL, 
+    title = 'Randomization Inference Distribution and Estimated ATE')
+```
+
+How much of the randomization inference is more extreme than the treatment effect? 
+
+```{r compute randomization inference p-value}
+ri_p_value <- mean(abs(ri_distribution) > abs(true_ate))
+ri_p_value
+```
+
+Notice that `r round(ri_p_value, 3)` of the randomization inference distribution is more extreme than the observed treatment effect. How does this compare to the t-test p-value that we calculated above?
+
+## Comparing Randomization Inference and Frequentist Inference
+
+If both Randomization Inference and Frequentist Inference produce similar p-values, what is utility in learning another set of methods for communicating estimator-based uncertainty? 
+
+What are the requirements (frequently referred to as "assumptions") that are necessary for the Frequentist paradigm to provide guarantees? What happens if these guarantees are not, in fact, satisfied or true in the data generating process? How do you react, respond, or address those problems? 
+
+- If data is not sampled *iid*, is it sufficient to simply note that limitation (frequently referred to as an "assumption violation") and report whatever p-value you report? 
+- How affected is this p-value by the violation? How do you know this? 
+- What does it mean for the p-value to be affected by this violation? (*Recall that a p-value is just a random variable that is produced through a series of summarizing transformations and then a comparison against a reference distribution.*) 
+
+### Donations to a political campaign 
+
+In *Field Experiments* Green and Gerber provide some useful (hypothetical) data about donations to a political campaign. The data is defined in the following way, $D$ is an indicator for whether the potential donor is assigned to treatment or control, and $Y$ is the outcome of how much the potential donor actually gave. 
+
+Let us provide a little bit more back story, that is necessary for the example to work, fully. Suppose that a progressive political candidate was hosting a fundraiser in Berkeley and has to make a choice about what to serve the attendees at the fundraiser. 
+
+In the $D = 0$ group, suppose that the candidate elects to serve a hippie-vegetarian staple, tofu sauteed in Bragg's liquid aminos. (It *is* Berkeley after all.) In the $D=1$ group, suppose that the candidate decides to be a little more, well, progressive in their vegetarian food offerings and instead serves Gado-Gado from Katzen's *The Enchanted Broccoli Forest*. (Still Berkeley... .)
+
+After dinner, and the requisite drum-circle, attendees to this shin-dig are asked to donate to the candidates re-election efforts. Every attendee is expected to contribute something -- social norms rule out failing to donate when the collection plate is passed -- but the amount donated is at the discretion of the attendee. 
+
+```{r donation data}
+d <- data.table(
+  id = 1:20, 
+  D  = rep(0:1, each = 10), 
+  Y = c(500, 100, 100, 50, 25, 25, 0, 0, 0, 0, ## tofu diners
+        25,  20,  15,  15, 10, 5,  5, 0, 0, 0)  ## gado gado diners
+)
+```
+
+1. With this data, conduct a `t.test` to assess whether the choice of dinner affects the amount donated to the campaign. What is your null-hypothesis (be specific), what is your rejection criteria, and do you reject or fail to reject this null hypothesis under the t-test framework. 
+
+```{r t.test for donation data}
+## Null Hypothesis: 
+## Rejection Criteria: 
+
+## Conduct the Test Here: 
+
+## Conclusion: 
+
+```
+
+2. With this data, use randomization inference to assess whether the choice of dinner affects the amount donated to the campaign. What is your null-hypothesis (be specific), what is your rejection criteria, and do you reject or fail to reject this null hypothesis under the t-test framework. 
+
+```{r ri for donation data}
+## Null Hypothesis: 
+## Rejection Criteria: 
+
+## Conduct the Test Here:
+
+## Conclusion
+```
+
+1. Characterize the distribution of the sharp-null distribution of treatment effects. Talk about what, if anything, is notable about it, and what components of the data might be leading to any patterns that you note.
+
+2. How many of the randomization inference loops are larger than the treatment effect that you calculated? How would you use this statement to construct a one-sided test, and an associated p-value? 
+
+3. How many of the randomization inference loops are _more extreme_ (:metal:) than the treatment effect that you calculated? How would you use this statement to construct a two-sided test, and an associated p-value? 
+
+4. Compare the two-sided p-value against the p-value that you generate from a two-tailed t-test. If these p-values are the same, would this be a positive or a negative characteristic of randomization inference? If these p-values are different, why would they be different? Don't go looking all over hill-and-dale for the call for a t-test, it is at `t.test`. 
+
+5. Which of the two of these inferrential methods do you prefer, randomization inference or a t-test, and why? Ease of use is not an acceptable answer. 
+
+## Statistical Power
+

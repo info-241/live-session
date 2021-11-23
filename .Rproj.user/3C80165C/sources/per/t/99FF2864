@@ -1,0 +1,24 @@
+{
+    "id": "99FF2864",
+    "path": "~/MIDS/w241/live-session/04-blocking-and-clustering.Rmd",
+    "project_path": "04-blocking-and-clustering.Rmd",
+    "type": "r_markdown",
+    "hash": "652655484",
+    "contents": "",
+    "dirty": false,
+    "created": 1637174817323.0,
+    "source_on_save": false,
+    "relative_order": 5,
+    "properties": {
+        "cursorPosition": "0,25",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1637174823,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1637174823668,
+    "read_only": false,
+    "read_only_alternatives": []
+}

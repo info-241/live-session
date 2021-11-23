@@ -1,0 +1,24 @@
+{
+    "id": "215CF0B2",
+    "path": "~/MIDS/w241/live-session/06-regression-and-multifactor.Rmd",
+    "project_path": "06-regression-and-multifactor.Rmd",
+    "type": "r_markdown",
+    "hash": "66369636",
+    "contents": "",
+    "dirty": false,
+    "created": 1637174923412.0,
+    "source_on_save": false,
+    "relative_order": 15,
+    "properties": {
+        "cursorPosition": "0,40",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1637174932,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1637174932600,
+    "read_only": false,
+    "read_only_alternatives": []
+}
