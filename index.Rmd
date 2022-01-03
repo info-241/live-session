@@ -28,12 +28,12 @@ description: "This is the live-session notebook for class discussion for the UC 
 tags: [Linear models, Econometrics, Causal Analysis, R Programming, Live Session Discussion]
 ---
 
-```{r load packages, eval=FALSE, echo=FALSE}
+```{r load packages, eval=TRUE, echo=FALSE, message=FALSE}
 library(data.table)
 library(ggplot2) 
 ```
 
-```{r set themes, echo=FALSE, }
+```{r set themes, echo=FALSE}
 theme_set(theme_minimal())
 ```
 

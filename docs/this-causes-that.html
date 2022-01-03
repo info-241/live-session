@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.2 This Causes That | Experiments and Causality</title>
+  <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.2 This Causes That | Experiments and Causality" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="/images/coffee.jpeg" />
+  <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
+  <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.2 This Causes That | Experiments and Causality" />
+  
+  <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
+  <meta name="twitter:image" content="/images/coffee.jpeg" />
+
+<meta name="author" content="David Reiley, David Broockman, D. Alex Hughes,  Micah Gell-Redman, Scott Guenther, &amp; David Wheeler" />
+
+
+<meta name="date" content="2022-01-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="learning-objectives-1.html"/>
+<link rel="next" href="potential-outcomes.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Live Session Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="blooms-taxonomy.html"><a href="blooms-taxonomy.html"><i class="fa fa-check"></i>Bloom’s Taxonomy</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="importance-of-experimentation.html"><a href="importance-of-experimentation.html"><i class="fa fa-check"></i><b>1</b> Importance of Experimentation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="learning-objectives.html"><a href="learning-objectives.html"><i class="fa fa-check"></i><b>1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="1.2" data-path="class-introductions.html"><a href="class-introductions.html"><i class="fa fa-check"></i><b>1.2</b> Class Introductions</a></li>
+<li class="chapter" data-level="1.3" data-path="course-plan.html"><a href="course-plan.html"><i class="fa fa-check"></i><b>1.3</b> Course Plan</a></li>
+<li class="chapter" data-level="1.4" data-path="course-logistics.html"><a href="course-logistics.html"><i class="fa fa-check"></i><b>1.4</b> Course Logistics</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="course-logistics.html"><a href="course-logistics.html#learning-model-for-the-class"><i class="fa fa-check"></i><b>1.4.1</b> Learning model for the class</a></li>
+<li class="chapter" data-level="1.4.2" data-path="course-logistics.html"><a href="course-logistics.html#feedback-model-for-the-class"><i class="fa fa-check"></i><b>1.4.2</b> Feedback model for the class</a></li>
+<li class="chapter" data-level="1.4.3" data-path="course-logistics.html"><a href="course-logistics.html#office-hour-model-for-the-class"><i class="fa fa-check"></i><b>1.4.3</b> Office hour model for the class</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="article-discussion.html"><a href="article-discussion.html"><i class="fa fa-check"></i><b>1.5</b> Article Discussion</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="article-discussion.html"><a href="article-discussion.html#predict-or-cause"><i class="fa fa-check"></i><b>1.5.1</b> Predict or Cause</a></li>
+<li class="chapter" data-level="1.5.2" data-path="article-discussion.html"><a href="article-discussion.html#do-the-suburbs-make-you-fat"><i class="fa fa-check"></i><b>1.5.2</b> Do the suburbs make you fat?</a></li>
+<li class="chapter" data-level="1.5.3" data-path="article-discussion.html"><a href="article-discussion.html#nike-shoes"><i class="fa fa-check"></i><b>1.5.3</b> Nike Shoes</a></li>
+<li class="chapter" data-level="1.5.4" data-path="article-discussion.html"><a href="article-discussion.html#what-is-science-feynmans-view"><i class="fa fa-check"></i><b>1.5.4</b> What is Science: Feynman’s View</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="apples-to-apples.html"><a href="apples-to-apples.html"><i class="fa fa-check"></i><b>2</b> Apples to Apples</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="learning-objectives-1.html"><a href="learning-objectives-1.html"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="2.2" data-path="this-causes-that.html"><a href="this-causes-that.html"><i class="fa fa-check"></i><b>2.2</b> This Causes That</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="this-causes-that.html"><a href="this-causes-that.html#damn-fine-coffee"><i class="fa fa-check"></i><b>2.2.1</b> Damn fine coffee</a></li>
+<li class="chapter" data-level="2.2.2" data-path="this-causes-that.html"><a href="this-causes-that.html#meditation-for-focus"><i class="fa fa-check"></i><b>2.2.2</b> Meditation for focus</a></li>
+<li class="chapter" data-level="2.2.3" data-path="this-causes-that.html"><a href="this-causes-that.html#selling-coffee-and-meditation"><i class="fa fa-check"></i><b>2.2.3</b> Selling coffee and meditation</a></li>
+<li class="chapter" data-level="2.2.4" data-path="this-causes-that.html"><a href="this-causes-that.html#reflecting-on-causes"><i class="fa fa-check"></i><b>2.2.4</b> Reflecting on Causes</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="potential-outcomes.html"><a href="potential-outcomes.html"><i class="fa fa-check"></i><b>2.3</b> Potential Outcomes</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="potential-outcomes.html"><a href="potential-outcomes.html#defining-potential-outcomes"><i class="fa fa-check"></i><b>2.3.1</b> Defining Potential Outcomes</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="using-independence.html"><a href="using-independence.html"><i class="fa fa-check"></i><b>2.4</b> Using Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="quantifying-uncertainty.html"><a href="quantifying-uncertainty.html"><i class="fa fa-check"></i><b>3</b> Quantifying Uncertainty</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="learning-objectives-2.html"><a href="learning-objectives-2.html"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="3.2" data-path="value-of-theory.html"><a href="value-of-theory.html"><i class="fa fa-check"></i><b>3.2</b> Value of Theory</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="value-of-theory.html"><a href="value-of-theory.html#limits-of-behaviorist-reasoning"><i class="fa fa-check"></i><b>3.2.1</b> Limits of Behaviorist Reasoning</a></li>
+<li class="chapter" data-level="3.2.2" data-path="value-of-theory.html"><a href="value-of-theory.html#value-of-theory-1"><i class="fa fa-check"></i><b>3.2.2</b> Value of Theory</a></li>
+<li class="chapter" data-level="3.2.3" data-path="value-of-theory.html"><a href="value-of-theory.html#evaluating-theories"><i class="fa fa-check"></i><b>3.2.3</b> Evaluating Theories</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="stating-the-sharp-null.html"><a href="stating-the-sharp-null.html"><i class="fa fa-check"></i><b>3.3</b> Stating the sharp null</a></li>
+<li class="chapter" data-level="3.4" data-path="randomization-inference.html"><a href="randomization-inference.html"><i class="fa fa-check"></i><b>3.4</b> Randomization Inference</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="randomization-inference.html"><a href="randomization-inference.html#stating-the-process-of-randomization-inference"><i class="fa fa-check"></i><b>3.4.1</b> Stating the process of Randomization Inference</a></li>
+<li class="chapter" data-level="3.4.2" data-path="randomization-inference.html"><a href="randomization-inference.html#questions-about-randomization-inference"><i class="fa fa-check"></i><b>3.4.2</b> Questions about Randomization Inference</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html"><i class="fa fa-check"></i><b>3.5</b> Applying Randomization Inference</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#make-data"><i class="fa fa-check"></i><b>3.5.1</b> Make Data</a></li>
+<li class="chapter" data-level="3.5.2" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#plot-data"><i class="fa fa-check"></i><b>3.5.2</b> Plot Data</a></li>
+<li class="chapter" data-level="3.5.3" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#classic-test"><i class="fa fa-check"></i><b>3.5.3</b> Classic Test</a></li>
+<li class="chapter" data-level="3.5.4" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#randomization-inference-test"><i class="fa fa-check"></i><b>3.5.4</b> Randomization Inference Test</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="comparing-randomization-inference-and-frequentist-inference.html"><a href="comparing-randomization-inference-and-frequentist-inference.html"><i class="fa fa-check"></i><b>3.6</b> Comparing Randomization Inference and Frequentist Inference</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="comparing-randomization-inference-and-frequentist-inference.html"><a href="comparing-randomization-inference-and-frequentist-inference.html#donations-to-a-political-campaign"><i class="fa fa-check"></i><b>3.6.1</b> Donations to a political campaign</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="statistical-power.html"><a href="statistical-power.html"><i class="fa fa-check"></i><b>3.7</b> Statistical Power</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="blocking-and-clustering.html"><a href="blocking-and-clustering.html"><i class="fa fa-check"></i><b>4</b> Blocking and Clustering</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="learning-objectives-3.html"><a href="learning-objectives-3.html"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="covariates-and-regression.html"><a href="covariates-and-regression.html"><i class="fa fa-check"></i><b>5</b> Covariates and Regression</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="learning-objectives-4.html"><a href="learning-objectives-4.html"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="regression-and-multifactor-experiments.html"><a href="regression-and-multifactor-experiments.html"><i class="fa fa-check"></i><b>6</b> Regression and Multifactor Experiments</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="learning-objectives-5.html"><a href="learning-objectives-5.html"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="heterogeneous-treatment-effects.html"><a href="heterogeneous-treatment-effects.html"><i class="fa fa-check"></i><b>7</b> Heterogeneous Treatment Effects</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="learning-objectives-6.html"><a href="learning-objectives-6.html"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="treatment-noncompliance.html"><a href="treatment-noncompliance.html"><i class="fa fa-check"></i><b>8</b> Treatment Noncompliance</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="learning-objectives-7.html"><a href="learning-objectives-7.html"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="spillover-and-interference.html"><a href="spillover-and-interference.html"><i class="fa fa-check"></i><b>9</b> Spillover and Interference</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="learning-objectives-8.html"><a href="learning-objectives-8.html"><i class="fa fa-check"></i><b>9.1</b> Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="causality-from-observational-data.html"><a href="causality-from-observational-data.html"><i class="fa fa-check"></i><b>10</b> Causality from Observational Data</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="learning-objectives-9.html"><a href="learning-objectives-9.html"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="problems-and-diagnostics.html"><a href="problems-and-diagnostics.html"><i class="fa fa-check"></i><b>11</b> Problems and Diagnostics</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="learning-objectives-10.html"><a href="learning-objectives-10.html"><i class="fa fa-check"></i><b>11.1</b> Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="attrition-mediation-and-generalizability.html"><a href="attrition-mediation-and-generalizability.html"><i class="fa fa-check"></i><b>12</b> Attrition, Mediation, and Generalizability</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="learning-objectives-11.html"><a href="learning-objectives-11.html"><i class="fa fa-check"></i><b>12.1</b> Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="applications-of-experiments.html"><a href="applications-of-experiments.html"><i class="fa fa-check"></i><b>13</b> Applications of Experiments</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="learning-objectives-12.html"><a href="learning-objectives-12.html"><i class="fa fa-check"></i><b>13.1</b> Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="review-of-the-course.html"><a href="review-of-the-course.html"><i class="fa fa-check"></i><b>14</b> Review of the Course</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="learning-objectives-13.html"><a href="learning-objectives-13.html"><i class="fa fa-check"></i><b>14.1</b> Learning Objectives</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Experiments and Causality</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="this-causes-that" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> This Causes That</h2>
+<p>What does it mean for an action to cause an outcome? Don’t worry about conducting the experiment, or any measurement concerns at this point, just engage with the concepts.</p>
+<div id="damn-fine-coffee" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Damn fine coffee</h3>
+<p>Suppose that you’re getting ready for class, and you want to make sure that you’re at your best. So, you drink a cup of water, eat a small snack, and brew a small pot of coffee for while you’re in class.</p>
+<blockquote>
+<p>Why do you do this?</p>
+</blockquote>
+<p>Presumably, you’re doing this because you like each of these things, but also because you’re interested in these things causing you to have a better class. If you framed this as as causal question, you might ask:</p>
+<blockquote>
+<p>If I drink a cup of coffee before class, will it cause me to be more alert?</p>
+</blockquote>
+<p>What does it mean for coffee to cause alertness?</p>
+<ul>
+<li>Does coffee cause everyone to become more alert?</li>
+<li>Does coffee have to affect everyone equally in order for you to say it causes alertness?</li>
+<li>Could coffee have no effect for some people, and you would still say it causes alertness?</li>
+</ul>
+</div>
+<div id="meditation-for-focus" class="section level3" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Meditation for focus</h3>
+<p>Suppose that you’re getting ready for class, and you want ensure that you’re at your best. So, you find a quiet place, and set your mind at ease with whatever form of meditation you think might be helpful.</p>
+<blockquote>
+<p>If I meditate before class, will it cause me to be more focused?</p>
+</blockquote>
+<p>What does it mean for meditation to cause focus?</p>
+<ul>
+<li>Does meditation cause everyone to become more focused?</li>
+<li>Does meditation have to affect everyone equally?</li>
+<li>Some people are frustrated by not being able to quiet their thoughts, and actually find meditation frustrating. Can this be true, and still believe that meditation causes focus?</li>
+</ul>
+</div>
+<div id="selling-coffee-and-meditation" class="section level3" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Selling coffee and meditation</h3>
+<p>Suppose that you’re an enterprising soul, and you want to sell a book about brewing coffee as a meditation. You reason that there must be a niche for this approach. To get the word out, you place a few flyers with tear off phone-numbers at the local yoga studios and tech incubators (good intuition to find those MIDS students).</p>
+<blockquote>
+<p>If shown a flyer for coffee-meditatin, will it cause someone to take my training?</p>
+</blockquote>
+<p>What does it mean for for flyers to cause people to sign-up for the training?</p>
+<ul>
+<li>Does the flyer cause everyone to take the training?</li>
+<li>Does the flyer affect everyone equally?</li>
+</ul>
+</div>
+<div id="reflecting-on-causes" class="section level3" number="2.2.4">
+<h3><span class="header-section-number">2.2.4</span> Reflecting on Causes</h3>
+<p>Does anything unify questions of causes?</p>
+<p>When you think about <em>{this}</em> causing <em>{that}</em>, do you think about it at a population level, a smaller group level, or at the individual level?</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="learning-objectives-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="potential-outcomes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "serif",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
