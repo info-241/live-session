@@ -1,5 +1,11 @@
 # Apples to Apples
 
+```{r}
+library(data.table)
+library(ggplot2)
+```
+
+
 ## Learning Objectives 
 
 At the conclusion of this week's live session, student will be able to:
@@ -7,13 +13,15 @@ At the conclusion of this week's live session, student will be able to:
 1. *Describe*, using the technical language of potential outcomes, what it means for an input to *cause* an output. 
 2. *Describe* the fundamental problem of causal inference. 
 3. *Apply* iid sampling as a method of producing an unbiased, consistent estimator of a population. 
-4. *Proove* that the average treatment effect estimator produces an unbaised, consistent estimator for the average treatment effect. 
+4. *Prove* that the average treatment effect estimator produces an unbiased, consistent estimator for the average treatment effect. 
 
 ## This Causes That
 
 What does it mean for an action to cause an outcome? Don't worry about conducting the experiment, or any measurement concerns at this point, just engage with the concepts. 
 
 ### Damn fine coffee
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Uvs7pmISe8I" title="Damn Fine Coffee" frameborder="0"></iframe>
 
 Suppose that you're getting ready for class, and you want to make sure that you're at your best. So, you drink a cup of water, eat a small snack, and brew a small pot of coffee for while you're in class. 
 
@@ -45,7 +53,7 @@ What does it mean for meditation to cause focus?
 
 Suppose that you're an enterprising soul, and you want to sell a book about brewing coffee as a meditation. You reason that there must be a niche for this approach. To get the word out, you place a few flyers with tear off phone-numbers at the local yoga studios and tech incubators (good intuition to find those MIDS students). 
 
-> If shown a flyer for coffee-meditatin, will it cause someone to take my training? 
+> If shown a flyer for coffee-meditation, will it cause someone to take my training? 
 
 What does it mean for for flyers to cause people to sign-up for the training?
 
@@ -123,8 +131,8 @@ $$
 - $\hat{\theta}_{4} = \frac{1}{n} \displaystyle\sum_{i=1}^{N} y_{i}$
 
 ```{r make population function} 
-population_function <- function(sample_size) { 
-  runif(n=sample_size, min=0, max=10)
+conduct_sample <- function(size) { 
+  runif(n=size, min=0, max=10)
 }
 ```
 
@@ -150,14 +158,173 @@ theta_4 <- function(data) {
   # clearly, this is a silly function to write, since you're just 
   # providing an alias, without modification, to an existing function. 
   
-}
-
-theta_4 <- function(data) { 
   mean(data)
-  } 
+  
+}
 ```
 
 ```{r}
-theta_4(population_function(100))
+theta_4(conduct_sample(size=100))
 ```
 
+- Just to put a fine point on it: **What estimator properties does the sample average provide, and why are these desirable?" 
+
+## Use Randomization to Produce Independence 
+
+How can we use the independence that is induced by "random **assignment** to treatment" combined with the sample average estimator to produce an estimate of an otherwise very difficult concept to measure? 
+
+## Theoretical Justification
+
+Before we show that this very simple ATE estimator work against a sample of data, it is worth reasoning about whether we can guarantee that it works in a general case. If we can show that it works in a general case, then any specific case inherits that guarantee. However, if we can only reason thorugh the existence of a single examlpe, it is not a sufficient argument to compell us to believe that it must hold for all cases. 
+
+Here's an example, "Behold! I see a black sheep! Therefore all sheep are black." This doesn't make sense, and it is not a logically sound argument. However, if you say, "All sheep say, 'Baaah!' This is a black sheep, so it must say 'Baah!'" is a logically sound arugment, so long as the antecedent is, in fact true. When we're proving something, we're proving that the antecedent to this statement is generally true. For anyone who took a symbolic logic course in, this method of argument might be marked down as $\forall X \implies \exists X$, whereas $\exists Y \not\Rightarrow \forall Y$. 
+
+- What is $\tau_{David}$? 
+- What is $\tau_{i}? 
+- Is there any reason to believe that $\tau_{David Reiley} = \tau_{David Broockman}$? 
+- Is there any reason to believe that $\tau_{i} = \tau_{j}$, where $j \neq i$? 
+- What is the fundamental problem of causal inference?
+
+
+The proof for this argument is also made in *Field Experiments*, on or about page 30 of the text. However, in our view, the authors don't give enough room to fully develop this proof, and so we skipped right past it the first time that we read the chapter. 
+
+Begin our proof with the statmenet for what a treamtent effect is, $\tau_{i}$. 
+
+$$
+  \begin{aligned} 
+    \tau_{i}    &= Y_{i}(1) - Y_{i}(0)    & Definition   \\ 
+    ATE         &= E[\tau]                & Definition   \\
+                &= E[Y(1) - Y(0)]         & Substitution \\
+                &=                                       \\
+                &=                                       \\
+                &=                                       \\
+                &=                                       \\
+                &=                                       \\
+                &=                                       \\
+                &=                                       \\
+                &=                                       \\
+                &=                                       \\
+                &=                                       \\
+                &=                                       \\
+                &=                                       \\
+                &=                                       \\
+                &=                                       \\
+  \end{aligned}
+$$
+
+## Example
+
+Now, let's work through an example that shows this works not only in the math, but also in the realized, i.e. sampled, world. 
+
+To begin with, lets work with a *very* simple sample that has 100 observations, potential outcomes to control are uniformly distributed between `0` and `1` and every single unit has a potential outcome to treatment that is `0.25` units larger than their potential outcomes to control.  
+
+```{r create data}
+make_simple_data <- function(size=100) { 
+  require(data.table) 
+  
+  d <- data.table(id = 1:100)  
+  
+  d[ , y0 := runif(.N, min = 0, max = 1)]
+  d[ , y1 := y0 + .25]
+  
+  return(d)
+  }
+
+d <- make_simple_data(size=100)
+```
+
+In this world, we've taken a sample of `100` individuals, and at this point, each of those individuals that we've sampled has both a potential outcome to control **and also** a potential outcome to treatment. We haven't talked at all about measurement yet; we're just asserting that both of these potential outcomes exist for each person. 
+
+Essentially, this stage of creating the sample is the same as bringing people in the door to your experiment. If you were running this in the laboratory, you'd literally think of this as sitting your subjects down at their chairs, getting ready to begin their task. 
+
+> Is randomly sampling people to be a part of your experiment sufficient to ensure that your experiment produces an unbiaed, consistent estimate of the true treamtent effect? 
+
+Suppose that for each unit, you then toss a coin, placing the subject either into treatment or control based on the result of that coin flip. 
+
+- Does this coin flip ensure that you have the same number of units in treatment as control? Does this matter to you? Why or why not? 
+- Are there other ways that you could assign individuals to treatment an control, rather than through a simple-randomization process? 
+- What are the relative merits or limitations of each of the methods?
+- Are some of these methods *more random* than others? Or, are all things that are random equal in their randomness? 
+
+## Assign to Treatment and Control
+```{r assign units to treatment and control at random}
+d[ , experimental_assignment := sample(0:1, size = .N, replace = TRUE)]
+```
+
+As as comparison, suppose that instead of randomly assigning individuals into treatment and control we allowed individuals to select into treatment and control. And suppose that people with the lowest potential outcomes to control opt to take the treatment. You might think of this as being something like, "The people who are the most tired are the most likely to drink a cup of coffee before they start class," if an example helps you ground this. 
+
+Specifically, suppose that any unit that has a potential outcome lower that `0.33` opts to take the treatment. 
+
+```{r allow observational selection into treatment}
+d[ , observational_selection := ifelse(y0 < .33, 1, 0)]
+```
+
+These represent two different ways that you might conduct your research, each time with the same subject pool. Of course, in reality you probably would not be able to run these two studies at the same time, but since this is a simulation, we can stretch the confines of reality just a little bit. 
+
+```{r}
+first_plot <- ggplot(data=d) + 
+  geom_point(aes(x = id, y = y0), color = 'steelblue') + 
+  geom_point(aes(x = id, y = y1), color = 'darkorange')
+first_plot  
+```
+
+What's actually happening in this? It might be more clear if we add arrows to this plot to show. 
+
+```{r show the movement}
+first_plot +
+  geom_segment(
+    aes(x = id, xend = id, y = y0, yend = y1), 
+    arrow = arrow(ends = 'last', length = unit(0.05, "inches"), type = 'closed'), 
+    color = 'grey70'
+    )
+```
+
+Even though these potential outcomes exist for all the units, is it possible to actually see them for all the units? How do we go about showing, and then measuring the potential outcomes to control for a set of units? How about the potential outcomes to treatment? 
+
+```{r}
+second_plot <- ggplot(data = d) + 
+  geom_point(aes(x = id, y = y0, size = 1 - experimental_assignment), color = 'steelblue') + 
+  geom_point(aes(x = id, y = y1, size = experimental_assignment - 1), color = 'darkorange')
+
+second_plot
+```
+
+What are the averages of these samples that have been assigned to treatment? 
+
+```{r}
+third_plot <- second_plot + 
+  geom_hline(yintercept = mean(d[experimental_assignment==0, y0]), color = 'steelblue', linetype = 2) + 
+  geom_hline(yintercept = mean(d[experimental_assignment==1, y1]), color = 'darkorange', linetype = 2)
+third_plot
+```
+
+Even though we aren't able to see it, can we reason about what the sample average would be if we could see both of an individual's potential outcome to treatment and control? 
+
+- Is there a guarantee that the sample should be the same as the feasible realization? 
+- Should they be close? What property from 203 provides this guarantee? 
+
+```{r}
+third_plot + 
+  geom_hline(yintercept = mean(d[, y0]), color = 'steelblue', linetype = 1) + 
+  geom_hline(yintercept = mean(d[, y1]), color = 'darkorange', linetype = 1)
+```
+
+Put it all together, what has this little demo shown? 
+
+### What if there is selection?
+
+What if, rather than being assigned to treatment and control, instead individuals had been able to opt into treatment and control? 
+
+Produce only the last plot, but this time for the observational, or selected data. 
+
+```{r}
+selection_plot <- ggplot(d) + 
+  geom_point(aes(x = id, y = y0, size = 1 - observational_selection), color = 'steelblue') + 
+  geom_point(aes(x = id, y = y1, size = observational_selection - 1), color = 'darkorange') + 
+  geom_hline(yintercept = d[observational_selection == 0, mean(y0)], color = 'steelblue', linetype = 2) + 
+  geom_hline(yintercept = d[observational_selection == 1, mean(y1)], color = 'darkorange', linetype = 2) + 
+  geom_hline(yintercept = mean(d[, y0]), color = 'steelblue', linetype = 1) + 
+  geom_hline(yintercept = mean(d[, y1]), color = 'darkorange', linetype = 1)
+
+selection_plot
+```
