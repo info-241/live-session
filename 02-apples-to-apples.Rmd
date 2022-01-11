@@ -15,6 +15,16 @@ At the conclusion of this week's live session, student will be able to:
 3. *Apply* iid sampling as a method of producing an unbiased, consistent estimator of a population. 
 4. *Prove* that the average treatment effect estimator produces an unbiased, consistent estimator for the average treatment effect. 
 
+## Revisiting Ideas of Science 
+
+Questions about epistemology are a *classic* question, and one that is particularly relevant not only at the School of Information where we have faculty and student whose work ranges from fields as diverse as computer science, psychology, sociology, law, and education -- "**What does it mean to *know* something?**" We'll note that this question is not only an academic question, because in our workplaces we need to know how to take the best course of action. In this course, we like to think of *Science* as a method of coming to know something. 
+
+Think back to the reading and discussion from last week: For Feynman, what does it mean to be "Doing science?" Would Feynman say that data science, as we are practicing it, is a "science"? Would Feynman say that 205, or computer science is a science? Would Feynman say that 203 is a science? What about 251, 255, or 266? 
+
+For Lakatos, what does it mean for something to be a part of a science? What does it mean for something to be a part of a psuedo-science? Is it as simple a view as Feynman espouses? Does the work that we conduct across the coursework in this program produce scientific knowledge as Lakatos see it? 
+
+What do you think produces knowledge? Can a single conversation produce knowledge? Can a non-experimental study produce knowledge about a causal effect? Can an experiment fail to produce knowledge? If an experiment fails to reject some null hypothesis, does that mean that it has not produced any knowlege? 
+
 ## This Causes That
 
 What does it mean for an action to cause an outcome? Don't worry about conducting the experiment, or any measurement concerns at this point, just engage with the concepts. 
@@ -65,6 +75,71 @@ What does it mean for for flyers to cause people to sign-up for the training?
 Does anything unify questions of causes? 
 
 When you think about *{this}* causing *{that}*, do you think about it at a population level, a smaller group level, or at the individual level? 
+
+## Reading Discussion: The Power of Experiments 
+
+*The Power of Experiments* starts the discussion of experimentation in the workplace with what is, for the course instructors, a uniquely pedestrian example, increasing contributions to taxes. In particular, Her Majesty's Revenue and Customs sends different versions of a letter to British taxpayers, and observes that different language leads to different amounts of taxes being paid. 
+
+### Chapter One: The Power of Experiments
+
+1. Is it *actually* a "big-deal" to increase tax compliance by 2 percentage points? 
+2. On page five, the book identifies five "one-liners" that HMRC chose to send to taxpayers: 
+  1. *Nine out of ten people pay their tax on time."* 
+  2. *Nine out of ten people in the UK pay their tax on time.*
+  3. *Nine out of ten people in the UK pay their tax on time. You are currently in the very small minority of people who have not paid us yet."*
+  4. *Paying tax means we all gain from vital public services like the NHS, roads and schools.*
+  5. *Not paying tax means we all lose out on vital public services like the NHS, roads, and schools.* 
+3. Which of these sentences would be the most effective at getting you to pay your taxes? Which do you think will be most effective, overall, at generating tax compliance? Why? How willing are you to make a million pound bet that you're correct? 
+4. Some of your instructors are vegetarians. None of them, however, has previously made an argument for why everyone should be vegetarian based on the example of Daniel and his study of diet and divine intervention. What about the study that Daniel conducted produces evidence that you think is useful for evaluating diet? What are the limitations that you see in this study? The book lists several, but there are other issues, along the lines of  the *exclusion restriction* that *Field Experiments* identifies. 
+5. In order for Pasteur to be declared the winner of the vaccine argument, the observers said that every control group sheep had to die and every treatment group (i.e. vaccine-receiving) sheep had to live. Is this a fair burden of proof? Do the frequentest tests that we developed in 203 and are going to use here in 241 set a higher or lower bar than Pasteur faced? What are the merits of a relatively higher or lower bar? 
+
+### Chapter Two: The Rise of Experimetnts in Psychology and Economics
+
+Freud is noted as being specifically *against* experimentation. But, *PoE* then goes on to write, "[Freud's] big ideas inspired entire fields of psychological research. Including the notion that unconscious processes shape our judgement and behavior, psychological disorders are rooted in the mind rather than the body; and that sexual urges and behavior are worthy of study" (p. 19). Some of the theories that Freud promulgated were found to have evidence that was consistent with the theory; some of these theories could not produce evidence to support the theory; and many were outright contradicted by the evidence.
+
+1. Is there value in being an "idea person"? How would you ever know if your ideas were actually right if you're unwilling to evaluate them? 
+2. What, if any, are the limitations of experimenting without any "big ideas" to ground your experiments? 
+
+Behaviorists (Skinner is the leading behaviorist) make a compelling argument: "One cannot directly observe what is happening in the mind of a person." A classic implication of this argument for behaviorists is that only that which is empirically observable is reasoned about. "Why does the rat avoid getting shocked? Does it really matter?" "Why does the child want a cookie? Does it really matter why?" 
+
+1. Is this position reasonable for you to take as you navigate your own life? If you spoke with a therapist or a coach and said, "I've been feeling stressed over the past several weeks," would be satisfied with a *mindful* answer like, "Well, let's acknowledge those feelings and hold them for a moment" or would you want to reason further about why you feel stressed? What are the types of things in people's heads that you think we can profitably reason about; what are the types of things in people's heads that we cannot reason about? Is there something that is common to those that we can or cannot work with? 
+
+The experiments of Milgram and Zimbardo are widely identified as the reason that human-subjects review boards no exist. These review boards serve as an external review that keeps researchers from inflicting harm to individuals that is not outweighed by societal or scientific benefits. 
+
+1. What did Milgram and Zimbardo do to their subjects?
+2. By talking continuing to talk about these experiments nearly fifty years after they were conducted -- even if we are talking about them negatively -- are we adding to the fame of these researchers? (For those interested in inside baseball, Zimbardo was the president of the American Psychology Association in 2002, and was awarded a lifetime achievement award from his discipline.) How should we learn and react to work that shouldn't have been conducted in the first place? 
+
+Kahneman and Tversky propose that individuals think about expected values differently depending on whether they are thinking in the domain of gains or the domain of losses. They come to this theory through the, now cringe-worthy, *Asian Disease Problem*: 
+
+In the positive frame, they ask the question: 
+
+> Imagine that the US is preparing for the outbreak of an unusual Asian disease that is expected to kill 600 people. Two alternative programs to combat the disease have been proposed. 
+> 
+> - If **Program A** is adopted, 200 people will be saved. 
+> - If **Program B** is adopted, with a 1/3 probability 600 will be saved and with a 2/3 probability nobody will be saved.
+> 
+
+The authors also present a countervailing pair of scenarios framed in terms of losses
+
+> - If **Program C** is adopted, 400 people will die. 
+> - If **Program D** is adopted, there is a one-third probability that no one will die, and a 2/3 probability that everyone will die. 
+
+Clearly, all these programs have the same expected number of deaths; but, people can disagree about which of these is the program that we should pursue. Just ask as a poll in the class; and, ask people to justify their beliefs. 
+
+### The Rise of Behavioral Experiments in Policymaking 
+
+*PoE* points out that experiments abound in policy making. Part of this stems from a truthful ignorance of the optimal policy to pursue. Another part of this stems from the ability of policy makers to make decisions by fiat that affect a large number of people. 
+
+1. Does this justification for experiments align with your current understeanding of the landscape in human-facing data science? 
+
+In a section titled **The nuance behind behavioral insights** the authors state a series of three caveats: 
+
+> 1. *Context matters*
+> 2. *Design choices matter* 
+> 3. *Unintended consequences abound* 
+
+1. What do they mean when they raise the three points?
+2. We are going to ask you to justify conducting experiments by staking out an extreme point of view, and asking you to convince us that this point of view is so extreme that it cannot be justified. *"Writing that context matters, design choices matter, and unanticipated consequences abound is little more than writing that experiments cannot produce any more useful insights than the theories of Freud. As a result, there is little reason to conduct any experiments because what we learn will be highly contextualized, affected by very small implementation choices, and may generate as many (or more) negative outcomes as positive outcomes."* 
 
 ## Potential Outcomes
 
@@ -180,8 +255,8 @@ Before we show that this very simple ATE estimator work against a sample of data
 Here's an example, "Behold! I see a black sheep! Therefore all sheep are black." This doesn't make sense, and it is not a logically sound argument. However, if you say, "All sheep say, 'Baaah!' This is a black sheep, so it must say 'Baah!'" is a logically sound arugment, so long as the antecedent is, in fact true. When we're proving something, we're proving that the antecedent to this statement is generally true. For anyone who took a symbolic logic course in, this method of argument might be marked down as $\forall X \implies \exists X$, whereas $\exists Y \not\Rightarrow \forall Y$. 
 
 - What is $\tau_{David}$? 
-- What is $\tau_{i}? 
-- Is there any reason to believe that $\tau_{David Reiley} = \tau_{David Broockman}$? 
+- What is $\tau_{i}$? 
+- Is there any reason to believe that $\tau_{David\ Reiley} = \tau_{David\ Broockman}$? 
 - Is there any reason to believe that $\tau_{i} = \tau_{j}$, where $j \neq i$? 
 - What is the fundamental problem of causal inference?
 
@@ -212,7 +287,7 @@ $$
   \end{aligned}
 $$
 
-## Example
+## Simulation Example
 
 Now, let's work through an example that shows this works not only in the math, but also in the realized, i.e. sampled, world. 
 
@@ -246,7 +321,7 @@ Suppose that for each unit, you then toss a coin, placing the subject either int
 - What are the relative merits or limitations of each of the methods?
 - Are some of these methods *more random* than others? Or, are all things that are random equal in their randomness? 
 
-## Assign to Treatment and Control
+### Assign to Treatment and Control
 ```{r assign units to treatment and control at random}
 d[ , experimental_assignment := sample(0:1, size = .N, replace = TRUE)]
 ```

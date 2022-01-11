@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5.1 Learning Objectives | Experiments and Causality</title>
+  <title>2.4 The Rise of Behavioral Experiments in Policymaking | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5.1 Learning Objectives | Experiments and Causality" />
+  <meta property="og:title" content="2.4 The Rise of Behavioral Experiments in Policymaking | Experiments and Causality" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/coffee.jpeg" />
@@ -16,12 +16,12 @@
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5.1 Learning Objectives | Experiments and Causality" />
+  <meta name="twitter:title" content="2.4 The Rise of Behavioral Experiments in Policymaking | Experiments and Causality" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
 
-<meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
+<meta name="author" content="David Reiley, David Broockman, D. Alex Hughes,  Micah Gell-Redman, Scott Guenther, &amp; David Wheeler" />
 
 
 <meta name="date" content="2022-01-10" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="covariates-and-regression.html"/>
-<link rel="next" href="regression-and-multifactor-experiments.html"/>
+<link rel="prev" href="the-power-of-experiments.html"/>
+<link rel="next" href="potential-outcomes.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -158,20 +158,19 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="apples-to-apples.html"><a href="apples-to-apples.html"><i class="fa fa-check"></i><b>2</b> Apples to Apples</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="learning-objectives-1.html"><a href="learning-objectives-1.html"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="2.2" data-path="revisiting-ideas-of-science.html"><a href="revisiting-ideas-of-science.html"><i class="fa fa-check"></i><b>2.2</b> Revisiting Ideas of Science</a></li>
-<li class="chapter" data-level="2.3" data-path="this-causes-that.html"><a href="this-causes-that.html"><i class="fa fa-check"></i><b>2.3</b> This Causes That</a>
+<li class="chapter" data-level="2.2" data-path="this-causes-that.html"><a href="this-causes-that.html"><i class="fa fa-check"></i><b>2.2</b> This Causes That</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="this-causes-that.html"><a href="this-causes-that.html#damn-fine-coffee"><i class="fa fa-check"></i><b>2.3.1</b> Damn fine coffee</a></li>
-<li class="chapter" data-level="2.3.2" data-path="this-causes-that.html"><a href="this-causes-that.html#meditation-for-focus"><i class="fa fa-check"></i><b>2.3.2</b> Meditation for focus</a></li>
-<li class="chapter" data-level="2.3.3" data-path="this-causes-that.html"><a href="this-causes-that.html#selling-coffee-and-meditation"><i class="fa fa-check"></i><b>2.3.3</b> Selling coffee and meditation</a></li>
-<li class="chapter" data-level="2.3.4" data-path="this-causes-that.html"><a href="this-causes-that.html#reflecting-on-causes"><i class="fa fa-check"></i><b>2.3.4</b> Reflecting on Causes</a></li>
+<li class="chapter" data-level="2.2.1" data-path="this-causes-that.html"><a href="this-causes-that.html#damn-fine-coffee"><i class="fa fa-check"></i><b>2.2.1</b> Damn fine coffee</a></li>
+<li class="chapter" data-level="2.2.2" data-path="this-causes-that.html"><a href="this-causes-that.html#meditation-for-focus"><i class="fa fa-check"></i><b>2.2.2</b> Meditation for focus</a></li>
+<li class="chapter" data-level="2.2.3" data-path="this-causes-that.html"><a href="this-causes-that.html#selling-coffee-and-meditation"><i class="fa fa-check"></i><b>2.2.3</b> Selling coffee and meditation</a></li>
+<li class="chapter" data-level="2.2.4" data-path="this-causes-that.html"><a href="this-causes-that.html#reflecting-on-causes"><i class="fa fa-check"></i><b>2.2.4</b> Reflecting on Causes</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="reading-discussion-the-power-of-experiments.html"><a href="reading-discussion-the-power-of-experiments.html"><i class="fa fa-check"></i><b>2.4</b> Reading Discussion: The Power of Experiments</a>
+<li class="chapter" data-level="2.3" data-path="the-power-of-experiments.html"><a href="the-power-of-experiments.html"><i class="fa fa-check"></i><b>2.3</b> The Power of Experiments</a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="reading-discussion-the-power-of-experiments.html"><a href="reading-discussion-the-power-of-experiments.html#chapter-one-the-power-of-experiments"><i class="fa fa-check"></i><b>2.4.1</b> Chapter One: The Power of Experiments</a></li>
-<li class="chapter" data-level="2.4.2" data-path="reading-discussion-the-power-of-experiments.html"><a href="reading-discussion-the-power-of-experiments.html#chapter-two-the-rise-of-experimetnts-in-psychology-and-economics"><i class="fa fa-check"></i><b>2.4.2</b> Chapter Two: The Rise of Experimetnts in Psychology and Economics</a></li>
-<li class="chapter" data-level="2.4.3" data-path="reading-discussion-the-power-of-experiments.html"><a href="reading-discussion-the-power-of-experiments.html#the-rise-of-behavioral-experiments-in-policymaking"><i class="fa fa-check"></i><b>2.4.3</b> The Rise of Behavioral Experiments in Policymaking</a></li>
+<li class="chapter" data-level="2.3.1" data-path="the-power-of-experiments.html"><a href="the-power-of-experiments.html#chapter-one-the-power-of-experiments"><i class="fa fa-check"></i><b>2.3.1</b> Chapter One: The Power of Experiments</a></li>
+<li class="chapter" data-level="2.3.2" data-path="the-power-of-experiments.html"><a href="the-power-of-experiments.html#chapter-two-the-rise-of-experimetnts-in-psychology-and-economics"><i class="fa fa-check"></i><b>2.3.2</b> Chapter Two: The Rise of Experimetnts in Psychology and Economics</a></li>
 </ul></li>
+<li class="chapter" data-level="2.4" data-path="the-rise-of-behavioral-experiments-in-policymaking.html"><a href="the-rise-of-behavioral-experiments-in-policymaking.html"><i class="fa fa-check"></i><b>2.4</b> The Rise of Behavioral Experiments in Policymaking</a></li>
 <li class="chapter" data-level="2.5" data-path="potential-outcomes.html"><a href="potential-outcomes.html"><i class="fa fa-check"></i><b>2.5</b> Potential Outcomes</a>
 <ul>
 <li class="chapter" data-level="2.5.1" data-path="potential-outcomes.html"><a href="potential-outcomes.html#defining-potential-outcomes"><i class="fa fa-check"></i><b>2.5.1</b> Defining Potential Outcomes</a></li>
@@ -179,10 +178,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6" data-path="using-independence.html"><a href="using-independence.html"><i class="fa fa-check"></i><b>2.6</b> Using Independence</a></li>
 <li class="chapter" data-level="2.7" data-path="use-randomization-to-produce-independence.html"><a href="use-randomization-to-produce-independence.html"><i class="fa fa-check"></i><b>2.7</b> Use Randomization to Produce Independence</a></li>
 <li class="chapter" data-level="2.8" data-path="theoretical-justification.html"><a href="theoretical-justification.html"><i class="fa fa-check"></i><b>2.8</b> Theoretical Justification</a></li>
-<li class="chapter" data-level="2.9" data-path="simulation-example.html"><a href="simulation-example.html"><i class="fa fa-check"></i><b>2.9</b> Simulation Example</a>
+<li class="chapter" data-level="2.9" data-path="example.html"><a href="example.html"><i class="fa fa-check"></i><b>2.9</b> Example</a></li>
+<li class="chapter" data-level="2.10" data-path="assign-to-treatment-and-control.html"><a href="assign-to-treatment-and-control.html"><i class="fa fa-check"></i><b>2.10</b> Assign to Treatment and Control</a>
 <ul>
-<li class="chapter" data-level="2.9.1" data-path="simulation-example.html"><a href="simulation-example.html#assign-to-treatment-and-control"><i class="fa fa-check"></i><b>2.9.1</b> Assign to Treatment and Control</a></li>
-<li class="chapter" data-level="2.9.2" data-path="simulation-example.html"><a href="simulation-example.html#what-if-there-is-selection"><i class="fa fa-check"></i><b>2.9.2</b> What if there is selection?</a></li>
+<li class="chapter" data-level="2.10.1" data-path="assign-to-treatment-and-control.html"><a href="assign-to-treatment-and-control.html#what-if-there-is-selection"><i class="fa fa-check"></i><b>2.10.1</b> What if there is selection?</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="quantifying-uncertainty.html"><a href="quantifying-uncertainty.html"><i class="fa fa-check"></i><b>3</b> Quantifying Uncertainty</a>
@@ -274,23 +273,32 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="learning-objectives-4" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> Learning Objectives</h2>
+<div id="the-rise-of-behavioral-experiments-in-policymaking" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> The Rise of Behavioral Experiments in Policymaking</h2>
+<p><em>PoE</em> points out that experiments abound in policy making. Part of this stems from a truthful ignorance of the optimal policy to pursue. Another part of this stems from the ability of policy makers to make decisions by fiat that affect a large number of people.</p>
 <ol style="list-style-type: decimal">
-<li></li>
-<li></li>
-<li></li>
+<li>Does this justification for experiments align with your current understeanding of the landscape in human-facing data science?</li>
 </ol>
-
+<p>In a section titled <strong>The nuance behind behavioral insights</strong> the authors state a series of three caveats:</p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><em>Context matters</em></li>
+<li><em>Design choices matter</em></li>
+<li><em>Unintended consequences abound</em></li>
+</ol>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>What do they mean when they raise the three points?</li>
+<li>We are going to ask you to justify conducting experiments by staking out an extreme point of view, and asking you to convince us that this point of view is so extreme that it cannot be justified. <em>“Writing that context matters, design choices matter, and unanticipated consequences abound is little more than writing that experiments cannot produce any more useful insights than the theories of Freud. As a result, there is little reason to conduct any experiments because what we learn will be highly contextualized, affected by very small implementation choices, and may generate as many (or more) negative outcomes as positive outcomes.”</em></li>
+</ol>
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="covariates-and-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="regression-and-multifactor-experiments.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="the-power-of-experiments.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="potential-outcomes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

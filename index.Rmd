@@ -1,10 +1,11 @@
 ---
 title: "Experiments and Causality"
 cover-image: "images/coffee.jpeg"
-author: "David Reiley, David Broockman, D. Alex Hughes, \\ Micah Gell-Redman, Scott Guenther, & David Wheeler"
+author: "David Reiley, David Broockman, D. Alex Hughes, \\\\ Micah Gell-Redman, Scott Guenther, \\\\ David Wheeler & Conor Healy \\\\ Chris Donaton & Kineret Stanley"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: 
+  bookdown::pdf_book: default
   bookdown::gitbook:
     config:
       toc:
@@ -15,7 +16,6 @@ output:
         family: serif
         size: 2
     highlight: tango
-  bookdown::pdf_book: default
 always_allow_html: yes
 documentclass: book
 bibliography: [book.bib, packages.bib]

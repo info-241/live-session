@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5.1 Learning Objectives | Experiments and Causality</title>
+  <title>2.3 The Power of Experiments | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5.1 Learning Objectives | Experiments and Causality" />
+  <meta property="og:title" content="2.3 The Power of Experiments | Experiments and Causality" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/coffee.jpeg" />
@@ -16,12 +16,12 @@
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5.1 Learning Objectives | Experiments and Causality" />
+  <meta name="twitter:title" content="2.3 The Power of Experiments | Experiments and Causality" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
 
-<meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
+<meta name="author" content="David Reiley, David Broockman, D. Alex Hughes,  Micah Gell-Redman, Scott Guenther, &amp; David Wheeler" />
 
 
 <meta name="date" content="2022-01-10" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="covariates-and-regression.html"/>
-<link rel="next" href="regression-and-multifactor-experiments.html"/>
+<link rel="prev" href="this-causes-that.html"/>
+<link rel="next" href="the-rise-of-behavioral-experiments-in-policymaking.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -158,20 +158,19 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="apples-to-apples.html"><a href="apples-to-apples.html"><i class="fa fa-check"></i><b>2</b> Apples to Apples</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="learning-objectives-1.html"><a href="learning-objectives-1.html"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="2.2" data-path="revisiting-ideas-of-science.html"><a href="revisiting-ideas-of-science.html"><i class="fa fa-check"></i><b>2.2</b> Revisiting Ideas of Science</a></li>
-<li class="chapter" data-level="2.3" data-path="this-causes-that.html"><a href="this-causes-that.html"><i class="fa fa-check"></i><b>2.3</b> This Causes That</a>
+<li class="chapter" data-level="2.2" data-path="this-causes-that.html"><a href="this-causes-that.html"><i class="fa fa-check"></i><b>2.2</b> This Causes That</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="this-causes-that.html"><a href="this-causes-that.html#damn-fine-coffee"><i class="fa fa-check"></i><b>2.3.1</b> Damn fine coffee</a></li>
-<li class="chapter" data-level="2.3.2" data-path="this-causes-that.html"><a href="this-causes-that.html#meditation-for-focus"><i class="fa fa-check"></i><b>2.3.2</b> Meditation for focus</a></li>
-<li class="chapter" data-level="2.3.3" data-path="this-causes-that.html"><a href="this-causes-that.html#selling-coffee-and-meditation"><i class="fa fa-check"></i><b>2.3.3</b> Selling coffee and meditation</a></li>
-<li class="chapter" data-level="2.3.4" data-path="this-causes-that.html"><a href="this-causes-that.html#reflecting-on-causes"><i class="fa fa-check"></i><b>2.3.4</b> Reflecting on Causes</a></li>
+<li class="chapter" data-level="2.2.1" data-path="this-causes-that.html"><a href="this-causes-that.html#damn-fine-coffee"><i class="fa fa-check"></i><b>2.2.1</b> Damn fine coffee</a></li>
+<li class="chapter" data-level="2.2.2" data-path="this-causes-that.html"><a href="this-causes-that.html#meditation-for-focus"><i class="fa fa-check"></i><b>2.2.2</b> Meditation for focus</a></li>
+<li class="chapter" data-level="2.2.3" data-path="this-causes-that.html"><a href="this-causes-that.html#selling-coffee-and-meditation"><i class="fa fa-check"></i><b>2.2.3</b> Selling coffee and meditation</a></li>
+<li class="chapter" data-level="2.2.4" data-path="this-causes-that.html"><a href="this-causes-that.html#reflecting-on-causes"><i class="fa fa-check"></i><b>2.2.4</b> Reflecting on Causes</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="reading-discussion-the-power-of-experiments.html"><a href="reading-discussion-the-power-of-experiments.html"><i class="fa fa-check"></i><b>2.4</b> Reading Discussion: The Power of Experiments</a>
+<li class="chapter" data-level="2.3" data-path="the-power-of-experiments.html"><a href="the-power-of-experiments.html"><i class="fa fa-check"></i><b>2.3</b> The Power of Experiments</a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="reading-discussion-the-power-of-experiments.html"><a href="reading-discussion-the-power-of-experiments.html#chapter-one-the-power-of-experiments"><i class="fa fa-check"></i><b>2.4.1</b> Chapter One: The Power of Experiments</a></li>
-<li class="chapter" data-level="2.4.2" data-path="reading-discussion-the-power-of-experiments.html"><a href="reading-discussion-the-power-of-experiments.html#chapter-two-the-rise-of-experimetnts-in-psychology-and-economics"><i class="fa fa-check"></i><b>2.4.2</b> Chapter Two: The Rise of Experimetnts in Psychology and Economics</a></li>
-<li class="chapter" data-level="2.4.3" data-path="reading-discussion-the-power-of-experiments.html"><a href="reading-discussion-the-power-of-experiments.html#the-rise-of-behavioral-experiments-in-policymaking"><i class="fa fa-check"></i><b>2.4.3</b> The Rise of Behavioral Experiments in Policymaking</a></li>
+<li class="chapter" data-level="2.3.1" data-path="the-power-of-experiments.html"><a href="the-power-of-experiments.html#chapter-one-the-power-of-experiments"><i class="fa fa-check"></i><b>2.3.1</b> Chapter One: The Power of Experiments</a></li>
+<li class="chapter" data-level="2.3.2" data-path="the-power-of-experiments.html"><a href="the-power-of-experiments.html#chapter-two-the-rise-of-experimetnts-in-psychology-and-economics"><i class="fa fa-check"></i><b>2.3.2</b> Chapter Two: The Rise of Experimetnts in Psychology and Economics</a></li>
 </ul></li>
+<li class="chapter" data-level="2.4" data-path="the-rise-of-behavioral-experiments-in-policymaking.html"><a href="the-rise-of-behavioral-experiments-in-policymaking.html"><i class="fa fa-check"></i><b>2.4</b> The Rise of Behavioral Experiments in Policymaking</a></li>
 <li class="chapter" data-level="2.5" data-path="potential-outcomes.html"><a href="potential-outcomes.html"><i class="fa fa-check"></i><b>2.5</b> Potential Outcomes</a>
 <ul>
 <li class="chapter" data-level="2.5.1" data-path="potential-outcomes.html"><a href="potential-outcomes.html#defining-potential-outcomes"><i class="fa fa-check"></i><b>2.5.1</b> Defining Potential Outcomes</a></li>
@@ -179,10 +178,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6" data-path="using-independence.html"><a href="using-independence.html"><i class="fa fa-check"></i><b>2.6</b> Using Independence</a></li>
 <li class="chapter" data-level="2.7" data-path="use-randomization-to-produce-independence.html"><a href="use-randomization-to-produce-independence.html"><i class="fa fa-check"></i><b>2.7</b> Use Randomization to Produce Independence</a></li>
 <li class="chapter" data-level="2.8" data-path="theoretical-justification.html"><a href="theoretical-justification.html"><i class="fa fa-check"></i><b>2.8</b> Theoretical Justification</a></li>
-<li class="chapter" data-level="2.9" data-path="simulation-example.html"><a href="simulation-example.html"><i class="fa fa-check"></i><b>2.9</b> Simulation Example</a>
+<li class="chapter" data-level="2.9" data-path="example.html"><a href="example.html"><i class="fa fa-check"></i><b>2.9</b> Example</a></li>
+<li class="chapter" data-level="2.10" data-path="assign-to-treatment-and-control.html"><a href="assign-to-treatment-and-control.html"><i class="fa fa-check"></i><b>2.10</b> Assign to Treatment and Control</a>
 <ul>
-<li class="chapter" data-level="2.9.1" data-path="simulation-example.html"><a href="simulation-example.html#assign-to-treatment-and-control"><i class="fa fa-check"></i><b>2.9.1</b> Assign to Treatment and Control</a></li>
-<li class="chapter" data-level="2.9.2" data-path="simulation-example.html"><a href="simulation-example.html#what-if-there-is-selection"><i class="fa fa-check"></i><b>2.9.2</b> What if there is selection?</a></li>
+<li class="chapter" data-level="2.10.1" data-path="assign-to-treatment-and-control.html"><a href="assign-to-treatment-and-control.html#what-if-there-is-selection"><i class="fa fa-check"></i><b>2.10.1</b> What if there is selection?</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="quantifying-uncertainty.html"><a href="quantifying-uncertainty.html"><i class="fa fa-check"></i><b>3</b> Quantifying Uncertainty</a>
@@ -274,23 +273,66 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="learning-objectives-4" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> Learning Objectives</h2>
+<div id="the-power-of-experiments" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> The Power of Experiments</h2>
+<p><em>The Power of Experiments</em> starts the discussion of experimentation in the workplace with what is, for the course instructors, a uniquely pedestrian example, increasing contributions to taxes. In particular, Her Majesty’s Revenue and Customs sends different versions of a letter to British taxpayers, and observes that different language leads to different amounts of taxes being paid.</p>
+<div id="chapter-one-the-power-of-experiments" class="section level3" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Chapter One: The Power of Experiments</h3>
 <ol style="list-style-type: decimal">
-<li></li>
-<li></li>
-<li></li>
+<li>Is it <em>actually</em> a “big-deal” to increase tax compliance by 2 percentage points?</li>
+<li>On page five, the book identifies five “one-liners” that HMRC chose to send to taxpayers:</li>
+<li><em>Nine out of ten people pay their tax on time.”</em></li>
+<li><em>Nine out of ten people in the UK pay their tax on time.</em></li>
+<li><em>Nine out of ten people in the UK pay their tax on time. You are currently in the very small minority of people who have not paid us yet.”</em></li>
+<li><em>Paying tax means we all gain from vital public services like the NHS, roads and schools.</em></li>
+<li><em>Not paying tax means we all lose out on vital public services like the NHS, roads, and schools.</em></li>
+<li>Which of these sentences would be the most effective at getting you to pay your taxes? Which do you think will be most effective, overall, at generating tax compliance? Why? How willing are you to make a million pound bet that you’re correct?</li>
+<li>Some of your instructors are vegetarians. None of them, however, has previously made an argument for why everyone should be vegetarian based on the example of Daniel and his study of diet and divine intervention. What about the study that Daniel conducted produces evidence that you think is useful for evaluating diet? What are the limitations that you see in this study? The book lists several, but there are other issues, along the lines of the <em>exclusion restriction</em> that <em>Field Experiments</em> identifies.</li>
+<li>In order for Pasteur to be declared the winner of the vaccine argument, the observers said that every control group sheep had to die and every treatment group (i.e. vaccine-receiving) sheep had to live. Is this a fair burden of proof? Do the frequentest tests that we developed in 203 and are going to use here in 241 set a higher or lower bar than Pasteur faced? What are the merits of a relatively higher or lower bar?</li>
 </ol>
-
 </div>
-<!-- </div> -->
+<div id="chapter-two-the-rise-of-experimetnts-in-psychology-and-economics" class="section level3" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Chapter Two: The Rise of Experimetnts in Psychology and Economics</h3>
+<p>Freud is noted as being specifically <em>against</em> experimentation. But, <em>PoE</em> then goes on to write, “[Freud’s] big ideas inspired entire fields of psychological research. Including the notion that unconscious processes shape our judgement and behavior, psychological disorders are rooted in the mind rather than the body; and that sexual urges and behavior are worthy of study” (p. 19). Some of the theories that Freud promulgated were found to have evidence that was consistent with the theory; some of these theories could not produce evidence to support the theory; and many were outright contradicted by the evidence.</p>
+<ol style="list-style-type: decimal">
+<li>Is there value in being an “idea person?” How would you ever know if your ideas were actually right if you’re unwilling to evaluate them?</li>
+<li>What, if any, are the limitations of experimenting without any “big ideas” to ground your experiments?</li>
+</ol>
+<p>Behaviorists (Skinner is the leading behaviorist) make a compelling argument: “One cannot directly observe what is happening in the mind of a person.” A classic implication of this argument for behaviorists is that only that which is empirically observable is reasoned about. “Why does the rat avoid getting shocked? Does it really matter?” “Why does the child want a cookie? Does it really matter why?”</p>
+<ol style="list-style-type: decimal">
+<li>Is this position reasonable for you to take as you navigate your own life? If you spoke with a therapist or a coach and said, “I’ve been feeling stressed over the past several weeks,” would be satisfied with a <em>mindful</em> answer like, “Well, let’s acknowledge those feelings and hold them for a moment” or would you want to reason further about why you feel stressed? What are the types of things in people’s heads that you think we can profitably reason about; what are the types of things in people’s heads that we cannot reason about? Is there something that is common to those that we can or cannot work with?</li>
+</ol>
+<p>The experiments of Milgram and Zimbardo are widely identified as the reason that human-subjects review boards no exist. These review boards serve as an external review that keeps researchers from inflicting harm to individuals that is not outweighed by societal or scientific benefits.</p>
+<ol style="list-style-type: decimal">
+<li>What did Milgram and Zimbardo do to their subjects?</li>
+<li>By talking continuing to talk about these experiments nearly fifty years after they were conducted – even if we are talking about them negatively – are we adding to the fame of these researchers? (For those interested in inside baseball, Zimbardo was the president of the American Psychology Association in 2002, and was awarded a lifetime achievement award from his discipline.) How should we learn and react to work that shouldn’t have been conducted in the first place?</li>
+</ol>
+<p>Kahneman and Tversky propose that individuals think about expected values differently depending on whether they are thinking in the domain of gains or the domain of losses. They come to this theory through the, now cringe-worthy, <em>Asian Disease Problem</em>:</p>
+<p>In the positive frame, they ask the question:</p>
+<blockquote>
+<p>Imagine that the US is preparing for the outbreak of an unusual Asian disease that is expected to kill 600 people. Two alternative programs to combat the disease have been proposed.</p>
+<ul>
+<li>If <strong>Program A</strong> is adopted, 200 people will be saved.</li>
+<li>If <strong>Program B</strong> is adopted, with a 1/3 probability 600 will be saved and with a 2/3 probability nobody will be saved.</li>
+</ul>
+</blockquote>
+<p>The authors also present a countervailing pair of scenarios framed in terms of losses</p>
+<blockquote>
+<ul>
+<li>If <strong>Program C</strong> is adopted, 400 people will die.</li>
+<li>If <strong>Program D</strong> is adopted, there is a one-third probability that no one will die, and a 2/3 probability that everyone will die.</li>
+</ul>
+</blockquote>
+<p>Clearly, all these programs have the same expected number of deaths; but, people can disagree about which of these is the program that we should pursue. Just ask as a poll in the class; and, ask people to justify their beliefs.</p>
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="covariates-and-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="regression-and-multifactor-experiments.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="this-causes-that.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="the-rise-of-behavioral-experiments-in-policymaking.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

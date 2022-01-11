@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5.1 Learning Objectives | Experiments and Causality</title>
+  <title>2.9 Simulation Example | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5.1 Learning Objectives | Experiments and Causality" />
+  <meta property="og:title" content="2.9 Simulation Example | Experiments and Causality" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/coffee.jpeg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5.1 Learning Objectives | Experiments and Causality" />
+  <meta name="twitter:title" content="2.9 Simulation Example | Experiments and Causality" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="covariates-and-regression.html"/>
-<link rel="next" href="regression-and-multifactor-experiments.html"/>
+<link rel="prev" href="theoretical-justification.html"/>
+<link rel="next" href="quantifying-uncertainty.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -274,14 +274,94 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="learning-objectives-4" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> Learning Objectives</h2>
-<ol style="list-style-type: decimal">
-<li></li>
-<li></li>
-<li></li>
-</ol>
+<div id="simulation-example" class="section level2" number="2.9">
+<h2><span class="header-section-number">2.9</span> Simulation Example</h2>
+<p>Now, let’s work through an example that shows this works not only in the math, but also in the realized, i.e. sampled, world.</p>
+<p>To begin with, lets work with a <em>very</em> simple sample that has 100 observations, potential outcomes to control are uniformly distributed between <code>0</code> and <code>1</code> and every single unit has a potential outcome to treatment that is <code>0.25</code> units larger than their potential outcomes to control.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="simulation-example.html#cb6-1" aria-hidden="true" tabindex="-1"></a>make_simple_data <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">size=</span><span class="dv">100</span>) { </span>
+<span id="cb6-2"><a href="simulation-example.html#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">require</span>(data.table) </span>
+<span id="cb6-3"><a href="simulation-example.html#cb6-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-4"><a href="simulation-example.html#cb6-4" aria-hidden="true" tabindex="-1"></a>  d <span class="ot">&lt;-</span> <span class="fu">data.table</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>)  </span>
+<span id="cb6-5"><a href="simulation-example.html#cb6-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-6"><a href="simulation-example.html#cb6-6" aria-hidden="true" tabindex="-1"></a>  d[ , y0 <span class="sc">:</span><span class="er">=</span> <span class="fu">runif</span>(.N, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)]</span>
+<span id="cb6-7"><a href="simulation-example.html#cb6-7" aria-hidden="true" tabindex="-1"></a>  d[ , y1 <span class="sc">:</span><span class="er">=</span> y0 <span class="sc">+</span> .<span class="dv">25</span>]</span>
+<span id="cb6-8"><a href="simulation-example.html#cb6-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-9"><a href="simulation-example.html#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(d)</span>
+<span id="cb6-10"><a href="simulation-example.html#cb6-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-11"><a href="simulation-example.html#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="simulation-example.html#cb6-12" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">make_simple_data</span>(<span class="at">size=</span><span class="dv">100</span>)</span></code></pre></div>
+<p>In this world, we’ve taken a sample of <code>100</code> individuals, and at this point, each of those individuals that we’ve sampled has both a potential outcome to control <strong>and also</strong> a potential outcome to treatment. We haven’t talked at all about measurement yet; we’re just asserting that both of these potential outcomes exist for each person.</p>
+<p>Essentially, this stage of creating the sample is the same as bringing people in the door to your experiment. If you were running this in the laboratory, you’d literally think of this as sitting your subjects down at their chairs, getting ready to begin their task.</p>
+<blockquote>
+<p>Is randomly sampling people to be a part of your experiment sufficient to ensure that your experiment produces an unbiaed, consistent estimate of the true treamtent effect?</p>
+</blockquote>
+<p>Suppose that for each unit, you then toss a coin, placing the subject either into treatment or control based on the result of that coin flip.</p>
+<ul>
+<li>Does this coin flip ensure that you have the same number of units in treatment as control? Does this matter to you? Why or why not?</li>
+<li>Are there other ways that you could assign individuals to treatment an control, rather than through a simple-randomization process?</li>
+<li>What are the relative merits or limitations of each of the methods?</li>
+<li>Are some of these methods <em>more random</em> than others? Or, are all things that are random equal in their randomness?</li>
+</ul>
+<div id="assign-to-treatment-and-control" class="section level3" number="2.9.1">
+<h3><span class="header-section-number">2.9.1</span> Assign to Treatment and Control</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="simulation-example.html#cb7-1" aria-hidden="true" tabindex="-1"></a>d[ , experimental_assignment <span class="sc">:</span><span class="er">=</span> <span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">size =</span> .N, <span class="at">replace =</span> <span class="cn">TRUE</span>)]</span></code></pre></div>
+<p>As as comparison, suppose that instead of randomly assigning individuals into treatment and control we allowed individuals to select into treatment and control. And suppose that people with the lowest potential outcomes to control opt to take the treatment. You might think of this as being something like, “The people who are the most tired are the most likely to drink a cup of coffee before they start class,” if an example helps you ground this.</p>
+<p>Specifically, suppose that any unit that has a potential outcome lower that <code>0.33</code> opts to take the treatment.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="simulation-example.html#cb8-1" aria-hidden="true" tabindex="-1"></a>d[ , observational_selection <span class="sc">:</span><span class="er">=</span> <span class="fu">ifelse</span>(y0 <span class="sc">&lt;</span> .<span class="dv">33</span>, <span class="dv">1</span>, <span class="dv">0</span>)]</span></code></pre></div>
+<p>These represent two different ways that you might conduct your research, each time with the same subject pool. Of course, in reality you probably would not be able to run these two studies at the same time, but since this is a simulation, we can stretch the confines of reality just a little bit.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="simulation-example.html#cb9-1" aria-hidden="true" tabindex="-1"></a>first_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>d) <span class="sc">+</span> </span>
+<span id="cb9-2"><a href="simulation-example.html#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> id, <span class="at">y =</span> y0), <span class="at">color =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb9-3"><a href="simulation-example.html#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> id, <span class="at">y =</span> y1), <span class="at">color =</span> <span class="st">&#39;darkorange&#39;</span>)</span>
+<span id="cb9-4"><a href="simulation-example.html#cb9-4" aria-hidden="true" tabindex="-1"></a>first_plot  </span></code></pre></div>
+<p><img src="241-livesession_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>What’s actually happening in this? It might be more clear if we add arrows to this plot to show.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="simulation-example.html#cb10-1" aria-hidden="true" tabindex="-1"></a>first_plot <span class="sc">+</span></span>
+<span id="cb10-2"><a href="simulation-example.html#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb10-3"><a href="simulation-example.html#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> id, <span class="at">xend =</span> id, <span class="at">y =</span> y0, <span class="at">yend =</span> y1), </span>
+<span id="cb10-4"><a href="simulation-example.html#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">ends =</span> <span class="st">&#39;last&#39;</span>, <span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.05</span>, <span class="st">&quot;inches&quot;</span>), <span class="at">type =</span> <span class="st">&#39;closed&#39;</span>), </span>
+<span id="cb10-5"><a href="simulation-example.html#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&#39;grey70&#39;</span></span>
+<span id="cb10-6"><a href="simulation-example.html#cb10-6" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<p><img src="241-livesession_files/figure-html/show%20the%20movement-1.png" width="672" /></p>
+<p>Even though these potential outcomes exist for all the units, is it possible to actually see them for all the units? How do we go about showing, and then measuring the potential outcomes to control for a set of units? How about the potential outcomes to treatment?</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="simulation-example.html#cb11-1" aria-hidden="true" tabindex="-1"></a>second_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d) <span class="sc">+</span> </span>
+<span id="cb11-2"><a href="simulation-example.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> id, <span class="at">y =</span> y0, <span class="at">size =</span> <span class="dv">1</span> <span class="sc">-</span> experimental_assignment), <span class="at">color =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb11-3"><a href="simulation-example.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> id, <span class="at">y =</span> y1, <span class="at">size =</span> experimental_assignment <span class="sc">-</span> <span class="dv">1</span>), <span class="at">color =</span> <span class="st">&#39;darkorange&#39;</span>)</span>
+<span id="cb11-4"><a href="simulation-example.html#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="simulation-example.html#cb11-5" aria-hidden="true" tabindex="-1"></a>second_plot</span></code></pre></div>
+<p><img src="241-livesession_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>What are the averages of these samples that have been assigned to treatment?</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="simulation-example.html#cb12-1" aria-hidden="true" tabindex="-1"></a>third_plot <span class="ot">&lt;-</span> second_plot <span class="sc">+</span> </span>
+<span id="cb12-2"><a href="simulation-example.html#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(d[experimental_assignment<span class="sc">==</span><span class="dv">0</span>, y0]), <span class="at">color =</span> <span class="st">&#39;steelblue&#39;</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb12-3"><a href="simulation-example.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(d[experimental_assignment<span class="sc">==</span><span class="dv">1</span>, y1]), <span class="at">color =</span> <span class="st">&#39;darkorange&#39;</span>, <span class="at">linetype =</span> <span class="dv">2</span>)</span>
+<span id="cb12-4"><a href="simulation-example.html#cb12-4" aria-hidden="true" tabindex="-1"></a>third_plot</span></code></pre></div>
+<p><img src="241-livesession_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Even though we aren’t able to see it, can we reason about what the sample average would be if we could see both of an individual’s potential outcome to treatment and control?</p>
+<ul>
+<li>Is there a guarantee that the sample should be the same as the feasible realization?</li>
+<li>Should they be close? What property from 203 provides this guarantee?</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="simulation-example.html#cb13-1" aria-hidden="true" tabindex="-1"></a>third_plot <span class="sc">+</span> </span>
+<span id="cb13-2"><a href="simulation-example.html#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(d[, y0]), <span class="at">color =</span> <span class="st">&#39;steelblue&#39;</span>, <span class="at">linetype =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb13-3"><a href="simulation-example.html#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(d[, y1]), <span class="at">color =</span> <span class="st">&#39;darkorange&#39;</span>, <span class="at">linetype =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="241-livesession_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Put it all together, what has this little demo shown?</p>
+</div>
+<div id="what-if-there-is-selection" class="section level3" number="2.9.2">
+<h3><span class="header-section-number">2.9.2</span> What if there is selection?</h3>
+<p>What if, rather than being assigned to treatment and control, instead individuals had been able to opt into treatment and control?</p>
+<p>Produce only the last plot, but this time for the observational, or selected data.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="simulation-example.html#cb14-1" aria-hidden="true" tabindex="-1"></a>selection_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(d) <span class="sc">+</span> </span>
+<span id="cb14-2"><a href="simulation-example.html#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> id, <span class="at">y =</span> y0, <span class="at">size =</span> <span class="dv">1</span> <span class="sc">-</span> observational_selection), <span class="at">color =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb14-3"><a href="simulation-example.html#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> id, <span class="at">y =</span> y1, <span class="at">size =</span> observational_selection <span class="sc">-</span> <span class="dv">1</span>), <span class="at">color =</span> <span class="st">&#39;darkorange&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb14-4"><a href="simulation-example.html#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> d[observational_selection <span class="sc">==</span> <span class="dv">0</span>, <span class="fu">mean</span>(y0)], <span class="at">color =</span> <span class="st">&#39;steelblue&#39;</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb14-5"><a href="simulation-example.html#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> d[observational_selection <span class="sc">==</span> <span class="dv">1</span>, <span class="fu">mean</span>(y1)], <span class="at">color =</span> <span class="st">&#39;darkorange&#39;</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb14-6"><a href="simulation-example.html#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(d[, y0]), <span class="at">color =</span> <span class="st">&#39;steelblue&#39;</span>, <span class="at">linetype =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb14-7"><a href="simulation-example.html#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(d[, y1]), <span class="at">color =</span> <span class="st">&#39;darkorange&#39;</span>, <span class="at">linetype =</span> <span class="dv">1</span>)</span>
+<span id="cb14-8"><a href="simulation-example.html#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="simulation-example.html#cb14-9" aria-hidden="true" tabindex="-1"></a>selection_plot</span></code></pre></div>
+<p><img src="241-livesession_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 
+</div>
 </div>
 <!-- </div> -->
             </section>
@@ -289,8 +369,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="covariates-and-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="regression-and-multifactor-experiments.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="theoretical-justification.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="quantifying-uncertainty.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
