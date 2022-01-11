@@ -403,3 +403,25 @@ selection_plot <- ggplot(d) +
 
 selection_plot
 ```
+
+## Requirements of An Experiment 
+
+David Reiley makes the case that an experiment is something where we intervene in the world to produce knowledge. This is essentially providing a definition and making an argument that this is the correct definition. One difficulty with argument through definitions is that reasonable people can disagree because their definitions, through their lived experience, just disagree. 
+
+Here's the demonstrated proof: 
+
+> Who in class is from the "midwest" broadly defined? Is Chicago-style pizza, pizza *per se*? 
+> Who in class is from the east coast? Is Chicago-style pizza, pizza *per se*? 
+> 
+> Try not to make deep character judgments about your classmates. 
+
+Green and Gerber, in *Field Experiments* make additional requirements of experiments. As they argue on page 45 of the textbook, in their view, experiments require: 
+
+1. **Random Assignment** 
+2. **Excludability** 
+3. **Non-interference** 
+
+What do each of these terms mean? Why is each necessary? 
+
+- Did the experiment that Daniel conducted, described in *Power of Experiments* satisfy all of these requirements? For any that this experiment did not satisfy, what are the consequences for the scientific knowledge that the experiment generated. 
+- Did the Nurses Health Study, described in the async, satisfy all of these requirements? For any that this experiment did not satisfy, what are the consequences for the scientific knowledge that the experiment generated. 
