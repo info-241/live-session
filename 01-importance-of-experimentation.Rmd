@@ -4,7 +4,7 @@
 
 - Why do we conduct experiments?
 - What is the value of making a causal statement? 
-- This is a data science program, with enough data and a savvy enough model, can't we just generate a causal statement that will be right? Can't I generate a statement that converges in probability to the *correct* value?
+- This is a data science program. With enough data and a savvy enough model, can't we just generate a causal statement that will be right? Can't I generate a statement that converges in probability to the *correct* value?
 
 ## Learning Objectives 
 
