@@ -22,30 +22,6 @@ Suppose that you are evaluating the effect of coffee on students' alertness in c
 
 !["Damn Fine Coffee."](./images/damn-fine-coffee.jpeg)
 
-One might be a radical behaviorist (Skinner is perhaps the most famous in this line of thinking) that says, "In matters of human behavior, if I cannot see it, then I cannot reason or know about."  If this is your view, then you would simply stop your investigation (and reasoning) at the conclusion of your experiment. 
-
-In many ways, experiments suited only to answer empirical, observable questions. These are the questions, and lens proposed by the radical behaviorist paradigm. 
-
-### Limits of Behaviorist Reasoning
-
-If you accept only that coffee has this effect, and that it is measurable, are you able to translate this knowledge to a new context? 
-
-- Suppose that your experiments finds an effect of coffee on alertness: those who drink a cup of coffee are more alert in class. 
-- Suppose, though, that you're out of coffee *tonight*. A radical behaviorist would simply say, "I know not what to drink then to increase my alertness." 
-
-### Value of Theory
-
-- Can you produce several theories (some of them might be silly) about why coffee might increase alertness in class? 
-  - Proposed theory #1: 
-  - Proposed theory #2:
-  - Proposed theory #3:
-- Does Feynman's approach to *Science* provide a method to adjudicate which of these theories is consonant with the evidence, and which are not consonant with the evidence? - Does Lakatos' approach to *Science* provide such a method? 
-
-### Evaluating Theories 
-
-- What data might you be able to produce that would allow you to "drive a wedge" between the different theories? 
-- This ability to proactively deign an experiment to distinguish between theories is the goal you're striving to achieve, *and it is very hard to accomplish*. 
-
 ## Stating the sharp null
 
 Continue with our idea of an experiment to evaluate if coffee produces alertness in class. Here, we are going to further develop this notional experiment into something that we might actually be able to conduct. 
