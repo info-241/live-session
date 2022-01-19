@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>12.1 Learning Objectives | Experiments and Causality</title>
+  <title>3.2 Power of Experiments | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="12.1 Learning Objectives | Experiments and Causality" />
+  <meta property="og:title" content="3.2 Power of Experiments | Experiments and Causality" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/coffee.jpeg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="12.1 Learning Objectives | Experiments and Causality" />
+  <meta name="twitter:title" content="3.2 Power of Experiments | Experiments and Causality" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="attrition-mediation-and-generalizability.html"/>
-<link rel="next" href="applications-of-experiments.html"/>
+<link rel="prev" href="learning-objectives-2.html"/>
+<link rel="next" href="statistical-uncertainty-randomization-inference-style.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -282,23 +282,47 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="learning-objectives-11" class="section level2" number="12.1">
-<h2><span class="header-section-number">12.1</span> Learning Objectives</h2>
+<div id="power-of-experiments" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Power of Experiments</h2>
+<div id="five-key-barriers-to-experimentation" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Five Key Barriers to Experimentation</h3>
+<p><em>Power of Experiments</em> identifies five key barriers to experimentation in companies:</p>
 <ol style="list-style-type: decimal">
-<li></li>
-<li></li>
-<li></li>
+<li><strong>Not enough participants.</strong> How can it be that even a huge, digital company (i.e. Uber) might not have enough participants to conduct an experiment?</li>
+<li><strong>Randomization can be hard to implement.</strong> This is not to be taken lightly; because in students essays this week, nearly every experiment proposed was of the form, “Randomly assign people to…”. What might make it hard to randomize?</li>
+<li><strong>Experiments require data to measure their impact.</strong> This should ring of 201 conversations, but what is the concept that you would <em>ideally</em> like to measure about the impact of a policy? And, what instead are you able to measure? How much conceptual slippage is there between your conceptual definition and your data?<br />
+</li>
+<li><strong>Under-appreciation of decision-makers unpredictability.</strong> Do we actually have a theory about what people will do? How sure are we that the theory is correct?<br />
+</li>
+<li><strong>Overconfidence in our ability to guess the effect of an intervention</strong>.</li>
 </ol>
-
 </div>
-<!-- </div> -->
+<div id="experimental-ethics" class="section level3" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Experimental Ethics</h3>
+<p>There is a very, <em>very</em> strong norm that academic researchers who conduct experiments need to pass their interventions, data collection, and procedures through a review board. This review board expects researchers will weigh the costs borne by the participants of an experimental study against the potential benefits to science from learning the results of this experiment.</p>
+<p>In some cases, these boards determine that the costs are too high; nobody should be subject to those costs, no matter the scientific merits. In other cases, these boards will allow potentially costly actions to be taken, some that might even harm participants in the short-run. While it is quite unlikely that a review board would still approve either Milgram’s or Zimbardo’s infamous experiments, there are still many experiments that might harm participants.</p>
+<blockquote>
+<ul>
+<li>Is this OK?</li>
+<li>What are the tradeoffs, or goals that you would like to balance in an experiment?</li>
+</ul>
+</blockquote>
+<p>A research team at Facebook (as your instructors if they have any juicy details about this case) was interested in the effects of their platform on its user’s emotions. In pursuit of this question, they conducted an experiment – they intentionally manipulated the environment – to post more or fewer positive and negative posts.</p>
+<blockquote>
+<ul>
+<li>Is this OK?</li>
+<li>What are the tradeoffs, or goals that you would like to balance in this experiment?</li>
+</ul>
+</blockquote>
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="attrition-mediation-and-generalizability.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="applications-of-experiments.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="learning-objectives-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="statistical-uncertainty-randomization-inference-style.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

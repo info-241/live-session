@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.4 Randomization Inference | Experiments and Causality</title>
+  <title>3.5 Randomization Inference | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.4 Randomization Inference | Experiments and Causality" />
+  <meta property="og:title" content="3.5 Randomization Inference | Experiments and Causality" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/coffee.jpeg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.4 Randomization Inference | Experiments and Causality" />
+  <meta name="twitter:title" content="3.5 Randomization Inference | Experiments and Causality" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -24,7 +24,7 @@
 <meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
 
 
-<meta name="date" content="2022-01-12" />
+<meta name="date" content="2022-01-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -196,25 +196,30 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="quantifying-uncertainty.html"><a href="quantifying-uncertainty.html"><i class="fa fa-check"></i><b>3</b> Quantifying Uncertainty</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="learning-objectives-2.html"><a href="learning-objectives-2.html"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="3.2" data-path="value-of-theory-1.html"><a href="value-of-theory-1.html"><i class="fa fa-check"></i><b>3.2</b> Value of Theory</a></li>
-<li class="chapter" data-level="3.3" data-path="stating-the-sharp-null.html"><a href="stating-the-sharp-null.html"><i class="fa fa-check"></i><b>3.3</b> Stating the sharp null</a></li>
-<li class="chapter" data-level="3.4" data-path="randomization-inference.html"><a href="randomization-inference.html"><i class="fa fa-check"></i><b>3.4</b> Randomization Inference</a>
+<li class="chapter" data-level="3.2" data-path="power-of-experiments.html"><a href="power-of-experiments.html"><i class="fa fa-check"></i><b>3.2</b> Power of Experiments</a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="randomization-inference.html"><a href="randomization-inference.html#stating-the-process-of-randomization-inference"><i class="fa fa-check"></i><b>3.4.1</b> Stating the process of Randomization Inference</a></li>
-<li class="chapter" data-level="3.4.2" data-path="randomization-inference.html"><a href="randomization-inference.html#questions-about-randomization-inference"><i class="fa fa-check"></i><b>3.4.2</b> Questions about Randomization Inference</a></li>
+<li class="chapter" data-level="3.2.1" data-path="power-of-experiments.html"><a href="power-of-experiments.html#five-key-barriers-to-experimentation"><i class="fa fa-check"></i><b>3.2.1</b> Five Key Barriers to Experimentation</a></li>
+<li class="chapter" data-level="3.2.2" data-path="power-of-experiments.html"><a href="power-of-experiments.html#experimental-ethics"><i class="fa fa-check"></i><b>3.2.2</b> Experimental Ethics</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html"><i class="fa fa-check"></i><b>3.5</b> Applying Randomization Inference</a>
+<li class="chapter" data-level="3.3" data-path="statistical-uncertainty-randomization-inference-style.html"><a href="statistical-uncertainty-randomization-inference-style.html"><i class="fa fa-check"></i><b>3.3</b> Statistical Uncertainty – Randomization Inference Style</a></li>
+<li class="chapter" data-level="3.4" data-path="stating-the-sharp-null.html"><a href="stating-the-sharp-null.html"><i class="fa fa-check"></i><b>3.4</b> Stating the sharp null</a></li>
+<li class="chapter" data-level="3.5" data-path="randomization-inference.html"><a href="randomization-inference.html"><i class="fa fa-check"></i><b>3.5</b> Randomization Inference</a>
 <ul>
-<li class="chapter" data-level="3.5.1" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#make-data"><i class="fa fa-check"></i><b>3.5.1</b> Make Data</a></li>
-<li class="chapter" data-level="3.5.2" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#plot-data"><i class="fa fa-check"></i><b>3.5.2</b> Plot Data</a></li>
-<li class="chapter" data-level="3.5.3" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#classic-test"><i class="fa fa-check"></i><b>3.5.3</b> Classic Test</a></li>
-<li class="chapter" data-level="3.5.4" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#randomization-inference-test"><i class="fa fa-check"></i><b>3.5.4</b> Randomization Inference Test</a></li>
+<li class="chapter" data-level="3.5.1" data-path="randomization-inference.html"><a href="randomization-inference.html#stating-the-process-of-randomization-inference"><i class="fa fa-check"></i><b>3.5.1</b> Stating the process of Randomization Inference</a></li>
+<li class="chapter" data-level="3.5.2" data-path="randomization-inference.html"><a href="randomization-inference.html#questions-about-randomization-inference"><i class="fa fa-check"></i><b>3.5.2</b> Questions about Randomization Inference</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="comparing-randomization-inference-and-frequentist-inference.html"><a href="comparing-randomization-inference-and-frequentist-inference.html"><i class="fa fa-check"></i><b>3.6</b> Comparing Randomization Inference and Frequentist Inference</a>
+<li class="chapter" data-level="3.6" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html"><i class="fa fa-check"></i><b>3.6</b> Applying Randomization Inference</a>
 <ul>
-<li class="chapter" data-level="3.6.1" data-path="comparing-randomization-inference-and-frequentist-inference.html"><a href="comparing-randomization-inference-and-frequentist-inference.html#donations-to-a-political-campaign"><i class="fa fa-check"></i><b>3.6.1</b> Donations to a political campaign</a></li>
+<li class="chapter" data-level="3.6.1" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#make-data"><i class="fa fa-check"></i><b>3.6.1</b> Make Data</a></li>
+<li class="chapter" data-level="3.6.2" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#plot-data"><i class="fa fa-check"></i><b>3.6.2</b> Plot Data</a></li>
+<li class="chapter" data-level="3.6.3" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#classic-test"><i class="fa fa-check"></i><b>3.6.3</b> Classic Test</a></li>
+<li class="chapter" data-level="3.6.4" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#randomization-inference-test"><i class="fa fa-check"></i><b>3.6.4</b> Randomization Inference Test</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="statistical-power.html"><a href="statistical-power.html"><i class="fa fa-check"></i><b>3.7</b> Statistical Power</a></li>
+<li class="chapter" data-level="3.7" data-path="comparing-randomization-inference-and-frequentist-inference.html"><a href="comparing-randomization-inference-and-frequentist-inference.html"><i class="fa fa-check"></i><b>3.7</b> Comparing Randomization Inference and Frequentist Inference</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="comparing-randomization-inference-and-frequentist-inference.html"><a href="comparing-randomization-inference-and-frequentist-inference.html#donations-to-a-political-campaign"><i class="fa fa-check"></i><b>3.7.1</b> Donations to a political campaign</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="statistical-power.html"><a href="statistical-power.html"><i class="fa fa-check"></i><b>3.8</b> Statistical Power</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="blocking-and-clustering.html"><a href="blocking-and-clustering.html"><i class="fa fa-check"></i><b>4</b> Blocking and Clustering</a>
 <ul>
@@ -277,21 +282,21 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="randomization-inference" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Randomization Inference</h2>
-<div id="stating-the-process-of-randomization-inference" class="section level3" number="3.4.1">
-<h3><span class="header-section-number">3.4.1</span> Stating the process of Randomization Inference</h3>
+<div id="randomization-inference" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Randomization Inference</h2>
+<div id="stating-the-process-of-randomization-inference" class="section level3" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> Stating the process of Randomization Inference</h3>
 <p>Randomization inference is a method of understanding the variability of results in an experiment that you have conducted. It specifically acknowledges several facts:</p>
 <ol style="list-style-type: decimal">
 <li>The sample of data that you collected or used in your experiment is, quite simply, the sample of data that you collected for your experiment. There might be a larger population; there might be an infinite population; or, there might not.</li>
 <li>The observed outcomes that you observe are, quite simply, the outcomes that you observed. There is no uncertainty about having seen these.</li>
 <li>When the experiment assigned some units to treatment and others to the control, it revealed some outcomes, for some people. Specifically, it revealed the potential outcoems to treatment, denoted <span class="math inline">\(Y_{i}(1)\)</span> for those who were assigned to the treatment group and the potential outcomes to control, denoted <span class="math inline">\(Y_{i}(0)\)</span> for those who were assigned to the control group.</li>
 <li>The experimenter chose one <em>out of many possible</em> treatment assignments.</li>
-<li>If the <em>sharp null hypothesis</em> were to be true (note the subjunctive verb tense there) then, the particular revelation of potential outcomes to treatment and control are inconsequential. Despite seeing only half the data (referred to as the <strong>Fundimental Problem of Causal Inference</strong>) we actually posess all the data. After all, if the sharp null were true, <span class="math inline">\(Y_{Alex}(1) = Y_{Alex}(0)\)</span>, and <span class="math inline">\(Y_{David}(1) = Y_{David}(0)\)</span>, <span class="math inline">\(Y_{i}(1) = Y_{i}(0)\)</span> for all of the <span class="math inline">\(i = {1, \dots, N}\)</span> people who are a part of the experiment.</li>
+<li>If the <em>sharp null hypothesis</em> were to be true (note the subjunctive verb tense there) then, the particular revelation of potential outcomes to treatment and control are inconsequential. Despite seeing only half the data (referred to as the <strong>Fundamental Problem of Causal Inference</strong>) we actually posess all the data. After all, if the sharp null were true, <span class="math inline">\(Y_{Alex}(1) = Y_{Alex}(0)\)</span>, and <span class="math inline">\(Y_{David}(1) = Y_{David}(0)\)</span>, <span class="math inline">\(Y_{i}(1) = Y_{i}(0)\)</span> for all of the <span class="math inline">\(i = {1, \dots, N}\)</span> people who are a part of the experiment.</li>
 </ol>
 </div>
-<div id="questions-about-randomization-inference" class="section level3" number="3.4.2">
-<h3><span class="header-section-number">3.4.2</span> Questions about Randomization Inference</h3>
+<div id="questions-about-randomization-inference" class="section level3" number="3.5.2">
+<h3><span class="header-section-number">3.5.2</span> Questions about Randomization Inference</h3>
 <ul>
 <li>Where does uncertainty come from in an experiment that is evaluated using randomization inference?</li>
 <li>How is the ATE estimand defined?</li>
@@ -300,7 +305,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>Which of the following properties does this feasible method possess?
 <ol style="list-style-type: lower-alpha">
 <li>Unbiasedness: <span class="math inline">\(E[\theta] = ATE\)</span></li>
-<li>Convergence: <span class="math inline">\(\theta \overset{p}\rightarrow ATE\)</span>, where <span class="math inline">\(\overset{p}\rightarrow\)</span> means converges in probabilty</li>
+<li>Convergence: <span class="math inline">\(\theta \overset{p}\rightarrow ATE\)</span>, where <span class="math inline">\(\overset{p}\rightarrow\)</span> means converges in probability</li>
 <li>Efficiency: The mean squared error of <span class="math inline">\(\theta\)</span> is either (i) smaller than some other estimator, or (ii) as small is theoretically possible.</li>
 </ol></li>
 </ul></li>

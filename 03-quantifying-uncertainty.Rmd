@@ -1,11 +1,5 @@
 # Quantifying Uncertainty
 
-When we are working with a sample of data, estimates produced by an estimator might change -- sometimes being higher than the *true* value, other times lower than the *true* value. 
-
-In Frequentist inference, we understand the variance in these estimates as *sampling based variance of the sample estimator*. In this week, we present a different inferential paradigm, **Randomization Inference**. 
-
-In randomization inference, there is no uncertainty about the parameter estimate that is generated in the experiment: The estimate that we observe is the estimate that we observe. Uncertainty, instead, comes from the acknowledgment that different *randomization* could have been realized, even from within the same sample. 
-
 ## Learning Objectives 
 
 At the end of this week's live session, students will be able to 
@@ -16,13 +10,44 @@ At the end of this week's live session, students will be able to
 4. *Assess* the assumptions necessary for Frequentist inference to produce nominal coverage on confidence intervals; *assess* the assumptions necessary for randomization inference to produce nominal coverage on confidence intervals; and, *evaluate* which of the two approaches is appropriate given a set of data.
 5. *Describe* the concept of statistical power and what it means in the context of conducting an experiment.
 
-## Value of Theory
+## Power of Experiments 
+### Five Key Barriers to Experimentation 
+
+*Power of Experiments* identifies five key barriers to experimentation in companies: 
+
+1. **Not enough participants.** How can it be that even a huge, digital company (i.e. Uber) might not have enough participants to conduct an experiment? 
+2. **Randomization can be hard to implement.** This is not to be taken lightly; because in students essays this week, nearly every experiment proposed was of the form, "Randomly assign people to...". What might make it hard to randomize? 
+3. **Experiments require data to measure their impact.** This should ring of 201 conversations, but what is the concept that you would *ideally* like to measure about the impact of a policy? And, what instead are you able to measure? How much conceptual slippage is there between your conceptual definition and your data?  
+4. **Under-appreciation of decision-makers unpredictability.** Do we actually have a theory about what people will do? How sure are we that the theory is correct?  
+5. **Overconfidence in our ability to guess the effect of an intervention**. 
+
+### Experimental Ethics 
+
+There is a very, *very* strong norm that academic researchers who conduct experiments need to pass their interventions, data collection, and procedures through a review board. This review board expects researchers will weigh the costs borne by the participants of an experimental study against the potential benefits to science from learning the results of this experiment. 
+
+In some cases, these boards determine that the costs are too high; nobody should be subject to those costs, no matter the scientific merits. In other cases, these boards will allow potentially costly actions to be taken, some that might even harm participants in the short-run. While it is quite unlikely that a review board would still approve either Milgram's or Zimbardo's infamous experiments, there are still many experiments that might harm participants. 
+
+> - Is this OK? 
+> - What are the tradeoffs, or goals that you would like to balance in an experiment? 
+
+A research team at Facebook (as your instructors if they have any juicy details about this case) was interested in the effects of their platform on its user's emotions. In pursuit of this question, they conducted an experiment -- they intentionally manipulated the environment -- to post more or fewer positive and negative posts. 
+
+> - Is this OK? 
+> - What are the tradeoffs, or goals that you would like to balance in this experiment? 
+
+## Statistical Uncertainty -- Randomization Inference Style
+
+When we are working with a sample of data, estimates produced by an estimator might change -- sometimes being higher than the *true* value, other times lower than the *true* value. 
+
+In Frequentist inference, we understand the variance in these estimates as *sampling based variance of the sample estimator*. In this week, we present a different inferential paradigm, **Randomization Inference**. 
+
+In randomization inference, there is no uncertainty about the parameter estimate that is generated in the experiment: The estimate that we observe is the estimate that we observe. Uncertainty, instead, comes from the acknowledgment that different *randomization* could have been realized, even from within the same sample. 
+
+## Stating the sharp null
 
 Suppose that you are evaluating the effect of coffee on students' alertness in class. You reason that drinking coffee will increase students' alertness in class. 
 
 !["Damn Fine Coffee."](./images/damn-fine-coffee.jpeg)
-
-## Stating the sharp null
 
 Continue with our idea of an experiment to evaluate if coffee produces alertness in class. Here, we are going to further develop this notional experiment into something that we might actually be able to conduct. 
 
@@ -40,7 +65,7 @@ Randomization inference is a method of understanding the variability of results 
 2. The observed outcomes that you observe are, quite simply, the outcomes that you observed. There is no uncertainty about having seen these. 
 3. When the experiment assigned some units to treatment and others to the control, it revealed some outcomes, for some people. Specifically, it revealed the potential outcoems to treatment, denoted $Y_{i}(1)$ for those who were assigned to the treatment group and the potential outcomes to control, denoted $Y_{i}(0)$ for those who were assigned to the control group. 
 4. The experimenter chose one *out of many possible* treatment assignments. 
-5. If the *sharp null hypothesis* were to be true (note the subjunctive verb tense there) then, the particular revelation of potential outcomes to treatment and control are inconsequential. Despite seeing only half the data (referred to as the **Fundimental Problem of Causal Inference**) we actually posess all the data. After all, if the sharp null were true, $Y_{Alex}(1) = Y_{Alex}(0)$, and $Y_{David}(1) = Y_{David}(0)$, $Y_{i}(1) = Y_{i}(0)$ for all of the $i = {1, \dots, N}$ people who are a part of the experiment. 
+5. If the *sharp null hypothesis* were to be true (note the subjunctive verb tense there) then, the particular revelation of potential outcomes to treatment and control are inconsequential. Despite seeing only half the data (referred to as the **Fundamental Problem of Causal Inference**) we actually posess all the data. After all, if the sharp null were true, $Y_{Alex}(1) = Y_{Alex}(0)$, and $Y_{David}(1) = Y_{David}(0)$, $Y_{i}(1) = Y_{i}(0)$ for all of the $i = {1, \dots, N}$ people who are a part of the experiment. 
 
 ### Questions about Randomization Inference
 
@@ -49,7 +74,7 @@ Randomization inference is a method of understanding the variability of results 
 - What is the feasible method that we use to write down an estimator (call it $\theta$) for this quantity?   
   - Which of the following properties does this feasible method possess? 
     a. Unbiasedness: $E[\theta] = ATE$
-    b. Convergence: $\theta \overset{p}\rightarrow ATE$, where $\overset{p}\rightarrow$ means converges in probabilty
+    b. Convergence: $\theta \overset{p}\rightarrow ATE$, where $\overset{p}\rightarrow$ means converges in probability
     c. Efficiency: The mean squared error of $\theta$ is either (i) smaller than some other estimator, or (ii) as small is theoretically possible. 
 
 ## Applying Randomization Inference
@@ -102,7 +127,7 @@ Now, instead suppose that you were to conduct the randomization inference. What 
 5. Repeat the permutation and estimation (step 4) process repeatedly to sample from the randomization inference distribution of the statistic
 6. Examine randomization inference distribution
 
-```{r, cache=TRUE}
+```{r randomization inference loop, cache=TRUE}
 ## 1. The sharp null is that tau = 0
 ## 2. Compute the statistic of interest
 true_ate <- d[ , .(group_mean = mean(Y)), keyby = .(D)][ , group_mean[D==1] - group_mean[D==0]]
@@ -191,7 +216,32 @@ d <- data.table(
 
 4. Compare the two-sided p-value against the p-value that you generate from a two-tailed t-test. If these p-values are the same, would this be a positive or a negative characteristic of randomization inference? If these p-values are different, why would they be different? Don't go looking all over hill-and-dale for the call for a t-test, it is at `t.test`. 
 
-5. Which of the two of these inferrential methods do you prefer, randomization inference or a t-test, and why? Ease of use is not an acceptable answer. 
+5. Which of the two of these inferential methods do you prefer, randomization inference or a t-test, and why? Ease of use is not an acceptable answer. 
 
 ## Statistical Power
 
+- What is statistical power? 
+- Why is it particularly relevant to consider statistical power when you are thinking about conducting an experiment? 
+  - What would happen if you were to conduct an experiment that has only an achieved power of 0.1? 
+  - What would you learn if you were to fail to reject the sharp-null hypothesis? 
+  - What would you learn if you were to reject the sharp-null hypothesis?
+  
+```{r live coding of power demonstration}
+make_data <- function(
+  sample_size                       = 100,
+  potential_outcome_to_control_mean = 10,
+  potential_outcome_to_control_sd   = 2, 
+  treatment_effect                  = 1, 
+  sd_treatment                      = 2) { 
+  ## this is a function to make data to simulate the power of a test
+  
+  }
+  
+test_data <- function(data, treatment_indicator, outcome) {
+  
+}
+ 
+## p_values <- replicate(n = 1000) 
+
+```
+  

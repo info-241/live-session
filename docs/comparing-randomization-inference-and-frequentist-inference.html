@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.6 Comparing Randomization Inference and Frequentist Inference | Experiments and Causality</title>
+  <title>3.7 Comparing Randomization Inference and Frequentist Inference | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.6 Comparing Randomization Inference and Frequentist Inference | Experiments and Causality" />
+  <meta property="og:title" content="3.7 Comparing Randomization Inference and Frequentist Inference | Experiments and Causality" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/coffee.jpeg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.6 Comparing Randomization Inference and Frequentist Inference | Experiments and Causality" />
+  <meta name="twitter:title" content="3.7 Comparing Randomization Inference and Frequentist Inference | Experiments and Causality" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -24,7 +24,7 @@
 <meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
 
 
-<meta name="date" content="2022-01-12" />
+<meta name="date" content="2022-01-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -196,25 +196,30 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="quantifying-uncertainty.html"><a href="quantifying-uncertainty.html"><i class="fa fa-check"></i><b>3</b> Quantifying Uncertainty</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="learning-objectives-2.html"><a href="learning-objectives-2.html"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="3.2" data-path="value-of-theory-1.html"><a href="value-of-theory-1.html"><i class="fa fa-check"></i><b>3.2</b> Value of Theory</a></li>
-<li class="chapter" data-level="3.3" data-path="stating-the-sharp-null.html"><a href="stating-the-sharp-null.html"><i class="fa fa-check"></i><b>3.3</b> Stating the sharp null</a></li>
-<li class="chapter" data-level="3.4" data-path="randomization-inference.html"><a href="randomization-inference.html"><i class="fa fa-check"></i><b>3.4</b> Randomization Inference</a>
+<li class="chapter" data-level="3.2" data-path="power-of-experiments.html"><a href="power-of-experiments.html"><i class="fa fa-check"></i><b>3.2</b> Power of Experiments</a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="randomization-inference.html"><a href="randomization-inference.html#stating-the-process-of-randomization-inference"><i class="fa fa-check"></i><b>3.4.1</b> Stating the process of Randomization Inference</a></li>
-<li class="chapter" data-level="3.4.2" data-path="randomization-inference.html"><a href="randomization-inference.html#questions-about-randomization-inference"><i class="fa fa-check"></i><b>3.4.2</b> Questions about Randomization Inference</a></li>
+<li class="chapter" data-level="3.2.1" data-path="power-of-experiments.html"><a href="power-of-experiments.html#five-key-barriers-to-experimentation"><i class="fa fa-check"></i><b>3.2.1</b> Five Key Barriers to Experimentation</a></li>
+<li class="chapter" data-level="3.2.2" data-path="power-of-experiments.html"><a href="power-of-experiments.html#experimental-ethics"><i class="fa fa-check"></i><b>3.2.2</b> Experimental Ethics</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html"><i class="fa fa-check"></i><b>3.5</b> Applying Randomization Inference</a>
+<li class="chapter" data-level="3.3" data-path="statistical-uncertainty-randomization-inference-style.html"><a href="statistical-uncertainty-randomization-inference-style.html"><i class="fa fa-check"></i><b>3.3</b> Statistical Uncertainty – Randomization Inference Style</a></li>
+<li class="chapter" data-level="3.4" data-path="stating-the-sharp-null.html"><a href="stating-the-sharp-null.html"><i class="fa fa-check"></i><b>3.4</b> Stating the sharp null</a></li>
+<li class="chapter" data-level="3.5" data-path="randomization-inference.html"><a href="randomization-inference.html"><i class="fa fa-check"></i><b>3.5</b> Randomization Inference</a>
 <ul>
-<li class="chapter" data-level="3.5.1" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#make-data"><i class="fa fa-check"></i><b>3.5.1</b> Make Data</a></li>
-<li class="chapter" data-level="3.5.2" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#plot-data"><i class="fa fa-check"></i><b>3.5.2</b> Plot Data</a></li>
-<li class="chapter" data-level="3.5.3" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#classic-test"><i class="fa fa-check"></i><b>3.5.3</b> Classic Test</a></li>
-<li class="chapter" data-level="3.5.4" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#randomization-inference-test"><i class="fa fa-check"></i><b>3.5.4</b> Randomization Inference Test</a></li>
+<li class="chapter" data-level="3.5.1" data-path="randomization-inference.html"><a href="randomization-inference.html#stating-the-process-of-randomization-inference"><i class="fa fa-check"></i><b>3.5.1</b> Stating the process of Randomization Inference</a></li>
+<li class="chapter" data-level="3.5.2" data-path="randomization-inference.html"><a href="randomization-inference.html#questions-about-randomization-inference"><i class="fa fa-check"></i><b>3.5.2</b> Questions about Randomization Inference</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="comparing-randomization-inference-and-frequentist-inference.html"><a href="comparing-randomization-inference-and-frequentist-inference.html"><i class="fa fa-check"></i><b>3.6</b> Comparing Randomization Inference and Frequentist Inference</a>
+<li class="chapter" data-level="3.6" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html"><i class="fa fa-check"></i><b>3.6</b> Applying Randomization Inference</a>
 <ul>
-<li class="chapter" data-level="3.6.1" data-path="comparing-randomization-inference-and-frequentist-inference.html"><a href="comparing-randomization-inference-and-frequentist-inference.html#donations-to-a-political-campaign"><i class="fa fa-check"></i><b>3.6.1</b> Donations to a political campaign</a></li>
+<li class="chapter" data-level="3.6.1" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#make-data"><i class="fa fa-check"></i><b>3.6.1</b> Make Data</a></li>
+<li class="chapter" data-level="3.6.2" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#plot-data"><i class="fa fa-check"></i><b>3.6.2</b> Plot Data</a></li>
+<li class="chapter" data-level="3.6.3" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#classic-test"><i class="fa fa-check"></i><b>3.6.3</b> Classic Test</a></li>
+<li class="chapter" data-level="3.6.4" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#randomization-inference-test"><i class="fa fa-check"></i><b>3.6.4</b> Randomization Inference Test</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="statistical-power.html"><a href="statistical-power.html"><i class="fa fa-check"></i><b>3.7</b> Statistical Power</a></li>
+<li class="chapter" data-level="3.7" data-path="comparing-randomization-inference-and-frequentist-inference.html"><a href="comparing-randomization-inference-and-frequentist-inference.html"><i class="fa fa-check"></i><b>3.7</b> Comparing Randomization Inference and Frequentist Inference</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="comparing-randomization-inference-and-frequentist-inference.html"><a href="comparing-randomization-inference-and-frequentist-inference.html#donations-to-a-political-campaign"><i class="fa fa-check"></i><b>3.7.1</b> Donations to a political campaign</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="statistical-power.html"><a href="statistical-power.html"><i class="fa fa-check"></i><b>3.8</b> Statistical Power</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="blocking-and-clustering.html"><a href="blocking-and-clustering.html"><i class="fa fa-check"></i><b>4</b> Blocking and Clustering</a>
 <ul>
@@ -277,8 +282,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="comparing-randomization-inference-and-frequentist-inference" class="section level2" number="3.6">
-<h2><span class="header-section-number">3.6</span> Comparing Randomization Inference and Frequentist Inference</h2>
+<div id="comparing-randomization-inference-and-frequentist-inference" class="section level2" number="3.7">
+<h2><span class="header-section-number">3.7</span> Comparing Randomization Inference and Frequentist Inference</h2>
 <p>If both Randomization Inference and Frequentist Inference produce similar p-values, what is utility in learning another set of methods for communicating estimator-based uncertainty?</p>
 <p>What are the requirements (frequently referred to as “assumptions”) that are necessary for the Frequentist paradigm to provide guarantees? What happens if these guarantees are not, in fact, satisfied or true in the data generating process? How do you react, respond, or address those problems?</p>
 <ul>
@@ -286,8 +291,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>How affected is this p-value by the violation? How do you know this?</li>
 <li>What does it mean for the p-value to be affected by this violation? (<em>Recall that a p-value is just a random variable that is produced through a series of summarizing transformations and then a comparison against a reference distribution.</em>)</li>
 </ul>
-<div id="donations-to-a-political-campaign" class="section level3" number="3.6.1">
-<h3><span class="header-section-number">3.6.1</span> Donations to a political campaign</h3>
+<div id="donations-to-a-political-campaign" class="section level3" number="3.7.1">
+<h3><span class="header-section-number">3.7.1</span> Donations to a political campaign</h3>
 <p>In <em>Field Experiments</em> Green and Gerber provide some useful (hypothetical) data about donations to a political campaign. The data is defined in the following way, <span class="math inline">\(D\)</span> is an indicator for whether the potential donor is assigned to treatment or control, and <span class="math inline">\(Y\)</span> is the outcome of how much the potential donor actually gave.</p>
 <p>Let us provide a little bit more back story, that is necessary for the example to work, fully. Suppose that a progressive political candidate was hosting a fundraiser in Berkeley and has to make a choice about what to serve the attendees at the fundraiser.</p>
 <p>In the <span class="math inline">\(D = 0\)</span> group, suppose that the candidate elects to serve a hippie-vegetarian staple, tofu sauteed in Bragg’s liquid aminos. (It <em>is</em> Berkeley after all.) In the <span class="math inline">\(D=1\)</span> group, suppose that the candidate decides to be a little more, well, progressive in their vegetarian food offerings and instead serves Gado-Gado from Katzen’s <em>The Enchanted Broccoli Forest</em>. (Still Berkeley… .)</p>
@@ -321,7 +326,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><p>How many of the randomization inference loops are larger than the treatment effect that you calculated? How would you use this statement to construct a one-sided test, and an associated p-value?</p></li>
 <li><p>How many of the randomization inference loops are <em>more extreme</em> (:metal:) than the treatment effect that you calculated? How would you use this statement to construct a two-sided test, and an associated p-value?</p></li>
 <li><p>Compare the two-sided p-value against the p-value that you generate from a two-tailed t-test. If these p-values are the same, would this be a positive or a negative characteristic of randomization inference? If these p-values are different, why would they be different? Don’t go looking all over hill-and-dale for the call for a t-test, it is at <code>t.test</code>.</p></li>
-<li><p>Which of the two of these inferrential methods do you prefer, randomization inference or a t-test, and why? Ease of use is not an acceptable answer.</p></li>
+<li><p>Which of the two of these inferential methods do you prefer, randomization inference or a t-test, and why? Ease of use is not an acceptable answer.</p></li>
 </ol>
 </div>
 </div>

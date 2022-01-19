@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.7 Statistical Power | Experiments and Causality</title>
+  <title>3.8 Statistical Power | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.7 Statistical Power | Experiments and Causality" />
+  <meta property="og:title" content="3.8 Statistical Power | Experiments and Causality" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/coffee.jpeg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.7 Statistical Power | Experiments and Causality" />
+  <meta name="twitter:title" content="3.8 Statistical Power | Experiments and Causality" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -24,7 +24,7 @@
 <meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
 
 
-<meta name="date" content="2022-01-12" />
+<meta name="date" content="2022-01-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -196,25 +196,30 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="quantifying-uncertainty.html"><a href="quantifying-uncertainty.html"><i class="fa fa-check"></i><b>3</b> Quantifying Uncertainty</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="learning-objectives-2.html"><a href="learning-objectives-2.html"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="3.2" data-path="value-of-theory-1.html"><a href="value-of-theory-1.html"><i class="fa fa-check"></i><b>3.2</b> Value of Theory</a></li>
-<li class="chapter" data-level="3.3" data-path="stating-the-sharp-null.html"><a href="stating-the-sharp-null.html"><i class="fa fa-check"></i><b>3.3</b> Stating the sharp null</a></li>
-<li class="chapter" data-level="3.4" data-path="randomization-inference.html"><a href="randomization-inference.html"><i class="fa fa-check"></i><b>3.4</b> Randomization Inference</a>
+<li class="chapter" data-level="3.2" data-path="power-of-experiments.html"><a href="power-of-experiments.html"><i class="fa fa-check"></i><b>3.2</b> Power of Experiments</a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="randomization-inference.html"><a href="randomization-inference.html#stating-the-process-of-randomization-inference"><i class="fa fa-check"></i><b>3.4.1</b> Stating the process of Randomization Inference</a></li>
-<li class="chapter" data-level="3.4.2" data-path="randomization-inference.html"><a href="randomization-inference.html#questions-about-randomization-inference"><i class="fa fa-check"></i><b>3.4.2</b> Questions about Randomization Inference</a></li>
+<li class="chapter" data-level="3.2.1" data-path="power-of-experiments.html"><a href="power-of-experiments.html#five-key-barriers-to-experimentation"><i class="fa fa-check"></i><b>3.2.1</b> Five Key Barriers to Experimentation</a></li>
+<li class="chapter" data-level="3.2.2" data-path="power-of-experiments.html"><a href="power-of-experiments.html#experimental-ethics"><i class="fa fa-check"></i><b>3.2.2</b> Experimental Ethics</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html"><i class="fa fa-check"></i><b>3.5</b> Applying Randomization Inference</a>
+<li class="chapter" data-level="3.3" data-path="statistical-uncertainty-randomization-inference-style.html"><a href="statistical-uncertainty-randomization-inference-style.html"><i class="fa fa-check"></i><b>3.3</b> Statistical Uncertainty – Randomization Inference Style</a></li>
+<li class="chapter" data-level="3.4" data-path="stating-the-sharp-null.html"><a href="stating-the-sharp-null.html"><i class="fa fa-check"></i><b>3.4</b> Stating the sharp null</a></li>
+<li class="chapter" data-level="3.5" data-path="randomization-inference.html"><a href="randomization-inference.html"><i class="fa fa-check"></i><b>3.5</b> Randomization Inference</a>
 <ul>
-<li class="chapter" data-level="3.5.1" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#make-data"><i class="fa fa-check"></i><b>3.5.1</b> Make Data</a></li>
-<li class="chapter" data-level="3.5.2" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#plot-data"><i class="fa fa-check"></i><b>3.5.2</b> Plot Data</a></li>
-<li class="chapter" data-level="3.5.3" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#classic-test"><i class="fa fa-check"></i><b>3.5.3</b> Classic Test</a></li>
-<li class="chapter" data-level="3.5.4" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#randomization-inference-test"><i class="fa fa-check"></i><b>3.5.4</b> Randomization Inference Test</a></li>
+<li class="chapter" data-level="3.5.1" data-path="randomization-inference.html"><a href="randomization-inference.html#stating-the-process-of-randomization-inference"><i class="fa fa-check"></i><b>3.5.1</b> Stating the process of Randomization Inference</a></li>
+<li class="chapter" data-level="3.5.2" data-path="randomization-inference.html"><a href="randomization-inference.html#questions-about-randomization-inference"><i class="fa fa-check"></i><b>3.5.2</b> Questions about Randomization Inference</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="comparing-randomization-inference-and-frequentist-inference.html"><a href="comparing-randomization-inference-and-frequentist-inference.html"><i class="fa fa-check"></i><b>3.6</b> Comparing Randomization Inference and Frequentist Inference</a>
+<li class="chapter" data-level="3.6" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html"><i class="fa fa-check"></i><b>3.6</b> Applying Randomization Inference</a>
 <ul>
-<li class="chapter" data-level="3.6.1" data-path="comparing-randomization-inference-and-frequentist-inference.html"><a href="comparing-randomization-inference-and-frequentist-inference.html#donations-to-a-political-campaign"><i class="fa fa-check"></i><b>3.6.1</b> Donations to a political campaign</a></li>
+<li class="chapter" data-level="3.6.1" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#make-data"><i class="fa fa-check"></i><b>3.6.1</b> Make Data</a></li>
+<li class="chapter" data-level="3.6.2" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#plot-data"><i class="fa fa-check"></i><b>3.6.2</b> Plot Data</a></li>
+<li class="chapter" data-level="3.6.3" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#classic-test"><i class="fa fa-check"></i><b>3.6.3</b> Classic Test</a></li>
+<li class="chapter" data-level="3.6.4" data-path="applying-randomization-inference.html"><a href="applying-randomization-inference.html#randomization-inference-test"><i class="fa fa-check"></i><b>3.6.4</b> Randomization Inference Test</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="statistical-power.html"><a href="statistical-power.html"><i class="fa fa-check"></i><b>3.7</b> Statistical Power</a></li>
+<li class="chapter" data-level="3.7" data-path="comparing-randomization-inference-and-frequentist-inference.html"><a href="comparing-randomization-inference-and-frequentist-inference.html"><i class="fa fa-check"></i><b>3.7</b> Comparing Randomization Inference and Frequentist Inference</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="comparing-randomization-inference-and-frequentist-inference.html"><a href="comparing-randomization-inference-and-frequentist-inference.html#donations-to-a-political-campaign"><i class="fa fa-check"></i><b>3.7.1</b> Donations to a political campaign</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="statistical-power.html"><a href="statistical-power.html"><i class="fa fa-check"></i><b>3.8</b> Statistical Power</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="blocking-and-clustering.html"><a href="blocking-and-clustering.html"><i class="fa fa-check"></i><b>4</b> Blocking and Clustering</a>
 <ul>
@@ -277,8 +282,32 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="statistical-power" class="section level2" number="3.7">
-<h2><span class="header-section-number">3.7</span> Statistical Power</h2>
+<div id="statistical-power" class="section level2" number="3.8">
+<h2><span class="header-section-number">3.8</span> Statistical Power</h2>
+<ul>
+<li>What is statistical power?</li>
+<li>Why is it particularly relevant to consider statistical power when you are thinking about conducting an experiment?
+<ul>
+<li>What would happen if you were to conduct an experiment that has only an achieved power of 0.1?</li>
+<li>What would you learn if you were to fail to reject the sharp-null hypothesis?</li>
+<li>What would you learn if you were to reject the sharp-null hypothesis?</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="statistical-power.html#cb27-1" aria-hidden="true" tabindex="-1"></a>make_data <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb27-2"><a href="statistical-power.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample_size                       =</span> <span class="dv">100</span>,</span>
+<span id="cb27-3"><a href="statistical-power.html#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">potential_outcome_to_control_mean =</span> <span class="dv">10</span>,</span>
+<span id="cb27-4"><a href="statistical-power.html#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">potential_outcome_to_control_sd   =</span> <span class="dv">2</span>, </span>
+<span id="cb27-5"><a href="statistical-power.html#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">treatment_effect                  =</span> <span class="dv">1</span>, </span>
+<span id="cb27-6"><a href="statistical-power.html#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">sd_treatment                      =</span> <span class="dv">2</span>) { </span>
+<span id="cb27-7"><a href="statistical-power.html#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="do">## this is a function to make data to simulate the power of a test</span></span>
+<span id="cb27-8"><a href="statistical-power.html#cb27-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-9"><a href="statistical-power.html#cb27-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb27-10"><a href="statistical-power.html#cb27-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-11"><a href="statistical-power.html#cb27-11" aria-hidden="true" tabindex="-1"></a>test_data <span class="ot">&lt;-</span> <span class="cf">function</span>(data, treatment_indicator, outcome) {</span>
+<span id="cb27-12"><a href="statistical-power.html#cb27-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-13"><a href="statistical-power.html#cb27-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb27-14"><a href="statistical-power.html#cb27-14" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb27-15"><a href="statistical-power.html#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="do">## p_values &lt;- replicate(n = 1000) </span></span></code></pre></div>
 
 </div>
 <!-- </div> -->

@@ -39,7 +39,10 @@ requirements-of-an-experiment
 meta-questions
 quantifying-uncertainty
 learning-objectives-2
-value-of-theory-1
+power-of-experiments
+five-key-barriers-to-experimentation
+experimental-ethics
+statistical-uncertainty-randomization-inference-style
 stating-the-sharp-null
 randomization-inference
 stating-the-process-of-randomization-inference
