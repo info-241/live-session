@@ -24,7 +24,7 @@
 <meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
 
 
-<meta name="date" content="2022-01-19" />
+<meta name="date" content="2022-01-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -224,6 +224,17 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="blocking-and-clustering.html"><a href="blocking-and-clustering.html"><i class="fa fa-check"></i><b>4</b> Blocking and Clustering</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="learning-objectives-3.html"><a href="learning-objectives-3.html"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="4.2" data-path="block-random-assignment.html"><a href="block-random-assignment.html"><i class="fa fa-check"></i><b>4.2</b> Block Random Assignment</a></li>
+<li class="chapter" data-level="4.3" data-path="with-this-data-what-does-the-distribution-of-outcomes-look-like.html"><a href="with-this-data-what-does-the-distribution-of-outcomes-look-like.html"><i class="fa fa-check"></i><b>4.3</b> With this data, what does the distribution of outcomes look like?</a></li>
+<li class="chapter" data-level="4.4" data-path="technical-benefits-of-blocking.html"><a href="technical-benefits-of-blocking.html"><i class="fa fa-check"></i><b>4.4</b> Technical Benefits of Blocking</a></li>
+<li class="chapter" data-level="4.5" data-path="how-should-we-block-randomize.html"><a href="how-should-we-block-randomize.html"><i class="fa fa-check"></i><b>4.5</b> How should we block randomize?</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="how-should-we-block-randomize.html"><a href="how-should-we-block-randomize.html#what-makes-a-useful-feature-part-1"><i class="fa fa-check"></i><b>4.5.1</b> What makes a useful feature? (part 1)</a></li>
+<li class="chapter" data-level="4.5.2" data-path="how-should-we-block-randomize.html"><a href="how-should-we-block-randomize.html#what-makes-a-useful-feature-part-2"><i class="fa fa-check"></i><b>4.5.2</b> What makes a useful feature (part 2)</a></li>
+<li class="chapter" data-level="4.5.3" data-path="how-should-we-block-randomize.html"><a href="how-should-we-block-randomize.html#strategies-of-blocking"><i class="fa fa-check"></i><b>4.5.3</b> Strategies of blocking</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>4.6</b> Clustering</a></li>
+<li class="chapter" data-level="4.7" data-path="mini-experiments.html"><a href="mini-experiments.html"><i class="fa fa-check"></i><b>4.7</b> Mini-Experiments</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="covariates-and-regression.html"><a href="covariates-and-regression.html"><i class="fa fa-check"></i><b>5</b> Covariates and Regression</a>
 <ul>
@@ -301,11 +312,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-13"><a href="simulation-example.html#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-14"><a href="simulation-example.html#cb5-14" aria-hidden="true" tabindex="-1"></a>d[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
 <pre><code>##    id        y0        y1
-## 1:  1 0.3935610 0.6435610
-## 2:  2 0.3115200 0.5615200
-## 3:  3 0.2665106 0.5165106
-## 4:  4 0.5495257 0.7995257
-## 5:  5 0.1036934 0.3536934</code></pre>
+## 1:  1 0.6480917 0.8980917
+## 2:  2 0.4459636 0.6959636
+## 3:  3 0.4752260 0.7252260
+## 4:  4 0.9082379 1.1582379
+## 5:  5 0.4175339 0.6675339</code></pre>
 <p>In this world, we’ve taken a sample of <code>100</code> individuals, and at this point, each of those individuals that we’ve sampled has both a potential outcome to control <strong>and also</strong> a potential outcome to treatment. We haven’t talked at all about measurement yet; we’re just asserting that both of these potential outcomes exist for each person.</p>
 <p>Essentially, this stage of creating the sample is the same as bringing people in the door to your experiment. If you were running this in the laboratory, you’d literally think of this as sitting your subjects down at their chairs, getting ready to begin their task.</p>
 <blockquote>
@@ -323,21 +334,21 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="simulation-example.html#cb7-1" aria-hidden="true" tabindex="-1"></a>d[ , experimental_assignment <span class="sc">:</span><span class="er">=</span> <span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">size =</span> .N, <span class="at">replace =</span> <span class="cn">TRUE</span>)]</span>
 <span id="cb7-2"><a href="simulation-example.html#cb7-2" aria-hidden="true" tabindex="-1"></a>d[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
 <pre><code>##    id        y0        y1 experimental_assignment
-## 1:  1 0.3935610 0.6435610                       1
-## 2:  2 0.3115200 0.5615200                       1
-## 3:  3 0.2665106 0.5165106                       1
-## 4:  4 0.5495257 0.7995257                       1
-## 5:  5 0.1036934 0.3536934                       1</code></pre>
+## 1:  1 0.6480917 0.8980917                       1
+## 2:  2 0.4459636 0.6959636                       1
+## 3:  3 0.4752260 0.7252260                       0
+## 4:  4 0.9082379 1.1582379                       1
+## 5:  5 0.4175339 0.6675339                       0</code></pre>
 <p>As as comparison, suppose that instead of randomly assigning individuals into treatment and control we allowed individuals to select into treatment and control. And suppose that people with the lowest potential outcomes to control opt to take the treatment. You might think of this as being something like, “The people who are the most tired are the most likely to drink a cup of coffee before they start class,” if an example helps you ground this.</p>
 <p>Specifically, suppose that any unit that has a potential outcome lower that <code>0.33</code> opts to take the treatment.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="simulation-example.html#cb9-1" aria-hidden="true" tabindex="-1"></a>d[ , observational_selection <span class="sc">:</span><span class="er">=</span> <span class="fu">ifelse</span>(y0 <span class="sc">&lt;</span> .<span class="dv">33</span>, <span class="dv">1</span>, <span class="dv">0</span>)]</span>
 <span id="cb9-2"><a href="simulation-example.html#cb9-2" aria-hidden="true" tabindex="-1"></a>d[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
 <pre><code>##    id        y0        y1 experimental_assignment observational_selection
-## 1:  1 0.3935610 0.6435610                       1                       0
-## 2:  2 0.3115200 0.5615200                       1                       1
-## 3:  3 0.2665106 0.5165106                       1                       1
-## 4:  4 0.5495257 0.7995257                       1                       0
-## 5:  5 0.1036934 0.3536934                       1                       1</code></pre>
+## 1:  1 0.6480917 0.8980917                       1                       0
+## 2:  2 0.4459636 0.6959636                       1                       0
+## 3:  3 0.4752260 0.7252260                       0                       0
+## 4:  4 0.9082379 1.1582379                       1                       0
+## 5:  5 0.4175339 0.6675339                       0                       0</code></pre>
 <p>These represent two different ways that you might conduct your research, each time with the same subject pool. Of course, in reality you probably would not be able to run these two studies at the same time, but since this is a simulation, we can stretch the confines of reality just a little bit.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="simulation-example.html#cb11-1" aria-hidden="true" tabindex="-1"></a>first_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>d) <span class="sc">+</span> </span>
 <span id="cb11-2"><a href="simulation-example.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> id, <span class="at">y =</span> y0), <span class="at">color =</span> blue) <span class="sc">+</span> </span>

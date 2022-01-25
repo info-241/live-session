@@ -57,6 +57,15 @@ donations-to-a-political-campaign
 statistical-power
 blocking-and-clustering
 learning-objectives-3
+block-random-assignment
+with-this-data-what-does-the-distribution-of-outcomes-look-like
+technical-benefits-of-blocking
+how-should-we-block-randomize
+what-makes-a-useful-feature-part-1
+what-makes-a-useful-feature-part-2
+strategies-of-blocking
+clustering
+mini-experiments
 covariates-and-regression
 learning-objectives-4
 regression-and-multifactor-experiments
