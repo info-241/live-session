@@ -1,7 +1,210 @@
+```{r load unit 04 packages, echo = FALSE, message = FALSE}
+library(data.table)
+library(ggplot2)
+library(patchwork)
+
+theme_set(theme_minimal())
+```
+
+
 # Blocking and Clustering
+
+When assigning treatment to units, unless there are restrictions created by the researcher, any of the treatment assignment vectors are equally probable. Blocking and clustering are ways of restricting the treatment assignments to a subset of the whole schedule of possibilities. 
+
+*Blocking* is a method of creating "blocks", or groups, of units that are similar along one or more dimensions and then creating a full random assignment within each of those similar groups. Through careful design, blocking can generate power or nuance for an experiment without any extra marginal costs for paying for additional units of treatment. 
+
+*Clustering* is a circumstance that arises from a state of the world that *requires* you to assign several similar units to the same condition, be it treatment or control. Through careful design, clustering might not hamper the power of an experiment; though realizing the necessity of a clustered design is typically met with the following statement, "@#$%, we've got to cluster."  
 
 ## Learning Objectives 
 
-1. 
-2. 
-3. 
+At the end of this week, student will be able to 
+
+1. **Recognize** when there is the potential to block random assign in their experiment, and **remember** why block random assignment beneficial. 
+2. **Recognize** when they are required to cluster random assign -- either due to a pragmatic (i.e. real-world) limitation, or to avoid violating the requirement that units not interfere with one another -- and **identify** ways that they can mitigate the reduction-in-power that arises from the need to cluster.
+3. **Distinguish** between the circumstances that lead to blocking and clustering. 
+4. **Analyze** both blocked and clustered experiments using the appropriate test, and generating statements of certainty and uncertainty using *randomization inference*. 
+
+## Block Random Assignment 
+
+To discuss the idea of blocking, consider the working example that David and David present in the async lectures: 
+
+> Eating too much tofu (aka the *Berkeley diet*) might increase decrease one's brain function, leading to decreased performance on cognitive tests, lower brain weight, and cause ventrical enlargment of the brain. 
+> 
+> Don't ask your instructors what any of that medical jargon might mean. It isn't our field! But, these are real claims made by a group of researchers in an observational nutrition study titled "Brain Aging and Midlife Tofu Consumption." 
+
+![this is your brain on tofu](./images/this_is_your_brain_on_tofu_abstract.png)
+
+Suppose that, motivated by your distaste for bunk, casual causal claims about diet, and taste for tofu, you decide to conduct a real experiment among your friends, families, and classmates to determine the actual impacts of tofu on diet. 
+
+```{r write simulation function}
+set.seed(1414)
+
+sim_normal_study <- function(treatment_effect=0) {
+  ## this function will create a "world" to analyze using an experiment, 
+  ## then, it will estimate the ate within that world 
+  ## it returns the ate and the number of women who are in treatment 
+  
+  require(data.table)
+  
+  d <- data.table(
+      group        = rep(c('M', 'F'), each = 20), 
+      po_control   = c(1:20, 81:100), 
+        ## treatment_effect = 0 --> sharp null is true
+      po_treatment = c(1:20, 81:100) + treatment_effect, 
+      treatment = sample(1:0, size = 40, replace = TRUE))[ , ## notice we're now assigning
+      outcomes := po_treatment * treatment + po_control * (1 - treatment)]
+
+  ate <- d[ , mean(outcomes[treatment == 1]) - mean(outcomes[treatment == 0])]
+  n_women_treatment = d[treatment == 1 & group == 'F', .N]
+
+  return(list(
+    data = d,
+    ate = ate, 
+    n_women_treatment = n_women_treatment
+    ))
+}
+```
+
+## With this data, what does the distribution of outcomes look like?
+
+```{r run study once}
+experiment_one <- sim_normal_study(treatment_effect = 0)
+experiment_two <- sim_normal_study(treatment_effect = 10)
+```
+
+ 
+
+```{r}
+experiment_one_plot <- ggplot(data = experiment_one$data) + 
+  aes(x = outcomes, fill = factor(treatment), linetype = group) + 
+  geom_density(alpha = 0.5) + 
+  labs(title = 'No effect'
+  )
+experiment_two_plot <- ggplot(data = experiment_two$data) + 
+  aes(x = outcomes, fill = factor(treatment), linetype = group) + 
+  geom_density(alpha = 0.5) + 
+  labs(title = 'Ten unit effect'
+  )
+
+(experiment_one_plot / experiment_two_plot) + 
+  plot_annotation(title = 'Measured Distribution of Estrogen, by Group') + 
+  plot_layout(guides = 'collect')
+```
+
+In these two different cases -- where there is no treatment effect on top, and when there is a large treatment effect on bottom --  what are the group means? Where would they be on these plots? 
+
+Consider the formula for the SE_{ATE}. 
+
+\[
+  SE(\tau) \approx \sqrt{\frac{V[\tau]}{N}}
+\]
+
+The important parts to consider for this discussion (despite being not a full statement of the SE) is that the standard error of the difference of group averages is a ratio of the underlying variance of the treatment effect, divided by the number of observations in that group.
+
+\[
+  \begin{aligned}
+  SE[\tau] & \approx \sqrt{\frac{V[Y(1)]}{n_{1}} + \frac{V[Y(0)]}{n_{0}}} \\ 
+           & \approx \sqrt{\frac{E[\left(Y(1) - E[Y(1)]\right)^2]}{n_{1}} + \frac{E[\left(Y(0) - E[Y(0)]\right)^2]}{n_{0}}}
+  \end{aligned}
+\]
+
+- When you examine the plot above, what are the expected values of the treatment and control groups? 
+- What does the expected value of the square of the deviations look like on this plot?
+
+<!--
+\[ 
+  \sqrt{
+  \frac{1}{k-1} 
+    \left\{
+      \frac{m*Var(\overline{Y_{j}}(0))}{N-m} + \frac{(N-m)Var(\overline{Y_{j}}(1))}{m} +
+        2 * Cov(\overline{Y_{j}}(0),\overline{Y_{j}}(1))
+      \right
+    \}
+  } 
+\]
+-->
+
+## Technical Benefits of Blocking 
+
+How how does breaking this population into two smaller groups create a reduction in the calculated standard error that you observe from an experiment? 
+
+- What is (draw) the conditional expectation among the `M` group and the `F` group. 
+- What is (draw) the conditional variance among the `M` group and the `F` group. 
+- How has this change produced a reduction in the overall variance? 
+
+```{r}
+experiment_one_plot <- ggplot(data = experiment_one$data) + 
+  aes(x = outcomes, fill = factor(treatment), linetype = group) + 
+  geom_density(alpha = 0.5) + 
+  labs(title = 'No effect'
+  )
+experiment_two_plot <- ggplot(data = experiment_two$data) + 
+  aes(x = outcomes, fill = factor(treatment), linetype = group) + 
+  geom_density(alpha = 0.5) + 
+  labs(title = 'Ten unit effect'
+  )
+
+(experiment_one_plot / experiment_two_plot) + 
+  plot_annotation(title = 'Measured Distribution of Estrogen, by Group') + 
+  plot_layout(guides = 'collect')
+```
+
+## How should we block randomize?
+
+Let's take several discussion points, in order: 
+
+### What makes a useful feature? (part 1)
+
+- When we are considering a block randomization to improve the *power* of a test, what about a feature makes it a useful blocking feature? (For instructors, probably don't read each of these, but try to get the discussion to address them.)
+
+  - Does a good blocking feature have to be associated with the treatment? 
+  - Does a good blocking feature have to be associated with potential outcomes? 
+  - Does a good blocking feature have to have a causal effect on the measured outcomes?
+
+- Suppose that have two possible features that you could use to block in the estrogen experiment. Either, you can block randomize using: 
+
+  (a) blood-serum levels of estrogen, measured a week before the experiment begins; or (
+  b) "stated form" sex (i.e. female, male, nonbinary). 
+
+### What makes a useful feature (part 2)
+
+- In the async, and to this point in this live session, we have spoken only about features that are categorical for blocking. 
+- Is it possible to block on a continuous feature? 
+
+  - What if it were measured very, very precisely, so every unit had a unique value on a continuous variable?
+  - If you *could* develop a method of blocking on a continuous variable, what might be the benefits? 
+  
+### Strategies of blocking 
+
+- If there is a benefit of creating two mini-experiments through blocking -- as you have proposed in the code above -- could there be a benefit to creating a third mini-experiment through blocking? What about a fourth? Is there a limit that you run into?
+
+  - What is the most blocks that you can produce in an experiment? 
+  - Or, alternatively, what is the smallest size block that you can produce in an experiment?
+  - Is there a reason to take this strategy? 
+  - What if you created many blocks, but with a noisy blocking feature. Would this work well? 
+  - What if you created many blocks, but with a very precise blocking feature. Would this work well? 
+  
+- To this point, we have discussed blocking on only a single variable. Is it possible to block on more than one variable at a time? 
+
+  - If you have already blocked on one variable, what are the characteristics that are useful for the next variable that you consider blocking on? 
+  - For example, suppose that you have already blocked the tofu experiment on experimental units' stated-form sex. Would it be useful to then block based on wearing glasses, or hair length, or blood-serum estrogen? Why or why not? 
+  
+## Clustering 
+
+- What are the circumstances in the world that make it necessary to cluster random assign? 
+
+ 
+  
+What are the merits and limitations of each of these methods of measuring, and then blocking? 
+
+
+## Mini-Experiments 
+
+
+
+
+
+
+
+
+
