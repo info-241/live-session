@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4.4 Technical Benefits of Blocking | Experiments and Causality</title>
+  <title>4.6 Technical Benefits of Blocking | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4.4 Technical Benefits of Blocking | Experiments and Causality" />
+  <meta property="og:title" content="4.6 Technical Benefits of Blocking | Experiments and Causality" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/coffee.jpeg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4.4 Technical Benefits of Blocking | Experiments and Causality" />
+  <meta name="twitter:title" content="4.6 Technical Benefits of Blocking | Experiments and Causality" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -24,7 +24,7 @@
 <meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
 
 
-<meta name="date" content="2022-01-25" />
+<meta name="date" content="2022-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -224,17 +224,24 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="blocking-and-clustering.html"><a href="blocking-and-clustering.html"><i class="fa fa-check"></i><b>4</b> Blocking and Clustering</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="learning-objectives-3.html"><a href="learning-objectives-3.html"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="4.2" data-path="block-random-assignment.html"><a href="block-random-assignment.html"><i class="fa fa-check"></i><b>4.2</b> Block Random Assignment</a></li>
-<li class="chapter" data-level="4.3" data-path="with-this-data-what-does-the-distribution-of-outcomes-look-like.html"><a href="with-this-data-what-does-the-distribution-of-outcomes-look-like.html"><i class="fa fa-check"></i><b>4.3</b> With this data, what does the distribution of outcomes look like?</a></li>
-<li class="chapter" data-level="4.4" data-path="technical-benefits-of-blocking.html"><a href="technical-benefits-of-blocking.html"><i class="fa fa-check"></i><b>4.4</b> Technical Benefits of Blocking</a></li>
-<li class="chapter" data-level="4.5" data-path="how-should-we-block-randomize.html"><a href="how-should-we-block-randomize.html"><i class="fa fa-check"></i><b>4.5</b> How should we block randomize?</a>
+<li class="chapter" data-level="4.2" data-path="setting-terms-blocking.html"><a href="setting-terms-blocking.html"><i class="fa fa-check"></i><b>4.2</b> Setting terms: Blocking</a></li>
+<li class="chapter" data-level="4.3" data-path="math-block-random-assignment.html"><a href="math-block-random-assignment.html"><i class="fa fa-check"></i><b>4.3</b> Math: Block random assignment</a></li>
+<li class="chapter" data-level="4.4" data-path="intuition-block-random-assignment.html"><a href="intuition-block-random-assignment.html"><i class="fa fa-check"></i><b>4.4</b> Intuition: Block Random Assignment</a></li>
+<li class="chapter" data-level="4.5" data-path="with-this-data-what-does-the-distribution-of-outcomes-look-like.html"><a href="with-this-data-what-does-the-distribution-of-outcomes-look-like.html"><i class="fa fa-check"></i><b>4.5</b> With this data, what does the distribution of outcomes look like?</a></li>
+<li class="chapter" data-level="4.6" data-path="technical-benefits-of-blocking.html"><a href="technical-benefits-of-blocking.html"><i class="fa fa-check"></i><b>4.6</b> Technical Benefits of Blocking</a></li>
+<li class="chapter" data-level="4.7" data-path="how-should-we-block-randomize.html"><a href="how-should-we-block-randomize.html"><i class="fa fa-check"></i><b>4.7</b> How should we block randomize?</a>
 <ul>
-<li class="chapter" data-level="4.5.1" data-path="how-should-we-block-randomize.html"><a href="how-should-we-block-randomize.html#what-makes-a-useful-feature-part-1"><i class="fa fa-check"></i><b>4.5.1</b> What makes a useful feature? (part 1)</a></li>
-<li class="chapter" data-level="4.5.2" data-path="how-should-we-block-randomize.html"><a href="how-should-we-block-randomize.html#what-makes-a-useful-feature-part-2"><i class="fa fa-check"></i><b>4.5.2</b> What makes a useful feature (part 2)</a></li>
-<li class="chapter" data-level="4.5.3" data-path="how-should-we-block-randomize.html"><a href="how-should-we-block-randomize.html#strategies-of-blocking"><i class="fa fa-check"></i><b>4.5.3</b> Strategies of blocking</a></li>
+<li class="chapter" data-level="4.7.1" data-path="how-should-we-block-randomize.html"><a href="how-should-we-block-randomize.html#what-makes-a-useful-feature-part-1"><i class="fa fa-check"></i><b>4.7.1</b> What makes a useful feature? (part 1)</a></li>
+<li class="chapter" data-level="4.7.2" data-path="how-should-we-block-randomize.html"><a href="how-should-we-block-randomize.html#what-makes-a-useful-feature-part-2"><i class="fa fa-check"></i><b>4.7.2</b> What makes a useful feature (part 2)</a></li>
+<li class="chapter" data-level="4.7.3" data-path="how-should-we-block-randomize.html"><a href="how-should-we-block-randomize.html#strategies-of-blocking"><i class="fa fa-check"></i><b>4.7.3</b> Strategies of blocking</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>4.6</b> Clustering</a></li>
-<li class="chapter" data-level="4.7" data-path="mini-experiments.html"><a href="mini-experiments.html"><i class="fa fa-check"></i><b>4.7</b> Mini-Experiments</a></li>
+<li class="chapter" data-level="4.8" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>4.8</b> Clustering</a></li>
+<li class="chapter" data-level="4.9" data-path="blocking-or-clustering.html"><a href="blocking-or-clustering.html"><i class="fa fa-check"></i><b>4.9</b> Blocking or Clustering?</a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="blocking-or-clustering.html"><a href="blocking-or-clustering.html#let-is-snow"><i class="fa fa-check"></i><b>4.9.1</b> Let is snow!</a></li>
+<li class="chapter" data-level="4.9.2" data-path="blocking-or-clustering.html"><a href="blocking-or-clustering.html#strolling-through-berkeley"><i class="fa fa-check"></i><b>4.9.2</b> Strolling through Berkeley</a></li>
+<li class="chapter" data-level="4.9.3" data-path="blocking-or-clustering.html"><a href="blocking-or-clustering.html#always-low-prices"><i class="fa fa-check"></i><b>4.9.3</b> Always low prices?</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="covariates-and-regression.html"><a href="covariates-and-regression.html"><i class="fa fa-check"></i><b>5</b> Covariates and Regression</a>
 <ul>
@@ -293,8 +300,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="technical-benefits-of-blocking" class="section level2" number="4.4">
-<h2><span class="header-section-number">4.4</span> Technical Benefits of Blocking</h2>
+<div id="technical-benefits-of-blocking" class="section level2" number="4.6">
+<h2><span class="header-section-number">4.6</span> Technical Benefits of Blocking</h2>
 <p>How how does breaking this population into two smaller groups create a reduction in the calculated standard error that you observe from an experiment?</p>
 <ul>
 <li>What is (draw) the conditional expectation among the <code>M</code> group and the <code>F</code> group.</li>

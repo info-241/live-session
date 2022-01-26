@@ -24,7 +24,49 @@ At the end of this week, student will be able to
 3. **Distinguish** between the circumstances that lead to blocking and clustering. 
 4. **Analyze** both blocked and clustered experiments using the appropriate test, and generating statements of certainty and uncertainty using *randomization inference*. 
 
-## Block Random Assignment 
+## Setting terms: Blocking
+
+- What does it mean to block randomize? 
+- Does the elimination of some randomization mean that the randomization is not longer, well, random? 
+- Relative to when treatment is administered, when are we able to block? Why are we not able to block after we've assigned treatment? 
+
+## Math: Block random assignment 
+
+In equation 3.6 (on page 61) of *Field Experiments* Green and Gerber write, 
+
+\[ 
+  \widehat{SE} = \sqrt{\frac{\widehat{Var}(Y_{i}(0))}{N-m} + \frac{\widehat{Var}(Y_{i}(1))}{m}}
+\]
+
+When we block randomize, we're essentially creating smaller groups of units and producing an estimate of the variance within each of those smaller groups of units. 
+
+How do the authors arrive at the following formula for a block randomized standard error? 
+
+\[ 
+  \widehat{SE}(\widehat{ATE}_{blocked}) = \sqrt{\sum_{j=1}^{J}\left(\frac{N_{j}}{N}\right)^2 * \widehat{SE}^2(\widehat{ATE}_{j})}
+\]
+
+- Specifically, why are we squaring the scaling parameter $\frac{N_{j}}{N}$? 
+- If you look at this summation, what has to happen to the variance within the groups, relative to the size of the groups, in order for blocking to actually increase power? 
+- Is it possible that you block, without increasing power, even if the blocking  variable is actually useful? 
+
+Green and Gerber, in equation 3.10, write that the overall $ATE$ of the population is: 
+
+\[ 
+  ATE = \sum_{j=1}^{J} \frac{N_{j}}{N} ATE_{j}
+\]
+
+- What does this equation "feel like"? Does that seem reasonable? Why or why not? 
+- Why might it be a good idea to have different rates of assignment to treatment within different blocks? Consider the following example: 
+
+  - Suppose that you are looking at an experiment among your whole user base, and you are considering changing the "check out flow" (we have not idea what that might mean either...) for this group. 
+  - Some of the users are *really* likely to purchase, while others are very unlikely to purchase. 
+  - Does it make sense to block randomize based on this prior purchase history?
+  - Are there any, reasonable business reasons to not make the treatment assignments be 50% treatment and 50% control in both of the populations? 
+  - What would happen if you randomized 10% of the "high value" customers into treatment and 50% of the low value customers into treatment. But, then you forget (or lost) that table of whether they were "high" or "low" value customers. 
+  - *What would be the consequence to your treatment effect estimate?*
+
+## Intuition: Block Random Assignment 
 
 To discuss the idea of blocking, consider the working example that David and David present in the async lectures: 
 
@@ -192,19 +234,35 @@ Let's take several discussion points, in order:
 ## Clustering 
 
 - What are the circumstances in the world that make it necessary to cluster random assign? 
-
- 
+- Are these circumstances academic? Or, are there actually examples of where this might come into play? 
+  - Consider the ride sharing example that we read about in *Power of Experiments*. What would happen if we gave some people really low prices to get into a rideshare, while we gave other people really high prices? What if they are standing next to eachother at the airport? What if one is at an airport in Oakland, while the other is at SFO? 
   
-What are the merits and limitations of each of these methods of measuring, and then blocking? 
+## Blocking or Clustering? 
 
+### Let is snow! 
+Suppose we want to measure the effect of snowplowing on local retail activity.  We design an experiment that plows some locations but not others. Which of the following do you prefer? Explain the relative advantages and disadvantages of each option.
 
-## Mini-Experiments 
+  - On a given street, we randomly assign which businesses we plow in front of.
+  - We randomly assign which streets to plow and which streets not to plow.
+  - We randomly assign which neighborhoods to plow and which neighborhoods not to plow.
+  - Do the differences above illustrate blocking, or clustering?
 
+Returning to the snowplow example, suppose we have two wealthy neighborhoods, nine middle-class neighborhoods, and four poor neighborhoods available to experiment on.  We are worried that if we put both of the wealthy neighborhoods into the treatment group, we will get an overestimate of the treatment effect of snowplowing on retail activity.
+We will assign treatment at the neighborhood level.  Now consider blocking this experiment based on social class.  Describe treatment assignment for the fifteen neighborhoods.
 
+  - Does blocking reduce bias?
+  - What benefit do we expect blocking to have on our ATE estimator?
 
+### Strolling through Berkeley
+David Reiley walks through Berkeley and observes retail shops.  As he goes, he takes each pair of stores he encounters, flips a coin, and goes into one store in each pair to give them a free Google ad coupon. He later observes how much each spent on Google ads in the month after.
+  
+  - Why might this increase power compared to picking stores totally at random?
+  - Reiley does the same as above, but picks one store on every street only.
+  - Reiley does the same as above, but picks two stores on every street only.
+  - Reiley picks one side of each street to treat on many streets.
 
+### Always low prices? 
+Imagine that an executive at Walmart gives you the keys to the pricing at the store and asks you to determine how demand for goods changes depending on the pricing of those goods? Basically, does “rolling back prices” lead to increased demand? And by how much? 
 
-
-
-
-
+- What are the different levels at which you could assign different prices? 
+- What are the benefits and limitations of assigning different prices at those levels? 

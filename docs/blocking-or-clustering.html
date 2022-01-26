@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>11.1 Learning Objectives | Experiments and Causality</title>
+  <title>4.9 Blocking or Clustering? | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="11.1 Learning Objectives | Experiments and Causality" />
+  <meta property="og:title" content="4.9 Blocking or Clustering? | Experiments and Causality" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/coffee.jpeg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="11.1 Learning Objectives | Experiments and Causality" />
+  <meta name="twitter:title" content="4.9 Blocking or Clustering? | Experiments and Causality" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="problems-and-diagnostics.html"/>
-<link rel="next" href="attrition-mediation-and-generalizability.html"/>
+<link rel="prev" href="clustering.html"/>
+<link rel="next" href="covariates-and-regression.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -300,14 +300,43 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="learning-objectives-10" class="section level2" number="11.1">
-<h2><span class="header-section-number">11.1</span> Learning Objectives</h2>
-<ol style="list-style-type: decimal">
-<li></li>
-<li></li>
-<li></li>
-</ol>
+<div id="blocking-or-clustering" class="section level2" number="4.9">
+<h2><span class="header-section-number">4.9</span> Blocking or Clustering?</h2>
+<div id="let-is-snow" class="section level3" number="4.9.1">
+<h3><span class="header-section-number">4.9.1</span> Let is snow!</h3>
+<p>Suppose we want to measure the effect of snowplowing on local retail activity. We design an experiment that plows some locations but not others. Which of the following do you prefer? Explain the relative advantages and disadvantages of each option.</p>
+<ul>
+<li>On a given street, we randomly assign which businesses we plow in front of.</li>
+<li>We randomly assign which streets to plow and which streets not to plow.</li>
+<li>We randomly assign which neighborhoods to plow and which neighborhoods not to plow.</li>
+<li>Do the differences above illustrate blocking, or clustering?</li>
+</ul>
+<p>Returning to the snowplow example, suppose we have two wealthy neighborhoods, nine middle-class neighborhoods, and four poor neighborhoods available to experiment on. We are worried that if we put both of the wealthy neighborhoods into the treatment group, we will get an overestimate of the treatment effect of snowplowing on retail activity.
+We will assign treatment at the neighborhood level. Now consider blocking this experiment based on social class. Describe treatment assignment for the fifteen neighborhoods.</p>
+<ul>
+<li>Does blocking reduce bias?</li>
+<li>What benefit do we expect blocking to have on our ATE estimator?</li>
+</ul>
+</div>
+<div id="strolling-through-berkeley" class="section level3" number="4.9.2">
+<h3><span class="header-section-number">4.9.2</span> Strolling through Berkeley</h3>
+<p>David Reiley walks through Berkeley and observes retail shops. As he goes, he takes each pair of stores he encounters, flips a coin, and goes into one store in each pair to give them a free Google ad coupon. He later observes how much each spent on Google ads in the month after.</p>
+<ul>
+<li>Why might this increase power compared to picking stores totally at random?</li>
+<li>Reiley does the same as above, but picks one store on every street only.</li>
+<li>Reiley does the same as above, but picks two stores on every street only.</li>
+<li>Reiley picks one side of each street to treat on many streets.</li>
+</ul>
+</div>
+<div id="always-low-prices" class="section level3" number="4.9.3">
+<h3><span class="header-section-number">4.9.3</span> Always low prices?</h3>
+<p>Imagine that an executive at Walmart gives you the keys to the pricing at the store and asks you to determine how demand for goods changes depending on the pricing of those goods? Basically, does “rolling back prices” lead to increased demand? And by how much?</p>
+<ul>
+<li>What are the different levels at which you could assign different prices?</li>
+<li>What are the benefits and limitations of assigning different prices at those levels?</li>
+</ul>
 
+</div>
 </div>
 <!-- </div> -->
             </section>
@@ -315,8 +344,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="problems-and-diagnostics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="attrition-mediation-and-generalizability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="clustering.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="covariates-and-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
