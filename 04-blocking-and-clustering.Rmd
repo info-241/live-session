@@ -4,6 +4,10 @@ library(ggplot2)
 library(patchwork)
 
 theme_set(theme_minimal())
+
+knitr::knit_engines$set(notes = function(options) {
+  code <- paste(options$code, collapse = "\n")
+})
 ```
 
 

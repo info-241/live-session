@@ -1,0 +1,2284 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Experiments and Causality},
+  pdfauthor={David Reiley, David Broockman, D. Alex Hughes, \textbackslash{} Micah Gell-Redman, Scott Guenther, \textbackslash{} David Wheeler \& Conor Healy \textbackslash{} Chris Donaton \& Kineret Stanley},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Experiments and Causality}
+\author{David Reiley, David Broockman, D. Alex Hughes, \textbackslash{} Micah Gell-Redman, Scott Guenther, \textbackslash{} David Wheeler \& Conor Healy \textbackslash{} Chris Donaton \& Kineret Stanley}
+\date{2022-02-02}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{live-session-introduction}{%
+\chapter*{Live Session Introduction}\label{live-session-introduction}}
+\addcontentsline{toc}{chapter}{Live Session Introduction}
+
+This is the live session work space for the course. Our goal with this repository, is that we're able to communicate \emph{ahead of time} our aims for each week, and that you can prepare accordingly.
+
+\hypertarget{blooms-taxonomy}{%
+\section*{Bloom's Taxonomy}\label{blooms-taxonomy}}
+\addcontentsline{toc}{section}{Bloom's Taxonomy}
+
+An effective rubric for student understanding is attributed to Bloom (1956). Referred to as \emph{Bloom's Taxonomy}, this proposes that there is a hierarchy of student understanding; that a student may have one \emph{level} of reasoning skill with a concept, but not another. The taxonomy proposes to be ordered: some levels of reasoning build upon other levels of reasoning.
+
+In the learning objective that we present in for each live session, we will also identify the level of reasoning that we hope students will achieve at the conclusion of the live session.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Remember} A student can remember that the concept exists. This might require the student to define, duplicate, or memorize a set of concepts or facts.
+\item
+  \textbf{Understand} A student can understand the concept, and can produce a working technical and non-technical statement of the concept. The student can explain why the concept \emph{is}, or why the concept works in the way that it does.
+\item
+  \textbf{Apply} A student can use the concept as it is intended to be used against a novel problem.
+\item
+  \textbf{Analyze} A student can assess whether the concept has worked as it should have. This requires both an understanding of the intended goal, an application against a novel problem, and then the ability to introspect or reflect on whether the result is as it should be.
+\item
+  \textbf{Evaluate} A student can analyze multiple approaches, and from this analysis evaluate whether one or another approach has better succeeded at achieving its goals.
+\item
+  \textbf{Create} A student can create a new or novel method from axioms or experience, and can evaluate the performance of this new method against existing approaches or methods.
+\end{enumerate}
+
+\hypertarget{importance-of-experimentation}{%
+\chapter{Importance of Experimentation}\label{importance-of-experimentation}}
+
+\textbf{Core questions for today}
+
+\begin{itemize}
+\tightlist
+\item
+  Why do we conduct experiments?
+\item
+  What is the value of making a causal statement?
+\item
+  This is a data science program. With enough data and a savvy enough model, can't we just generate a causal statement that will be right? Can't I generate a statement that converges in probability to the \emph{correct} value?
+\end{itemize}
+
+\hypertarget{learning-objectives}{%
+\section{Learning Objectives}\label{learning-objectives}}
+
+At the end of this live session, students will be able to
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \emph{Remember} (or find) the goals of the course, the assessment structure, and the learning model.
+\item
+  \emph{Define}, in non-technical language, what it means for an action to cause an outcome.
+\item
+  \emph{Understand} the difference between a causal statement, and an association statement.
+\item
+  \emph{Apply} the framework of causal thinking against a series of studies to determine whether the study has achieved the goal that it intends.
+\end{enumerate}
+
+\hypertarget{class-introductions}{%
+\section{Class Introductions}\label{class-introductions}}
+
+In no more than 2 minutes, could each student please:
+
+\begin{itemize}
+\tightlist
+\item
+  Introduce themselves, announcing their name as they would like it to be pronounced;
+\item
+  Tell us where in the world they are studying;
+\item
+  State what semester they are in the program;
+\item
+  Any descriptive features that they would like the class to know about them (for example, gender pronouns); and,
+\item
+  {[}Instructor's choice{]}
+\end{itemize}
+
+\hypertarget{course-plan}{%
+\section{Course Plan}\label{course-plan}}
+
+The course is built out into three distinct phases
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Part 1} Develops causal theory, potential outcomes, and a permutation-based uncertainty measurement
+\item
+  \textbf{Part 2} Further develops the idea of a treatment effect, and teaches how the careful design of experiments can improve the efficiency, and easy of analysis
+\item
+  \textbf{Part 3} Presents practical considerations when conducting an experiment, including problems that may arise, and how to design an experiment in anticipation of those problems.
+\end{itemize}
+
+\hypertarget{course-logistics}{%
+\section{Course Logistics}\label{course-logistics}}
+
+\begin{itemize}
+\tightlist
+\item
+  bCourses
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Learning Modules attached to weeks
+  \item
+    Modules contain async lectures, coding exercises, and quizzes
+  \end{itemize}
+\item
+  GitHub
+
+  \begin{itemize}
+  \tightlist
+  \item
+    All the course materials are available in a GitHub repository
+  \item
+    We have protected the \texttt{main} branch, so you can't do anything destructive
+  \item
+    Use that as empowerment! This is your class, propose changes that you would like to see!
+  \end{itemize}
+\item
+  Github Classroom
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Assignments will all be applied programming assignments against simulated and real data
+  \item
+    All assignment code will be distributed through GitHub Classroom
+  \end{itemize}
+\item
+  Gradescope
+
+  \begin{itemize}
+  \tightlist
+  \item
+    All assignments will be submitted to Gradescope where we'll read your solutions and provide scores and feedback
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{learning-model-for-the-class}{%
+\subsection{Learning model for the class}\label{learning-model-for-the-class}}
+
+The course assignments are designed to put what we have learned in reading, async, and live session into practice in code. In our ideal version of your studying, we would have you working hard together with your classmates in a study group on the assignments, coming to office hours to talk candidly about what is and isn't working, and then \emph{every single student} arriving at a full solution.
+
+\hypertarget{feedback-model-for-the-class}{%
+\subsection{Feedback model for the class}\label{feedback-model-for-the-class}}
+
+We want to get you feedback \emph{very} quickly after you turn your assignments.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  We will release a solution set the day that you turn your assignment in
+\item
+  We will hold a problem set debrief office hour the Friday (i.e.~next day) after the problem set it submitted
+\item
+  We will have light-feedback on your assignments within 7 days of when you submitted them.
+\item
+  You should bring your assignment to office hours after you have turned it in so that we can talk about any differences between your approach, and the instructors approach.
+\end{enumerate}
+
+\hypertarget{office-hour-model-for-the-class}{%
+\subsection{Office hour model for the class}\label{office-hour-model-for-the-class}}
+
+\begin{itemize}
+\tightlist
+\item
+  We will hold office hours Sunday through Thursday at 5:30.
+\item
+  We will hold more than 10 hours of office hours every week; they will all be recorded, and any student is welcome in any office hour
+\end{itemize}
+
+\hypertarget{article-discussion}{%
+\section{Article Discussion}\label{article-discussion}}
+
+\hypertarget{predict-or-cause}{%
+\subsection{Predict or Cause}\label{predict-or-cause}}
+
+\begin{itemize}
+\tightlist
+\item
+  What are a few examples that Athey raises of causal questions masquerading as prediction questions?
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+  \item
+  \item
+  \end{enumerate}
+\item
+  Which of these examples is the most surprising to you?
+\item
+  Is there something that is common to each of these examples? Is this a general phenomenon, or is Athey very clever in picking examples? Said differently, is Athey making a clever argument or is a lot of what we do as data scientists actually causal work in disguise?
+\end{itemize}
+
+\hypertarget{do-the-suburbs-make-you-fat}{%
+\subsection{Do the suburbs make you fat?}\label{do-the-suburbs-make-you-fat}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  What is the causal claim being made in this article?
+\item
+  If you had to draw out this causal claim, using arrows, what would it look like?
+\item
+  Do you acknowledge the association that the authors present? Is there \emph{actually} a difference between the BMI of people who live in cities and the suburbs?
+\item
+  If you acknowledge the association, does that compel you to believe the causal claim? Why or why not?
+\item
+  Name, and draw, five alternative \emph{confounding} variables that might make you skeptical that the claimed relationship exists.
+\item
+  (Optional) Name, and draw two \emph{mechanisms} that might exist between suburbs and BMI. Why does the existence (or not) of these mechanisms \emph{not} pose a fundamental problem to the causal claim that the authors make?
+\item
+  At the conclusion of reading this paper, do you believe that there is a causal relationship between location and BMI? If so, what compels you to to believe this; if not, why are you not compelled to believe this?
+\end{enumerate}
+
+\hypertarget{nike-shoes}{%
+\subsection{Nike Shoes}\label{nike-shoes}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  What is the causal claim being made in this article?
+\item
+  If you had to draw out this causal claim, using arrows, what would it look like?
+\item
+  Do you acknowledge the association that the authors present? Is there actually a difference in the finish time between people who are running with the Nike shoes vs.~other shoes?
+\item
+  If you acknowledge the association, does that compel you to believe the causal claim? Why or why not?
+\item
+  What are some of the confounding relationships that the authors identify? (Can you name four?) How do they adjust their analyses once they acknowledge the confounding problem?
+\item
+  At the conclusion of reading this paper, do you believe that there is a causal relationship between shoes and finish time? If so, what compels you to to believe this; if not, why are you not compelled to believe this?
+\end{enumerate}
+
+\hypertarget{what-is-science-feynmans-view}{%
+\subsection{What is Science: Feynman's View}\label{what-is-science-feynmans-view}}
+
+In \emph{Cargo Cult Science}, Richard Feynman poses a view of science that is about a seeking of the truth.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  What is Feynman's view of science? What does he think makes something \emph{scientific}?
+\item
+  What are ways that individuals fool themselves when they are working as scientists? What are ways that individuals fool themselves when they are working as data scientists?
+\item
+  How can we as (data) scientists, train ourselves not to be fooled?\footnote{This is a footnote, rendered into an html document.}
+\end{enumerate}
+
+\hypertarget{apples-to-apples}{%
+\chapter{Apples to Apples}\label{apples-to-apples}}
+
+\begin{figure}
+\centering
+\includegraphics{./images/honeydew-salad-with-ginger-dressing-and-peanuts.jpeg}
+\caption{fruit salad}
+\end{figure}
+
+\hypertarget{learning-objectives-1}{%
+\section{Learning Objectives}\label{learning-objectives-1}}
+
+At the conclusion of this week's live session, student will be able to:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \emph{Describe}, using the technical language of potential outcomes, what it means for an input to \emph{cause} an output.
+\item
+  \emph{Describe} the fundamental problem of causal inference.
+\item
+  \emph{Apply} iid sampling as a method of producing an unbiased, consistent estimator of a population.
+\item
+  \emph{Prove} that the average treatment effect estimator produces an unbiased, consistent estimator for the average treatment effect.
+\end{enumerate}
+
+\hypertarget{revisiting-ideas-of-science}{%
+\section{Revisiting Ideas of Science}\label{revisiting-ideas-of-science}}
+
+Questions about epistemology are a \emph{classic} question, and one that is particularly relevant not only at the School of Information where we have faculty and student whose work ranges from fields as diverse as computer science, psychology, sociology, law, and education -- ``\textbf{What does it mean to \emph{know} something?}'' We'll note that this question is not only an academic question, because in our workplaces we need to know how to take the best course of action. In this course, we like to think of \emph{Science} as a method of coming to know something.
+
+Think back to the reading and discussion from last week: For Feynman, what does it mean to be ``Doing science?'' Would Feynman say that data science, as we are practicing it, is a ``science''? Would Feynman say that 205, or computer science is a science? Would Feynman say that 203 is a science? What about 251, 255, or 266?
+
+For Lakatos, what does it mean for something to be a part of a science? What does it mean for something to be a part of a psuedo-science? Is it as simple a view as Feynman espouses? Does the work that we conduct across the coursework in this program produce scientific knowledge as Lakatos see it?
+
+What do you think produces knowledge? Can a single conversation produce knowledge? Can a non-experimental study produce knowledge about a causal effect? Can an experiment fail to produce knowledge? If an experiment fails to reject some null hypothesis, does that mean that it has not produced any knowlege?
+
+\hypertarget{this-causes-that}{%
+\section{This Causes That}\label{this-causes-that}}
+
+What does it mean for an action to cause an outcome? Don't worry about conducting the experiment, or any measurement concerns at this point, just engage with the concepts.
+
+\hypertarget{damn-fine-coffee}{%
+\subsection{Damn fine coffee}\label{damn-fine-coffee}}
+
+Suppose that you're getting ready for class, and you want to make sure that you're at your best. So, you drink a cup of water, eat a small snack, and brew a small pot of coffee for while you're in class.
+
+\begin{quote}
+Why do you do this?
+\end{quote}
+
+Presumably, you're doing this because you like each of these things, but also because you're interested in these things causing you to have a better class. If you framed this as as causal question, you might ask:
+
+\begin{quote}
+If I drink a cup of coffee before class, will it cause me to be more alert?
+\end{quote}
+
+What does it mean for coffee to cause alertness?
+
+\begin{itemize}
+\tightlist
+\item
+  Does coffee cause everyone to become more alert?
+\item
+  Does coffee have to affect everyone equally in order for you to say it causes alertness?
+\item
+  Could coffee have no effect for some people, and you would still say it causes alertness?
+\end{itemize}
+
+\hypertarget{meditation-for-focus}{%
+\subsection{Meditation for focus}\label{meditation-for-focus}}
+
+Suppose that you're getting ready for class, and you want ensure that you're at your best. So, you find a quiet place, and set your mind at ease with whatever form of meditation you think might be helpful.
+
+\begin{quote}
+If I meditate before class, will it cause me to be more focused?
+\end{quote}
+
+What does it mean for meditation to cause focus?
+
+\begin{itemize}
+\tightlist
+\item
+  Does meditation cause everyone to become more focused?
+\item
+  Does meditation have to affect everyone equally?
+\item
+  Some people are frustrated by not being able to quiet their thoughts, and actually find meditation frustrating. Can this be true, and still believe that meditation causes focus?
+\end{itemize}
+
+\hypertarget{selling-coffee-and-meditation}{%
+\subsection{Selling coffee and meditation}\label{selling-coffee-and-meditation}}
+
+Suppose that you're an enterprising soul, and you want to sell a book about brewing coffee as a meditation. You reason that there must be a niche for this approach. To get the word out, you place a few flyers with tear off phone-numbers at the local yoga studios and tech incubators (good intuition to find those MIDS students).
+
+\begin{quote}
+If shown a flyer for coffee-meditation, will it cause someone to take my training?
+\end{quote}
+
+What does it mean for for flyers to cause people to sign-up for the training?
+
+\begin{itemize}
+\tightlist
+\item
+  Does the flyer cause everyone to take the training?
+\item
+  Does the flyer affect everyone equally?
+\end{itemize}
+
+One might be a radical behaviorist (Skinner is perhaps the most famous in this line of thinking) that says, ``In matters of human behavior, if I cannot see it, then I cannot reason or know about.'' If this is your view, then you would simply stop your investigation (and reasoning) at the conclusion of your experiment.
+
+In many ways, experiments suited only to answer empirical, observable questions. These are the questions, and lens proposed by the radical behaviorist paradigm.
+
+\hypertarget{limits-of-behaviorist-reasoning}{%
+\subsection{Limits of Behaviorist Reasoning}\label{limits-of-behaviorist-reasoning}}
+
+If you accept only that coffee has this effect, and that it is measurable, are you able to translate this knowledge to a new context?
+
+\begin{itemize}
+\tightlist
+\item
+  Suppose that your experiments finds an effect of coffee on alertness: those who drink a cup of coffee are more alert in class.
+\item
+  Suppose, though, that you're out of coffee \emph{tonight}. A radical behaviorist would simply say, ``I know not what to drink then to increase my alertness.''
+\end{itemize}
+
+\hypertarget{reflecting-on-causes}{%
+\subsection{Reflecting on Causes}\label{reflecting-on-causes}}
+
+Does anything unify questions of causes?
+
+When you think about \emph{\{this\}} causing \emph{\{that\}}, do you think about it at a population level, a smaller group level, or at the individual level?
+
+\hypertarget{evaluating-value}{%
+\subsection{Evaluating Value}\label{evaluating-value}}
+
+Is this an entirely academic exercise, the discussion of \emph{\{this\}} causing \emph{\{that\}}? Or, is there some value to thinking about things in these terms? Susan Athey, whom we read last week, seems to think that there is value in distinguishing between associations and causes. However, hers is a view that is generated by an academic; much like the views of David and David, and all of the live session instructors. We're all academics, so maybe we're being \emph{typical} academic pedants.
+
+What is a case, perhaps that you read or wrote about for your first essay, mistakenly believing they had measured a causal effect? What would happen if they implemented the policy that is implicated in their study? Or, what would happen if they took action consonant with what their study purports to find?
+
+\hypertarget{value-of-theory}{%
+\subsection{Value of Theory}\label{value-of-theory}}
+
+\begin{itemize}
+\tightlist
+\item
+  Can you produce several theories (some of them might be silly) about why coffee might increase alertness in class?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Proposed theory \#1:
+  \item
+    Proposed theory \#2:
+  \item
+    Proposed theory \#3:
+  \end{itemize}
+\item
+  Does Feynman's approach to \emph{Science} provide a method to adjudicate which of these theories is consonant with the evidence, and which are not consonant with the evidence?
+\item
+  Does Lakatos' approach to \emph{Science} provide such a method?
+\end{itemize}
+
+\hypertarget{evaluating-theories}{%
+\subsection{Evaluating Theories}\label{evaluating-theories}}
+
+\begin{itemize}
+\tightlist
+\item
+  What data might you be able to produce that would allow you to ``drive a wedge'' between the different theories?
+\item
+  This ability to proactively deign an experiment to distinguish between theories is the goal you're striving to achieve, \emph{and it is very hard to accomplish}.
+\end{itemize}
+
+\hypertarget{reading-discussion-the-power-of-experiments}{%
+\section{Reading Discussion: The Power of Experiments}\label{reading-discussion-the-power-of-experiments}}
+
+\emph{The Power of Experiments} starts the discussion of experimentation in the workplace with what is, for the course instructors, a uniquely pedestrian example, increasing contributions to taxes. In particular, Her Majesty's Revenue and Customs sends different versions of a letter to British taxpayers, and observes that different language leads to different amounts of taxes being paid.
+
+\hypertarget{chapter-one-the-power-of-experiments}{%
+\subsection{Chapter One: The Power of Experiments}\label{chapter-one-the-power-of-experiments}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Is it \emph{actually} a ``big-deal'' to increase tax compliance by 2 percentage points?
+\item
+  On page five, the book identifies five ``one-liners'' that HMRC chose to send to taxpayers:
+\item
+  \emph{Nine out of ten people pay their tax on time.''}
+\item
+  \emph{Nine out of ten people in the UK pay their tax on time.}
+\item
+  \emph{Nine out of ten people in the UK pay their tax on time. You are currently in the very small minority of people who have not paid us yet.''}
+\item
+  \emph{Paying tax means we all gain from vital public services like the NHS, roads and schools.}
+\item
+  \emph{Not paying tax means we all lose out on vital public services like the NHS, roads, and schools.}
+\item
+  Which of these sentences would be the most effective at getting you to pay your taxes? Which do you think will be most effective, overall, at generating tax compliance? Why? How willing are you to make a million pound bet that you're correct?
+\item
+  Some of your instructors are vegetarians. None of them, however, has previously made an argument for why everyone should be vegetarian based on the example of Daniel and his study of diet and divine intervention. What about the study that Daniel conducted produces evidence that you think is useful for evaluating diet? What are the limitations that you see in this study? The book lists several, but there are other issues, along the lines of the \emph{exclusion restriction} that \emph{Field Experiments} identifies.
+\item
+  In order for Pasteur to be declared the winner of the vaccine argument, the observers said that every control group sheep had to die and every treatment group (i.e.~vaccine-receiving) sheep had to live. Is this a fair burden of proof? Do the frequentest tests that we developed in 203 and are going to use here in 241 set a higher or lower bar than Pasteur faced? What are the merits of a relatively higher or lower bar?
+\end{enumerate}
+
+\hypertarget{chapter-two-the-rise-of-experimetnts-in-psychology-and-economics}{%
+\subsection{Chapter Two: The Rise of Experimetnts in Psychology and Economics}\label{chapter-two-the-rise-of-experimetnts-in-psychology-and-economics}}
+
+Freud is noted as being specifically \emph{against} experimentation. But, \emph{PoE} then goes on to write, ``{[}Freud's{]} big ideas inspired entire fields of psychological research. Including the notion that unconscious processes shape our judgement and behavior, psychological disorders are rooted in the mind rather than the body; and that sexual urges and behavior are worthy of study'' (p.~19). Some of the theories that Freud promulgated were found to have evidence that was consistent with the theory; some of these theories could not produce evidence to support the theory; and many were outright contradicted by the evidence.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Is there value in being an ``idea person''? How would you ever know if your ideas were actually right if you're unwilling to evaluate them?
+\item
+  What, if any, are the limitations of experimenting without any ``big ideas'' to ground your experiments?
+\end{enumerate}
+
+Behaviorists (Skinner is the leading behaviorist) make a compelling argument: ``One cannot directly observe what is happening in the mind of a person.'' A classic implication of this argument for behaviorists is that only that which is empirically observable is reasoned about. ``Why does the rat avoid getting shocked? Does it really matter?'' ``Why does the child want a cookie? Does it really matter why?''
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Is this position reasonable for you to take as you navigate your own life? If you spoke with a therapist or a coach and said, ``I've been feeling stressed over the past several weeks,'' would be satisfied with a \emph{mindful} answer like, ``Well, let's acknowledge those feelings and hold them for a moment'' or would you want to reason further about why you feel stressed? What are the types of things in people's heads that you think we can profitably reason about; what are the types of things in people's heads that we cannot reason about? Is there something that is common to those that we can or cannot work with?
+\end{enumerate}
+
+The experiments of Milgram and Zimbardo are widely identified as the reason that human-subjects review boards no exist. These review boards serve as an external review that keeps researchers from inflicting harm to individuals that is not outweighed by societal or scientific benefits.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  What did Milgram and Zimbardo do to their subjects?
+\item
+  By talking continuing to talk about these experiments nearly fifty years after they were conducted -- even if we are talking about them negatively -- are we adding to the fame of these researchers? (For those interested in inside baseball, Zimbardo was the president of the American Psychology Association in 2002, and was awarded a lifetime achievement award from his discipline.) How should we learn and react to work that shouldn't have been conducted in the first place?
+\end{enumerate}
+
+Kahneman and Tversky propose that individuals think about expected values differently depending on whether they are thinking in the domain of gains or the domain of losses. They come to this theory through the, now cringe-worthy, \emph{Asian Disease Problem}:
+
+In the positive frame, they ask the question:
+
+\begin{quote}
+Imagine that the US is preparing for the outbreak of an unusual Asian disease that is expected to kill 600 people. Two alternative programs to combat the disease have been proposed.
+
+\begin{itemize}
+\tightlist
+\item
+  If \textbf{Program A} is adopted, 200 people will be saved.
+\item
+  If \textbf{Program B} is adopted, with a 1/3 probability 600 will be saved and with a 2/3 probability nobody will be saved.
+\end{itemize}
+\end{quote}
+
+The authors also present a countervailing pair of scenarios framed in terms of losses
+
+\begin{quote}
+\begin{itemize}
+\tightlist
+\item
+  If \textbf{Program C} is adopted, 400 people will die.
+\item
+  If \textbf{Program D} is adopted, there is a one-third probability that no one will die, and a 2/3 probability that everyone will die.
+\end{itemize}
+\end{quote}
+
+Clearly, all these programs have the same expected number of deaths; but, people can disagree about which of these is the program that we should pursue. Just ask as a poll in the class; and, ask people to justify their beliefs.
+
+\hypertarget{the-rise-of-behavioral-experiments-in-policymaking}{%
+\subsection{The Rise of Behavioral Experiments in Policymaking}\label{the-rise-of-behavioral-experiments-in-policymaking}}
+
+\emph{PoE} points out that experiments abound in policy making. Part of this stems from a truthful ignorance of the optimal policy to pursue. Another part of this stems from the ability of policy makers to make decisions by fiat that affect a large number of people.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Does this justification for experiments align with your current understeanding of the landscape in human-facing data science?
+\end{enumerate}
+
+In a section titled \textbf{The nuance behind behavioral insights} the authors state a series of three caveats:
+
+\begin{quote}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \emph{Context matters}
+\item
+  \emph{Design choices matter}
+\item
+  \emph{Unintended consequences abound}
+\end{enumerate}
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  What do they mean when they raise the three points?
+\item
+  We are going to ask you to justify conducting experiments by staking out an extreme point of view, and asking you to convince us that this point of view is so extreme that it cannot be justified. \emph{``Writing that context matters, design choices matter, and unanticipated consequences abound is little more than writing that experiments cannot produce any more useful insights than the theories of Freud. As a result, there is little reason to conduct any experiments because what we learn will be highly contextualized, affected by very small implementation choices, and may generate as many (or more) negative outcomes as positive outcomes.''}
+\end{enumerate}
+
+\hypertarget{potential-outcomes}{%
+\section{Potential Outcomes}\label{potential-outcomes}}
+
+Potential outcomes are a system of reasoning, and a corresponding notation, that allow us to talk about observable and un-observable characteristics of the world.
+
+\begin{quote}
+What is your position on \emph{ontology}? What does it mean for something to exist?
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Does \emph{Field Experiments}, as a textbook, exist?
+\item
+  Do Don Green and Alan Gerber, the authors of the textbook that we're reading, exist?
+\item
+  Does David Reiley, the slower-talking Davids in the async, exist?
+\item
+  Do I, your section, instructor, exist (or am I a deep fake in this room with you)?
+\item
+  Can a concept exist, even if you can't hold it? Even if you haven't seen it?
+\end{itemize}
+
+\hypertarget{defining-potential-outcomes}{%
+\subsection{Defining Potential Outcomes}\label{defining-potential-outcomes}}
+
+For each of the following sets of notation: (1) Read the notation aloud, not as ``Y sub i zero'', but instead as ``The potential outcome to control \ldots{}''.
+
+\begin{itemize}
+\item
+  \(Y_{i}(0)\):
+\item
+  \(Y_{i}(1)\):\\
+\item
+  \(E[Y_{i}(0)]\):
+\item
+  \(E[Y_{i}(1)]\):
+\item
+  \(E[Y_{i}(0)|D_{i}=0]\):
+\item
+  \(E[Y_{i}(1)|D_{i}=1]\):
+\item
+  \(E[Y_{i}(0)|D_{i}=1]\):
+\item
+  \(E[Y_{i}(1)|D_{i}=0]\):
+\item
+  Which of these concepts that you have just read aloud exist?
+\item
+  Can a concept exist, even if you can't hold it? Even if you can't see it?
+\end{itemize}
+
+\hypertarget{using-independence}{%
+\section{Using Independence}\label{using-independence}}
+
+Suppose that you have a random variable that is defined as the function,
+
+\[
+Y = 
+  \begin{cases}
+    \frac{1}{10} & ,0 \leq y \leq 10 \\ 
+    0 & \text{, otherwise}
+  \end{cases}
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  What is the expected value of this function?
+\end{itemize}
+
+\[
+\begin{aligned}
+  E[Y]  &= \int_{0}^{10} y \cdot f_{y}(y) \ dy                       \\ 
+        &= \int_{0}^{10} y \cdot \frac{1}{10} \ dy                   \\ 
+        &= \frac{1}{10}\int_{0}^{10} y \ dy                          \\ 
+        &= \left.\frac{1}{10} \cdot \frac{1}{2}  y^2\right|_{0}^{10} \\ 
+        &= \left.\frac{1}{20}  y^{2} \right|_{0}^{10}                \\ 
+        &= \frac{1}{20} \cdot \left[(100) - (0) \right]              \\ 
+        &= \frac{1}{20} \cdot 100                                    \\
+        &= \mathbf{5}
+\end{aligned}
+\]
+
+\begin{itemize}
+\item
+  Why is the expected value a good characterization of a random variable?
+\item
+  If you wanted to write down an estimator to produce a summary statistic for \(Y\) given a sample of data, what properties do the following estimators possess:
+\item
+  \(\hat{\theta}_{1} = y_{1}\)
+\item
+  \(\hat{\theta}_{2} = \frac{1}{2} \displaystyle\sum_{i=1}^{2} y_{i}\)
+\item
+  \(\hat{\theta}_{3} = \frac{1}{n-1} \displaystyle\sum_{i=1}^{N} y_{i}\)
+\item
+  \(\hat{\theta}_{4} = \frac{1}{n} \displaystyle\sum_{i=1}^{N} y_{i}\)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{conduct\_sample }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(size) \{ }
+  \FunctionTok{runif}\NormalTok{(}\AttributeTok{n=}\NormalTok{size, }\AttributeTok{min=}\DecValTok{0}\NormalTok{, }\AttributeTok{max=}\DecValTok{10}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{theta\_1 }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(data) \{ }
+  \CommentTok{\# take the first element}
+  
+\NormalTok{\}}
+
+\NormalTok{theta\_2 }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(data) \{ }
+  \CommentTok{\# sum the first two elements and divide by two}
+  
+\NormalTok{\}}
+
+\NormalTok{theta\_3 }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(data) \{ }
+  \CommentTok{\# sum the sample, and divide by 1 less than the sample size}
+  
+\NormalTok{\}}
+
+\NormalTok{theta\_4 }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(data) \{ }
+  \CommentTok{\# sum the sample, and divide by the sample size }
+  \CommentTok{\# honestly, just use the mean call. }
+  \CommentTok{\# clearly, this is a silly function to write, since you\textquotesingle{}re just }
+  \CommentTok{\# providing an alias, without modification, to an existing function. }
+  
+  \FunctionTok{mean}\NormalTok{(data)}
+  
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{theta\_4}\NormalTok{(}\FunctionTok{conduct\_sample}\NormalTok{(}\AttributeTok{size=}\DecValTok{100}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.934846
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Just to put a fine point on it: **What estimator properties does the sample average provide, and why are these desirable?''
+\end{itemize}
+
+\hypertarget{use-randomization-to-produce-independence}{%
+\section{Use Randomization to Produce Independence}\label{use-randomization-to-produce-independence}}
+
+How can we use the independence that is induced by ``random \textbf{assignment} to treatment'' combined with the sample average estimator to produce an estimate of an otherwise very difficult concept to measure?
+
+\hypertarget{theoretical-justification}{%
+\section{Theoretical Justification}\label{theoretical-justification}}
+
+Before we show that this very simple ATE estimator work against a sample of data, it is worth reasoning about whether we can guarantee that it works in a general case. If we can show that it works in a general case, then any specific case inherits that guarantee. However, if we can only reason thorugh the existence of a single examlpe, it is not a sufficient argument to compell us to believe that it must hold for all cases.
+
+Here's an example, ``Behold! I see a black sheep! Therefore all sheep are black.'' This doesn't make sense, and it is not a logically sound argument. However, if you say, ``All sheep say, `Baaah!' This is a black sheep, so it must say `Baah!'\,'' is a logically sound arugment, so long as the antecedent is, in fact true. When we're proving something, we're proving that the antecedent to this statement is generally true. For anyone who took a symbolic logic course in, this method of argument might be marked down as \(\forall X \implies \exists X\), whereas \(\exists Y \not\Rightarrow \forall Y\).
+
+\begin{itemize}
+\tightlist
+\item
+  What concepts compose \(\tau_{David}\)?
+\item
+  What concepts compose \(\tau_{i}\)?
+\item
+  Is there any reason to believe that \(\tau_{David\ Reiley} = \tau_{David\ Broockman}\)?
+\item
+  Is there any reason to believe that \(\tau_{i} = \tau_{j}\), where \(j \neq i\)?
+\item
+  Could \(\tau_{i} = \tau{j}\)?
+\item
+  What is the fundamental problem of causal inference?
+\end{itemize}
+
+The proof for this argument is also made in \emph{Field Experiments}, on or about page 30 of the text. However, in our view, the authors don't give enough room to fully develop this proof, and so we skipped right past it the first time that we read the chapter.
+
+Begin our proof with the statement for what a treatment effect is, \(\tau_{i}\).
+
+\[
+  \begin{aligned} 
+    \tau_{i}    &= Y_{i}(1) - Y_{i}(0)    & Definition   \\ 
+    ATE         &= E[\tau]                & Definition   \\
+                &= E[Y(1) - Y(0)]         & Substitution \\
+                &=                                       \\
+                &=                                       \\
+                &=                                       \\
+                &=                                       \\
+                &=                                       \\
+                &=                                       \\
+                &=                                       \\
+                &=                                       \\
+                &=                                       \\
+                &=                                       \\
+                &=                                       \\
+                &=                                       \\
+                &=                                       \\
+                &=                                       \\
+  \end{aligned}
+\]
+
+\hypertarget{simulation-example}{%
+\section{Simulation Example}\label{simulation-example}}
+
+Now, let's work through an example that shows this works not only in the math, but also in the realized, i.e.~sampled, world.
+
+To begin with, lets work with a \emph{very} simple sample that has 100 observations, potential outcomes to control are uniformly distributed between \texttt{0} and \texttt{1} and every single unit has a potential outcome to treatment that is \texttt{0.25} units larger than their potential outcomes to control.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{make\_simple\_data }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(}\AttributeTok{size=}\DecValTok{100}\NormalTok{) \{ }
+  \FunctionTok{require}\NormalTok{(data.table) }
+  
+\NormalTok{  d }\OtherTok{\textless{}{-}} \FunctionTok{data.table}\NormalTok{(}\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{100}\NormalTok{)  }
+  
+\NormalTok{  d[ , y0 }\SpecialCharTok{:}\ErrorTok{=} \FunctionTok{runif}\NormalTok{(.N, }\AttributeTok{min =} \DecValTok{0}\NormalTok{, }\AttributeTok{max =} \DecValTok{1}\NormalTok{)]}
+\NormalTok{  d[ , y1 }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{ y0 }\SpecialCharTok{+}\NormalTok{ .}\DecValTok{25}\NormalTok{]}
+  
+  \FunctionTok{return}\NormalTok{(d)}
+\NormalTok{  \}}
+
+\NormalTok{d }\OtherTok{\textless{}{-}} \FunctionTok{make\_simple\_data}\NormalTok{(}\AttributeTok{size=}\DecValTok{100}\NormalTok{)}
+
+\NormalTok{d[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    id         y0        y1
+## 1:  1 0.16801532 0.4180153
+## 2:  2 0.63652785 0.8865279
+## 3:  3 0.13823097 0.3882310
+## 4:  4 0.58094514 0.8309451
+## 5:  5 0.02682549 0.2768255
+\end{verbatim}
+
+In this world, we've taken a sample of \texttt{100} individuals, and at this point, each of those individuals that we've sampled has both a potential outcome to control \textbf{and also} a potential outcome to treatment. We haven't talked at all about measurement yet; we're just asserting that both of these potential outcomes exist for each person.
+
+Essentially, this stage of creating the sample is the same as bringing people in the door to your experiment. If you were running this in the laboratory, you'd literally think of this as sitting your subjects down at their chairs, getting ready to begin their task.
+
+\begin{quote}
+Is randomly sampling people to be a part of your experiment sufficient to ensure that your experiment produces an unbiaed, consistent estimate of the true treamtent effect?
+\end{quote}
+
+Suppose that for each unit, you then toss a coin, placing the subject either into treatment or control based on the result of that coin flip.
+
+\begin{itemize}
+\tightlist
+\item
+  Does this coin flip ensure that you have the same number of units in treatment as control? Does this matter to you? Why or why not?
+\item
+  Are there other ways that you could assign individuals to treatment an control, rather than through a simple-randomization process?
+\item
+  What are the relative merits or limitations of each of the methods?
+\item
+  Are some of these methods \emph{more random} than others? Or, are all things that are random equal in their randomness?
+\end{itemize}
+
+\hypertarget{assign-to-treatment-and-control}{%
+\subsection{Assign to Treatment and Control}\label{assign-to-treatment-and-control}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d[ , experimental\_assignment }\SpecialCharTok{:}\ErrorTok{=} \FunctionTok{sample}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\DecValTok{1}\NormalTok{, }\AttributeTok{size =}\NormalTok{ .N, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)]}
+\NormalTok{d[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    id         y0        y1 experimental_assignment
+## 1:  1 0.16801532 0.4180153                       0
+## 2:  2 0.63652785 0.8865279                       1
+## 3:  3 0.13823097 0.3882310                       1
+## 4:  4 0.58094514 0.8309451                       0
+## 5:  5 0.02682549 0.2768255                       0
+\end{verbatim}
+
+As as comparison, suppose that instead of randomly assigning individuals into treatment and control we allowed individuals to select into treatment and control. And suppose that people with the lowest potential outcomes to control opt to take the treatment. You might think of this as being something like, ``The people who are the most tired are the most likely to drink a cup of coffee before they start class,'' if an example helps you ground this.
+
+Specifically, suppose that any unit that has a potential outcome lower that \texttt{0.33} opts to take the treatment.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d[ , observational\_selection }\SpecialCharTok{:}\ErrorTok{=} \FunctionTok{ifelse}\NormalTok{(y0 }\SpecialCharTok{\textless{}}\NormalTok{ .}\DecValTok{33}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)]}
+\NormalTok{d[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    id         y0        y1 experimental_assignment observational_selection
+## 1:  1 0.16801532 0.4180153                       0                       1
+## 2:  2 0.63652785 0.8865279                       1                       0
+## 3:  3 0.13823097 0.3882310                       1                       1
+## 4:  4 0.58094514 0.8309451                       0                       0
+## 5:  5 0.02682549 0.2768255                       0                       1
+\end{verbatim}
+
+These represent two different ways that you might conduct your research, each time with the same subject pool. Of course, in reality you probably would not be able to run these two studies at the same time, but since this is a simulation, we can stretch the confines of reality just a little bit.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{first\_plot }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\NormalTok{d) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ id, }\AttributeTok{y =}\NormalTok{ y0), }\AttributeTok{color =}\NormalTok{ blue) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ id, }\AttributeTok{y =}\NormalTok{ y1), }\AttributeTok{color =}\NormalTok{ gold)}
+\NormalTok{first\_plot  }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{241-livesession_files/figure-latex/create first plot-1.pdf}
+
+What's actually happening in this? It might be more clear if we add arrows to this plot to show.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{first\_plot }\SpecialCharTok{+}
+  \FunctionTok{geom\_segment}\NormalTok{(}
+    \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ id, }\AttributeTok{xend =}\NormalTok{ id, }\AttributeTok{y =}\NormalTok{ y0, }\AttributeTok{yend =}\NormalTok{ y1), }
+    \AttributeTok{arrow =} \FunctionTok{arrow}\NormalTok{(}\AttributeTok{ends =} \StringTok{\textquotesingle{}last\textquotesingle{}}\NormalTok{, }\AttributeTok{length =} \FunctionTok{unit}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\StringTok{"inches"}\NormalTok{), }\AttributeTok{type =} \StringTok{\textquotesingle{}closed\textquotesingle{}}\NormalTok{), }
+    \AttributeTok{color =} \StringTok{\textquotesingle{}grey70\textquotesingle{}}
+\NormalTok{    )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{241-livesession_files/figure-latex/show the movement between potential outcomes-1.pdf}
+
+Even though these potential outcomes exist for all the units, is it possible to actually see them for all the units? How do we go about showing, and then measuring the potential outcomes to control for a set of units? How about the potential outcomes to treatment?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{second\_plot }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ d) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{(}
+    \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ id, }\AttributeTok{y =}\NormalTok{ y0, }\AttributeTok{size =} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ experimental\_assignment), }
+    \AttributeTok{color =}\NormalTok{ blue) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{(}
+    \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ id, }\AttributeTok{y =}\NormalTok{ y1, }\AttributeTok{size =} \DecValTok{0} \SpecialCharTok{+}\NormalTok{ experimental\_assignment), }
+    \AttributeTok{color =}\NormalTok{ gold) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{\textquotesingle{}Treatment and Control Assignment\textquotesingle{}}\NormalTok{, }
+    \AttributeTok{size =} \StringTok{\textquotesingle{}Treatment or Control\textquotesingle{}}
+\NormalTok{  )}
+
+\NormalTok{second\_plot}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{241-livesession_files/figure-latex/add points to plot-1.pdf}
+
+What are the averages of these samples that have been assigned to treatment?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{third\_plot }\OtherTok{\textless{}{-}}\NormalTok{ second\_plot }\SpecialCharTok{+} 
+  \FunctionTok{geom\_hline}\NormalTok{(}
+    \AttributeTok{yintercept =} \FunctionTok{mean}\NormalTok{(d[experimental\_assignment}\SpecialCharTok{==}\DecValTok{0}\NormalTok{, y0]), }
+    \AttributeTok{color =}\NormalTok{ blue, }
+    \AttributeTok{linetype =} \DecValTok{2}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_hline}\NormalTok{(}
+    \AttributeTok{yintercept =} \FunctionTok{mean}\NormalTok{(d[experimental\_assignment}\SpecialCharTok{==}\DecValTok{1}\NormalTok{, y1]), }
+    \AttributeTok{color =}\NormalTok{ gold, }
+    \AttributeTok{linetype =} \DecValTok{2}\NormalTok{)}
+\NormalTok{third\_plot}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{241-livesession_files/figure-latex/add estimates from unbiased estimator-1.pdf}
+
+Even though we aren't able to see it, can we reason about what the sample average would be if we could see both of an individual's potential outcome to treatment and control?
+
+\begin{itemize}
+\tightlist
+\item
+  Is there a guarantee that the sample should be the same as the feasible realization?
+\item
+  Should they be close? What property from 203 provides this guarantee?
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{third\_plot }\SpecialCharTok{+} 
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \FunctionTok{mean}\NormalTok{(d[, y0]), }\AttributeTok{color =}\NormalTok{ blue, }\AttributeTok{linetype =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \FunctionTok{mean}\NormalTok{(d[, y1]), }\AttributeTok{color =}\NormalTok{ gold, }\AttributeTok{linetype =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{241-livesession_files/figure-latex/add population expected values-1.pdf}
+
+Put it all together, what has this little demo shown?
+
+\hypertarget{what-if-there-is-selection}{%
+\subsection{What if there is selection?}\label{what-if-there-is-selection}}
+
+What if, rather than being assigned to treatment and control, instead individuals had been able to opt into treatment and control?
+
+Produce only the last plot, but this time for the observational, or selected data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{selection\_plot }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(d) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{(}
+    \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ id, }\AttributeTok{y =}\NormalTok{ y0, }\AttributeTok{size =} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ observational\_selection), }
+    \AttributeTok{color =}\NormalTok{ blue) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{(}
+    \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ id, }\AttributeTok{y =}\NormalTok{ y1, }\AttributeTok{size =} \DecValTok{0} \SpecialCharTok{+}\NormalTok{ observational\_selection), }\AttributeTok{color =}\NormalTok{ gold) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_hline}\NormalTok{(}
+    \AttributeTok{yintercept =} \FunctionTok{mean}\NormalTok{(d[, y0]), }
+    \AttributeTok{color =}\NormalTok{ blue, }
+    \AttributeTok{linetype =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_hline}\NormalTok{(}
+    \AttributeTok{yintercept =}\NormalTok{ d[observational\_selection }\SpecialCharTok{==} \DecValTok{0}\NormalTok{, }\FunctionTok{mean}\NormalTok{(y0)], }
+    \AttributeTok{color =}\NormalTok{ blue, }
+    \AttributeTok{linetype =} \DecValTok{2}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_hline}\NormalTok{(}
+    \AttributeTok{yintercept =} \FunctionTok{mean}\NormalTok{(d[, y1]), }
+    \AttributeTok{color =}\NormalTok{ gold, }
+    \AttributeTok{linetype =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_hline}\NormalTok{(}
+    \AttributeTok{yintercept =}\NormalTok{ d[observational\_selection }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, }\FunctionTok{mean}\NormalTok{(y1)], }
+    \AttributeTok{color =}\NormalTok{ gold, }
+    \AttributeTok{linetype =} \DecValTok{2}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{\textquotesingle{}Observational Selection into Treatment\textquotesingle{}}\NormalTok{, }
+    \AttributeTok{size =} \StringTok{\textquotesingle{}Treatment or Control\textquotesingle{}}
+\NormalTok{  )}
+
+\NormalTok{selection\_plot}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{241-livesession_files/figure-latex/recreate plot -- for selection case-1.pdf}
+
+\hypertarget{requirements-of-an-experiment}{%
+\section{Requirements of An Experiment}\label{requirements-of-an-experiment}}
+
+David Reiley makes the case that an experiment is something where we intervene in the world to produce knowledge. This is essentially providing a definition and making an argument that this is the correct definition. One difficulty with argument through definitions is that reasonable people can disagree because their definitions, through their lived experience, just disagree.
+
+Here's the demonstrated proof:
+
+\begin{quote}
+Who in class is from the ``midwest'' broadly defined? Is Chicago-style pizza, pizza \emph{per se}?
+Who in class is from the east coast? Is Chicago-style pizza, pizza \emph{per se}?
+
+Try not to make deep character judgments about your classmates.
+\end{quote}
+
+Green and Gerber, in \emph{Field Experiments} make additional requirements of experiments. As they argue on page 45 of the textbook, in their view, experiments require:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Random Assignment}
+\item
+  \textbf{Excludability}
+\item
+  \textbf{Non-interference}
+\end{enumerate}
+
+What do each of these terms mean? Why is each necessary?
+
+\begin{itemize}
+\tightlist
+\item
+  Did the experiment that Daniel conducted, described in \emph{Power of Experiments} satisfy these three requirements? For any of these requirements that David's experiment did not satisfy, what are the consequences for the scientific knowledge that the experiment generated?\\
+\item
+  Did the Nurses Health Study, described in the async, satisfy all these three requirements? For any that this experiment did not satisfy, what are the consequences for the scientific knowledge that the experiment generated?
+\end{itemize}
+
+\hypertarget{meta-questions}{%
+\subsection{Meta-Questions}\label{meta-questions}}
+
+\begin{itemize}
+\tightlist
+\item
+  Can an experiment generate scientific knowledge about a causal effect, even without satisfying all of these requirements? Is it guaranteed to produce scientific knowledge about a causal effect?
+\item
+  What then, justifies the use of experiments to measure causal effects?
+\end{itemize}
+
+\hypertarget{quantifying-uncertainty}{%
+\chapter{Quantifying Uncertainty}\label{quantifying-uncertainty}}
+
+\hypertarget{learning-objectives-2}{%
+\section{Learning Objectives}\label{learning-objectives-2}}
+
+At the end of this week's live session, students will be able to
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \emph{Understand} the sharp null, and how to apply it in an argument using randomization inference.
+\item
+  \emph{Describe} how randomization creates uncertainty, and \emph{assess} how this uncertainty differs from that in Frequentist paradigm
+\item
+  \emph{Apply} the sharp null and randomization inference to data
+\item
+  \emph{Assess} the assumptions necessary for Frequentist inference to produce nominal coverage on confidence intervals; \emph{assess} the assumptions necessary for randomization inference to produce nominal coverage on confidence intervals; and, \emph{evaluate} which of the two approaches is appropriate given a set of data.
+\item
+  \emph{Describe} the concept of statistical power and what it means in the context of conducting an experiment.
+\end{enumerate}
+
+\hypertarget{power-of-experiments}{%
+\section{Power of Experiments}\label{power-of-experiments}}
+
+\hypertarget{five-key-barriers-to-experimentation}{%
+\subsection{Five Key Barriers to Experimentation}\label{five-key-barriers-to-experimentation}}
+
+\emph{Power of Experiments} identifies five key barriers to experimentation in companies:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Not enough participants.} How can it be that even a huge, digital company (i.e.~Uber) might not have enough participants to conduct an experiment?
+\item
+  \textbf{Randomization can be hard to implement.} This is not to be taken lightly; because in students essays this week, nearly every experiment proposed was of the form, ``Randomly assign people to\ldots{}''. What might make it hard to randomize?
+\item
+  \textbf{Experiments require data to measure their impact.} This should ring of 201 conversations, but what is the concept that you would \emph{ideally} like to measure about the impact of a policy? And, what instead are you able to measure? How much conceptual slippage is there between your conceptual definition and your data?\\
+\item
+  \textbf{Under-appreciation of decision-makers unpredictability.} Do we actually have a theory about what people will do? How sure are we that the theory is correct?\\
+\item
+  \textbf{Overconfidence in our ability to guess the effect of an intervention}.
+\end{enumerate}
+
+\hypertarget{experimental-ethics}{%
+\subsection{Experimental Ethics}\label{experimental-ethics}}
+
+There is a very, \emph{very} strong norm that academic researchers who conduct experiments need to pass their interventions, data collection, and procedures through a review board. This review board expects researchers will weigh the costs borne by the participants of an experimental study against the potential benefits to science from learning the results of this experiment.
+
+In some cases, these boards determine that the costs are too high; nobody should be subject to those costs, no matter the scientific merits. In other cases, these boards will allow potentially costly actions to be taken, some that might even harm participants in the short-run. While it is quite unlikely that a review board would still approve either Milgram's or Zimbardo's infamous experiments, there are still many experiments that might harm participants.
+
+\begin{quote}
+\begin{itemize}
+\tightlist
+\item
+  Is this OK?
+\item
+  What are the tradeoffs, or goals that you would like to balance in an experiment?
+\end{itemize}
+\end{quote}
+
+A research team at Facebook (as your instructors if they have any juicy details about this case) was interested in the effects of their platform on its user's emotions. In pursuit of this question, they conducted an experiment -- they intentionally manipulated the environment -- to post more or fewer positive and negative posts.
+
+\begin{quote}
+\begin{itemize}
+\tightlist
+\item
+  Is this OK?
+\item
+  What are the tradeoffs, or goals that you would like to balance in this experiment?
+\end{itemize}
+\end{quote}
+
+\hypertarget{statistical-uncertainty-randomization-inference-style}{%
+\section{Statistical Uncertainty -- Randomization Inference Style}\label{statistical-uncertainty-randomization-inference-style}}
+
+When we are working with a sample of data, estimates produced by an estimator might change -- sometimes being higher than the \emph{true} value, other times lower than the \emph{true} value.
+
+In Frequentist inference, we understand the variance in these estimates as \emph{sampling based variance of the sample estimator}. In this week, we present a different inferential paradigm, \textbf{Randomization Inference}.
+
+In randomization inference, there is no uncertainty about the parameter estimate that is generated in the experiment: The estimate that we observe is the estimate that we observe. Uncertainty, instead, comes from the acknowledgment that different \emph{randomization} could have been realized, even from within the same sample.
+
+\hypertarget{stating-the-sharp-null}{%
+\section{Stating the sharp null}\label{stating-the-sharp-null}}
+
+Suppose that you are evaluating the effect of coffee on students' alertness in class. You reason that drinking coffee will increase students' alertness in class.
+
+\begin{figure}
+\centering
+\includegraphics{./images/damn-fine-coffee.jpeg}
+\caption{``Damn Fine Coffee.''}
+\end{figure}
+
+Continue with our idea of an experiment to evaluate if coffee produces alertness in class. Here, we are going to further develop this notional experiment into something that we might actually be able to conduct.
+
+\begin{itemize}
+\tightlist
+\item
+  What is the \emph{sharp null} hypothesis that is at risk in this investigation?
+\item
+  How, if at all, does this sharp null differ from the null hypothesis you might be more familiar with?
+\item
+  Is the sharp null hypothesis a concept that ever makes sense? Is the sharp null hypothesis a concept that is ever, actually, true?
+\end{itemize}
+
+\hypertarget{randomization-inference}{%
+\section{Randomization Inference}\label{randomization-inference}}
+
+\hypertarget{stating-the-process-of-randomization-inference}{%
+\subsection{Stating the process of Randomization Inference}\label{stating-the-process-of-randomization-inference}}
+
+Randomization inference is a method of understanding the variability of results in an experiment that you have conducted. It specifically acknowledges several facts:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The sample of data that you collected or used in your experiment is, quite simply, the sample of data that you collected for your experiment. There might be a larger population; there might be an infinite population; or, there might not.
+\item
+  The observed outcomes that you observe are, quite simply, the outcomes that you observed. There is no uncertainty about having seen these.
+\item
+  When the experiment assigned some units to treatment and others to the control, it revealed some outcomes, for some people. Specifically, it revealed the potential outcoems to treatment, denoted \(Y_{i}(1)\) for those who were assigned to the treatment group and the potential outcomes to control, denoted \(Y_{i}(0)\) for those who were assigned to the control group.
+\item
+  The experimenter chose one \emph{out of many possible} treatment assignments.
+\item
+  If the \emph{sharp null hypothesis} were to be true (note the subjunctive verb tense there) then, the particular revelation of potential outcomes to treatment and control are inconsequential. Despite seeing only half the data (referred to as the \textbf{Fundamental Problem of Causal Inference}) we actually posess all the data. After all, if the sharp null were true, \(Y_{Alex}(1) = Y_{Alex}(0)\), and \(Y_{David}(1) = Y_{David}(0)\), \(Y_{i}(1) = Y_{i}(0)\) for all of the \(i = {1, \dots, N}\) people who are a part of the experiment.
+\end{enumerate}
+
+\hypertarget{questions-about-randomization-inference}{%
+\subsection{Questions about Randomization Inference}\label{questions-about-randomization-inference}}
+
+\begin{itemize}
+\tightlist
+\item
+  Where does uncertainty come from in an experiment that is evaluated using randomization inference?
+\item
+  How is the ATE estimand defined?
+\item
+  What is the feasible method that we use to write down an estimator (call it \(\theta\)) for this quantity?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Which of the following properties does this feasible method possess?
+
+    \begin{enumerate}
+    \def\labelenumi{\alph{enumi}.}
+    \tightlist
+    \item
+      Unbiasedness: \(E[\theta] = ATE\)
+    \item
+      Convergence: \(\theta \overset{p}\rightarrow ATE\), where \(\overset{p}\rightarrow\) means converges in probability
+    \item
+      Efficiency: The mean squared error of \(\theta\) is either (i) smaller than some other estimator, or (ii) as small is theoretically possible.
+    \end{enumerate}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{applying-randomization-inference}{%
+\section{Applying Randomization Inference}\label{applying-randomization-inference}}
+
+\hypertarget{make-data}{%
+\subsection{Make Data}\label{make-data}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{d }\OtherTok{\textless{}{-}} \FunctionTok{data.table}\NormalTok{(}
+  \AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{100}\NormalTok{, }
+  \AttributeTok{D  =} \FunctionTok{rep}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\DecValTok{1}\NormalTok{, }\AttributeTok{each =} \DecValTok{50}\NormalTok{), }
+  \AttributeTok{Y  =} \FunctionTok{c}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{50}\NormalTok{, }\AttributeTok{mean=}\DecValTok{0}\NormalTok{, }\AttributeTok{sd=}\FloatTok{2.5}\NormalTok{), }\FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{50}\NormalTok{, }\AttributeTok{mean=}\DecValTok{1}\NormalTok{, }\AttributeTok{sd=}\FloatTok{2.5}\NormalTok{))}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{plot-data}{%
+\subsection{Plot Data}\label{plot-data}}
+
+In the following plot, are you able to assess whether there is a treatment effect simply by looking at the distributions?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(d) }\SpecialCharTok{+} 
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{Y, }\AttributeTok{fill=}\FunctionTok{as.factor}\NormalTok{(D)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{alpha=}\FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{x        =} \StringTok{\textquotesingle{}Distribution of outcomes\textquotesingle{}}\NormalTok{, }
+    \AttributeTok{y        =} \ConstantTok{NULL}\NormalTok{, }
+    \AttributeTok{title    =} \StringTok{\textquotesingle{}Distribution of outcomes, by treatment\textquotesingle{}}\NormalTok{, }
+    \AttributeTok{fill    =} \StringTok{\textquotesingle{}Treatment}\SpecialCharTok{\textbackslash{}n}\StringTok{Assignment\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}
+    \AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}\#003262\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}\#FDB515\textquotesingle{}}\NormalTok{)}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{241-livesession_files/figure-latex/plot data-1.pdf}
+
+\hypertarget{classic-test}{%
+\subsection{Classic Test}\label{classic-test}}
+
+If you were to write a \emph{classic} test against this data, given what you know about how it was generated, what would be the classic test? What do you learn from this test, and what is the interpretation?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d[ , }\FunctionTok{t.test}\NormalTok{(Y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ D)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  Y by D
+## t = -2.309, df = 95.793, p-value = 0.02309
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
+## 95 percent confidence interval:
+##  -1.9381728 -0.1462181
+## sample estimates:
+## mean in group 0 mean in group 1 
+##       0.2511207       1.2933161
+\end{verbatim}
+
+\hypertarget{randomization-inference-test}{%
+\subsection{Randomization Inference Test}\label{randomization-inference-test}}
+
+Now, instead suppose that you were to conduct the randomization inference. What are the steps to the algorithm for producing a result using randomization?
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  State the null hypothesis
+\item
+  Compute the statistic of interest using the observed data
+\item
+  Fill in data, under the statement of the null hypothesis
+\item
+  Permute the treatment assignment labels to generate a new sample of the treatment assignment vector, and then estimate the statistic of interest
+\item
+  Repeat the permutation and estimation (step 4) process repeatedly to sample from the randomization inference distribution of the statistic
+\item
+  Examine randomization inference distribution
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# 1. The sharp null is that tau = 0}
+\DocumentationTok{\#\# 2. Compute the statistic of interest}
+\NormalTok{true\_ate }\OtherTok{\textless{}{-}}\NormalTok{ d[ , .(}\AttributeTok{group\_mean =} \FunctionTok{mean}\NormalTok{(Y)), keyby }\OtherTok{=}\NormalTok{ .(D)][ , group\_mean[D}\SpecialCharTok{==}\DecValTok{1}\NormalTok{] }\SpecialCharTok{{-}}\NormalTok{ group\_mean[D}\SpecialCharTok{==}\DecValTok{0}\NormalTok{]]}
+\DocumentationTok{\#\# 3, 4, 5. Permute the treatment assignment labels and repeatedly compute the statistic of interest }
+\NormalTok{ri\_distribution }\OtherTok{\textless{}{-}} \FunctionTok{replicate}\NormalTok{(}
+  \AttributeTok{n=}\DecValTok{10000}\NormalTok{, }
+  \AttributeTok{expr =}\NormalTok{ d[ , .(}\AttributeTok{group\_mean =} \FunctionTok{mean}\NormalTok{(Y)), }\AttributeTok{keyby =}\NormalTok{ .(}\AttributeTok{ri\_treatment =} \FunctionTok{sample}\NormalTok{(D))][ , }
+\NormalTok{            group\_mean[ri\_treatment}\SpecialCharTok{==}\DecValTok{1}\NormalTok{] }\SpecialCharTok{{-}}\NormalTok{ group\_mean[ri\_treatment}\SpecialCharTok{==}\DecValTok{0}\NormalTok{]]}
+\NormalTok{  )}
+\CommentTok{\# 6. Examine distribution}
+\FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{geom\_density}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ri\_distribution), }\AttributeTok{fill =} \StringTok{\textquotesingle{}\#003262\textquotesingle{}}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =}\NormalTok{ true\_ate, }\AttributeTok{color =} \StringTok{\textquotesingle{}\#FDB515\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{x     =} \StringTok{\textquotesingle{}Randomization Inference Distribution and Estimated ATE\textquotesingle{}}\NormalTok{, }
+    \AttributeTok{y     =}  \ConstantTok{NULL}\NormalTok{, }
+    \AttributeTok{title =} \StringTok{\textquotesingle{}Randomization Inference Distribution and Estimated ATE\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{241-livesession_files/figure-latex/randomization inference loop-1.pdf}
+
+How much of the randomization inference is more extreme than the treatment effect?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ri\_p\_value }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(}\FunctionTok{abs}\NormalTok{(ri\_distribution) }\SpecialCharTok{\textgreater{}} \FunctionTok{abs}\NormalTok{(true\_ate))}
+\NormalTok{ri\_p\_value}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.0226
+\end{verbatim}
+
+Notice that 0.023 of the randomization inference distribution is more extreme than the observed treatment effect. How does this compare to the t-test p-value that we calculated above?
+
+\hypertarget{comparing-randomization-inference-and-frequentist-inference}{%
+\section{Comparing Randomization Inference and Frequentist Inference}\label{comparing-randomization-inference-and-frequentist-inference}}
+
+If both Randomization Inference and Frequentist Inference produce similar p-values, what is utility in learning another set of methods for communicating estimator-based uncertainty?
+
+What are the requirements (frequently referred to as ``assumptions'') that are necessary for the Frequentist paradigm to provide guarantees? What happens if these guarantees are not, in fact, satisfied or true in the data generating process? How do you react, respond, or address those problems?
+
+\begin{itemize}
+\tightlist
+\item
+  If data is not sampled \emph{iid}, is it sufficient to simply note that limitation (frequently referred to as an ``assumption violation'') and report whatever p-value you report?
+\item
+  How affected is this p-value by the violation? How do you know this?
+\item
+  What does it mean for the p-value to be affected by this violation? (\emph{Recall that a p-value is just a random variable that is produced through a series of summarizing transformations and then a comparison against a reference distribution.})
+\end{itemize}
+
+\hypertarget{donations-to-a-political-campaign}{%
+\subsection{Donations to a political campaign}\label{donations-to-a-political-campaign}}
+
+In \emph{Field Experiments} Green and Gerber provide some useful (hypothetical) data about donations to a political campaign. The data is defined in the following way, \(D\) is an indicator for whether the potential donor is assigned to treatment or control, and \(Y\) is the outcome of how much the potential donor actually gave.
+
+Let us provide a little bit more back story, that is necessary for the example to work, fully. Suppose that a progressive political candidate was hosting a fundraiser in Berkeley and has to make a choice about what to serve the attendees at the fundraiser.
+
+In the \(D = 0\) group, suppose that the candidate elects to serve a hippie-vegetarian staple, tofu sauteed in Bragg's liquid aminos. (It \emph{is} Berkeley after all.) In the \(D=1\) group, suppose that the candidate decides to be a little more, well, progressive in their vegetarian food offerings and instead serves Gado-Gado from Katzen's \emph{The Enchanted Broccoli Forest}. (Still Berkeley\ldots{} .)
+
+After dinner, and the requisite drum-circle, attendees to this shin-dig are asked to donate to the candidates re-election efforts. Every attendee is expected to contribute something -- social norms rule out failing to donate when the collection plate is passed -- but the amount donated is at the discretion of the attendee.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d }\OtherTok{\textless{}{-}} \FunctionTok{data.table}\NormalTok{(}
+  \AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{20}\NormalTok{, }
+  \AttributeTok{D  =} \FunctionTok{rep}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\DecValTok{1}\NormalTok{, }\AttributeTok{each =} \DecValTok{10}\NormalTok{), }
+  \AttributeTok{Y =} \FunctionTok{c}\NormalTok{(}\DecValTok{500}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{25}\NormalTok{, }\DecValTok{25}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DocumentationTok{\#\# tofu diners}
+        \DecValTok{25}\NormalTok{,  }\DecValTok{20}\NormalTok{,  }\DecValTok{15}\NormalTok{,  }\DecValTok{15}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{5}\NormalTok{,  }\DecValTok{5}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)  }\DocumentationTok{\#\# gado gado diners}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  With this data, conduct a \texttt{t.test} to assess whether the choice of dinner affects the amount donated to the campaign. What is your null-hypothesis (be specific), what is your rejection criteria, and do you reject or fail to reject this null hypothesis under the t-test framework.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Null Hypothesis: }
+\DocumentationTok{\#\# Rejection Criteria: }
+
+\DocumentationTok{\#\# Conduct the Test Here: }
+
+\DocumentationTok{\#\# Conclusion: }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  With this data, use randomization inference to assess whether the choice of dinner affects the amount donated to the campaign. What is your null-hypothesis (be specific), what is your rejection criteria, and do you reject or fail to reject this null hypothesis under the t-test framework.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Null Hypothesis: }
+\DocumentationTok{\#\# Rejection Criteria: }
+
+\DocumentationTok{\#\# Conduct the Test Here:}
+
+\DocumentationTok{\#\# Conclusion}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Characterize the distribution of the sharp-null distribution of treatment effects. Talk about what, if anything, is notable about it, and what components of the data might be leading to any patterns that you note.
+\item
+  How many of the randomization inference loops are larger than the treatment effect that you calculated? How would you use this statement to construct a one-sided test, and an associated p-value?
+\item
+  How many of the randomization inference loops are \emph{more extreme} (:metal:) than the treatment effect that you calculated? How would you use this statement to construct a two-sided test, and an associated p-value?
+\item
+  Compare the two-sided p-value against the p-value that you generate from a two-tailed t-test. If these p-values are the same, would this be a positive or a negative characteristic of randomization inference? If these p-values are different, why would they be different? Don't go looking all over hill-and-dale for the call for a t-test, it is at \texttt{t.test}.
+\item
+  Which of the two of these inferential methods do you prefer, randomization inference or a t-test, and why? Ease of use is not an acceptable answer.
+\end{enumerate}
+
+\hypertarget{statistical-power}{%
+\section{Statistical Power}\label{statistical-power}}
+
+\begin{itemize}
+\tightlist
+\item
+  What is statistical power?
+\item
+  Why is it particularly relevant to consider statistical power when you are thinking about conducting an experiment?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    What would happen if you were to conduct an experiment that has only an achieved power of 0.1?
+  \item
+    What would you learn if you were to fail to reject the sharp-null hypothesis?
+  \item
+    What would you learn if you were to reject the sharp-null hypothesis?
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{make\_data }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(}
+  \AttributeTok{sample\_size                       =} \DecValTok{100}\NormalTok{,}
+  \AttributeTok{potential\_outcome\_to\_control\_mean =} \DecValTok{10}\NormalTok{,}
+  \AttributeTok{potential\_outcome\_to\_control\_sd   =} \DecValTok{2}\NormalTok{, }
+  \AttributeTok{treatment\_effect                  =} \DecValTok{1}\NormalTok{, }
+  \AttributeTok{sd\_treatment                      =} \DecValTok{2}\NormalTok{) \{ }
+  \DocumentationTok{\#\# this is a function to make data to simulate the power of a test}
+  
+\NormalTok{  \}}
+  
+\NormalTok{test\_data }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(data, treatment\_indicator, outcome) \{}
+  
+\NormalTok{\}}
+ 
+\DocumentationTok{\#\# p\_values \textless{}{-} replicate(n = 1000) }
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{blocking-and-clustering}{%
+\chapter{Blocking and Clustering}\label{blocking-and-clustering}}
+
+When assigning treatment to units, unless there are restrictions created by the researcher, any of the treatment assignment vectors are equally probable. Blocking and clustering are ways of restricting the treatment assignments to a subset of the whole schedule of possibilities.
+
+\emph{Blocking} is a method of creating ``blocks'', or groups, of units that are similar along one or more dimensions and then creating a full random assignment within each of those similar groups. Through careful design, blocking can generate power or nuance for an experiment without any extra marginal costs for paying for additional units of treatment.
+
+\emph{Clustering} is a circumstance that arises from a state of the world that \emph{requires} you to assign several similar units to the same condition, be it treatment or control. Through careful design, clustering might not hamper the power of an experiment; though realizing the necessity of a clustered design is typically met with the following statement, ``@\#\$\%, we've got to cluster.''
+
+\hypertarget{learning-objectives-3}{%
+\section{Learning Objectives}\label{learning-objectives-3}}
+
+At the end of this week, student will be able to
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Recognize} when there is the potential to block random assign in their experiment, and \textbf{remember} why block random assignment beneficial.
+\item
+  \textbf{Recognize} when they are required to cluster random assign -- either due to a pragmatic (i.e.~real-world) limitation, or to avoid violating the requirement that units not interfere with one another -- and \textbf{identify} ways that they can mitigate the reduction-in-power that arises from the need to cluster.
+\item
+  \textbf{Distinguish} between the circumstances that lead to blocking and clustering.
+\item
+  \textbf{Analyze} both blocked and clustered experiments using the appropriate test, and generating statements of certainty and uncertainty using \emph{randomization inference}.
+\end{enumerate}
+
+\hypertarget{setting-terms-blocking}{%
+\section{Setting terms: Blocking}\label{setting-terms-blocking}}
+
+\begin{itemize}
+\tightlist
+\item
+  What does it mean to block randomize?
+\item
+  Does the elimination of some randomization mean that the randomization is not longer, well, random?
+\item
+  Relative to when treatment is administered, when are we able to block? Why are we not able to block after we've assigned treatment?
+\end{itemize}
+
+\hypertarget{math-block-random-assignment}{%
+\section{Math: Block random assignment}\label{math-block-random-assignment}}
+
+In equation 3.6 (on page 61) of \emph{Field Experiments} Green and Gerber write,
+
+\[ 
+  \widehat{SE} = \sqrt{\frac{\widehat{Var}(Y_{i}(0))}{N-m} + \frac{\widehat{Var}(Y_{i}(1))}{m}}
+\]
+
+When we block randomize, we're essentially creating smaller groups of units and producing an estimate of the variance within each of those smaller groups of units.
+
+How do the authors arrive at the following formula for a block randomized standard error?
+
+\[ 
+  \widehat{SE}(\widehat{ATE}_{blocked}) = \sqrt{\sum_{j=1}^{J}\left(\frac{N_{j}}{N}\right)^2 * \widehat{SE}^2(\widehat{ATE}_{j})}
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  Specifically, why are we squaring the scaling parameter \(\frac{N_{j}}{N}\)?
+\item
+  If you look at this summation, what has to happen to the variance within the groups, relative to the size of the groups, in order for blocking to actually increase power?
+\item
+  Is it possible that you block, without increasing power, even if the blocking variable is actually useful?
+\end{itemize}
+
+Green and Gerber, in equation 3.10, write that the overall \(ATE\) of the population is:
+
+\[ 
+  ATE = \sum_{j=1}^{J} \frac{N_{j}}{N} ATE_{j}
+\]
+
+\begin{itemize}
+\item
+  What does this equation ``feel like''? Does that seem reasonable? Why or why not?
+\item
+  Why might it be a good idea to have different rates of assignment to treatment within different blocks? Consider the following example:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Suppose that you are looking at an experiment among your whole user base, and you are considering changing the ``check out flow'' (we have not idea what that might mean either\ldots) for this group.
+  \item
+    Some of the users are \emph{really} likely to purchase, while others are very unlikely to purchase.
+  \item
+    Does it make sense to block randomize based on this prior purchase history?
+  \item
+    Are there any, reasonable business reasons to not make the treatment assignments be 50\% treatment and 50\% control in both of the populations?
+  \item
+    What would happen if you randomized 10\% of the ``high value'' customers into treatment and 50\% of the low value customers into treatment. But, then you forget (or lost) that table of whether they were ``high'' or ``low'' value customers.
+  \item
+    \emph{What would be the consequence to your treatment effect estimate?}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{intuition-block-random-assignment}{%
+\section{Intuition: Block Random Assignment}\label{intuition-block-random-assignment}}
+
+To discuss the idea of blocking, consider the working example that David and David present in the async lectures:
+
+\begin{quote}
+Eating too much tofu (aka the \emph{Berkeley diet}) might increase decrease one's brain function, leading to decreased performance on cognitive tests, lower brain weight, and cause ventrical enlargment of the brain.
+
+Don't ask your instructors what any of that medical jargon might mean. It isn't our field! But, these are real claims made by a group of researchers in an observational nutrition study titled ``Brain Aging and Midlife Tofu Consumption.''
+\end{quote}
+
+\begin{figure}
+\centering
+\includegraphics{./images/this_is_your_brain_on_tofu_abstract.png}
+\caption{this is your brain on tofu}
+\end{figure}
+
+Suppose that, motivated by your distaste for bunk, casual causal claims about diet, and taste for tofu, you decide to conduct a real experiment among your friends, families, and classmates to determine the actual impacts of tofu on diet.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1414}\NormalTok{)}
+
+\NormalTok{sim\_normal\_study }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(}\AttributeTok{treatment\_effect=}\DecValTok{0}\NormalTok{) \{}
+  \DocumentationTok{\#\# this function will create a "world" to analyze using an experiment, }
+  \DocumentationTok{\#\# then, it will estimate the ate within that world }
+  \DocumentationTok{\#\# it returns the ate and the number of women who are in treatment }
+  
+  \FunctionTok{require}\NormalTok{(data.table)}
+  
+\NormalTok{  d }\OtherTok{\textless{}{-}} \FunctionTok{data.table}\NormalTok{(}
+      \AttributeTok{group        =} \FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}M\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}F\textquotesingle{}}\NormalTok{), }\AttributeTok{each =} \DecValTok{20}\NormalTok{), }
+      \AttributeTok{po\_control   =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{20}\NormalTok{, }\DecValTok{81}\SpecialCharTok{:}\DecValTok{100}\NormalTok{), }
+        \DocumentationTok{\#\# treatment\_effect = 0 {-}{-}\textgreater{} sharp null is true}
+      \AttributeTok{po\_treatment =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{20}\NormalTok{, }\DecValTok{81}\SpecialCharTok{:}\DecValTok{100}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ treatment\_effect, }
+      \AttributeTok{treatment =} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{0}\NormalTok{, }\AttributeTok{size =} \DecValTok{40}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{))[ , }\DocumentationTok{\#\# notice we\textquotesingle{}re now assigning}
+\NormalTok{      outcomes }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{ po\_treatment }\SpecialCharTok{*}\NormalTok{ treatment }\SpecialCharTok{+}\NormalTok{ po\_control }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ treatment)]}
+
+\NormalTok{  ate }\OtherTok{\textless{}{-}}\NormalTok{ d[ , }\FunctionTok{mean}\NormalTok{(outcomes[treatment }\SpecialCharTok{==} \DecValTok{1}\NormalTok{]) }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(outcomes[treatment }\SpecialCharTok{==} \DecValTok{0}\NormalTok{])]}
+\NormalTok{  n\_women\_treatment }\OtherTok{=}\NormalTok{ d[treatment }\SpecialCharTok{==} \DecValTok{1} \SpecialCharTok{\&}\NormalTok{ group }\SpecialCharTok{==} \StringTok{\textquotesingle{}F\textquotesingle{}}\NormalTok{, .N]}
+
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{list}\NormalTok{(}
+    \AttributeTok{data =}\NormalTok{ d,}
+    \AttributeTok{ate =}\NormalTok{ ate, }
+    \AttributeTok{n\_women\_treatment =}\NormalTok{ n\_women\_treatment}
+\NormalTok{    ))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{with-this-data-what-does-the-distribution-of-outcomes-look-like}{%
+\section{With this data, what does the distribution of outcomes look like?}\label{with-this-data-what-does-the-distribution-of-outcomes-look-like}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{experiment\_one }\OtherTok{\textless{}{-}} \FunctionTok{sim\_normal\_study}\NormalTok{(}\AttributeTok{treatment\_effect =} \DecValTok{0}\NormalTok{)}
+\NormalTok{experiment\_two }\OtherTok{\textless{}{-}} \FunctionTok{sim\_normal\_study}\NormalTok{(}\AttributeTok{treatment\_effect =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{experiment\_one\_plot }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ experiment\_one}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{+} 
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ outcomes, }\AttributeTok{fill =} \FunctionTok{factor}\NormalTok{(treatment), }\AttributeTok{linetype =}\NormalTok{ group) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{\textquotesingle{}No effect\textquotesingle{}}
+\NormalTok{  )}
+\NormalTok{experiment\_two\_plot }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ experiment\_two}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{+} 
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ outcomes, }\AttributeTok{fill =} \FunctionTok{factor}\NormalTok{(treatment), }\AttributeTok{linetype =}\NormalTok{ group) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{\textquotesingle{}Ten unit effect\textquotesingle{}}
+\NormalTok{  )}
+
+\NormalTok{(experiment\_one\_plot }\SpecialCharTok{/}\NormalTok{ experiment\_two\_plot) }\SpecialCharTok{+} 
+  \FunctionTok{plot\_annotation}\NormalTok{(}\AttributeTok{title =} \StringTok{\textquotesingle{}Measured Distribution of Estrogen, by Group\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{plot\_layout}\NormalTok{(}\AttributeTok{guides =} \StringTok{\textquotesingle{}collect\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{241-livesession_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+In these two different cases -- where there is no treatment effect on top, and when there is a large treatment effect on bottom -- what are the group means? Where would they be on these plots?
+
+Consider the formula for the SE\_\{ATE\}.
+
+\[
+  SE(\tau) \approx \sqrt{\frac{V[\tau]}{N}}
+\]
+
+The important parts to consider for this discussion (despite being not a full statement of the SE) is that the standard error of the difference of group averages is a ratio of the underlying variance of the treatment effect, divided by the number of observations in that group.
+
+\[
+  \begin{aligned}
+  SE[\tau] & \approx \sqrt{\frac{V[Y(1)]}{n_{1}} + \frac{V[Y(0)]}{n_{0}}} \\ 
+           & \approx \sqrt{\frac{E[\left(Y(1) - E[Y(1)]\right)^2]}{n_{1}} + \frac{E[\left(Y(0) - E[Y(0)]\right)^2]}{n_{0}}}
+  \end{aligned}
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  When you examine the plot above, what are the expected values of the treatment and control groups?
+\item
+  What does the expected value of the square of the deviations look like on this plot?
+\end{itemize}
+
+\hypertarget{technical-benefits-of-blocking}{%
+\section{Technical Benefits of Blocking}\label{technical-benefits-of-blocking}}
+
+How how does breaking this population into two smaller groups create a reduction in the calculated standard error that you observe from an experiment?
+
+\begin{itemize}
+\tightlist
+\item
+  What is (draw) the conditional expectation among the \texttt{M} group and the \texttt{F} group.
+\item
+  What is (draw) the conditional variance among the \texttt{M} group and the \texttt{F} group.
+\item
+  How has this change produced a reduction in the overall variance?
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{experiment\_one\_plot }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ experiment\_one}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{+} 
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ outcomes, }\AttributeTok{fill =} \FunctionTok{factor}\NormalTok{(treatment), }\AttributeTok{linetype =}\NormalTok{ group) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{\textquotesingle{}No effect\textquotesingle{}}
+\NormalTok{  )}
+\NormalTok{experiment\_two\_plot }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ experiment\_two}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{+} 
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ outcomes, }\AttributeTok{fill =} \FunctionTok{factor}\NormalTok{(treatment), }\AttributeTok{linetype =}\NormalTok{ group) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{\textquotesingle{}Ten unit effect\textquotesingle{}}
+\NormalTok{  )}
+
+\NormalTok{(experiment\_one\_plot }\SpecialCharTok{/}\NormalTok{ experiment\_two\_plot) }\SpecialCharTok{+} 
+  \FunctionTok{plot\_annotation}\NormalTok{(}\AttributeTok{title =} \StringTok{\textquotesingle{}Measured Distribution of Estrogen, by Group\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{plot\_layout}\NormalTok{(}\AttributeTok{guides =} \StringTok{\textquotesingle{}collect\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{241-livesession_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+\hypertarget{how-should-we-block-randomize}{%
+\section{How should we block randomize?}\label{how-should-we-block-randomize}}
+
+Let's take several discussion points, in order:
+
+\hypertarget{what-makes-a-useful-feature-part-1}{%
+\subsection{What makes a useful feature? (part 1)}\label{what-makes-a-useful-feature-part-1}}
+
+\begin{itemize}
+\item
+  When we are considering a block randomization to improve the \emph{power} of a test, what about a feature makes it a useful blocking feature? (For instructors, probably don't read each of these, but try to get the discussion to address them.)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Does a good blocking feature have to be associated with the treatment?
+  \item
+    Does a good blocking feature have to be associated with potential outcomes?
+  \item
+    Does a good blocking feature have to have a causal effect on the measured outcomes?
+  \end{itemize}
+\item
+  Suppose that have two possible features that you could use to block in the estrogen experiment. Either, you can block randomize using:
+
+  \begin{enumerate}
+  \def\labelenumi{(\alph{enumi})}
+  \tightlist
+  \item
+    blood-serum levels of estrogen, measured a week before the experiment begins; or (
+  \end{enumerate}
+
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    ``stated form'' sex (i.e.~female, male, nonbinary).
+  \end{enumerate}
+\end{itemize}
+
+\hypertarget{what-makes-a-useful-feature-part-2}{%
+\subsection{What makes a useful feature (part 2)}\label{what-makes-a-useful-feature-part-2}}
+
+\begin{itemize}
+\item
+  In the async, and to this point in this live session, we have spoken only about features that are categorical for blocking.
+\item
+  Is it possible to block on a continuous feature?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    What if it were measured very, very precisely, so every unit had a unique value on a continuous variable?
+  \item
+    If you \emph{could} develop a method of blocking on a continuous variable, what might be the benefits?
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{strategies-of-blocking}{%
+\subsection{Strategies of blocking}\label{strategies-of-blocking}}
+
+\begin{itemize}
+\item
+  If there is a benefit of creating two mini-experiments through blocking -- as you have proposed in the code above -- could there be a benefit to creating a third mini-experiment through blocking? What about a fourth? Is there a limit that you run into?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    What is the most blocks that you can produce in an experiment?
+  \item
+    Or, alternatively, what is the smallest size block that you can produce in an experiment?
+  \item
+    Is there a reason to take this strategy?
+  \item
+    What if you created many blocks, but with a noisy blocking feature. Would this work well?
+  \item
+    What if you created many blocks, but with a very precise blocking feature. Would this work well?
+  \end{itemize}
+\item
+  To this point, we have discussed blocking on only a single variable. Is it possible to block on more than one variable at a time?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    If you have already blocked on one variable, what are the characteristics that are useful for the next variable that you consider blocking on?
+  \item
+    For example, suppose that you have already blocked the tofu experiment on experimental units' stated-form sex. Would it be useful to then block based on wearing glasses, or hair length, or blood-serum estrogen? Why or why not?
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{clustering}{%
+\section{Clustering}\label{clustering}}
+
+\begin{itemize}
+\tightlist
+\item
+  What are the circumstances in the world that make it necessary to cluster random assign?
+\item
+  Are these circumstances academic? Or, are there actually examples of where this might come into play?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Consider the ride sharing example that we read about in \emph{Power of Experiments}. What would happen if we gave some people really low prices to get into a rideshare, while we gave other people really high prices? What if they are standing next to eachother at the airport? What if one is at an airport in Oakland, while the other is at SFO?
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{blocking-or-clustering}{%
+\section{Blocking or Clustering?}\label{blocking-or-clustering}}
+
+\hypertarget{let-is-snow}{%
+\subsection{Let is snow!}\label{let-is-snow}}
+
+Suppose we want to measure the effect of snowplowing on local retail activity. We design an experiment that plows some locations but not others. Which of the following do you prefer? Explain the relative advantages and disadvantages of each option.
+
+\begin{itemize}
+\tightlist
+\item
+  On a given street, we randomly assign which businesses we plow in front of.
+\item
+  We randomly assign which streets to plow and which streets not to plow.
+\item
+  We randomly assign which neighborhoods to plow and which neighborhoods not to plow.
+\item
+  Do the differences above illustrate blocking, or clustering?
+\end{itemize}
+
+Returning to the snowplow example, suppose we have two wealthy neighborhoods, nine middle-class neighborhoods, and four poor neighborhoods available to experiment on. We are worried that if we put both of the wealthy neighborhoods into the treatment group, we will get an overestimate of the treatment effect of snowplowing on retail activity.
+We will assign treatment at the neighborhood level. Now consider blocking this experiment based on social class. Describe treatment assignment for the fifteen neighborhoods.
+
+\begin{itemize}
+\tightlist
+\item
+  Does blocking reduce bias?
+\item
+  What benefit do we expect blocking to have on our ATE estimator?
+\end{itemize}
+
+\hypertarget{strolling-through-berkeley}{%
+\subsection{Strolling through Berkeley}\label{strolling-through-berkeley}}
+
+David Reiley walks through Berkeley and observes retail shops. As he goes, he takes each pair of stores he encounters, flips a coin, and goes into one store in each pair to give them a free Google ad coupon. He later observes how much each spent on Google ads in the month after.
+
+\begin{itemize}
+\tightlist
+\item
+  Why might this increase power compared to picking stores totally at random?
+\item
+  Reiley does the same as above, but picks one store on every street only.
+\item
+  Reiley does the same as above, but picks two stores on every street only.
+\item
+  Reiley picks one side of each street to treat on many streets.
+\end{itemize}
+
+\hypertarget{always-low-prices}{%
+\subsection{Always low prices?}\label{always-low-prices}}
+
+Imagine that an executive at Walmart gives you the keys to the pricing at the store and asks you to determine how demand for goods changes depending on the pricing of those goods? Basically, does ``rolling back prices'' lead to increased demand? And by how much?
+
+\begin{itemize}
+\tightlist
+\item
+  What are the different levels at which you could assign different prices?
+\item
+  What are the benefits and limitations of assigning different prices at those levels?
+\end{itemize}
+
+\hypertarget{covariates-and-regression}{%
+\chapter{Covariates and Regression}\label{covariates-and-regression}}
+
+Adding covariates to what we're measuring, even if those covariates are non experimental, can help us improve our
+measurement.''
+
+\hypertarget{learning-objectives-4}{%
+\section{Learning Objectives}\label{learning-objectives-4}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+\item
+\item
+\end{enumerate}
+
+\hypertarget{covariates}{%
+\section{Covariates}\label{covariates}}
+
+\emph{Covariates} as we will call them in this unit are are supplemental variables that do \emph{not} have a causal meaning but which might predict the outcome variable. Because treatment is randomly assigned in an experiment, covariates are not required in order to generate for unbiased inference in an experiment, but including covariates in our estimation of a treatment effect might \emph{improve} the precision of estimates.
+
+Typically, covariate adjustment happens through the use of a regression. Blocking (discussed last week) is doing the mechanically the same thing as regression, but blocking possesses the beneficial guarantees that all blocks will have good random assignment.
+
+\emph{One important point about covariates}: For the appropriate use of covariates in an analysis of an experiment, the covariates \emph{must} not change as a consequence of treatment assignment. If they change,then they are a down-stream consequence of the experiment, and therefore are a ``result'' of the experiment. (In the future, we will talk about why these are `bad controls'.)
+
+\hypertarget{rescaling-outcomes}{%
+\section{Rescaling Outcomes}\label{rescaling-outcomes}}
+
+Suppose that in your design, you are able to measure every unit twice, once before they are exposed to treatment, and again after they are exposed to treatment.
+
+Suppose that we have the following grammar, or notation to describe the experiment:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{R} is a indicator for a randomization process.
+\item
+  \texttt{N} is an indicator for a non-randomization process.
+\item
+  \texttt{X} is an indicator that we have provided treatment to a unit.
+\item
+  \texttt{O} is an indicator that we have provided control to a unit.
+\item
+  \texttt{Y} is an indicator that we have made a measurement of a unit.
+\end{itemize}
+
+With these operators set up, we can think about three different experiment designs.
+
+\hypertarget{design-one-two-group-post-test}{%
+\subsection{Design One: Two Group Post-Test}\label{design-one-two-group-post-test}}
+
+To this point, and in nearly every essay proposed for the first assignment in the class, student had in mind a two group, post-test only design. In this experiment design, we randomize an experimental population into two groups, assign treatment to one of these groups, and then observe outcomes. In many ways, the one group pre-post design is the simplest design to implement.
+
+\begin{verbatim}
+R X Y 
+R O Y
+\end{verbatim}
+
+\hypertarget{design-two-one-group-pre-test-post-test}{%
+\subsection{Design Two: One Group, Pre-test Post-test}\label{design-two-one-group-pre-test-post-test}}
+
+In this case, we take the units that are a part of our experiment, expose them to control and measure these units outcomes, and then expose them to treatment and measure these units outcomes.
+
+We might write out this design in the following way:
+
+\begin{verbatim}
+N O Y1 X Y2
+\end{verbatim}
+
+Does this meet the base definition of an experiment that you've written about in your homework? Would David Reiley think that this is an experiment? Would Green and Gerber think that this is an experiment?
+
+\hypertarget{evaluate-the-strengths-of-the-two-designs}{%
+\subsection{Evaluate the strengths of the two designs}\label{evaluate-the-strengths-of-the-two-designs}}
+
+Under what circumstances would you prefer to one or another of these two designs?
+
+\begin{itemize}
+\tightlist
+\item
+  Suppose that you are attempting to learn what part of your code on problem set 2 is leading to a \(\LaTeX\) compile error. Which of the experiments would you propose to undertake?
+\item
+  Suppose that you are attempting to learn the effects of giving a birthday gift to twins where measurement is magically easy.
+\item
+  Suppose that you are attempting to learn about the effect of coffee on alertness, measured as the number of characters written down while attending async lectures.
+\item
+  Suppose that you are attempting to learn about the effect of coffee on alertness, measured through galvanic skin conductance?
+\end{itemize}
+
+Are there general principles, or circumstances that lead you to go one way or another?
+
+\hypertarget{combining-designs}{%
+\section{Combining Designs?}\label{combining-designs}}
+
+By combining the two previous designs, it is possible to develop a new design that contains the benefits of each.
+
+\hypertarget{design-three-two-group-pre-test-post-test}{%
+\subsection{Design Three: Two Group, Pre-test Post-test}\label{design-three-two-group-pre-test-post-test}}
+
+In this case, we randomize into two-groups, but we also measure each unit more than once.
+
+\begin{verbatim}
+R O Y1 X Y2
+R O Y1 O Y2 
+\end{verbatim}
+
+This design has the benefit of the apples to apples comparison created through randomization, but additionally adds the improvement in measurement that are possible by re-scaling the outcome variable into a difference score. If we redefine the outcome to be \(\delta = Y_{2} - Y_{1}\), and if there is a covariance between \(Y_{1}\) and \(Y_{2}\), which seems reasonable for many cases where the unit has ``sticky'' behaviors, then we are able to produce estimates of \(\delta\) that are more precise because they use this ``stickyness'' (i.e.~covariance).
+
+Even in the case when we don't know \emph{why} outcomes are correlated through time, we can still us this relationship profitably to produce estimates with smaller standard errors.
+
+\hypertarget{working-with-simple-data}{%
+\section{Working with simple data}\label{working-with-simple-data}}
+
+In \emph{Field Experiments} on page 74, Green and Gerber provide a table of potential outcomes for community public works projects. In the \texttt{Village} varaible is an index from 1-14 of the village id; in the \texttt{Y} variable is the outcome if assigned to control; in the \texttt{D} variable is the outcome if assigned to treatment; and in the \texttt{Block} variable is a variable that indicates the block where the unit was located.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d }\OtherTok{\textless{}{-}} \FunctionTok{fread}\NormalTok{(}\StringTok{\textquotesingle{}http://hdl.handle.net/10079/cf1a6ba7{-}1603{-}4b36{-}ab18{-}1a7e81a63990\textquotesingle{}}\NormalTok{) }
+\FunctionTok{head}\NormalTok{(d)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Village Y D Block
+## 1:       1 0 0     1
+## 2:       2 1 0     1
+## 3:       3 2 1     1
+## 4:       4 4 2     1
+## 5:       5 4 0     1
+## 6:       6 6 0     1
+\end{verbatim}
+
+Although this will produce numbers that are different than are reported in the book (beause R implements sample variance and covariance, and the book instead uses population variance and covariance) compute the following.
+
+\hypertarget{without-blocking}{%
+\subsection{Without blocking}\label{without-blocking}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Compute the variance of the potential outcomes to control, the variance in the potential outcomes to treatment, and the covariance between treatment the potential outcomes to treatment and control.
+\item
+  With these values, then, compute the standard error of the ATE.
+\end{enumerate}
+
+\hypertarget{with-blocking}{%
+\subsection{With blocking}\label{with-blocking}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Compute the variance of potential outcomes to control within each block, the variance in the potential outcomes to treatment in each block, and the covariance between the treatment and control potential outcomes.
+\item
+  With these values, then compute the standard error of the blocked ATE.
+\end{enumerate}
+
+\hypertarget{regression-and-multifactor-experiments}{%
+\chapter{Regression and Multifactor Experiments}\label{regression-and-multifactor-experiments}}
+
+\hypertarget{learning-objectives-5}{%
+\section{Learning Objectives}\label{learning-objectives-5}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+\item
+\item
+\end{enumerate}
+
+\hypertarget{heterogeneous-treatment-effects}{%
+\chapter{Heterogeneous Treatment Effects}\label{heterogeneous-treatment-effects}}
+
+\hypertarget{learning-objectives-6}{%
+\section{Learning Objectives}\label{learning-objectives-6}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+\item
+\item
+\end{enumerate}
+
+\hypertarget{treatment-noncompliance}{%
+\chapter{Treatment Noncompliance}\label{treatment-noncompliance}}
+
+\hypertarget{learning-objectives-7}{%
+\section{Learning Objectives}\label{learning-objectives-7}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+\item
+\item
+\end{enumerate}
+
+\hypertarget{spillover-and-interference}{%
+\chapter{Spillover and Interference}\label{spillover-and-interference}}
+
+\hypertarget{learning-objectives-8}{%
+\section{Learning Objectives}\label{learning-objectives-8}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+\item
+\item
+\end{enumerate}
+
+\hypertarget{causality-from-observational-data}{%
+\chapter{Causality from Observational Data}\label{causality-from-observational-data}}
+
+\hypertarget{learning-objectives-9}{%
+\section{Learning Objectives}\label{learning-objectives-9}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+\item
+\item
+\end{enumerate}
+
+\hypertarget{problems-and-diagnostics}{%
+\chapter{Problems and Diagnostics}\label{problems-and-diagnostics}}
+
+\hypertarget{learning-objectives-10}{%
+\section{Learning Objectives}\label{learning-objectives-10}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+\item
+\item
+\end{enumerate}
+
+\hypertarget{attrition-mediation-and-generalizability}{%
+\chapter{Attrition, Mediation, and Generalizability}\label{attrition-mediation-and-generalizability}}
+
+\hypertarget{learning-objectives-11}{%
+\section{Learning Objectives}\label{learning-objectives-11}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+\item
+\item
+\end{enumerate}
+
+\hypertarget{applications-of-experiments}{%
+\chapter{Applications of Experiments}\label{applications-of-experiments}}
+
+\hypertarget{learning-objectives-12}{%
+\section{Learning Objectives}\label{learning-objectives-12}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+\item
+\item
+\end{enumerate}
+
+\hypertarget{review-of-the-course}{%
+\chapter{Review of the Course}\label{review-of-the-course}}
+
+\hypertarget{learning-objectives-13}{%
+\section{Learning Objectives}\label{learning-objectives-13}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+\item
+\item
+\end{enumerate}
+
+\end{document}

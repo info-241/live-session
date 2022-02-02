@@ -1,7 +1,96 @@
 # Covariates and Regression
 
+Adding covariates to what we're measuring, even if those covariates are non experimental, can help us improve our
+measurement." 
+
 ## Learning Objectives 
 
 1. 
 2. 
 3. 
+
+## Covariates 
+
+*Covariates* as we will call them in this unit are  are supplemental variables that do *not* have a causal meaning but which might predict the outcome variable. Because treatment is randomly assigned in an experiment, covariates are not required in order to generate for unbiased inference in an experiment, but including covariates in our estimation of a treatment effect might *improve* the precision of estimates. 
+  
+Typically, covariate adjustment happens through the use of a regression. Blocking (discussed last week) is doing the mechanically the same thing as regression, but blocking possesses the beneficial guarantees that all blocks will have good random assignment. 
+
+*One important point about covariates*: For the appropriate use of covariates in an analysis of an experiment, the covariates *must* not change as a consequence of treatment assignment. If they change,then they are a down-stream consequence of the experiment, and therefore are a "result" of the experiment. (In the future, we will talk about why these are 'bad controls'.)
+
+## Rescaling Outcomes 
+
+Suppose that in your design, you are able to measure every unit twice, once before they are exposed to treatment, and again after they are exposed to treatment. 
+
+Suppose that we have the following grammar, or notation to describe the experiment: 
+
+- `R` is a indicator for a randomization process. 
+- `N` is an indicator for a non-randomization process.
+- `X` is an indicator that we have provided treatment to a unit. 
+- `O` is an indicator that we have provided control to a unit. 
+- `Y` is an indicator that we have made a measurement of a unit. 
+
+With these operators set up, we can think about three different experiment designs. 
+
+### Design One: Two Group Post-Test    
+
+To this point, and in nearly every essay proposed for the first assignment in the class, student had in mind a two group, post-test only design. In this experiment design, we randomize an experimental population into two groups, assign treatment to one of these groups, and then observe outcomes. In many ways, the one group pre-post design is the simplest design to implement.
+
+    R X Y 
+    R O Y
+
+### Design Two: One Group, Pre-test Post-test
+
+In this case, we take the units that are a part of our experiment, expose them to control and measure these units outcomes, and then expose them to treatment and measure these units outcomes. 
+
+We might write out this design in the following way: 
+
+    N O Y1 X Y2
+    
+Does this meet the base definition of an experiment that you've written about in your homework? Would David Reiley think that this is an experiment? Would Green and Gerber think that this is an experiment? 
+
+### Evaluate the strengths of the two designs
+
+Under what circumstances would you prefer to one or another of these two designs? 
+
+- Suppose that you are attempting to learn what part of your code on problem set 2 is leading to a $\LaTeX$ compile error. Which of the experiments would you propose to undertake? 
+- Suppose that you are attempting to learn the effects of giving a birthday gift to twins where measurement is magically easy. 
+- Suppose that you are attempting to learn about the effect of coffee on alertness, measured as the number of characters written down while attending async lectures. 
+- Suppose that you are attempting to learn about the effect of coffee on alertness, measured through galvanic skin conductance? 
+
+Are there general principles, or circumstances that lead you to go one way or another?
+
+## Combining Designs? 
+
+By combining the two previous designs, it is possible to develop a new design that contains the benefits of each. 
+
+### Design Three: Two Group, Pre-test Post-test
+
+In this case, we randomize into two-groups, but we also measure each unit more than once. 
+
+    R O Y1 X Y2
+    R O Y1 O Y2 
+    
+This design has the benefit of the apples to apples comparison created through randomization, but additionally adds the improvement in measurement that are possible by re-scaling the outcome variable into a difference score. If we redefine the outcome to be $\delta = Y_{2} - Y_{1}$, and if there is a covariance between $Y_{1}$ and $Y_{2}$, which seems reasonable for many cases where the unit has "sticky" behaviors, then we are able to produce estimates of $\delta$ that are more precise because they use this "stickyness" (i.e. covariance). 
+
+Even in the case when we don't know *why* outcomes are correlated through time, we can still us this relationship profitably to produce estimates with smaller standard errors. 
+
+## Working with simple data 
+
+In *Field Experiments* on page 74, Green and Gerber provide a table of potential outcomes for community public works projects. In the `Village` varaible is an index from 1-14 of the village id; in the `Y` variable is the outcome if assigned to control; in the `D` variable is the outcome if assigned to treatment; and in the `Block` variable is a variable that indicates the block where the unit was located. 
+
+```{r}
+d <- fread('http://hdl.handle.net/10079/cf1a6ba7-1603-4b36-ab18-1a7e81a63990') 
+head(d)
+```
+
+Although this will produce numbers that are different than are reported in the book (beause R implements sample variance and covariance, and the book instead uses population variance and covariance) compute the following. 
+
+### Without blocking 
+
+1. Compute the variance of the potential outcomes to control, the variance in the potential outcomes to treatment, and the covariance between treatment the potential outcomes to treatment and control. 
+2. With these values, then, compute the standard error of the ATE. 
+
+### With blocking 
+
+1. Compute the variance of potential outcomes to control within each block, the variance in the potential outcomes to treatment in each block, and the covariance between the treatment and control potential outcomes. 
+2. With these values, then compute the standard error of the blocked ATE. 

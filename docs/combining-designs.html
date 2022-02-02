@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.5 Article Discussion | Experiments and Causality</title>
+  <title>5.4 Combining Designs? | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.5 Article Discussion | Experiments and Causality" />
+  <meta property="og:title" content="5.4 Combining Designs? | Experiments and Causality" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/coffee.jpeg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.5 Article Discussion | Experiments and Causality" />
+  <meta name="twitter:title" content="5.4 Combining Designs? | Experiments and Causality" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="course-logistics.html"/>
-<link rel="next" href="apples-to-apples.html"/>
+<link rel="prev" href="rescaling-outcomes.html"/>
+<link rel="next" href="working-with-simple-data.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -316,63 +316,25 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="article-discussion" class="section level2" number="1.5">
-<h2><span class="header-section-number">1.5</span> Article Discussion</h2>
-<div id="predict-or-cause" class="section level3" number="1.5.1">
-<h3><span class="header-section-number">1.5.1</span> Predict or Cause</h3>
-<ul>
-<li>What are a few examples that Athey raises of causal questions masquerading as prediction questions?
-<ol style="list-style-type: decimal">
-<li></li>
-<li></li>
-<li></li>
-</ol></li>
-<li>Which of these examples is the most surprising to you?</li>
-<li>Is there something that is common to each of these examples? Is this a general phenomenon, or is Athey very clever in picking examples? Said differently, is Athey making a clever argument or is a lot of what we do as data scientists actually causal work in disguise?</li>
-</ul>
-</div>
-<div id="do-the-suburbs-make-you-fat" class="section level3" number="1.5.2">
-<h3><span class="header-section-number">1.5.2</span> Do the suburbs make you fat?</h3>
-<ol style="list-style-type: decimal">
-<li>What is the causal claim being made in this article?</li>
-<li>If you had to draw out this causal claim, using arrows, what would it look like?</li>
-<li>Do you acknowledge the association that the authors present? Is there <em>actually</em> a difference between the BMI of people who live in cities and the suburbs?</li>
-<li>If you acknowledge the association, does that compel you to believe the causal claim? Why or why not?</li>
-<li>Name, and draw, five alternative <em>confounding</em> variables that might make you skeptical that the claimed relationship exists.</li>
-<li>(Optional) Name, and draw two <em>mechanisms</em> that might exist between suburbs and BMI. Why does the existence (or not) of these mechanisms <em>not</em> pose a fundamental problem to the causal claim that the authors make?</li>
-<li>At the conclusion of reading this paper, do you believe that there is a causal relationship between location and BMI? If so, what compels you to to believe this; if not, why are you not compelled to believe this?</li>
-</ol>
-</div>
-<div id="nike-shoes" class="section level3" number="1.5.3">
-<h3><span class="header-section-number">1.5.3</span> Nike Shoes</h3>
-<ol style="list-style-type: decimal">
-<li>What is the causal claim being made in this article?</li>
-<li>If you had to draw out this causal claim, using arrows, what would it look like?</li>
-<li>Do you acknowledge the association that the authors present? Is there actually a difference in the finish time between people who are running with the Nike shoes vs. other shoes?</li>
-<li>If you acknowledge the association, does that compel you to believe the causal claim? Why or why not?</li>
-<li>What are some of the confounding relationships that the authors identify? (Can you name four?) How do they adjust their analyses once they acknowledge the confounding problem?</li>
-<li>At the conclusion of reading this paper, do you believe that there is a causal relationship between shoes and finish time? If so, what compels you to to believe this; if not, why are you not compelled to believe this?</li>
-</ol>
-</div>
-<div id="what-is-science-feynmans-view" class="section level3" number="1.5.4">
-<h3><span class="header-section-number">1.5.4</span> What is Science: Feynman’s View</h3>
-<p>In <em>Cargo Cult Science</em>, Richard Feynman poses a view of science that is about a seeking of the truth.</p>
-<ol style="list-style-type: decimal">
-<li>What is Feynman’s view of science? What does he think makes something <em>scientific</em>?</li>
-<li>What are ways that individuals fool themselves when they are working as scientists? What are ways that individuals fool themselves when they are working as data scientists?</li>
-<li>How can we as (data) scientists, train ourselves not to be fooled?</li>
-</ol>
-
+<div id="combining-designs" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> Combining Designs?</h2>
+<p>By combining the two previous designs, it is possible to develop a new design that contains the benefits of each.</p>
+<div id="design-three-two-group-pre-test-post-test" class="section level3" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> Design Three: Two Group, Pre-test Post-test</h3>
+<p>In this case, we randomize into two-groups, but we also measure each unit more than once.</p>
+<pre><code>R O Y1 X Y2
+R O Y1 O Y2 </code></pre>
+<p>This design has the benefit of the apples to apples comparison created through randomization, but additionally adds the improvement in measurement that are possible by re-scaling the outcome variable into a difference score. If we redefine the outcome to be <span class="math inline">\(\delta = Y_{2} - Y_{1}\)</span>, and if there is a covariance between <span class="math inline">\(Y_{1}\)</span> and <span class="math inline">\(Y_{2}\)</span>, which seems reasonable for many cases where the unit has “sticky” behaviors, then we are able to produce estimates of <span class="math inline">\(\delta\)</span> that are more precise because they use this “stickyness” (i.e. covariance).</p>
+<p>Even in the case when we don’t know <em>why</em> outcomes are correlated through time, we can still us this relationship profitably to produce estimates with smaller standard errors.</p>
 </div>
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="course-logistics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="apples-to-apples.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="rescaling-outcomes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="working-with-simple-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

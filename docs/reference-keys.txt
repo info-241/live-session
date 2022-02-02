@@ -73,6 +73,16 @@ strolling-through-berkeley
 always-low-prices
 covariates-and-regression
 learning-objectives-4
+covariates
+rescaling-outcomes
+design-one-two-group-post-test
+design-two-one-group-pre-test-post-test
+evaluate-the-strengths-of-the-two-designs
+combining-designs
+design-three-two-group-pre-test-post-test
+working-with-simple-data
+without-blocking
+with-blocking
 regression-and-multifactor-experiments
 learning-objectives-5
 heterogeneous-treatment-effects
