@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Bloom’s Taxonomy | Experiments and Causality</title>
+  <title>6.6 What is the causal model we hold? | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Bloom’s Taxonomy | Experiments and Causality" />
+  <meta property="og:title" content="6.6 What is the causal model we hold? | Experiments and Causality" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/coffee.jpeg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Bloom’s Taxonomy | Experiments and Causality" />
+  <meta name="twitter:title" content="6.6 What is the causal model we hold? | Experiments and Causality" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="importance-of-experimentation.html"/>
+<link rel="prev" href="make-data-1.html"/>
+<link rel="next" href="a-more-complicated-example.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -331,28 +331,83 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="blooms-taxonomy" class="section level2 unnumbered">
-<h2>Bloom’s Taxonomy</h2>
-<p>An effective rubric for student understanding is attributed to Bloom (1956). Referred to as <em>Bloom’s Taxonomy</em>, this proposes that there is a hierarchy of student understanding; that a student may have one <em>level</em> of reasoning skill with a concept, but not another. The taxonomy proposes to be ordered: some levels of reasoning build upon other levels of reasoning.</p>
-<p>In the learning objective that we present in for each live session, we will also identify the level of reasoning that we hope students will achieve at the conclusion of the live session.</p>
-<ol style="list-style-type: decimal">
-<li><strong>Remember</strong> A student can remember that the concept exists. This might require the student to define, duplicate, or memorize a set of concepts or facts.</li>
-<li><strong>Understand</strong> A student can understand the concept, and can produce a working technical and non-technical statement of the concept. The student can explain why the concept <em>is</em>, or why the concept works in the way that it does.</li>
-<li><strong>Apply</strong> A student can use the concept as it is intended to be used against a novel problem.</li>
-<li><strong>Analyze</strong> A student can assess whether the concept has worked as it should have. This requires both an understanding of the intended goal, an application against a novel problem, and then the ability to introspect or reflect on whether the result is as it should be.</li>
-<li><strong>Evaluate</strong> A student can analyze multiple approaches, and from this analysis evaluate whether one or another approach has better succeeded at achieving its goals.</li>
-<li><strong>Create</strong> A student can create a new or novel method from axioms or experience, and can evaluate the performance of this new method against existing approaches or methods.</li>
-</ol>
-
+<div id="what-is-the-causal-model-we-hold" class="section level2" number="6.6">
+<h2><span class="header-section-number">6.6</span> What is the causal model we hold?</h2>
+<p>When we are thinking about the causal model here, we’re saying, “I think that the conditional expectation of Y depends on the treatment status”. But, maybe I think I want to also control for the variable <code>bad_control</code>.</p>
+<p>In fact, we can estimate a reliable causal effect for <em>either</em> <code>D</code> on <code>Y</code>, <em>or</em> <code>D</code> on <code>bad_control</code>, but not the two together.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="what-is-the-causal-model-we-hold.html#cb38-1" aria-hidden="true" tabindex="-1"></a>model_1 <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(Y <span class="sc">~</span> D)]</span>
+<span id="cb38-2"><a href="what-is-the-causal-model-we-hold.html#cb38-2" aria-hidden="true" tabindex="-1"></a>model_2 <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(Y <span class="sc">~</span> bad_control)]</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="what-is-the-causal-model-we-hold.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(</span>
+<span id="cb39-2"><a href="what-is-the-causal-model-we-hold.html#cb39-2" aria-hidden="true" tabindex="-1"></a>  model_1, model_2, </span>
+<span id="cb39-3"><a href="what-is-the-causal-model-we-hold.html#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&#39;text&#39;</span>, </span>
+<span id="cb39-4"><a href="what-is-the-causal-model-we-hold.html#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">se =</span> <span class="fu">list</span>(<span class="fu">rse</span>(model_1), <span class="fu">rse</span>(model_2)), </span>
+<span id="cb39-5"><a href="what-is-the-causal-model-we-hold.html#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">omit.stat =</span> <span class="fu">c</span>(<span class="st">&#39;ser&#39;</span>, <span class="st">&#39;f&#39;</span>)</span>
+<span id="cb39-6"><a href="what-is-the-causal-model-we-hold.html#cb39-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## 
+## =========================================
+##                  Dependent variable:     
+##              ----------------------------
+##                           Y              
+##                   (1)            (2)     
+## -----------------------------------------
+## D               5.154***                 
+##                 (0.391)                  
+##                                          
+## bad_control                   1.821***   
+##                                (0.175)   
+##                                          
+## Constant         0.201        1.704***   
+##                 (0.266)        (0.218)   
+##                                          
+## -----------------------------------------
+## Observations     1,000          1,000    
+## R2               0.149          0.095    
+## Adjusted R2      0.148          0.094    
+## =========================================
+## Note:         *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
+<div id="do-the-estimates-match-the-world" class="section level3" number="6.6.1">
+<h3><span class="header-section-number">6.6.1</span> Do the estimates match the world?</h3>
+<p>When you look at what the models have estimated, do they match the data that we created above?</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="what-is-the-causal-model-we-hold.html#cb41-1" aria-hidden="true" tabindex="-1"></a>model_3 <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(Y <span class="sc">~</span> D <span class="sc">+</span> bad_control)]</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="what-is-the-causal-model-we-hold.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(</span>
+<span id="cb42-2"><a href="what-is-the-causal-model-we-hold.html#cb42-2" aria-hidden="true" tabindex="-1"></a>  model_1, model_2, model_3,</span>
+<span id="cb42-3"><a href="what-is-the-causal-model-we-hold.html#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&#39;text&#39;</span>, </span>
+<span id="cb42-4"><a href="what-is-the-causal-model-we-hold.html#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">se =</span> <span class="fu">list</span>(<span class="fu">rse</span>(model_1), <span class="fu">rse</span>(model_2), <span class="fu">rse</span>(model_3))</span>
+<span id="cb42-5"><a href="what-is-the-causal-model-we-hold.html#cb42-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## 
+## ==============================================================================================
+##                                                Dependent variable:                            
+##                     --------------------------------------------------------------------------
+##                                                         Y                                     
+##                               (1)                      (2)                      (3)           
+## ----------------------------------------------------------------------------------------------
+## D                           5.154***                                          4.166***        
+##                             (0.391)                                           (0.428)         
+##                                                                                               
+## bad_control                                          1.821***                 1.069***        
+##                                                      (0.175)                  (0.188)         
+##                                                                                               
+## Constant                     0.201                   1.704***                  0.122          
+##                             (0.266)                  (0.218)                  (0.263)         
+##                                                                                               
+## ----------------------------------------------------------------------------------------------
+## Observations                 1,000                    1,000                    1,000          
+## R2                           0.149                    0.095                    0.176          
+## Adjusted R2                  0.148                    0.094                    0.175          
+## Residual Std. Error     6.157 (df = 998)         6.349 (df = 998)         6.061 (df = 997)    
+## F Statistic         174.636*** (df = 1; 998) 105.053*** (df = 1; 998) 106.678*** (df = 2; 997)
+## ==============================================================================================
+## Note:                                                              *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
+<p>Now we’re left with an under-estiamte of the causal effect of <code>D</code> on <code>Y</code>, and we’ve got some estimate of the effect of <code>bc</code> on <code>Y</code>. But, when we built the data, there wasn’t such an effect! In fact, what is in here is the relationship between <code>y0</code> and <code>Y</code>, but through a mangled causal pipeline.</p>
 </div>
-<!-- </div> -->
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="importance-of-experimentation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="make-data-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="a-more-complicated-example.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

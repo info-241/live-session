@@ -24,7 +24,7 @@
 <meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
 
 
-<meta name="date" content="2022-02-02" />
+<meta name="date" content="2022-02-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -266,6 +266,21 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="regression-and-multifactor-experiments.html"><a href="regression-and-multifactor-experiments.html"><i class="fa fa-check"></i><b>6</b> Regression and Multifactor Experiments</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="learning-objectives-5.html"><a href="learning-objectives-5.html"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="6.2" data-path="good-controls.html"><a href="good-controls.html"><i class="fa fa-check"></i><b>6.2</b> Good Controls</a></li>
+<li class="chapter" data-level="6.3" data-path="bad-controls.html"><a href="bad-controls.html"><i class="fa fa-check"></i><b>6.3</b> Bad Controls</a></li>
+<li class="chapter" data-level="6.4" data-path="a-very-simple-example.html"><a href="a-very-simple-example.html"><i class="fa fa-check"></i><b>6.4</b> A Very Simple Example</a></li>
+<li class="chapter" data-level="6.5" data-path="make-data-1.html"><a href="make-data-1.html"><i class="fa fa-check"></i><b>6.5</b> Make Data</a></li>
+<li class="chapter" data-level="6.6" data-path="what-is-the-causal-model-we-hold.html"><a href="what-is-the-causal-model-we-hold.html"><i class="fa fa-check"></i><b>6.6</b> What is the causal model we hold?</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="what-is-the-causal-model-we-hold.html"><a href="what-is-the-causal-model-we-hold.html#do-the-estimates-match-the-world"><i class="fa fa-check"></i><b>6.6.1</b> Do the estimates match the world?</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="a-more-complicated-example.html"><a href="a-more-complicated-example.html"><i class="fa fa-check"></i><b>6.7</b> A More Complicated Example</a></li>
+<li class="chapter" data-level="6.8" data-path="look-at-data.html"><a href="look-at-data.html"><i class="fa fa-check"></i><b>6.8</b> Look at Data</a></li>
+<li class="chapter" data-level="6.9" data-path="estimate-relationships.html"><a href="estimate-relationships.html"><i class="fa fa-check"></i><b>6.9</b> Estimate Relationships</a>
+<ul>
+<li class="chapter" data-level="6.9.1" data-path="estimate-relationships.html"><a href="estimate-relationships.html#correct"><i class="fa fa-check"></i><b>6.9.1</b> Correct</a></li>
+<li class="chapter" data-level="6.9.2" data-path="estimate-relationships.html"><a href="estimate-relationships.html#incorrect"><i class="fa fa-check"></i><b>6.9.2</b> Incorrect</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="heterogeneous-treatment-effects.html"><a href="heterogeneous-treatment-effects.html"><i class="fa fa-check"></i><b>7</b> Heterogeneous Treatment Effects</a>
 <ul>
@@ -335,11 +350,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-13"><a href="simulation-example.html#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-14"><a href="simulation-example.html#cb5-14" aria-hidden="true" tabindex="-1"></a>d[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
 <pre><code>##    id        y0        y1
-## 1:  1 0.5264242 0.7764242
-## 2:  2 0.2964210 0.5464210
-## 3:  3 0.3451178 0.5951178
-## 4:  4 0.4922503 0.7422503
-## 5:  5 0.8663418 1.1163418</code></pre>
+## 1:  1 0.2036336 0.4536336
+## 2:  2 0.5880883 0.8380883
+## 3:  3 0.9905686 1.2405686
+## 4:  4 0.6155806 0.8655806
+## 5:  5 0.3893191 0.6393191</code></pre>
 <p>In this world, we’ve taken a sample of <code>100</code> individuals, and at this point, each of those individuals that we’ve sampled has both a potential outcome to control <strong>and also</strong> a potential outcome to treatment. We haven’t talked at all about measurement yet; we’re just asserting that both of these potential outcomes exist for each person.</p>
 <p>Essentially, this stage of creating the sample is the same as bringing people in the door to your experiment. If you were running this in the laboratory, you’d literally think of this as sitting your subjects down at their chairs, getting ready to begin their task.</p>
 <blockquote>
@@ -357,21 +372,21 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="simulation-example.html#cb7-1" aria-hidden="true" tabindex="-1"></a>d[ , experimental_assignment <span class="sc">:</span><span class="er">=</span> <span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">size =</span> .N, <span class="at">replace =</span> <span class="cn">TRUE</span>)]</span>
 <span id="cb7-2"><a href="simulation-example.html#cb7-2" aria-hidden="true" tabindex="-1"></a>d[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
 <pre><code>##    id        y0        y1 experimental_assignment
-## 1:  1 0.5264242 0.7764242                       0
-## 2:  2 0.2964210 0.5464210                       1
-## 3:  3 0.3451178 0.5951178                       0
-## 4:  4 0.4922503 0.7422503                       1
-## 5:  5 0.8663418 1.1163418                       0</code></pre>
+## 1:  1 0.2036336 0.4536336                       0
+## 2:  2 0.5880883 0.8380883                       0
+## 3:  3 0.9905686 1.2405686                       0
+## 4:  4 0.6155806 0.8655806                       1
+## 5:  5 0.3893191 0.6393191                       1</code></pre>
 <p>As as comparison, suppose that instead of randomly assigning individuals into treatment and control we allowed individuals to select into treatment and control. And suppose that people with the lowest potential outcomes to control opt to take the treatment. You might think of this as being something like, “The people who are the most tired are the most likely to drink a cup of coffee before they start class,” if an example helps you ground this.</p>
 <p>Specifically, suppose that any unit that has a potential outcome lower that <code>0.33</code> opts to take the treatment.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="simulation-example.html#cb9-1" aria-hidden="true" tabindex="-1"></a>d[ , observational_selection <span class="sc">:</span><span class="er">=</span> <span class="fu">ifelse</span>(y0 <span class="sc">&lt;</span> .<span class="dv">33</span>, <span class="dv">1</span>, <span class="dv">0</span>)]</span>
 <span id="cb9-2"><a href="simulation-example.html#cb9-2" aria-hidden="true" tabindex="-1"></a>d[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
 <pre><code>##    id        y0        y1 experimental_assignment observational_selection
-## 1:  1 0.5264242 0.7764242                       0                       0
-## 2:  2 0.2964210 0.5464210                       1                       1
-## 3:  3 0.3451178 0.5951178                       0                       0
-## 4:  4 0.4922503 0.7422503                       1                       0
-## 5:  5 0.8663418 1.1163418                       0                       0</code></pre>
+## 1:  1 0.2036336 0.4536336                       0                       1
+## 2:  2 0.5880883 0.8380883                       0                       0
+## 3:  3 0.9905686 1.2405686                       0                       0
+## 4:  4 0.6155806 0.8655806                       1                       0
+## 5:  5 0.3893191 0.6393191                       1                       0</code></pre>
 <p>These represent two different ways that you might conduct your research, each time with the same subject pool. Of course, in reality you probably would not be able to run these two studies at the same time, but since this is a simulation, we can stretch the confines of reality just a little bit.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="simulation-example.html#cb11-1" aria-hidden="true" tabindex="-1"></a>first_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>d) <span class="sc">+</span> </span>
 <span id="cb11-2"><a href="simulation-example.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> id, <span class="at">y =</span> y0), <span class="at">color =</span> blue) <span class="sc">+</span> </span>

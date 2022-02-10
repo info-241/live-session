@@ -85,6 +85,17 @@ without-blocking
 with-blocking
 regression-and-multifactor-experiments
 learning-objectives-5
+good-controls
+bad-controls
+a-very-simple-example
+make-data-1
+what-is-the-causal-model-we-hold
+do-the-estimates-match-the-world
+a-more-complicated-example
+look-at-data
+estimate-relationships
+correct
+incorrect
 heterogeneous-treatment-effects
 learning-objectives-6
 treatment-noncompliance

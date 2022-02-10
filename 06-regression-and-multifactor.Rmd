@@ -1,7 +1,277 @@
 # Regression and Multifactor Experiments
 
+```{r, echo=FALSE, message=FALSE}
+library(data.table) 
+library(stargazer)
+library(sandwich)
+```
+
+```{r echo=FALSE}
+rse <- function(model) { 
+  sqrt(diag(vcovHC(model)))
+  }
+```
+
+
 ## Learning Objectives 
 
 1. 
 2. 
 3. 
+
+## Good Controls 
+
+## Bad Controls 
+
+What goes wrong with bad controls? Everything! 
+
+## A Very Simple Example 
+
+## Make Data 
+Let's make some data in just the same way that we typically make data. We will produce a vector of potential outcoems to control, and then two outcomes that are affected by treatment. One we will consider the outcome that we are interested in understanding as a causal effect, the other, we're going to call the "bad control". 
+
+```{r}
+make_data <- function(n_rows=1000) { 
+
+  d <- data.table(
+    id = 1:n_rows, 
+    key = 'id'
+    )
+  
+  d[ , ':='(
+    y0           = runif(min=-10, max=10, n=.N), 
+    tau          = rnorm(n=.N, mean=4), 
+    D            = sample(x=0:1, size=.N, replace=TRUE))][ , ':='(
+    bad_control  = 1 * D + rnorm(n=.N, mean=0))][ , ':='(
+    Y            = y0 + D*tau + bad_control + rnorm(n=.N)
+    )]
+  }
+
+d <- make_data(n_rows=1000)
+```
+
+
+## What is the causal model we hold? 
+When we are thinking about the causal model here, we're saying, "I think that the conditional expectation of Y depends on the treatment status". But, maybe I think I want to also control for the variable `bad_control`. 
+
+In fact, we can estimate a reliable causal effect for *either* `D` on `Y`, *or* `D` on `bad_control`, but not the two together. 
+
+```{r estimate treatment and mediator models}
+model_1 <- d[ , lm(Y ~ D)]
+model_2 <- d[ , lm(Y ~ bad_control)]
+``` 
+
+```{r report treatment and mediator models, message = FALSE}
+stargazer(
+  model_1, model_2, 
+  type = 'text', 
+  se = list(rse(model_1), rse(model_2)), 
+  omit.stat = c('ser', 'f')
+)
+```
+
+### Do the estimates match the world? 
+When you look at what the models have estimated, do they match the data that we created above? 
+
+
+```{r estimate bad controls model}
+model_3 <- d[ , lm(Y ~ D + bad_control)]
+``` 
+
+```{r report all three models}
+stargazer(
+  model_1, model_2, model_3,
+  type = 'text', 
+  se = list(rse(model_1), rse(model_2), rse(model_3))
+)
+```
+
+
+Now we're left with an under-estiamte of the causal effect of `D` on `Y`, and we've got some estimate of the effect of `bc` on `Y`. But, when we built the data, there wasn't such an effect! In fact, what is in here is the relationship between `y0` and `Y`, but through a mangled causal pipeline. 
+
+## A More Complicated Example 
+
+```{r}
+# 1. create data.table
+# 2. create potential outcomes to control
+# 3. create a randomly assigned treatment indicator 
+# 4. have that treatment indicator and potential outcomes to control 
+#   cause outcomes in B. 
+# 5. dichotomize B (think of it like "finishing college" in MHE)
+# 6. build the potential outcomes to treatment as the joint effects of 
+#   a. potential outcomes to control
+#   b. the effect of B (which was caused by treatment)
+#   c. the direct effect of treatment on the outcome variable
+# 7 make an "observed Y" vector, just like usual. 
+
+n_rows <- 100
+
+d <- data.table(id = 1:n_rows)
+d[ , y0    := sample(-10:10, n_rows, replace = T)] 
+d[ , treat := sample(c(0,1), n_rows, replace = TRUE)]
+d[ , B     := y0 + 5 * treat + rnorm(n_rows, mean= 0, sd = 4)]
+d[ , B     := B > 0] 
+d[ , y1    := y0 + B + 10 * treat + round(rnorm(n_rows, mean= 0, sd = 4), 0)]
+d[ , Y     := y1*treat + y0*(1-treat)]
+```
+
+## Look at Data
+```{r}
+hist(d[,Y], col = "grey", 
+     main = "Histogram of Observed Outcomes")
+```
+
+## Estimate Relationships 
+What are the estimates we might be interested in? 
+
+### Correct 
+
+Well, the first is the *correct* relationship which is the causal effect of `treat` on `Y`. How would we estimate this? Since the underlying conditional expectation function tells us something causal, we can just use a simple linear regression as a method of estimating the causal effect. So, of course, just with a simple linear model. 
+
+```{r, results='asis'}
+m1 <- glm(Y ~ treat, data = d, family = "gaussian")
+stargazer(m1, type = "latex", omit.stat = "f", header = FALSE)
+```
+
+### Incorrect 
+
+The second, *incorrect* relationship might look at the effect of treatment, among people who have different levels of B. This would just be looking at a model that has both features built into it. Another, simliarly bad estimate might be to subset the model into different groups and look for the treatmnet effect within these groups. This also is silly and, as we'll demonstrate, will not recover anything even remotely related to the treatment effect we're interested in. 
+
+```{r} 
+m2  <- glm(Y ~ treat + B, data = d, family = "gaussian")
+m3a <- glm(Y ~ treat, data = d[B==TRUE], family = "gaussian")
+m3b <- glm(Y ~ treat, data = d[B==FALSE], family = "gaussian")
+```
+
+```{r, results='asis'}
+stargazer(m1, m2, m3a, m3b, omit.stat = "f", header = FALSE,
+          add.lines = list(c("Subset B?", "All", "All", "T", "F"))
+          )
+```
+
+
+<!--
+# Robust Standard Errors 
+
+David R. makes the good point in the async material that if we don't have a good reason to assume that the variance is the same between different groups, or really across all values of our explanatory variables, then these variances might, in fact be different, and as a consequence we might have overly optomistic estiamtes of our standard errors. 
+
+Why would this be bad? As we've said in the past, if we only want to falsely reject the null hypothesis in 5% of cases due just to chance (roughly an equivalent thought to a 95% confidence interval), then if our standard errors are wrong, there is the possiblity that we falsely reject the null more frequently. 
+
+So, we think we're only making this type of mistake in 5% of cases to to random chance, but perhaps we're actulaly making this type of mistake in 20% of cases. Why would this be bad? Remind yourself? 
+
+Luckly, it is pretty easy to estimate robust standard errors. In fact, acknowledging heteroskedasticiy does not have ANY effect on the location of our estimates of the relationships between variables. What does this mean? It means that the estimated $\beta_{1}$ that you pull off of some regression is the same whether you are using homoskedastic or heteroskedastic-consistent standard errors. 
+
+What is acutally happening when we compute HCE? Well, rather than presuming that all the residuals are the same, instead we're actually calculating those residuals from from the regression line. What is the penalty we pay for this? Well, in the case of homoskedastic error, we have a slightly less efficient estimator (which makes our findings more conservative when they don't need to be). And because we're estimating things, we're burning a few degrees of freedom. 
+
+Otherwise though, there isn't really *that* strong a penalty to pay. 
+
+```{r, eval=FALSE}
+library(sandwich) # estimates HCE easily
+library(lmtest)   # sets up t-test easily 
+d <- data(petersen)
+
+head(d)
+
+
+m1 <- lm(y ~ x, data = d)
+
+## since i have the lmtest loaded; i can call: 
+coeftest(m1, vcov = vcov(m1))
+
+## to estimate robust SEs is a two line solution
+m1$r.vcov <- vcovHC(m1)
+coeftest(m1, vcov = m1$r.vcov)
+``` 
+
+These two packagse are recommended packages and are very standard in R. `data.table` which I've been harping on is a big deal. Lots of people use it. So too is `ggplot2`. But these two packages, sandwich and lmtest, are **core**. There is no disputing that. 
+
+```{r, eval = FALSE} 
+m2$r.vcov <- vcovHC(m2, type = "HC3")
+coeftest(m2, vcovHC(m2, type = "const"))
+coeftest(m2, m2$r.vcov)
+``` 
+
+What has happened in these last two calls? In the first, we estimated the HCE structure using the `vcovHC` function. In the second, we use that vcov in a t-test for each of the coefficients. 
+
+There is a specific relationship between the variance-covariance matrix and the standard error. in fact, it is very much like the relationship beween the variance and standard error in any other application we've examined so far. This relationship is the following: 
+
+\[SE(\hat{\beta}) = \sqrt{diag(vcov)} \]
+
+So, all we're really doing is makeing a post-estimation correction to the variance covariance matrix, and then dividing by this new standard error. Quite straightforward. Why would you want to know this little bit? If you're going to run the test yourself, you will want to be able to pull off the SEs from the `vcovHC` object. 
+
+```{r, eval = FALSE} 
+t.numerator   <- coef(m2)
+t.denominator <- sqrt(diag(vcov(m2)))
+t.denominator.robust <- sqrt(diag(vcovHC(m2, type = "HC1")))
+
+# t.ratios: 
+# not robust: 
+t.numerator / t.denominator
+# robust 
+t.numerator / t.denominator.robust
+```
+
+But, like as I showed earlier, we can wrap all this up with the `lmtest` package's call `coeftest`. 
+
+```{r, eval = FALSE} 
+coeftest(m2, vcov(m2))
+coeftest(m2, vcovHC(m2))
+``` 
+
+What if we wanted to pretty-print ourselves a table? If we are using stargazer, or other packages, we will need the SEs off that model. 
+
+```{r, results='asis', eval = FALSE}
+m2.se  <- sqrt(diag(vcov(m2)))
+m2.rse <- sqrt(diag(vcovHC(m2, type = "HC1")))
+
+stargazer(m2, m2, se = list(m2.se, m2.rse), 
+          type = "latex", header = FALSE)
+```
+
+# What about clustered standard errors? 
+
+Ok, now we're a little deeper down the rabbit hole. As we've talked about, clustered standard errors acknowledge that you've got treatment assigned at the cluster level, and that there may be significant covariance in potential outcomes at that cluster level. If this is the case, then we have functionally fewer observations than we have nominally, and we also have less power to detect an effect. 
+
+We've provided you a function to calculate the clustered standard errrors in the homework. And, we've had some considerably back-and-forth between two people who are named Alex on slack. 
+
+Another, relatively recently developed package now exists that *shoud* make considerably more simple the task of estimating clustered standard errors. The package has been developed since the recording of the async material, so we'll do the work to present it here. 
+
+The package is the `multiwayvcov`. 
+
+```{r, eval = FALSE} 
+if(!("multiwayvcov" %in% installed.packages()[,"Package"])) { 
+  install.packages("multiwayvcov")
+} 
+
+library(multiwayvcov)
+
+data(petersen)
+m1 <- lm(y ~ x, data = petersen)
+
+summary(m1)
+
+# Cluster by firm
+? multiwayvcov::cluster.vcov
+vcov_firm <- cluster.vcov(m1, cluster = petersen$firmid)
+vcov_firm1 <- cluster.vcov(m1, ~ firmid)
+## when we clusetr
+coeftest(m1, vcov_firm)
+## when we don't cluster
+coeftest(m1, vcov(m1))
+
+# Double cluster by firm and year
+vcov_both <- cluster.vcov(m1, cbind(petersen$firmid, petersen$year))
+coeftest(m1, vcov_both)
+```
+
+Pretty print that. 
+
+```{r, results='asis', eval = FALSE}
+stargazer(m1, m1, m1,
+          se = list(sqrt(diag(vcov(m1))), 
+                    sqrt(diag(vcov_firm)), 
+                    sqrt(diag(vcov_both))),
+          header = FALSE)
+```
+
+
