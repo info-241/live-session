@@ -1,7 +1,139 @@
 # Heterogeneous Treatment Effects
 
+When we consider heterogeneous treatment effects, we acknowledge that it is very unlikely that every single person reacts to treatment in exactly the same way. But, are there certain *types* of people who always react more strongly to treatment? Are there certain *types* of people who always react less strongly? 
+
+How should we go about (a) looking for HTEs; (b) testings for HTEs with nominal p-value coverages; and (c) reporting HTEs to individuals in a way that make sense? 
+
 ## Learning Objectives 
 
-1. 
-2. 
-3. 
+At the end of this week, students will be able to 
+
+1. Understand what an HTE is, and what it is not. 
+2. Conduct, test, and interpret models with interaction terms as specific tests of hypotheses. 
+
+## Reading and Discussion: Goodson
+
+1. Why do we call them A/B tests, rather than experiments? Are you uncomfortable with the idea that companies are experimenting on you? Are you uncomfortable experimenting in your subjects? If there is a gap between your feeling about being experimented **on** compared to how you feel when you are **doing** the experimenting, why does this gap exist? 
+2. What is an A/B test in Goodson's estimation? 
+3. How should we know when a test should be determined to be complete? How should we determine that one experience is *causing* different behaviors in our reference population than another experience? 
+  - Can we decide this while we are working through the experiment? 
+  - Can we make this choice when we see the outcome that we thought we were going to see? 
+  - Can we be *sure* that we have set the correct stopping rules ahead of time? 
+4. What are the consequences of peaking, and then stopping early, once we have seen the results? 
+
+## Coding and Demo: The Californians 
+
+```{r, eval = FALSE, echo = TRUE}
+library(data.table)
+library(stargazer)
+
+makeData <- TRUE
+
+set.seed(1)
+
+if(makeData) {
+    sim_size <- 1000
+    d <- data.table(californian = sample(c(0,1), sim_size, replace = TRUE),
+                    affluence = sample(1:7, sim_size, replace = TRUE),
+                    preY = rnorm(sim_size, mean = 100, sd = 7),
+                    treat = sample(c(0,1), sim_size, replace = TRUE) )
+    d[ , literacy := rnorm(sim_size, mean = d$affluence, sd = 2)]
+    d[ , tau      := rnorm(sim_size, mean = 5 + californian)] ## + d$affluence)
+    d[ , postY    :=  preY + tau*treat]
+}
+
+## What is the (unobserved) true average treatment effect?
+
+## Estimate a model that includes only the treatment effect.
+## Interpret all the coefficients. 
+mod0 <- 
+
+## Estimate a model that includes the treatment effect and
+## the (highly predictive!) pre-treatment Y val. 
+mod1 <- 
+
+## Print the two next to each other, and compare what is going on.
+## Tell me what is happening in the differences in the intercept
+## and the preY coefficients. Tell me what is happening in the SE
+## for the treatment effect. 
+stargazer(mod0, mod1, type = "text")
+
+## Subset the data into two groups based on gender and estimate
+## a model that only includes the preY and treatment effects.
+## Print these two models side by side, and tell me what is going
+## on.
+
+mod2 <- 
+mod3 <- 
+stargazer() 
+
+## Based on this, would you conclude that these are different?
+## Talk about the 95% CI for each.
+## ?confint
+
+## Now, estimate two more models:
+##  1. A model with preY, treatment and gender indicator
+##  2. A model with prey, treatment, gender, and treatment*gender
+##     interaction
+##  3. Test for the necessisity of the interaction; first using a
+##     t-test. This should be really, really simple. Then, using a
+##     f-test for the nested models (see the anova(...) call).
+##     Is the p-value the same or different for this test?
+##     Why? 
+
+mod4 <- 
+mod5 <- 
+
+## ? anova
+
+## Finally, use the results from model 5 to tell me what the treatment
+## effect is for males and for californians.
+
+
+## 
+## AT HOME:
+## Work to examine what including the other affluence and literacy
+## triggers does to your estimates.
+##
+
+```
+
+
+## Coding and Discussion: Tips at a Restaurant 
+
+```{r, eval = FALSE, echo = TRUE}
+
+## Green and Gerber: Question 9.6
+## a, b, and c. 
+
+d <- fread('http://hdl.handle.net/10079/cd6be01a-a827-4312-a2fa-74329ce7f96d')
+
+## a. (Probably skip this one)
+##    Suppose that you ignored the gender of the server and simply analyzed whether
+##    the happyface treatment has heterogeneous effects. Use randomization inference 
+##    to test whether the Variance of \tau = 0 using randomization inference by 
+##    comparing the variance of potential outcomes in treatment and control. 
+
+## b. Write down a regression model that depicts the effect of the gender of 
+##    the waitstaff, whether they put a happyface on the bill, and the interaction 
+##    of these factors. 
+## 
+##    [Write the model here]
+
+## c. Estimate the regression model that you wrote down in (b) and test the 
+##    interaction between waitstaff and the happyface treatment. 
+##    Is the interaction significant. 
+
+## d. Waiting tables in the time of covid: Suppose that you're on the waitstaff 
+##    at this restaurant, and while you're waiting tables you're FULLY garbed 
+##    up: facemask, face-shield, full operating gown, and so on. 
+##    What this means is that you have the choice to reveal a gender identity
+##    that is either "Male" or "Female" to the patrons. 
+## 
+##    - Is there one gender identity that receives higher tips in this restaurant? 
+##    - Is there a gender that has a higher treatment effect? What is the 
+##      test that you would run to assess this? 
+
+
+```
+

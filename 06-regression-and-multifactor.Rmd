@@ -4,6 +4,7 @@
 library(data.table) 
 library(stargazer)
 library(sandwich)
+library(lmtest)
 ```
 
 ```{r echo=FALSE}
@@ -149,19 +150,17 @@ stargazer(m1, m2, m3a, m3b, omit.stat = "f", header = FALSE,
           )
 ```
 
+## Robust Standard Errors 
 
-<!--
-# Robust Standard Errors 
+David R. makes the good point in the async material that if we don't have a good reason to assume that the variance is the same between different groups, or really across all values of our explanatory variables, then these variances might, in fact be different, and as a consequence we might have overly optimistic estimates of our standard errors. 
 
-David R. makes the good point in the async material that if we don't have a good reason to assume that the variance is the same between different groups, or really across all values of our explanatory variables, then these variances might, in fact be different, and as a consequence we might have overly optomistic estiamtes of our standard errors. 
+Why would this be bad? As we've said in the past, if we only want to falsely reject the null hypothesis in 5% of cases due just to chance (roughly an equivalent thought to a 95% confidence interval), then if our standard errors are wrong, there is the possibility that we falsely reject the null more frequently. 
 
-Why would this be bad? As we've said in the past, if we only want to falsely reject the null hypothesis in 5% of cases due just to chance (roughly an equivalent thought to a 95% confidence interval), then if our standard errors are wrong, there is the possiblity that we falsely reject the null more frequently. 
+So, we think we're only making this type of mistake in 5% of cases to to random chance, but perhaps we're actually making this type of mistake in 20% of cases. Why would this be bad? Remind yourself? 
 
-So, we think we're only making this type of mistake in 5% of cases to to random chance, but perhaps we're actulaly making this type of mistake in 20% of cases. Why would this be bad? Remind yourself? 
+Luckily, it is pretty easy to estimate robust standard errors. In fact, acknowledging heteroskedasticiy does not have ANY effect on the location of our estimates of the relationships between variables. What does this mean? It means that the estimated $\beta_{1}$ that you pull off of some regression is the same whether you are using homoskedastic or heteroskedastic-consistent standard errors. 
 
-Luckly, it is pretty easy to estimate robust standard errors. In fact, acknowledging heteroskedasticiy does not have ANY effect on the location of our estimates of the relationships between variables. What does this mean? It means that the estimated $\beta_{1}$ that you pull off of some regression is the same whether you are using homoskedastic or heteroskedastic-consistent standard errors. 
-
-What is acutally happening when we compute HCE? Well, rather than presuming that all the residuals are the same, instead we're actually calculating those residuals from from the regression line. What is the penalty we pay for this? Well, in the case of homoskedastic error, we have a slightly less efficient estimator (which makes our findings more conservative when they don't need to be). And because we're estimating things, we're burning a few degrees of freedom. 
+What is actually happening when we compute HCE? Well, rather than presuming that all the residuals are the same, instead we're actually calculating those residuals from from the regression line. What is the penalty we pay for this? Well, in the case of homoskedastic error, we have a slightly less efficient estimator (which makes our findings more conservative when they don't need to be). And because we're estimating things, we're burning a few degrees of freedom. 
 
 Otherwise though, there isn't really *that* strong a penalty to pay. 
 
@@ -195,9 +194,11 @@ What has happened in these last two calls? In the first, we estimated the HCE st
 
 There is a specific relationship between the variance-covariance matrix and the standard error. in fact, it is very much like the relationship beween the variance and standard error in any other application we've examined so far. This relationship is the following: 
 
-\[SE(\hat{\beta}) = \sqrt{diag(vcov)} \]
+$$
+  SE(\hat{\beta}) = \sqrt{diag(vcov)}
+$$
 
-So, all we're really doing is makeing a post-estimation correction to the variance covariance matrix, and then dividing by this new standard error. Quite straightforward. Why would you want to know this little bit? If you're going to run the test yourself, you will want to be able to pull off the SEs from the `vcovHC` object. 
+So, all we're really doing is making a post-estimation correction to the variance covariance matrix, and then dividing by this new standard error. Quite straightforward. Why would you want to know this little bit? If you're going to run the test yourself, you will want to be able to pull off the SEs from the `vcovHC` object. 
 
 ```{r, eval = FALSE} 
 t.numerator   <- coef(m2)
@@ -228,7 +229,7 @@ stargazer(m2, m2, se = list(m2.se, m2.rse),
           type = "latex", header = FALSE)
 ```
 
-# What about clustered standard errors? 
+## What about clustered standard errors? 
 
 Ok, now we're a little deeper down the rabbit hole. As we've talked about, clustered standard errors acknowledge that you've got treatment assigned at the cluster level, and that there may be significant covariance in potential outcomes at that cluster level. If this is the case, then we have functionally fewer observations than we have nominally, and we also have less power to detect an effect. 
 
@@ -238,40 +239,28 @@ Another, relatively recently developed package now exists that *shoud* make cons
 
 The package is the `multiwayvcov`. 
 
-```{r, eval = FALSE} 
-if(!("multiwayvcov" %in% installed.packages()[,"Package"])) { 
-  install.packages("multiwayvcov")
-} 
-
-library(multiwayvcov)
-
-data(petersen)
-m1 <- lm(y ~ x, data = petersen)
+```{r} 
+data("PetersenCL", package = "sandwich")
+m1 <- lm(y ~ x, data = PetersenCL)
 
 summary(m1)
 
-# Cluster by firm
-? multiwayvcov::cluster.vcov
-vcov_firm <- cluster.vcov(m1, cluster = petersen$firmid)
-vcov_firm1 <- cluster.vcov(m1, ~ firmid)
 ## when we clusetr
-coeftest(m1, vcov_firm)
+coeftest(m1, vcovCL(m1, ~ firm))
 ## when we don't cluster
 coeftest(m1, vcov(m1))
 
-# Double cluster by firm and year
-vcov_both <- cluster.vcov(m1, cbind(petersen$firmid, petersen$year))
-coeftest(m1, vcov_both)
+# Cluster by both firm, and year
+coeftest(m1, vcovCL(m1, ~ firm + year))
 ```
 
 Pretty print that. 
 
-```{r, results='asis', eval = FALSE}
+```{r}
 stargazer(m1, m1, m1,
           se = list(sqrt(diag(vcov(m1))), 
-                    sqrt(diag(vcov_firm)), 
-                    sqrt(diag(vcov_both))),
+                    sqrt(diag(vcovCL(m1, ~ firm))), 
+                    sqrt(diag(vcovCL(m1, ~ firm + year)))),
+          type = 'text',
           header = FALSE)
 ```
-
-

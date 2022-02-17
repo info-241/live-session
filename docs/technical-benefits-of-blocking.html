@@ -24,7 +24,7 @@
 <meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
 
 
-<meta name="date" content="2022-02-09" />
+<meta name="date" content="2022-02-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -262,6 +262,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5.1" data-path="working-with-simple-data.html"><a href="working-with-simple-data.html#without-blocking"><i class="fa fa-check"></i><b>5.5.1</b> Without blocking</a></li>
 <li class="chapter" data-level="5.5.2" data-path="working-with-simple-data.html"><a href="working-with-simple-data.html#with-blocking"><i class="fa fa-check"></i><b>5.5.2</b> With blocking</a></li>
 </ul></li>
+<li class="chapter" data-level="5.6" data-path="using-measurements-to-diagnose-problems.html"><a href="using-measurements-to-diagnose-problems.html"><i class="fa fa-check"></i><b>5.6</b> Using Measurements to Diagnose Problems</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="regression-and-multifactor-experiments.html"><a href="regression-and-multifactor-experiments.html"><i class="fa fa-check"></i><b>6</b> Regression and Multifactor Experiments</a>
 <ul>
@@ -281,10 +282,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.9.1" data-path="estimate-relationships.html"><a href="estimate-relationships.html#correct"><i class="fa fa-check"></i><b>6.9.1</b> Correct</a></li>
 <li class="chapter" data-level="6.9.2" data-path="estimate-relationships.html"><a href="estimate-relationships.html#incorrect"><i class="fa fa-check"></i><b>6.9.2</b> Incorrect</a></li>
 </ul></li>
+<li class="chapter" data-level="6.10" data-path="robust-standard-errors.html"><a href="robust-standard-errors.html"><i class="fa fa-check"></i><b>6.10</b> Robust Standard Errors</a></li>
+<li class="chapter" data-level="6.11" data-path="what-about-clustered-standard-errors.html"><a href="what-about-clustered-standard-errors.html"><i class="fa fa-check"></i><b>6.11</b> What about clustered standard errors?</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="heterogeneous-treatment-effects.html"><a href="heterogeneous-treatment-effects.html"><i class="fa fa-check"></i><b>7</b> Heterogeneous Treatment Effects</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="learning-objectives-6.html"><a href="learning-objectives-6.html"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="7.2" data-path="reading-and-discussion-goodson.html"><a href="reading-and-discussion-goodson.html"><i class="fa fa-check"></i><b>7.2</b> Reading and Discussion: Goodson</a></li>
+<li class="chapter" data-level="7.3" data-path="coding-and-demo-the-californians.html"><a href="coding-and-demo-the-californians.html"><i class="fa fa-check"></i><b>7.3</b> Coding and Demo: The Californians</a></li>
+<li class="chapter" data-level="7.4" data-path="coding-and-discussion-tips-at-a-restaurant.html"><a href="coding-and-discussion-tips-at-a-restaurant.html"><i class="fa fa-check"></i><b>7.4</b> Coding and Discussion: Tips at a Restaurant</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="treatment-noncompliance.html"><a href="treatment-noncompliance.html"><i class="fa fa-check"></i><b>8</b> Treatment Noncompliance</a>
 <ul>
@@ -353,7 +359,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb31-12"><a href="technical-benefits-of-blocking.html#cb31-12" aria-hidden="true" tabindex="-1"></a>(experiment_one_plot <span class="sc">/</span> experiment_two_plot) <span class="sc">+</span> </span>
 <span id="cb31-13"><a href="technical-benefits-of-blocking.html#cb31-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_annotation</span>(<span class="at">title =</span> <span class="st">&#39;Measured Distribution of Estrogen, by Group&#39;</span>) <span class="sc">+</span> </span>
 <span id="cb31-14"><a href="technical-benefits-of-blocking.html#cb31-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">&#39;collect&#39;</span>)</span></code></pre></div>
-<p><img src="241-livesession_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="241-livesession_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
             </section>
 

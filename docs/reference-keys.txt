@@ -83,6 +83,7 @@ design-three-two-group-pre-test-post-test
 working-with-simple-data
 without-blocking
 with-blocking
+using-measurements-to-diagnose-problems
 regression-and-multifactor-experiments
 learning-objectives-5
 good-controls
@@ -96,8 +97,13 @@ look-at-data
 estimate-relationships
 correct
 incorrect
+robust-standard-errors
+what-about-clustered-standard-errors
 heterogeneous-treatment-effects
 learning-objectives-6
+reading-and-discussion-goodson
+coding-and-demo-the-californians
+coding-and-discussion-tips-at-a-restaurant
 treatment-noncompliance
 learning-objectives-7
 spillover-and-interference

@@ -83,7 +83,7 @@ d <- fread('http://hdl.handle.net/10079/cf1a6ba7-1603-4b36-ab18-1a7e81a63990')
 head(d)
 ```
 
-Although this will produce numbers that are different than are reported in the book (beause R implements sample variance and covariance, and the book instead uses population variance and covariance) compute the following. 
+Although this will produce numbers that are different than are reported in the book (because R implements sample variance and covariance, and the book instead uses population variance and covariance) compute the following. 
 
 ### Without blocking 
 
@@ -94,3 +94,7 @@ Although this will produce numbers that are different than are reported in the b
 
 1. Compute the variance of potential outcomes to control within each block, the variance in the potential outcomes to treatment in each block, and the covariance between the treatment and control potential outcomes. 
 2. With these values, then compute the standard error of the blocked ATE. 
+
+## Using Measurements to Diagnose Problems 
+
+

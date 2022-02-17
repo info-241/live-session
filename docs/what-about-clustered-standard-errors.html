@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.4 A Very Simple Example | Experiments and Causality</title>
+  <title>6.11 What about clustered standard errors? | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.4 A Very Simple Example | Experiments and Causality" />
+  <meta property="og:title" content="6.11 What about clustered standard errors? | Experiments and Causality" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/coffee.jpeg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.4 A Very Simple Example | Experiments and Causality" />
+  <meta name="twitter:title" content="6.11 What about clustered standard errors? | Experiments and Causality" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="bad-controls.html"/>
-<link rel="next" href="make-data-1.html"/>
+<link rel="prev" href="robust-standard-errors.html"/>
+<link rel="next" href="heterogeneous-treatment-effects.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -337,16 +337,102 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="a-very-simple-example" class="section level2" number="6.4">
-<h2><span class="header-section-number">6.4</span> A Very Simple Example</h2>
+<div id="what-about-clustered-standard-errors" class="section level2" number="6.11">
+<h2><span class="header-section-number">6.11</span> What about clustered standard errors?</h2>
+<p>Ok, now we’re a little deeper down the rabbit hole. As we’ve talked about, clustered standard errors acknowledge that you’ve got treatment assigned at the cluster level, and that there may be significant covariance in potential outcomes at that cluster level. If this is the case, then we have functionally fewer observations than we have nominally, and we also have less power to detect an effect.</p>
+<p>We’ve provided you a function to calculate the clustered standard errrors in the homework. And, we’ve had some considerably back-and-forth between two people who are named Alex on slack.</p>
+<p>Another, relatively recently developed package now exists that <em>shoud</em> make considerably more simple the task of estimating clustered standard errors. The package has been developed since the recording of the async material, so we’ll do the work to present it here.</p>
+<p>The package is the <code>multiwayvcov</code>.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="what-about-clustered-standard-errors.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;PetersenCL&quot;</span>, <span class="at">package =</span> <span class="st">&quot;sandwich&quot;</span>)</span>
+<span id="cb54-2"><a href="what-about-clustered-standard-errors.html#cb54-2" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> PetersenCL)</span>
+<span id="cb54-3"><a href="what-about-clustered-standard-errors.html#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-4"><a href="what-about-clustered-standard-errors.html#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x, data = PetersenCL)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6.7611 -1.3680 -0.0166  1.3387  8.6779 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.02968    0.02836   1.047    0.295    
+## x            1.03483    0.02858  36.204   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.005 on 4998 degrees of freedom
+## Multiple R-squared:  0.2078, Adjusted R-squared:  0.2076 
+## F-statistic:  1311 on 1 and 4998 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="what-about-clustered-standard-errors.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="do">## when we clusetr</span></span>
+<span id="cb56-2"><a href="what-about-clustered-standard-errors.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(m1, <span class="fu">vcovCL</span>(m1, <span class="sc">~</span> firm))</span></code></pre></div>
+<pre><code>## 
+## t test of coefficients:
+## 
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 0.029680   0.067013  0.4429   0.6579    
+## x           1.034833   0.050596 20.4530   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="what-about-clustered-standard-errors.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="do">## when we don&#39;t cluster</span></span>
+<span id="cb58-2"><a href="what-about-clustered-standard-errors.html#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(m1, <span class="fu">vcov</span>(m1))</span></code></pre></div>
+<pre><code>## 
+## t test of coefficients:
+## 
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 0.029680   0.028359  1.0466   0.2954    
+## x           1.034833   0.028583 36.2041   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="what-about-clustered-standard-errors.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cluster by both firm, and year</span></span>
+<span id="cb60-2"><a href="what-about-clustered-standard-errors.html#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(m1, <span class="fu">vcovCL</span>(m1, <span class="sc">~</span> firm <span class="sc">+</span> year))</span></code></pre></div>
+<pre><code>## 
+## t test of coefficients:
+## 
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 0.029680   0.065064  0.4562   0.6483    
+## x           1.034833   0.053558 19.3217   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Pretty print that.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="what-about-clustered-standard-errors.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(m1, m1, m1,</span>
+<span id="cb62-2"><a href="what-about-clustered-standard-errors.html#cb62-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">se =</span> <span class="fu">list</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcov</span>(m1))), </span>
+<span id="cb62-3"><a href="what-about-clustered-standard-errors.html#cb62-3" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovCL</span>(m1, <span class="sc">~</span> firm))), </span>
+<span id="cb62-4"><a href="what-about-clustered-standard-errors.html#cb62-4" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovCL</span>(m1, <span class="sc">~</span> firm <span class="sc">+</span> year)))),</span>
+<span id="cb62-5"><a href="what-about-clustered-standard-errors.html#cb62-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">&#39;text&#39;</span>,</span>
+<span id="cb62-6"><a href="what-about-clustered-standard-errors.html#cb62-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">header =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## 
+## ======================================================================
+##                                          Dependent variable:          
+##                                 --------------------------------------
+##                                                   y                   
+##                                     (1)          (2)          (3)     
+## ----------------------------------------------------------------------
+## x                                 1.035***     1.035***     1.035***  
+##                                   (0.029)      (0.051)      (0.054)   
+##                                                                       
+## Constant                           0.030        0.030        0.030    
+##                                   (0.028)      (0.067)      (0.065)   
+##                                                                       
+## ----------------------------------------------------------------------
+## Observations                       5,000        5,000        5,000    
+## R2                                 0.208        0.208        0.208    
+## Adjusted R2                        0.208        0.208        0.208    
+## Residual Std. Error (df = 4998)    2.005        2.005        2.005    
+## F Statistic (df = 1; 4998)      1,310.740*** 1,310.740*** 1,310.740***
+## ======================================================================
+## Note:                                      *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
+
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="bad-controls.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="make-data-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="robust-standard-errors.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="heterogeneous-treatment-effects.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

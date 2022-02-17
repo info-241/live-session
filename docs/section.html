@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.4 A Very Simple Example | Experiments and Causality</title>
+  <title>6.12  | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.4 A Very Simple Example | Experiments and Causality" />
+  <meta property="og:title" content="6.12  | Experiments and Causality" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/coffee.jpeg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.4 A Very Simple Example | Experiments and Causality" />
+  <meta name="twitter:title" content="6.12  | Experiments and Causality" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="bad-controls.html"/>
-<link rel="next" href="make-data-1.html"/>
+<link rel="prev" href="what-about-clustered-standard-errors.html"/>
+<link rel="next" href="heterogeneous-treatment-effects.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -284,13 +284,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.10" data-path="robust-standard-errors.html"><a href="robust-standard-errors.html"><i class="fa fa-check"></i><b>6.10</b> Robust Standard Errors</a></li>
 <li class="chapter" data-level="6.11" data-path="what-about-clustered-standard-errors.html"><a href="what-about-clustered-standard-errors.html"><i class="fa fa-check"></i><b>6.11</b> What about clustered standard errors?</a></li>
+<li class="chapter" data-level="6.12" data-path="section.html"><a href="section.html"><i class="fa fa-check"></i><b>6.12</b> </a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="heterogeneous-treatment-effects.html"><a href="heterogeneous-treatment-effects.html"><i class="fa fa-check"></i><b>7</b> Heterogeneous Treatment Effects</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="learning-objectives-6.html"><a href="learning-objectives-6.html"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="7.2" data-path="reading-and-discussion-goodson.html"><a href="reading-and-discussion-goodson.html"><i class="fa fa-check"></i><b>7.2</b> Reading and Discussion: Goodson</a></li>
-<li class="chapter" data-level="7.3" data-path="coding-and-demo-the-californians.html"><a href="coding-and-demo-the-californians.html"><i class="fa fa-check"></i><b>7.3</b> Coding and Demo: The Californians</a></li>
-<li class="chapter" data-level="7.4" data-path="coding-and-discussion-tips-at-a-restaurant.html"><a href="coding-and-discussion-tips-at-a-restaurant.html"><i class="fa fa-check"></i><b>7.4</b> Coding and Discussion: Tips at a Restaurant</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="treatment-noncompliance.html"><a href="treatment-noncompliance.html"><i class="fa fa-check"></i><b>8</b> Treatment Noncompliance</a>
 <ul>
@@ -337,16 +335,18 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="a-very-simple-example" class="section level2" number="6.4">
-<h2><span class="header-section-number">6.4</span> A Very Simple Example</h2>
+<div id="section" class="section level2" number="6.12">
+<h2><span class="header-section-number">6.12</span> </h2>
+
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="bad-controls.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="make-data-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="what-about-clustered-standard-errors.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="heterogeneous-treatment-effects.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
