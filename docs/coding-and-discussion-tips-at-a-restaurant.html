@@ -24,7 +24,7 @@
 <meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
 
 
-<meta name="date" content="2022-02-16" />
+<meta name="date" content="2022-02-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -295,6 +295,25 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8" data-path="treatment-noncompliance.html"><a href="treatment-noncompliance.html"><i class="fa fa-check"></i><b>8</b> Treatment Noncompliance</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="learning-objectives-7.html"><a href="learning-objectives-7.html"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="8.2" data-path="starting-conversation.html"><a href="starting-conversation.html"><i class="fa fa-check"></i><b>8.2</b> Starting conversation</a></li>
+<li class="chapter" data-level="8.3" data-path="design-notation.html"><a href="design-notation.html"><i class="fa fa-check"></i><b>8.3</b> Design Notation</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="design-notation.html"><a href="design-notation.html#design-notation-1"><i class="fa fa-check"></i><b>8.3.1</b> Design Notation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="non-compliance-discussion.html"><a href="non-compliance-discussion.html"><i class="fa fa-check"></i><b>8.4</b> Non-compliance Discussion</a></li>
+<li class="chapter" data-level="8.5" data-path="estimating-with-non-compliance.html"><a href="estimating-with-non-compliance.html"><i class="fa fa-check"></i><b>8.5</b> Estimating with Non-compliance</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="estimating-with-non-compliance.html"><a href="estimating-with-non-compliance.html#estimating-with-non-compliance-1"><i class="fa fa-check"></i><b>8.5.1</b> Estimating with non-compliance</a></li>
+<li class="chapter" data-level="8.5.2" data-path="estimating-with-non-compliance.html"><a href="estimating-with-non-compliance.html#estimate-the-intent-to-treat-effect"><i class="fa fa-check"></i><b>8.5.2</b> Estimate the Intent to Treat Effect</a></li>
+<li class="chapter" data-level="8.5.3" data-path="estimating-with-non-compliance.html"><a href="estimating-with-non-compliance.html#estimate-the-compliance-rate"><i class="fa fa-check"></i><b>8.5.3</b> Estimate the Compliance Rate</a></li>
+<li class="chapter" data-level="8.5.4" data-path="estimating-with-non-compliance.html"><a href="estimating-with-non-compliance.html#compute-the-cace"><i class="fa fa-check"></i><b>8.5.4</b> Compute the CACE</a></li>
+<li class="chapter" data-level="8.5.5" data-path="estimating-with-non-compliance.html"><a href="estimating-with-non-compliance.html#do-you-get-the-same-thing-with-this-subset-estimator"><i class="fa fa-check"></i><b>8.5.5</b> Do you get the same thing with this subset estimator?</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="two-stage-least-squares.html"><a href="two-stage-least-squares.html"><i class="fa fa-check"></i><b>8.6</b> Two Stage Least Squares</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="two-stage-least-squares.html"><a href="two-stage-least-squares.html#first-stage"><i class="fa fa-check"></i><b>8.6.1</b> First Stage</a></li>
+<li class="chapter" data-level="8.6.2" data-path="two-stage-least-squares.html"><a href="two-stage-least-squares.html#second-stage"><i class="fa fa-check"></i><b>8.6.2</b> Second stage</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="spillover-and-interference.html"><a href="spillover-and-interference.html"><i class="fa fa-check"></i><b>9</b> Spillover and Interference</a>
 <ul>
@@ -346,7 +365,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb65-5"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb65-6"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-6" aria-hidden="true" tabindex="-1"></a><span class="do">## a. (Probably skip this one)</span></span>
 <span id="cb65-7"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-7" aria-hidden="true" tabindex="-1"></a><span class="do">##    Suppose that you ignored the gender of the server and simply analyzed whether</span></span>
-<span id="cb65-8"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-8" aria-hidden="true" tabindex="-1"></a><span class="do">##    the happyface treatment has heterogeneous effects. Use randomization inference </span></span>
+<span id="cb65-8"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-8" aria-hidden="true" tabindex="-1"></a><span class="do">##    the happyface treatment has and effect (and/or) a heterogeneous effects. Use randomization inference </span></span>
 <span id="cb65-9"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-9" aria-hidden="true" tabindex="-1"></a><span class="do">##    to test whether the Variance of \tau = 0 using randomization inference by </span></span>
 <span id="cb65-10"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-10" aria-hidden="true" tabindex="-1"></a><span class="do">##    comparing the variance of potential outcomes in treatment and control. </span></span>
 <span id="cb65-11"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-11" aria-hidden="true" tabindex="-1"></a></span>
@@ -354,21 +373,20 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb65-13"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-13" aria-hidden="true" tabindex="-1"></a><span class="do">##    the waitstaff, whether they put a happyface on the bill, and the interaction </span></span>
 <span id="cb65-14"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-14" aria-hidden="true" tabindex="-1"></a><span class="do">##    of these factors. </span></span>
 <span id="cb65-15"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-15" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb65-16"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-16" aria-hidden="true" tabindex="-1"></a><span class="do">##    [Write the model here]</span></span>
-<span id="cb65-17"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-18"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-18" aria-hidden="true" tabindex="-1"></a><span class="do">## c. Estimate the regression model that you wrote down in (b) and test the </span></span>
-<span id="cb65-19"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-19" aria-hidden="true" tabindex="-1"></a><span class="do">##    interaction between waitstaff and the happyface treatment. </span></span>
-<span id="cb65-20"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-20" aria-hidden="true" tabindex="-1"></a><span class="do">##    Is the interaction significant. </span></span>
-<span id="cb65-21"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-22"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-22" aria-hidden="true" tabindex="-1"></a><span class="do">## d. Waiting tables in the time of covid: Suppose that you&#39;re on the waitstaff </span></span>
-<span id="cb65-23"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-23" aria-hidden="true" tabindex="-1"></a><span class="do">##    at this restaurant, and while you&#39;re waiting tables you&#39;re FULLY garbed </span></span>
-<span id="cb65-24"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-24" aria-hidden="true" tabindex="-1"></a><span class="do">##    up: facemask, face-shield, full operating gown, and so on. </span></span>
-<span id="cb65-25"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-25" aria-hidden="true" tabindex="-1"></a><span class="do">##    What this means is that you have the choice to reveal a gender identity</span></span>
-<span id="cb65-26"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-26" aria-hidden="true" tabindex="-1"></a><span class="do">##    that is either &quot;Male&quot; or &quot;Female&quot; to the patrons. </span></span>
-<span id="cb65-27"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-27" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb65-28"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-28" aria-hidden="true" tabindex="-1"></a><span class="do">##    - Is there one gender identity that receives higher tips in this restaurant? </span></span>
-<span id="cb65-29"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-29" aria-hidden="true" tabindex="-1"></a><span class="do">##    - Is there a gender that has a higher treatment effect? What is the </span></span>
-<span id="cb65-30"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-30" aria-hidden="true" tabindex="-1"></a><span class="do">##      test that you would run to assess this? </span></span></code></pre></div>
+<span id="cb65-16"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-17"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-17" aria-hidden="true" tabindex="-1"></a><span class="do">## c. Estimate the regression model that you wrote down in (b) and test the </span></span>
+<span id="cb65-18"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-18" aria-hidden="true" tabindex="-1"></a><span class="do">##    interaction between waitstaff and the happyface treatment. </span></span>
+<span id="cb65-19"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-19" aria-hidden="true" tabindex="-1"></a><span class="do">##    Is the interaction significant. </span></span>
+<span id="cb65-20"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-21"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-21" aria-hidden="true" tabindex="-1"></a><span class="do">## d. Waiting tables in the time of covid: Suppose that you&#39;re on the waitstaff </span></span>
+<span id="cb65-22"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-22" aria-hidden="true" tabindex="-1"></a><span class="do">##    at this restaurant, and while you&#39;re waiting tables you&#39;re FULLY garbed </span></span>
+<span id="cb65-23"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-23" aria-hidden="true" tabindex="-1"></a><span class="do">##    up: facemask, face-shield, full operating gown, and so on. </span></span>
+<span id="cb65-24"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-24" aria-hidden="true" tabindex="-1"></a><span class="do">##    What this means is that you have the choice to reveal a gender identity</span></span>
+<span id="cb65-25"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-25" aria-hidden="true" tabindex="-1"></a><span class="do">##    that is either &quot;Male&quot; or &quot;Female&quot; to the patrons. </span></span>
+<span id="cb65-26"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-26" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb65-27"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-27" aria-hidden="true" tabindex="-1"></a><span class="do">##    - Is there one gender identity that receives higher tips in this restaurant? </span></span>
+<span id="cb65-28"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-28" aria-hidden="true" tabindex="-1"></a><span class="do">##    - Is there a gender that has a higher treatment effect? What is the </span></span>
+<span id="cb65-29"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb65-29" aria-hidden="true" tabindex="-1"></a><span class="do">##      test that you would run to assess this? </span></span></code></pre></div>
 
 </div>
 <!-- </div> -->

@@ -110,7 +110,7 @@ d <- fread('http://hdl.handle.net/10079/cd6be01a-a827-4312-a2fa-74329ce7f96d')
 
 ## a. (Probably skip this one)
 ##    Suppose that you ignored the gender of the server and simply analyzed whether
-##    the happyface treatment has heterogeneous effects. Use randomization inference 
+##    the happyface treatment has and effect (and/or) a heterogeneous effects. Use randomization inference 
 ##    to test whether the Variance of \tau = 0 using randomization inference by 
 ##    comparing the variance of potential outcomes in treatment and control. 
 
@@ -118,7 +118,6 @@ d <- fread('http://hdl.handle.net/10079/cd6be01a-a827-4312-a2fa-74329ce7f96d')
 ##    the waitstaff, whether they put a happyface on the bill, and the interaction 
 ##    of these factors. 
 ## 
-##    [Write the model here]
 
 ## c. Estimate the regression model that you wrote down in (b) and test the 
 ##    interaction between waitstaff and the happyface treatment. 
@@ -133,7 +132,5 @@ d <- fread('http://hdl.handle.net/10079/cd6be01a-a827-4312-a2fa-74329ce7f96d')
 ##    - Is there one gender identity that receives higher tips in this restaurant? 
 ##    - Is there a gender that has a higher treatment effect? What is the 
 ##      test that you would run to assess this? 
-
-
 ```
 

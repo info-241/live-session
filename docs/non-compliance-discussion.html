@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4.6 Technical Benefits of Blocking | Experiments and Causality</title>
+  <title>8.4 Non-compliance Discussion | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4.6 Technical Benefits of Blocking | Experiments and Causality" />
+  <meta property="og:title" content="8.4 Non-compliance Discussion | Experiments and Causality" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/coffee.jpeg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4.6 Technical Benefits of Blocking | Experiments and Causality" />
+  <meta name="twitter:title" content="8.4 Non-compliance Discussion | Experiments and Causality" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="with-this-data-what-does-the-distribution-of-outcomes-look-like.html"/>
-<link rel="next" href="how-should-we-block-randomize.html"/>
+<link rel="prev" href="design-notation.html"/>
+<link rel="next" href="estimating-with-non-compliance.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -356,37 +356,23 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="technical-benefits-of-blocking" class="section level2" number="4.6">
-<h2><span class="header-section-number">4.6</span> Technical Benefits of Blocking</h2>
-<p>How how does breaking this population into two smaller groups create a reduction in the calculated standard error that you observe from an experiment?</p>
+<div id="non-compliance-discussion" class="section level2" number="8.4">
+<h2><span class="header-section-number">8.4</span> Non-compliance Discussion</h2>
 <ul>
-<li>What is (draw) the conditional expectation among the <code>M</code> group and the <code>F</code> group.</li>
-<li>What is (draw) the conditional variance among the <code>M</code> group and the <code>F</code> group.</li>
-<li>How has this change produced a reduction in the overall variance?</li>
+<li>What is ITT?</li>
+<li>What is ITT_{d}?</li>
+<li>What is the CACE?</li>
+<li>How does this produce an apples to oranges comparison?</li>
+<li>What is the exclusion restriction, and why is it important in this case?</li>
 </ul>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="technical-benefits-of-blocking.html#cb31-1" aria-hidden="true" tabindex="-1"></a>experiment_one_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> experiment_one<span class="sc">$</span>data) <span class="sc">+</span> </span>
-<span id="cb31-2"><a href="technical-benefits-of-blocking.html#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> outcomes, <span class="at">fill =</span> <span class="fu">factor</span>(treatment), <span class="at">linetype =</span> group) <span class="sc">+</span> </span>
-<span id="cb31-3"><a href="technical-benefits-of-blocking.html#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
-<span id="cb31-4"><a href="technical-benefits-of-blocking.html#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;No effect&#39;</span></span>
-<span id="cb31-5"><a href="technical-benefits-of-blocking.html#cb31-5" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb31-6"><a href="technical-benefits-of-blocking.html#cb31-6" aria-hidden="true" tabindex="-1"></a>experiment_two_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> experiment_two<span class="sc">$</span>data) <span class="sc">+</span> </span>
-<span id="cb31-7"><a href="technical-benefits-of-blocking.html#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> outcomes, <span class="at">fill =</span> <span class="fu">factor</span>(treatment), <span class="at">linetype =</span> group) <span class="sc">+</span> </span>
-<span id="cb31-8"><a href="technical-benefits-of-blocking.html#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
-<span id="cb31-9"><a href="technical-benefits-of-blocking.html#cb31-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Ten unit effect&#39;</span></span>
-<span id="cb31-10"><a href="technical-benefits-of-blocking.html#cb31-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb31-11"><a href="technical-benefits-of-blocking.html#cb31-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-12"><a href="technical-benefits-of-blocking.html#cb31-12" aria-hidden="true" tabindex="-1"></a>(experiment_one_plot <span class="sc">/</span> experiment_two_plot) <span class="sc">+</span> </span>
-<span id="cb31-13"><a href="technical-benefits-of-blocking.html#cb31-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_annotation</span>(<span class="at">title =</span> <span class="st">&#39;Measured Distribution of Estrogen, by Group&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb31-14"><a href="technical-benefits-of-blocking.html#cb31-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">&#39;collect&#39;</span>)</span></code></pre></div>
-<p><img src="241-livesession_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="with-this-data-what-does-the-distribution-of-outcomes-look-like.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="how-should-we-block-randomize.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="design-notation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="estimating-with-non-compliance.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

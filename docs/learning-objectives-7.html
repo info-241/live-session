@@ -24,7 +24,7 @@
 <meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
 
 
-<meta name="date" content="2022-02-16" />
+<meta name="date" content="2022-02-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="treatment-noncompliance.html"/>
-<link rel="next" href="spillover-and-interference.html"/>
+<link rel="next" href="starting-conversation.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -295,6 +295,25 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8" data-path="treatment-noncompliance.html"><a href="treatment-noncompliance.html"><i class="fa fa-check"></i><b>8</b> Treatment Noncompliance</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="learning-objectives-7.html"><a href="learning-objectives-7.html"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="8.2" data-path="starting-conversation.html"><a href="starting-conversation.html"><i class="fa fa-check"></i><b>8.2</b> Starting conversation</a></li>
+<li class="chapter" data-level="8.3" data-path="design-notation.html"><a href="design-notation.html"><i class="fa fa-check"></i><b>8.3</b> Design Notation</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="design-notation.html"><a href="design-notation.html#design-notation-1"><i class="fa fa-check"></i><b>8.3.1</b> Design Notation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="non-compliance-discussion.html"><a href="non-compliance-discussion.html"><i class="fa fa-check"></i><b>8.4</b> Non-compliance Discussion</a></li>
+<li class="chapter" data-level="8.5" data-path="estimating-with-non-compliance.html"><a href="estimating-with-non-compliance.html"><i class="fa fa-check"></i><b>8.5</b> Estimating with Non-compliance</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="estimating-with-non-compliance.html"><a href="estimating-with-non-compliance.html#estimating-with-non-compliance-1"><i class="fa fa-check"></i><b>8.5.1</b> Estimating with non-compliance</a></li>
+<li class="chapter" data-level="8.5.2" data-path="estimating-with-non-compliance.html"><a href="estimating-with-non-compliance.html#estimate-the-intent-to-treat-effect"><i class="fa fa-check"></i><b>8.5.2</b> Estimate the Intent to Treat Effect</a></li>
+<li class="chapter" data-level="8.5.3" data-path="estimating-with-non-compliance.html"><a href="estimating-with-non-compliance.html#estimate-the-compliance-rate"><i class="fa fa-check"></i><b>8.5.3</b> Estimate the Compliance Rate</a></li>
+<li class="chapter" data-level="8.5.4" data-path="estimating-with-non-compliance.html"><a href="estimating-with-non-compliance.html#compute-the-cace"><i class="fa fa-check"></i><b>8.5.4</b> Compute the CACE</a></li>
+<li class="chapter" data-level="8.5.5" data-path="estimating-with-non-compliance.html"><a href="estimating-with-non-compliance.html#do-you-get-the-same-thing-with-this-subset-estimator"><i class="fa fa-check"></i><b>8.5.5</b> Do you get the same thing with this subset estimator?</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="two-stage-least-squares.html"><a href="two-stage-least-squares.html"><i class="fa fa-check"></i><b>8.6</b> Two Stage Least Squares</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="two-stage-least-squares.html"><a href="two-stage-least-squares.html#first-stage"><i class="fa fa-check"></i><b>8.6.1</b> First Stage</a></li>
+<li class="chapter" data-level="8.6.2" data-path="two-stage-least-squares.html"><a href="two-stage-least-squares.html#second-stage"><i class="fa fa-check"></i><b>8.6.2</b> Second stage</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="spillover-and-interference.html"><a href="spillover-and-interference.html"><i class="fa fa-check"></i><b>9</b> Spillover and Interference</a>
 <ul>
@@ -340,20 +359,18 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="learning-objectives-7" class="section level2" number="8.1">
 <h2><span class="header-section-number">8.1</span> Learning Objectives</h2>
 <ol style="list-style-type: decimal">
-<li></li>
-<li></li>
-<li></li>
+<li><strong>Recognize</strong> when experimental units have not complied with the treatment assignments they were given, and <strong>appreciate</strong> that this causes problems for our two-group estimator.</li>
+<li><strong>Recover</strong> causal estimators, but for sub-populations of the overall population.</li>
+<li><strong>Utilize</strong> a new class of model, the two-stage least squares model, or 2SLS, which is the appropriate model choice when we are dealing with either one- or two-sided non-compliance.</li>
 </ol>
-
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
 <a href="treatment-noncompliance.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="spillover-and-interference.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="starting-conversation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
