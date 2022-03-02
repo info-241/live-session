@@ -1,7 +1,143 @@
 # Spillover and Interference
 
+At the outset of the course, we enumerate three hard-core requirement of an experiment design. In addition to intervening in the world, to produce an unbiased estimator of a treatment effect, we require that an experiment: 
+
+1. Assign that intervention to experimental units at random to eliminate the possibility of confounding due to selection bias; 
+2. That one, and only one difference exists between two comparison groups, thereby allowing us to exclude all other possible causes *but for* the feature that we have experimentally assigned; and, 
+3. That the treatment experienced by one experimental unit does not "interfere" with the potential outcomes of another unit. 
+
+In previous weeks, we've engaged with how to evaluate whether a treatment has been successfully randomized. In this week's materials, we are going to examine what, if anything, we may do in response to interference between units. 
+
+There are two possibilities. First, we might design our experiment to minimize the effects of interference between units by re-designing or measuring differently. In doing so, we endeavor to maintain the measurement of an individual-level treatment effect, through a multi-group experiment. Second, we might acknowledge the existence of interference and expand our thinking about what *is* a treatment effect. 
+
 ## Learning Objectives 
 
-1. 
-2. 
-3. 
+At the conclusion of this week, student will be able to: 
+
+1. **Articulate** in clear terms what circumstances *are*, and what circumstances *are not* interference events. 
+2. **Appreciate**, and **evaluate** the extent that interference between units changes both the concept of a treatment effect, and also how a multi-group measurement's estimates change in response to interference between units.
+3.  **Identify** common situations where interference is likely to occur, and anticipate some methods of mitigating, ameliorating, or designing in response to this interference. 
+
+## Defining Terms 
+
+- What does it mean for one unit to interfere with another unit? 
+  - If two units communicate with one another, is this interference? 
+  - If three units are all genetically related to one another, is this interference? 
+  - If ten units all work in the same building, is this interference? 
+  - If two partners share a tablet for browsing the internet, is this interference? 
+- Now, be *very* precise with your language: Using the term "potential-outcomes" how do Green and Gerber define interference? 
+
+## Defining Notation 
+### Identify concepts
+Until this week, we have used two concepts to describe treatment assignment and application: 
+
+- $Z$ is the assignment to treatment; and, 
+- $D$ is the dose received of treatment. 
+
+What concept is identified in the following notation: 
+
+- $E[Y_{i}(1) | D_{i} = 1]$? Is this measurable? 
+- $E[Y_{i}(1)]$
+- Interpret the expression $Y_{i}(\mathbf{d}) = Y_{i}(d)$ and explain how it conveys the non-interference assumption. 
+
+### Classroom Assignments 
+**(From Green and Gerber, p. 283)**: Sometimes researcher are reluctant to randomly assign individual students in elementary classrooms because they are concerned that treatments administered to some students are likely to spill over to untreated students in the same classroom. 
+
+In an attempt to get around possible violations of the non-interference assumption, they assign classrooms as clusters to treatment and control, and administer the treatment to all students in a classroom. 
+
+1. State the interference event that commonly leads researcher to assign an entire classroom to a condition. 
+2. State the interference assumption that is implicitly made when classrooms are cluster random assigned. Where, if anywhere does the researcher assume that spillover exists? Where, if anywhere, does the researcher assume that spillover **not** exist? 
+3. An *estimand* is the concept that an estimator is attempting to estimate. For example, the ATE estimator produces an unbiased, consistent estimate of the individual-level causal effect. What causal estimand does the clustered design identify? Does this estimand include or exclude spillovers within classrooms? What about spillovers between classrooms? What about spillovers between schools? 
+
+### Working with a simple example 
+Suppose that we are conducting an experiment where we examine the effects of releasing solution sets early to some students in the 241 classroom. 
+
+- What form of interference is possible? 
+- Suppose that *Abby*, *Bobby*, *Cathy* and *David* are all on a project team together. Furthermore, suppose that all members of the team work well together, have an ambitious class project that they are working on, and talk regularly. 
+  - If every one of the students were to be assigned to the control group, name values that are plausible for their completion time on problem set three. 
+  - Suppose that Abby, Bobby and Cathy are assigned to the control group, but that David is assigned to the treatment group. What do you think will happen in their daily project meeting? 
+    - Suppose that, no matter the empirical reality, you assume that there is no interference within this group. What would you call the value that you observe for Abby, given this assumption? Consistent with what you have said will happen in their daily project meeting, what values are you actually seeing for Abby? 
+    - What are the consequences for your estimated treatment effect? 
+  - Suppose that Abby and Bobby are assigned to the control group and that Cathy and David are assigned to the treatment group. What do you think will happen in their daily project meeting? 
+  - What would you call the value that you observe for Abby, given this assumption? Is it different when both Cathy and David are assigned to treatment compared to when only David is assigned to treatment? 
+- Given what you have stated about this small world, how many treatment assignment conditions do you have to be aware of? 
+
+### Working with a more complex example 
+Suppose that we are conducting an experiment where we examine the effects of releasing solution sets early to some students in **a law school** classroom. Law school is notoriously competitive, and outside one's immediate group of friends, there is little collaboration. 
+
+- Suppose that *A*, *B*, *C* and *D* are again friends.
+- Suppose that *W*, *X*, *Y* and *Z* are also friends. 
+- But suppose that the two groups are not friends between groups. 
+
+- If *A* receives an exam solution, but *W*, *X*, *Y* and *Z* do not, what would you call the values observed for *W*, *X*, *Y* and *Z*? 
+- If *A*, *B*, and *C* receive an exam solution, but *D*, *W*, *X*, *Y* and *Z* do not, what would you call the values observed for *D*, *W*, *X*, *Y* and *Z*? 
+- Given this example, are the potential outcomes for un-curved exam score different for *A* if *W* receives or does not receive a solution? 
+- Given this example, are the potential outcomes for curved exam score different for *A* if *W* receives or does not receive a solution?
+
+## Within subjects experiments
+
+Earlier in the course, we talked about two-group pre-test/post-test experiments. These experiments are exceptionally strong against a large series of threats to identification. And, they form the basis of the expanded topic of a *within-subject* experiment.
+
+1. What *is* a within subject experiment? 
+2. When might you propose that a within subject experiment would be advisable? Why? What is the benefit of a within subject experiment? 
+3. When are within subject experiments difficult to conduct? 
+
+Green and Gerber, and the async identify two requirements of within-subjects experiments: 
+
+- **No anticipation**
+- **No persistence** 
+
+What do these two assumptions mean in terms of what you are measuring at the individual-time level? 
+
+- Suppose that you were worried that your experimental units might either anticipate being put into treatment or that the treatment they take might have long-run effects. How might you design a test to see if either of these concerns are present in your design? 
+
+### Survey Experiments 
+**(From Green and Gerber, p.285)**: Concerns about interference between units sometimes arise in survey experiments. For example surveys sometimes administer a series of *vignettes* involving people with different attributes. A respondent might be told about a low-income person who is randomly described as white or black; after hearing the description, the respondent is asked to rate whether this person deserves public assistance. The respondent is the presented with a vignette about a second person, again randomly described as white or Black, and asked about whether *this* person deserves public assistance. 
+
+This design creates four experiment groups: 
+
+1. Two vignettes describing Black beneficiaries; 
+2. Two vignettes describing white beneficiaries; 
+3. A vignette describing a Black beneficiary first, followed by a white beneficiary; and, 
+4. A vignette describing a white beneficiary first, followed by a Black beneficiary. 
+
+Suppose that each respondent provides a rating after each vignette. 
+
+Questions to answer: 
+
+1. Propose a model of potential outcomes that reflects the ways that subjects might respond to the treatment and the sequences in which they are presented. How might you represent this using the `R O X Y` grammar? 
+2. Using your model of potential outcomes, define all of the ATE or ATEs that a researcher might seek to estimate. 
+3. Suggest an experiment design that could estimate this/these causal estimand(s) using observed data. 
+4. Suppose a researcher analyzing this experiment estimates the average *race effect* by comparing the average evaluation of the white recipient to the average evaluation of the black recipient. Is this a sound approach? Why or why not?
+
+## Discussing the reading: Blake and Coey (2014) 
+
+Here is a link to the [reading](https://github.com/UC-Berkeley-I-School/mids-w241/blob/main/readings/Blake.2014.pdf).
+
+- What is the treatment, and how does treatment assignment work?
+- What is the outcome, and how is it measured?
+- How does this experimental setup generate spillovers within an auction?
+- What is the naive research strategy that produces a biased estimate in the presence of the spillover?
+
+- Tell a story to explain why the within-auction spillovers might give you upward bias in the measured treatment effect.
+- (Optional; harder) How does the experiment generate spillovers between auctions?
+- Tell a story to explain why you might get downward bias from between-auction spillovers.
+- What is the proposed empirical analysis strategy to reduce the bias?
+- What would be a better experimental design to conduct in the first place?
+- Do you see an example of a stepped-wedge design in this article? Explain.
+
+## Discussing the reading: Miguel and Kremer (2004) 
+
+Here is a link to the [reading](https://github.com/UC-Berkeley-I-School/mids-w241/blob/main/readings/Miguel.2004.pdf).
+    
+- What question are Miguel and Kremer trying to answer? Why is this important?     
+- What is the spillover problem in this setting?
+- How did doctors get the wrong answer in randomized trials before Miguel and Kremer addressed the spillover problem? (The article refers to this as a double penalty.)
+- When not taken into account correctly, did the spillovers to cause underestimation or overestimation of the treatment effect? Explain why.
+- Which feature do the authors choose to make their experiment less vulnerable to this spillover problem?
+- How do the authors still have a (smaller) spillover problem despite this design decision?
+- What was the compliance rate for those whom the researchers intended to treat in 1998?
+- Name two kinds of noncompliance described in the article, and say which one was largest.
+Due to noncompliance, we can only measure the CACE rather than the ATE. Why is the CACE just fine for the policy question asked in the article?
+- Do you see an example of a stepped-wedge design in this article? Explain.    
+

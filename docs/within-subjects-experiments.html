@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Unit 9 Spillover and Interference | Experiments and Causality</title>
+  <title>9.4 Within subjects experiments | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Unit 9 Spillover and Interference | Experiments and Causality" />
+  <meta property="og:title" content="9.4 Within subjects experiments | Experiments and Causality" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/coffee.jpeg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Unit 9 Spillover and Interference | Experiments and Causality" />
+  <meta name="twitter:title" content="9.4 Within subjects experiments | Experiments and Causality" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="two-stage-least-squares.html"/>
-<link rel="next" href="learning-objectives-8.html"/>
+<link rel="prev" href="defining-notation.html"/>
+<link rel="next" href="discussing-the-reading-blake-and-coey-2014.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -307,24 +307,50 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="spillover-and-interference" class="section level1" number="9">
-<h1><span class="header-section-number">Unit 9</span> Spillover and Interference</h1>
-<p>At the outset of the course, we enumerate three hard-core requirement of an experiment design. In addition to intervening in the world, to produce an unbiased estimator of a treatment effect, we require that an experiment:</p>
+<div id="within-subjects-experiments" class="section level2" number="9.4">
+<h2><span class="header-section-number">9.4</span> Within subjects experiments</h2>
+<p>Earlier in the course, we talked about two-group pre-test/post-test experiments. These experiments are exceptionally strong against a large series of threats to identification. And, they form the basis of the expanded topic of a <em>within-subject</em> experiment.</p>
 <ol style="list-style-type: decimal">
-<li>Assign that intervention to experimental units at random to eliminate the possibility of confounding due to selection bias;</li>
-<li>That one, and only one difference exists between two comparison groups, thereby allowing us to exclude all other possible causes <em>but for</em> the feature that we have experimentally assigned; and,</li>
-<li>That the treatment experienced by one experimental unit does not “interfere” with the potential outcomes of another unit.</li>
+<li>What <em>is</em> a within subject experiment?</li>
+<li>When might you propose that a within subject experiment would be advisable? Why? What is the benefit of a within subject experiment?</li>
+<li>When are within subject experiments difficult to conduct?</li>
 </ol>
-<p>In previous weeks, we’ve engaged with how to evaluate whether a treatment has been successfully randomized. In this week’s materials, we are going to examine what, if anything, we may do in response to interference between units.</p>
-<p>There are two possibilities. First, we might design our experiment to minimize the effects of interference between units by re-designing or measuring differently. In doing so, we endeavor to maintain the measurement of an individual-level treatment effect, through a multi-group experiment. Second, we might acknowledge the existence of interference and expand our thinking about what <em>is</em> a treatment effect.</p>
+<p>Green and Gerber, and the async identify two requirements of within-subjects experiments:</p>
+<ul>
+<li><strong>No anticipation</strong></li>
+<li><strong>No persistence</strong></li>
+</ul>
+<p>What do these two assumptions mean in terms of what you are measuring at the individual-time level?</p>
+<ul>
+<li>Suppose that you were worried that your experimental units might either anticipate being put into treatment or that the treatment they take might have long-run effects. How might you design a test to see if either of these concerns are present in your design?</li>
+</ul>
+<div id="survey-experiments" class="section level3" number="9.4.1">
+<h3><span class="header-section-number">9.4.1</span> Survey Experiments</h3>
+<p><strong>(From Green and Gerber, p.285)</strong>: Concerns about interference between units sometimes arise in survey experiments. For example surveys sometimes administer a series of <em>vignettes</em> involving people with different attributes. A respondent might be told about a low-income person who is randomly described as white or black; after hearing the description, the respondent is asked to rate whether this person deserves public assistance. The respondent is the presented with a vignette about a second person, again randomly described as white or Black, and asked about whether <em>this</em> person deserves public assistance.</p>
+<p>This design creates four experiment groups:</p>
+<ol style="list-style-type: decimal">
+<li>Two vignettes describing Black beneficiaries;</li>
+<li>Two vignettes describing white beneficiaries;</li>
+<li>A vignette describing a Black beneficiary first, followed by a white beneficiary; and,</li>
+<li>A vignette describing a white beneficiary first, followed by a Black beneficiary.</li>
+</ol>
+<p>Suppose that each respondent provides a rating after each vignette.</p>
+<p>Questions to answer:</p>
+<ol style="list-style-type: decimal">
+<li>Propose a model of potential outcomes that reflects the ways that subjects might respond to the treatment and the sequences in which they are presented. How might you represent this using the <code>R O X Y</code> grammar?</li>
+<li>Using your model of potential outcomes, define all of the ATE or ATEs that a researcher might seek to estimate.</li>
+<li>Suggest an experiment design that could estimate this/these causal estimand(s) using observed data.</li>
+<li>Suppose a researcher analyzing this experiment estimates the average <em>race effect</em> by comparing the average evaluation of the white recipient to the average evaluation of the black recipient. Is this a sound approach? Why or why not?</li>
+</ol>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="two-stage-least-squares.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="learning-objectives-8.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="defining-notation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="discussing-the-reading-blake-and-coey-2014.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

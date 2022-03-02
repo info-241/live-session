@@ -131,3 +131,13 @@ applications-of-experiments
 learning-objectives-12
 review-of-the-course
 learning-objectives-13
+defining-terms
+defining-notation
+identify-concepts
+classroom-assignments
+working-with-a-simple-example
+working-with-a-more-complex-example
+within-subjects-experiments
+survey-experiments
+discussing-the-reading-blake-and-coey-2014
+discussing-the-reading-miguel-and-kremer-2004

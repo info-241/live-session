@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Unit 9 Spillover and Interference | Experiments and Causality</title>
+  <title>9.2 Defining Terms | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Unit 9 Spillover and Interference | Experiments and Causality" />
+  <meta property="og:title" content="9.2 Defining Terms | Experiments and Causality" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/coffee.jpeg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Unit 9 Spillover and Interference | Experiments and Causality" />
+  <meta name="twitter:title" content="9.2 Defining Terms | Experiments and Causality" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="two-stage-least-squares.html"/>
-<link rel="next" href="learning-objectives-8.html"/>
+<link rel="prev" href="learning-objectives-8.html"/>
+<link rel="next" href="defining-notation.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -307,24 +307,26 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="spillover-and-interference" class="section level1" number="9">
-<h1><span class="header-section-number">Unit 9</span> Spillover and Interference</h1>
-<p>At the outset of the course, we enumerate three hard-core requirement of an experiment design. In addition to intervening in the world, to produce an unbiased estimator of a treatment effect, we require that an experiment:</p>
-<ol style="list-style-type: decimal">
-<li>Assign that intervention to experimental units at random to eliminate the possibility of confounding due to selection bias;</li>
-<li>That one, and only one difference exists between two comparison groups, thereby allowing us to exclude all other possible causes <em>but for</em> the feature that we have experimentally assigned; and,</li>
-<li>That the treatment experienced by one experimental unit does not “interfere” with the potential outcomes of another unit.</li>
-</ol>
-<p>In previous weeks, we’ve engaged with how to evaluate whether a treatment has been successfully randomized. In this week’s materials, we are going to examine what, if anything, we may do in response to interference between units.</p>
-<p>There are two possibilities. First, we might design our experiment to minimize the effects of interference between units by re-designing or measuring differently. In doing so, we endeavor to maintain the measurement of an individual-level treatment effect, through a multi-group experiment. Second, we might acknowledge the existence of interference and expand our thinking about what <em>is</em> a treatment effect.</p>
+<div id="defining-terms" class="section level2" number="9.2">
+<h2><span class="header-section-number">9.2</span> Defining Terms</h2>
+<ul>
+<li>What does it mean for one unit to interfere with another unit?
+<ul>
+<li>If two units communicate with one another, is this interference?</li>
+<li>If three units are all genetically related to one another, is this interference?</li>
+<li>If ten units all work in the same building, is this interference?</li>
+<li>If two partners share a tablet for browsing the internet, is this interference?</li>
+</ul></li>
+<li>Now, be <em>very</em> precise with your language: Using the term “potential-outcomes” how do Green and Gerber define interference?</li>
+</ul>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="two-stage-least-squares.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="learning-objectives-8.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="learning-objectives-8.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="defining-notation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
