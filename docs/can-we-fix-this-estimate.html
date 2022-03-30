@@ -24,7 +24,7 @@
 <meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
 
 
-<meta name="date" content="2022-03-09" />
+<meta name="date" content="2022-03-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -361,6 +361,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12" data-path="attrition-mediation-and-generalizability.html"><a href="attrition-mediation-and-generalizability.html"><i class="fa fa-check"></i><b>12</b> Attrition, Mediation, and Generalizability</a>
 <ul>
 <li class="chapter" data-level="12.1" data-path="learning-objectives-11.html"><a href="learning-objectives-11.html"><i class="fa fa-check"></i><b>12.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="12.2" data-path="why-doesnt-mediation-analysis-work.html"><a href="why-doesnt-mediation-analysis-work.html"><i class="fa fa-check"></i><b>12.2</b> Why doesn’t mediation analysis work?</a></li>
+<li class="chapter" data-level="12.3" data-path="endless-chain-of-why.html"><a href="endless-chain-of-why.html"><i class="fa fa-check"></i><b>12.3</b> Endless Chain of Why?</a></li>
+<li class="chapter" data-level="12.4" data-path="design-an-experiment-to-evaluate-these-possible-causes.html"><a href="design-an-experiment-to-evaluate-these-possible-causes.html"><i class="fa fa-check"></i><b>12.4</b> Design an experiment to evaluate these possible causes</a></li>
+<li class="chapter" data-level="12.5" data-path="generalizability.html"><a href="generalizability.html"><i class="fa fa-check"></i><b>12.5</b> Generalizability</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="applications-of-experiments.html"><a href="applications-of-experiments.html"><i class="fa fa-check"></i><b>13</b> Applications of Experiments</a>
 <ul>
@@ -390,17 +394,17 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="can-we-fix-this-estimate" class="section level2" number="10.5">
 <h2><span class="header-section-number">10.5</span> Can we fix this estimate?</h2>
 <p>The promise of two stage-least squares is that it produces unbiased estimates so long as we’re able to find something that is random.</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="can-we-fix-this-estimate.html#cb88-1" aria-hidden="true" tabindex="-1"></a>first_stage <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(schooling <span class="sc">~</span> lottery)] </span>
-<span id="cb88-2"><a href="can-we-fix-this-estimate.html#cb88-2" aria-hidden="true" tabindex="-1"></a>d[ , schooling_hat<span class="sc">:</span><span class="er">=</span> <span class="fu">predict</span>(first_stage)] </span>
-<span id="cb88-3"><a href="can-we-fix-this-estimate.html#cb88-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-4"><a href="can-we-fix-this-estimate.html#cb88-4" aria-hidden="true" tabindex="-1"></a>second_stage <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(Y <span class="sc">~</span> schooling_hat)]</span>
-<span id="cb88-5"><a href="can-we-fix-this-estimate.html#cb88-5" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(second_stage, <span class="at">vcov. =</span> vcovHC)</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="can-we-fix-this-estimate.html#cb87-1" aria-hidden="true" tabindex="-1"></a>first_stage <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(schooling <span class="sc">~</span> lottery)] </span>
+<span id="cb87-2"><a href="can-we-fix-this-estimate.html#cb87-2" aria-hidden="true" tabindex="-1"></a>d[ , schooling_hat<span class="sc">:</span><span class="er">=</span> <span class="fu">predict</span>(first_stage)] </span>
+<span id="cb87-3"><a href="can-we-fix-this-estimate.html#cb87-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-4"><a href="can-we-fix-this-estimate.html#cb87-4" aria-hidden="true" tabindex="-1"></a>second_stage <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(Y <span class="sc">~</span> schooling_hat)]</span>
+<span id="cb87-5"><a href="can-we-fix-this-estimate.html#cb87-5" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(second_stage, <span class="at">vcov. =</span> vcovHC)</span></code></pre></div>
 <pre><code>## 
 ## t test of coefficients:
 ## 
-##               Estimate Std. Error t value  Pr(&gt;|t|)    
-## (Intercept)   31.11628   14.28761  2.1778   0.02965 *  
-## schooling_hat  1.96779    0.46571  4.2253 2.604e-05 ***
+##               Estimate Std. Error  t value  Pr(&gt;|t|)    
+## (Intercept)   30.14611    0.15159 198.8665 &lt; 2.2e-16 ***
+## schooling_hat  1.96865    0.20180   9.7557 &lt; 2.2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <ul>
@@ -410,38 +414,38 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>Consider looking at the residuals from the first stage regression</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="can-we-fix-this-estimate.html#cb90-1" aria-hidden="true" tabindex="-1"></a>d[ , residuals <span class="sc">:</span><span class="er">=</span> <span class="fu">resid</span>(first_stage)]</span>
-<span id="cb90-2"><a href="can-we-fix-this-estimate.html#cb90-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb90-3"><a href="can-we-fix-this-estimate.html#cb90-3" aria-hidden="true" tabindex="-1"></a>ability_by_lottery <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(d) <span class="sc">+</span> </span>
-<span id="cb90-4"><a href="can-we-fix-this-estimate.html#cb90-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>ability, <span class="at">fill =</span> <span class="fu">as.factor</span>(lottery)) <span class="sc">+</span> </span>
-<span id="cb90-5"><a href="can-we-fix-this-estimate.html#cb90-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span> </span>
-<span id="cb90-6"><a href="can-we-fix-this-estimate.html#cb90-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&#39;Ability by lottery&#39;</span>)</span>
-<span id="cb90-7"><a href="can-we-fix-this-estimate.html#cb90-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb90-8"><a href="can-we-fix-this-estimate.html#cb90-8" aria-hidden="true" tabindex="-1"></a>residuals_lottery <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(d) <span class="sc">+</span> </span>
-<span id="cb90-9"><a href="can-we-fix-this-estimate.html#cb90-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>residuals, <span class="at">fill=</span><span class="fu">as.factor</span>(lottery)) <span class="sc">+</span> </span>
-<span id="cb90-10"><a href="can-we-fix-this-estimate.html#cb90-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span> </span>
-<span id="cb90-11"><a href="can-we-fix-this-estimate.html#cb90-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Residuals by lottery&#39;</span>)</span>
-<span id="cb90-12"><a href="can-we-fix-this-estimate.html#cb90-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb90-13"><a href="can-we-fix-this-estimate.html#cb90-13" aria-hidden="true" tabindex="-1"></a>residuals_ability <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(d) <span class="sc">+</span> </span>
-<span id="cb90-14"><a href="can-we-fix-this-estimate.html#cb90-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>residuals, <span class="at">fill=</span><span class="fu">as.factor</span>(ability<span class="sc">&gt;</span><span class="dv">10</span>)) <span class="sc">+</span> </span>
-<span id="cb90-15"><a href="can-we-fix-this-estimate.html#cb90-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span> </span>
-<span id="cb90-16"><a href="can-we-fix-this-estimate.html#cb90-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Residuals by ability&#39;</span>)</span>
-<span id="cb90-17"><a href="can-we-fix-this-estimate.html#cb90-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb90-18"><a href="can-we-fix-this-estimate.html#cb90-18" aria-hidden="true" tabindex="-1"></a>ability_by_lottery <span class="sc">/</span> residuals_lottery <span class="sc">/</span> residuals_ability</span></code></pre></div>
-<p><img src="241-livesession_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="can-we-fix-this-estimate.html#cb89-1" aria-hidden="true" tabindex="-1"></a>d[ , residuals <span class="sc">:</span><span class="er">=</span> <span class="fu">resid</span>(first_stage)]</span>
+<span id="cb89-2"><a href="can-we-fix-this-estimate.html#cb89-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-3"><a href="can-we-fix-this-estimate.html#cb89-3" aria-hidden="true" tabindex="-1"></a>ability_by_lottery <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(d) <span class="sc">+</span> </span>
+<span id="cb89-4"><a href="can-we-fix-this-estimate.html#cb89-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>ability, <span class="at">fill =</span> <span class="fu">as.factor</span>(lottery)) <span class="sc">+</span> </span>
+<span id="cb89-5"><a href="can-we-fix-this-estimate.html#cb89-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb89-6"><a href="can-we-fix-this-estimate.html#cb89-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&#39;Ability by lottery&#39;</span>)</span>
+<span id="cb89-7"><a href="can-we-fix-this-estimate.html#cb89-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-8"><a href="can-we-fix-this-estimate.html#cb89-8" aria-hidden="true" tabindex="-1"></a>residuals_lottery <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(d) <span class="sc">+</span> </span>
+<span id="cb89-9"><a href="can-we-fix-this-estimate.html#cb89-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>residuals, <span class="at">fill=</span><span class="fu">as.factor</span>(lottery)) <span class="sc">+</span> </span>
+<span id="cb89-10"><a href="can-we-fix-this-estimate.html#cb89-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb89-11"><a href="can-we-fix-this-estimate.html#cb89-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Residuals by lottery&#39;</span>)</span>
+<span id="cb89-12"><a href="can-we-fix-this-estimate.html#cb89-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-13"><a href="can-we-fix-this-estimate.html#cb89-13" aria-hidden="true" tabindex="-1"></a>residuals_ability <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(d) <span class="sc">+</span> </span>
+<span id="cb89-14"><a href="can-we-fix-this-estimate.html#cb89-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>residuals, <span class="at">fill=</span><span class="fu">as.factor</span>(ability<span class="sc">&gt;</span><span class="dv">10</span>)) <span class="sc">+</span> </span>
+<span id="cb89-15"><a href="can-we-fix-this-estimate.html#cb89-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb89-16"><a href="can-we-fix-this-estimate.html#cb89-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Residuals by ability&#39;</span>)</span>
+<span id="cb89-17"><a href="can-we-fix-this-estimate.html#cb89-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-18"><a href="can-we-fix-this-estimate.html#cb89-18" aria-hidden="true" tabindex="-1"></a>ability_by_lottery <span class="sc">/</span> residuals_lottery <span class="sc">/</span> residuals_ability</span></code></pre></div>
+<p><img src="241-livesession_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <p>Another way to think about this is in terms of how the predicted values are associated different features. Specifically, consider: Are the predicted values associated with having won the lottery? Are the predicted values associated with ability?</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="can-we-fix-this-estimate.html#cb91-1" aria-hidden="true" tabindex="-1"></a>predicted_lottery <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(d) <span class="sc">+</span> </span>
-<span id="cb91-2"><a href="can-we-fix-this-estimate.html#cb91-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.factor</span>(lottery), <span class="at">y=</span>schooling_hat) <span class="sc">+</span> </span>
-<span id="cb91-3"><a href="can-we-fix-this-estimate.html#cb91-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span> </span>
-<span id="cb91-4"><a href="can-we-fix-this-estimate.html#cb91-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&#39;Predicted Values and Lottery Winning&#39;</span>) </span>
-<span id="cb91-5"><a href="can-we-fix-this-estimate.html#cb91-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb91-6"><a href="can-we-fix-this-estimate.html#cb91-6" aria-hidden="true" tabindex="-1"></a>predicted_ability <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(d) <span class="sc">+</span> </span>
-<span id="cb91-7"><a href="can-we-fix-this-estimate.html#cb91-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>ability, <span class="at">y=</span>schooling_hat, <span class="at">color =</span> <span class="fu">as.factor</span>(lottery)) <span class="sc">+</span> </span>
-<span id="cb91-8"><a href="can-we-fix-this-estimate.html#cb91-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span> </span>
-<span id="cb91-9"><a href="can-we-fix-this-estimate.html#cb91-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&#39;Predicted Values and Ability&#39;</span>)</span>
-<span id="cb91-10"><a href="can-we-fix-this-estimate.html#cb91-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb91-11"><a href="can-we-fix-this-estimate.html#cb91-11" aria-hidden="true" tabindex="-1"></a>predicted_lottery <span class="sc">/</span> predicted_ability</span></code></pre></div>
-<p><img src="241-livesession_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="can-we-fix-this-estimate.html#cb90-1" aria-hidden="true" tabindex="-1"></a>predicted_lottery <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(d) <span class="sc">+</span> </span>
+<span id="cb90-2"><a href="can-we-fix-this-estimate.html#cb90-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.factor</span>(lottery), <span class="at">y=</span>schooling_hat) <span class="sc">+</span> </span>
+<span id="cb90-3"><a href="can-we-fix-this-estimate.html#cb90-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span> </span>
+<span id="cb90-4"><a href="can-we-fix-this-estimate.html#cb90-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&#39;Predicted Values and Lottery Winning&#39;</span>) </span>
+<span id="cb90-5"><a href="can-we-fix-this-estimate.html#cb90-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-6"><a href="can-we-fix-this-estimate.html#cb90-6" aria-hidden="true" tabindex="-1"></a>predicted_ability <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(d) <span class="sc">+</span> </span>
+<span id="cb90-7"><a href="can-we-fix-this-estimate.html#cb90-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>ability, <span class="at">y=</span>schooling_hat, <span class="at">color =</span> <span class="fu">as.factor</span>(lottery)) <span class="sc">+</span> </span>
+<span id="cb90-8"><a href="can-we-fix-this-estimate.html#cb90-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span> </span>
+<span id="cb90-9"><a href="can-we-fix-this-estimate.html#cb90-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&#39;Predicted Values and Ability&#39;</span>)</span>
+<span id="cb90-10"><a href="can-we-fix-this-estimate.html#cb90-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-11"><a href="can-we-fix-this-estimate.html#cb90-11" aria-hidden="true" tabindex="-1"></a>predicted_lottery <span class="sc">/</span> predicted_ability</span></code></pre></div>
+<p><img src="241-livesession_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 </div>
             </section>
 

@@ -24,7 +24,7 @@
 <meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
 
 
-<meta name="date" content="2022-03-09" />
+<meta name="date" content="2022-03-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -361,6 +361,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12" data-path="attrition-mediation-and-generalizability.html"><a href="attrition-mediation-and-generalizability.html"><i class="fa fa-check"></i><b>12</b> Attrition, Mediation, and Generalizability</a>
 <ul>
 <li class="chapter" data-level="12.1" data-path="learning-objectives-11.html"><a href="learning-objectives-11.html"><i class="fa fa-check"></i><b>12.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="12.2" data-path="why-doesnt-mediation-analysis-work.html"><a href="why-doesnt-mediation-analysis-work.html"><i class="fa fa-check"></i><b>12.2</b> Why doesn’t mediation analysis work?</a></li>
+<li class="chapter" data-level="12.3" data-path="endless-chain-of-why.html"><a href="endless-chain-of-why.html"><i class="fa fa-check"></i><b>12.3</b> Endless Chain of Why?</a></li>
+<li class="chapter" data-level="12.4" data-path="design-an-experiment-to-evaluate-these-possible-causes.html"><a href="design-an-experiment-to-evaluate-these-possible-causes.html"><i class="fa fa-check"></i><b>12.4</b> Design an experiment to evaluate these possible causes</a></li>
+<li class="chapter" data-level="12.5" data-path="generalizability.html"><a href="generalizability.html"><i class="fa fa-check"></i><b>12.5</b> Generalizability</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="applications-of-experiments.html"><a href="applications-of-experiments.html"><i class="fa fa-check"></i><b>13</b> Applications of Experiments</a>
 <ul>
@@ -416,27 +420,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>However, suppose that <code>schooling</code> which is the indicator that someone actually got schooling at a magnet school is correlated with ability, with family income, and with lottery.</li>
 </ul>
 <p>What would be the consequence of estimating an eventual outcome, using a naive regression?</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="natural-experiments.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2</span>)</span>
-<span id="cb86-2"><a href="natural-experiments.html#cb86-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb86-3"><a href="natural-experiments.html#cb86-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">data.table</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>)</span>
-<span id="cb86-4"><a href="natural-experiments.html#cb86-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb86-5"><a href="natural-experiments.html#cb86-5" aria-hidden="true" tabindex="-1"></a>d[ , <span class="st">&#39;:=&#39;</span>(</span>
-<span id="cb86-6"><a href="natural-experiments.html#cb86-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">ability       =</span> <span class="fu">rnorm</span>(.N, <span class="at">mean=</span><span class="dv">10</span>, <span class="at">sd=</span><span class="dv">1</span>), </span>
-<span id="cb86-7"><a href="natural-experiments.html#cb86-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">family_income =</span> <span class="fu">rnorm</span>(.N, <span class="at">mean=</span><span class="dv">20</span>, <span class="at">sd=</span><span class="dv">2</span>), </span>
-<span id="cb86-8"><a href="natural-experiments.html#cb86-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">lottery       =</span> <span class="fu">rnorm</span>(.N, <span class="at">mean=</span><span class="dv">10</span>, <span class="at">sd=</span><span class="dv">1</span>) <span class="sc">&gt;</span> <span class="dv">10</span></span>
-<span id="cb86-9"><a href="natural-experiments.html#cb86-9" aria-hidden="true" tabindex="-1"></a>  )]</span>
-<span id="cb86-10"><a href="natural-experiments.html#cb86-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb86-11"><a href="natural-experiments.html#cb86-11" aria-hidden="true" tabindex="-1"></a>d[ , schooling <span class="sc">:</span><span class="er">=</span> ability <span class="sc">+</span> family_income <span class="sc">+</span> lottery <span class="sc">+</span> <span class="fu">rnorm</span>(.N, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)]</span>
-<span id="cb86-12"><a href="natural-experiments.html#cb86-12" aria-hidden="true" tabindex="-1"></a>d[ , Y <span class="sc">:</span><span class="er">=</span> ability <span class="sc">+</span> family_income <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> schooling   <span class="sc">+</span> <span class="fu">rnorm</span>(.N, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)]</span>
-<span id="cb86-13"><a href="natural-experiments.html#cb86-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb86-14"><a href="natural-experiments.html#cb86-14" aria-hidden="true" tabindex="-1"></a>model_wrong <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(Y <span class="sc">~</span> schooling)]</span>
-<span id="cb86-15"><a href="natural-experiments.html#cb86-15" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model_wrong, <span class="at">vcov. =</span> vcovHC)</span></code></pre></div>
 <pre><code>## 
 ## t test of coefficients:
 ## 
-##             Estimate Std. Error t value  Pr(&gt;|t|)    
-## (Intercept) 5.304968   0.517585  10.249 &lt; 2.2e-16 ***
-## schooling   2.809706   0.016853 166.719 &lt; 2.2e-16 ***
+##              Estimate Std. Error t value  Pr(&gt;|t|)    
+## (Intercept) 30.107807   0.089085 337.967 &lt; 2.2e-16 ***
+## schooling    2.037821   0.075628  26.945 &lt; 2.2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <ul>

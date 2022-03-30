@@ -1,7 +1,86 @@
 # Attrition, Mediation, and Generalizability
 
+The theme for this week, as we mention in the async, is that these are **hard** problems -- in fact, each of these problems are so hard that we do not have an ability to place a clear, numerical answer on *any* of them. 
+
 ## Learning Objectives 
+
+At the conclusion of this week, students will be able to 
+
+1. **Recognize** attrition, **distinguish** the differences between attrition and compliance; **design** an experimental protocol to minimize the amount of attrition that is present in their data; and **analyze** an experiment that has experienced attrition to provide best-possible, defensible estimates of treatment.
+2. **Reason** about *why* one things causes another; **reason** about how this affects the ways that they design an experiment or treatment; but, also **communicate** why it is so difficult to produce clear evidence about *why* something has an effect. 
+3. 
+
+## Why doesn't mediation analysis work? 
+
+Here's a classic case, that is actually very recent. Gaesser et al (2020) present subjects with a short text that describes a stranger in need, for example, someone who has fallen off a motorcycle on the freeway. 
+
+- **Treatment Group** members were asked to imagine helping the person who had fallen of the motorcycle. 
+- **Control Group** members were asked to critique the the writing style of the text that they read. 
+- **Both Groups** were shown the same text. 
+
+Unsurprisingly, the authors found that the episodic simulation treatment increased individuals williness to help the stranger in need. But why? 
+
+The authors suppose that there are three possible reasons why episodic simulation might work differently.
+
+1. It might work differently depending on how well someone can visualize the scene (*scene vividness*) measured by response to the question, "The imagined scene of helping in your mind was [1. not coherent ... 7. coherent]." 
+2. It might work differently depending on how well someone can visualize the person (*person vividness*) measured by response to the question, "Did you visualize the person in your mind?" [1. No, not at all ... 7. vividly, as if currently there].
+3. It enables empathetic thought (*perspective taking*) measured by response to the question, "Did you consider the other person's thoughts and feelings?" [1. No, not at all ... 7. Strongly considered.] 
+
+Implicit mediation analysis works in the following way: 
+
+$$
+  \begin{aligned}
+    lm(M &\sim \alpha_{1} + aX_{i} + \epsilon_{1}) \\ 
+    lm(Y &\sim \alpha_{2} + cX_{i} + \epsilon_{2}) \\ 
+    lm(Y &\sim \alpha_{3} + bM_{i} + c'X_{i} + \epsilon_{3})
+  \end{aligned}
+$$
+
+Where people talk about $c$ as the "total effect" of $X$ on $Y$, and the "direct effect" of $X$ on $Y$ as the estimate that is reported in $c'$. 
+
+Can you draw this system out in the way that we did in 203? Use circles to represent concepts that you're measuring, and directed arrows to represent causal relationships between these concepts. 
+
+```{r}
+plot(x=1,y=1, xlim = c(0, 1), ylim = c(0,1), type = 'n')
+```
+
+Once you've written out these pathways, what could go wrong in this analysis? 
+
+## Endless Chain of Why? 
+
+Return back to the example that we talked about at the *very* first week of class, that living in a suburban environment causes a measurable increase in people's BMI. In a five-minute breakout room, produce an enumerated list of theories about *why* living in the suburbs might increase someone's BMI. 
+
+1. The team that lists the greatest number possible causes gets a gold star. 
+2. The team that lists the most hilarious possible cause also gets a gold star. 
+
+## Design an experiment to evaluate these possible causes 
+
+Now that we've got the list of causes created, and discussed, let's pick a smaller set of the possible causes, and have each group go back into their breakout room for five more minutes to **specifically** design an experiment that would produce evidence in support of (or in contrast to) their specific theory. Here's the thing: in creating your test, you're trying **as best as possible** to isolate one, and only one mechanism. So, an experiment that is able to change only a single mechanism is preferred to an experiment that tests who mechanisms at once. 
+
+When we come back from this breakout, each team will spend three minutes presenting the design that they produced to test their theory, and the other groups will reason about whether there are other mechanisms that *could* be at play in producing differences in outcomes.
+
+## Generalizability 
+
+Recall the Arizona towel example that we read in *Field Experiments*. It goes something like this, "There is a door hanger that goes into the bathroom of a Best Western that asks individuals to reuse their towels in an effort to lower environmental impact. There is a large effect in the first period of the study, but there is a smaller, and statistically insignificant effect in the second period of the study.
+
+Bates and Glennerster suggest four misguided approaches that might better be called, ways that other people think about generalizability, but the headings are rather misleading. Recast the headings into four more descriptive sentences instead. I'll do the first for you:
+
+1. An effect learned in a particular context (or location) can never be informative of another location.
+2. 
+3. 
+4. 
+
+Bates and Glenerster suggest a second four-item way to instead reason about generalizability. What are these four steps?
 
 1. 
 2. 
 3. 
+4. 
+
+Describe what each step means?
+
+Now, suppose that you're the decision-maker who has to decide whether to run the experiment signs about towel re-use in Arizona (now for a third trial). How woud you use the four-step framework to evaluate whether to run another experiment?
+
+Throughout the async, David Broockman highlights the extreme difficulty in generating data that tests mechanisms. So, isn't the Bates and Glennerster argument tantamount to saying, "Just think about this impossible thing that you're never going to be able to measure?" Or, can you use their framework profitably to generalize to other contexts?
+
+

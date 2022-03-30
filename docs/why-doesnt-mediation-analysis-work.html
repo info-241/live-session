@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8.2 Starting conversation | Experiments and Causality</title>
+  <title>12.2 Why doesn’t mediation analysis work? | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8.2 Starting conversation | Experiments and Causality" />
+  <meta property="og:title" content="12.2 Why doesn’t mediation analysis work? | Experiments and Causality" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/coffee.jpeg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8.2 Starting conversation | Experiments and Causality" />
+  <meta name="twitter:title" content="12.2 Why doesn’t mediation analysis work? | Experiments and Causality" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="learning-objectives-7.html"/>
-<link rel="next" href="design-notation.html"/>
+<link rel="prev" href="learning-objectives-11.html"/>
+<link rel="next" href="endless-chain-of-why.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -391,26 +391,42 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="starting-conversation" class="section level2" number="8.2">
-<h2><span class="header-section-number">8.2</span> Starting conversation</h2>
-<p>Life on campus is exciting! Whether students are involved in affinity groups, advocacy groups, protest groups, or just party groups, student life on campus is exciting. We’re not to be left out! We’re not to be denied the chance to make our voices heard.</p>
-<p>But, because we’re usually calling in via Zoom, we don’t have the typical problems that students and faculty complain about – parking, enrollment, sports tickets, and beer availability. What we do have to complain about is that “<em>god awful</em>” sound of the bell-tower ringing every hour on the hour.</p>
-<p>Suppose that we are to discuss this <em>very.</em> <em>important.</em> <em>issue.</em> before a panel of the deans and University administration. And, further suppose that in light of global events of the past several years, they’re actually amenable to what we’re proposing – cutting off those bells, and providing the Berkeley Carillon player a generous retirement.</p>
-<div class="figure">
-<img src="https://www.youtube.com/watch?v=K_8vta9XDpc" alt="" />
-<p class="caption">University Carillonist</p>
-</div>
-<p>However, there’s a catch. They are worried that taking such an action would be detrimental to the student experience on campus, and they would like to measure the causal effect of playing vs. not playing the Carillon while students are changing classes.</p>
-<p>In breakout rooms, please design an experiment that would be able to measure the difference in student experience. You will have to propose a measurement, a timescale for that measurement, and a feasible randomization that <em>could actually</em> occur given the real-world constraints that what is at question are loud sounds emanating from a 300 foot tower in the middle of a large, busy campus.</p>
-<p>If there are any limitations to what you design, please voice those concerns and talk about why they arise, relative to an <em>ideal</em> experiment (that you are proably unable to conduct).</p>
+<div id="why-doesnt-mediation-analysis-work" class="section level2" number="12.2">
+<h2><span class="header-section-number">12.2</span> Why doesn’t mediation analysis work?</h2>
+<p>Here’s a classic case, that is actually very recent. Gaesser et al (2020) present subjects with a short text that describes a stranger in need, for example, someone who has fallen off a motorcycle on the freeway.</p>
+<ul>
+<li><strong>Treatment Group</strong> members were asked to imagine helping the person who had fallen of the motorcycle.</li>
+<li><strong>Control Group</strong> members were asked to critique the the writing style of the text that they read.</li>
+<li><strong>Both Groups</strong> were shown the same text.</li>
+</ul>
+<p>Unsurprisingly, the authors found that the episodic simulation treatment increased individuals williness to help the stranger in need. But why?</p>
+<p>The authors suppose that there are three possible reasons why episodic simulation might work differently.</p>
+<ol style="list-style-type: decimal">
+<li>It might work differently depending on how well someone can visualize the scene (<em>scene vividness</em>) measured by response to the question, “The imagined scene of helping in your mind was [1. not coherent … 7. coherent].”</li>
+<li>It might work differently depending on how well someone can visualize the person (<em>person vividness</em>) measured by response to the question, “Did you visualize the person in your mind?” [1. No, not at all … 7. vividly, as if currently there].</li>
+<li>It enables empathetic thought (<em>perspective taking</em>) measured by response to the question, “Did you consider the other person’s thoughts and feelings?” [1. No, not at all … 7. Strongly considered.]</li>
+</ol>
+<p>Implicit mediation analysis works in the following way:</p>
+<p><span class="math display">\[
+  \begin{aligned}
+    lm(M &amp;\sim \alpha_{1} + aX_{i} + \epsilon_{1}) \\ 
+    lm(Y &amp;\sim \alpha_{2} + cX_{i} + \epsilon_{2}) \\ 
+    lm(Y &amp;\sim \alpha_{3} + bM_{i} + c&#39;X_{i} + \epsilon_{3})
+  \end{aligned}
+\]</span></p>
+<p>Where people talk about <span class="math inline">\(c\)</span> as the “total effect” of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span>, and the “direct effect” of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span> as the estimate that is reported in <span class="math inline">\(c&#39;\)</span>.</p>
+<p>Can you draw this system out in the way that we did in 203? Use circles to represent concepts that you’re measuring, and directed arrows to represent causal relationships between these concepts.</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="why-doesnt-mediation-analysis-work.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x=</span><span class="dv">1</span>,<span class="at">y=</span><span class="dv">1</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">type =</span> <span class="st">&#39;n&#39;</span>)</span></code></pre></div>
+<p><img src="241-livesession_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p>Once you’ve written out these pathways, what could go wrong in this analysis?</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="learning-objectives-7.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="design-notation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="learning-objectives-11.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="endless-chain-of-why.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

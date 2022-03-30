@@ -71,7 +71,7 @@ Consider simulated data that is created in the following way:
 
 What would be the consequence of estimating an eventual outcome, using a naive regression?
 
-```{r make iv data}
+```{r make iv data, echo=FALSE}
 set.seed(2)
 
 d <- data.table(id = 1:1000)
@@ -82,8 +82,8 @@ d[ , ':='(
   lottery       = rnorm(.N, mean=10, sd=1) > 10
   )]
 
-d[ , schooling := ability + family_income + lottery + rnorm(.N, mean=0, sd=1)]
-d[ , Y := ability + family_income + 2 * schooling   + rnorm(.N, mean=0, sd=1)]
+d[ , schooling := 1.0 * lottery         + rnorm(.N, mean=0, sd=1)]
+d[ , Y         := ability + family_income + 2 * schooling   + rnorm(.N, mean=0, sd=1)]
 
 model_wrong <- d[ , lm(Y ~ schooling)]
 coeftest(model_wrong, vcov. = vcovHC)
@@ -92,7 +92,7 @@ coeftest(model_wrong, vcov. = vcovHC)
 -   How close, or far from the truth is this estimate? How sure are you that this is different from zero?
 -   What relationship would you have to change in this data generating process in order to flip the bias of the estimate from estimating a value that is higher than the truth, to estimate a value that is lower than the truth?
 
-## Can we fix this estimate? 
+## Can we fix this estimate?
 
 The promise of two stage-least squares is that it produces unbiased estimates so long as we're able to find something that is random.
 
@@ -149,15 +149,15 @@ predicted_ability <- ggplot(d) +
 predicted_lottery / predicted_ability
 ```
 
-## Regression Discontinuity 
+## Regression Discontinuity
 
 Regression discontinuity is a *really* clever idea, that when the data presents itself and the analysis is done correctly, provides a *very* compelling argument for having captured a causal effect.
 
 The key insight in the case of regression discontinuity is that we might *not* need something that is actually random in order to produce a credible treatment effect. All we need is treatment assignment mechanism that is not correlated with potential outcomes. And, the argument for regression discontinuity is that if you make a comparison set similar enough along a scoring variable, then it would be very hard for people on one-side or the other-side of an arbitrary point in the scoring variable to be different.
 
-### Why do RDD designs "work"? 
+### Why do RDD designs "work"?
 
--   What part of the RDD design is producing an unbiased causal estimate?
+-   What part of the RDD is producing an unbiased causal estimate?
 
 -   Why is this part of he design/data generating process able to produce this unbiased causal estimate?
 
@@ -165,7 +165,7 @@ The key insight in the case of regression discontinuity is that we might *not* n
 
 -   How do I identify *where* the cut-point in the forcing variable is located?
 
-### Just how common are opportunities for RDD 
+### Just how common are opportunities for RDD
 
 Here's a controversial point of view: Everything that we do as data scientists is to make low-dimensional representations of higher dimensional space. Let's have a jam-session where the class and instructors take turns naming places where a RDD could be run. We'll start with:
 
@@ -173,7 +173,7 @@ Here's a controversial point of view: Everything that we do as data scientists i
 
 -   Now you...
 
-### Working with Regression Discontinuity Designs 
+### Working with Regression Discontinuity Designs
 
 Let's look at see what is happening when we're working with RDD designs. To start, let's build some data. Read through each of the lines below, and note what is happening with the data being created. (*Notice that we are chaining together the data.table after we create `y0` and again after we create `y1`.*)
 
@@ -183,7 +183,7 @@ N <- 1000
 
 d <- data.table(id=1:N)
 d[ , ':='(
-  tau     = rnorm(.N, mean=3, sd=2), 
+  tau     = rnorm(.N, mean=0, sd=2), 
   running = runif(.N, min=-2, max=2), 
   y0      = runif(.N, min=-1, max=1)) ][ , 
   y1     := y0 + tau ][ , 
@@ -202,11 +202,9 @@ ggplot(d) +
   aes(x=running, y=Y) + 
   geom_point() + 
   stat_smooth(method = 'lm', se=FALSE)
-
 ```
 
 ```{r second rdd plot}
-
 d[ , plot(x=running, y=Y, pch = 19, col=berkeley_blue)]
   d[running < 0, lines(lowess(running,Y), lwd=10, col=california_gold)]
   d[running > 0, lines(lowess(running,Y), lwd=10, col=california_gold)]
@@ -239,12 +237,14 @@ d[ , plot(x=running, y=Y, col=berkeley_blue, pch=19)]
 -   What if you break that smoother at the policy point?
 
 ```{r}
-d[ , plot(x=running, y=Y, col=berkeley_blue, pch=19)]
-  d[running < 5 , lines(lowess(running, Y), col=california_gold, lwd=10)]
-  d[running > 5 , lines(lowess(running, Y), col=california_gold, lwd=10)]
+  d[running < 5.2 & running > 4.8 , plot(x=running, y=Y, col=berkeley_blue, pch=19)]
+    d[running < 5 , lines(lowess(running, Y), col=california_gold, lwd=10)]
+    d[running > 5 , lines(lowess(running, Y), col=california_gold, lwd=10)]  
+
+
 ```
 
-### What about even more challenging data? 
+### What about even more challenging data?
 
 ```{r}
 d <- data.frame(running = runif(1000, min = 0, max = 10), 
