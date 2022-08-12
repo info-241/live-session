@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.11 What about clustered standard errors? | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.11 What about clustered standard errors? | Experiments and Causality" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
@@ -24,7 +23,7 @@
 <meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
 
 
-<meta name="date" content="2022-03-30" />
+<meta name="date" content="2022-08-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="robust-standard-errors.html"/>
 <link rel="next" href="heterogeneous-treatment-effects.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -357,6 +356,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11" data-path="problems-and-diagnostics.html"><a href="problems-and-diagnostics.html"><i class="fa fa-check"></i><b>11</b> Problems and Diagnostics</a>
 <ul>
 <li class="chapter" data-level="11.1" data-path="learning-objectives-10.html"><a href="learning-objectives-10.html"><i class="fa fa-check"></i><b>11.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="11.2" data-path="goals-of-an-expermient.html"><a href="goals-of-an-expermient.html"><i class="fa fa-check"></i><b>11.2</b> Goals of an Expermient</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="attrition-mediation-and-generalizability.html"><a href="attrition-mediation-and-generalizability.html"><i class="fa fa-check"></i><b>12</b> Attrition, Mediation, and Generalizability</a>
 <ul>
@@ -391,16 +391,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="what-about-clustered-standard-errors" class="section level2" number="6.11">
-<h2><span class="header-section-number">6.11</span> What about clustered standard errors?</h2>
+<div id="what-about-clustered-standard-errors" class="section level2 hasAnchor" number="6.11">
+<h2><span class="header-section-number">6.11</span> What about clustered standard errors?<a href="what-about-clustered-standard-errors.html#what-about-clustered-standard-errors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Ok, now we’re a little deeper down the rabbit hole. As we’ve talked about, clustered standard errors acknowledge that you’ve got treatment assigned at the cluster level, and that there may be significant covariance in potential outcomes at that cluster level. If this is the case, then we have functionally fewer observations than we have nominally, and we also have less power to detect an effect.</p>
 <p>We’ve provided you a function to calculate the clustered standard errrors in the homework. And, we’ve had some considerably back-and-forth between two people who are named Alex on slack.</p>
 <p>Another, relatively recently developed package now exists that <em>shoud</em> make considerably more simple the task of estimating clustered standard errors. The package has been developed since the recording of the async material, so we’ll do the work to present it here.</p>
 <p>The package is the <code>multiwayvcov</code>.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="what-about-clustered-standard-errors.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;PetersenCL&quot;</span>, <span class="at">package =</span> <span class="st">&quot;sandwich&quot;</span>)</span>
-<span id="cb54-2"><a href="what-about-clustered-standard-errors.html#cb54-2" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> PetersenCL)</span>
-<span id="cb54-3"><a href="what-about-clustered-standard-errors.html#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-4"><a href="what-about-clustered-standard-errors.html#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y ~ x, data = PetersenCL)
@@ -419,8 +415,6 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## Residual standard error: 2.005 on 4998 degrees of freedom
 ## Multiple R-squared:  0.2078, Adjusted R-squared:  0.2076 
 ## F-statistic:  1311 on 1 and 4998 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="what-about-clustered-standard-errors.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="do">## when we clusetr</span></span>
-<span id="cb56-2"><a href="what-about-clustered-standard-errors.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(m1, <span class="fu">vcovCL</span>(m1, <span class="sc">~</span> firm))</span></code></pre></div>
 <pre><code>## 
 ## t test of coefficients:
 ## 
@@ -429,8 +423,6 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## x           1.034833   0.050596 20.4530   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="what-about-clustered-standard-errors.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="do">## when we don&#39;t cluster</span></span>
-<span id="cb58-2"><a href="what-about-clustered-standard-errors.html#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(m1, <span class="fu">vcov</span>(m1))</span></code></pre></div>
 <pre><code>## 
 ## t test of coefficients:
 ## 
@@ -439,8 +431,6 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## x           1.034833   0.028583 36.2041   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="what-about-clustered-standard-errors.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cluster by both firm, and year</span></span>
-<span id="cb60-2"><a href="what-about-clustered-standard-errors.html#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(m1, <span class="fu">vcovCL</span>(m1, <span class="sc">~</span> firm <span class="sc">+</span> year))</span></code></pre></div>
 <pre><code>## 
 ## t test of coefficients:
 ## 
@@ -450,12 +440,6 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Pretty print that.</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="what-about-clustered-standard-errors.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(m1, m1, m1,</span>
-<span id="cb62-2"><a href="what-about-clustered-standard-errors.html#cb62-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">se =</span> <span class="fu">list</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcov</span>(m1))), </span>
-<span id="cb62-3"><a href="what-about-clustered-standard-errors.html#cb62-3" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovCL</span>(m1, <span class="sc">~</span> firm))), </span>
-<span id="cb62-4"><a href="what-about-clustered-standard-errors.html#cb62-4" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovCL</span>(m1, <span class="sc">~</span> firm <span class="sc">+</span> year)))),</span>
-<span id="cb62-5"><a href="what-about-clustered-standard-errors.html#cb62-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">&#39;text&#39;</span>,</span>
-<span id="cb62-6"><a href="what-about-clustered-standard-errors.html#cb62-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">header =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ## ======================================================================
 ##                                          Dependent variable:          

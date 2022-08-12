@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.6 Applying Randomization Inference | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.6 Applying Randomization Inference | Experiments and Causality" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
@@ -24,7 +23,7 @@
 <meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
 
 
-<meta name="date" content="2022-03-30" />
+<meta name="date" content="2022-08-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="randomization-inference.html"/>
 <link rel="next" href="comparing-randomization-inference-and-frequentist-inference.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -357,6 +356,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11" data-path="problems-and-diagnostics.html"><a href="problems-and-diagnostics.html"><i class="fa fa-check"></i><b>11</b> Problems and Diagnostics</a>
 <ul>
 <li class="chapter" data-level="11.1" data-path="learning-objectives-10.html"><a href="learning-objectives-10.html"><i class="fa fa-check"></i><b>11.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="11.2" data-path="goals-of-an-expermient.html"><a href="goals-of-an-expermient.html"><i class="fa fa-check"></i><b>11.2</b> Goals of an Expermient</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="attrition-mediation-and-generalizability.html"><a href="attrition-mediation-and-generalizability.html"><i class="fa fa-check"></i><b>12</b> Attrition, Mediation, and Generalizability</a>
 <ul>
@@ -391,37 +391,19 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="applying-randomization-inference" class="section level2" number="3.6">
-<h2><span class="header-section-number">3.6</span> Applying Randomization Inference</h2>
-<div id="make-data" class="section level3" number="3.6.1">
-<h3><span class="header-section-number">3.6.1</span> Make Data</h3>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="applying-randomization-inference.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb17-2"><a href="applying-randomization-inference.html#cb17-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
-<span id="cb17-3"><a href="applying-randomization-inference.html#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, </span>
-<span id="cb17-4"><a href="applying-randomization-inference.html#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">D  =</span> <span class="fu">rep</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">each =</span> <span class="dv">50</span>), </span>
-<span id="cb17-5"><a href="applying-randomization-inference.html#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Y  =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">50</span>, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="fl">2.5</span>), <span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">50</span>, <span class="at">mean=</span><span class="dv">1</span>, <span class="at">sd=</span><span class="fl">2.5</span>))</span>
-<span id="cb17-6"><a href="applying-randomization-inference.html#cb17-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div id="applying-randomization-inference" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Applying Randomization Inference<a href="applying-randomization-inference.html#applying-randomization-inference" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="make-data" class="section level3 hasAnchor" number="3.6.1">
+<h3><span class="header-section-number">3.6.1</span> Make Data<a href="applying-randomization-inference.html#make-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
-<div id="plot-data" class="section level3" number="3.6.2">
-<h3><span class="header-section-number">3.6.2</span> Plot Data</h3>
+<div id="plot-data" class="section level3 hasAnchor" number="3.6.2">
+<h3><span class="header-section-number">3.6.2</span> Plot Data<a href="applying-randomization-inference.html#plot-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In the following plot, are you able to assess whether there is a treatment effect simply by looking at the distributions?</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="applying-randomization-inference.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d) <span class="sc">+</span> </span>
-<span id="cb18-2"><a href="applying-randomization-inference.html#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>Y, <span class="at">fill=</span><span class="fu">as.factor</span>(D)) <span class="sc">+</span> </span>
-<span id="cb18-3"><a href="applying-randomization-inference.html#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span> </span>
-<span id="cb18-4"><a href="applying-randomization-inference.html#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb18-5"><a href="applying-randomization-inference.html#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x        =</span> <span class="st">&#39;Distribution of outcomes&#39;</span>, </span>
-<span id="cb18-6"><a href="applying-randomization-inference.html#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y        =</span> <span class="cn">NULL</span>, </span>
-<span id="cb18-7"><a href="applying-randomization-inference.html#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title    =</span> <span class="st">&#39;Distribution of outcomes, by treatment&#39;</span>, </span>
-<span id="cb18-8"><a href="applying-randomization-inference.html#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill    =</span> <span class="st">&#39;Treatment</span><span class="sc">\n</span><span class="st">Assignment&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb18-9"><a href="applying-randomization-inference.html#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(</span>
-<span id="cb18-10"><a href="applying-randomization-inference.html#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&#39;#003262&#39;</span>, <span class="st">&#39;#FDB515&#39;</span>)</span>
-<span id="cb18-11"><a href="applying-randomization-inference.html#cb18-11" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="241-livesession_files/figure-html/plot%20data-1.png" width="672" /></p>
 </div>
-<div id="classic-test" class="section level3" number="3.6.3">
-<h3><span class="header-section-number">3.6.3</span> Classic Test</h3>
+<div id="classic-test" class="section level3 hasAnchor" number="3.6.3">
+<h3><span class="header-section-number">3.6.3</span> Classic Test<a href="applying-randomization-inference.html#classic-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>If you were to write a <em>classic</em> test against this data, given what you know about how it was generated, what would be the classic test? What do you learn from this test, and what is the interpretation?</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="applying-randomization-inference.html#cb19-1" aria-hidden="true" tabindex="-1"></a>d[ , <span class="fu">t.test</span>(Y <span class="sc">~</span> D)]</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -434,8 +416,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## mean in group 0 mean in group 1 
 ##       0.2511207       1.2933161</code></pre>
 </div>
-<div id="randomization-inference-test" class="section level3" number="3.6.4">
-<h3><span class="header-section-number">3.6.4</span> Randomization Inference Test</h3>
+<div id="randomization-inference-test" class="section level3 hasAnchor" number="3.6.4">
+<h3><span class="header-section-number">3.6.4</span> Randomization Inference Test<a href="applying-randomization-inference.html#randomization-inference-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now, instead suppose that you were to conduct the randomization inference. What are the steps to the algorithm for producing a result using randomization?</p>
 <ol style="list-style-type: decimal">
 <li>State the null hypothesis</li>
@@ -445,27 +427,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>Repeat the permutation and estimation (step 4) process repeatedly to sample from the randomization inference distribution of the statistic</li>
 <li>Examine randomization inference distribution</li>
 </ol>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="applying-randomization-inference.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 1. The sharp null is that tau = 0</span></span>
-<span id="cb21-2"><a href="applying-randomization-inference.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 2. Compute the statistic of interest</span></span>
-<span id="cb21-3"><a href="applying-randomization-inference.html#cb21-3" aria-hidden="true" tabindex="-1"></a>true_ate <span class="ot">&lt;-</span> d[ , .(<span class="at">group_mean =</span> <span class="fu">mean</span>(Y)), keyby <span class="ot">=</span> .(D)][ , group_mean[D<span class="sc">==</span><span class="dv">1</span>] <span class="sc">-</span> group_mean[D<span class="sc">==</span><span class="dv">0</span>]]</span>
-<span id="cb21-4"><a href="applying-randomization-inference.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 3, 4, 5. Permute the treatment assignment labels and repeatedly compute the statistic of interest </span></span>
-<span id="cb21-5"><a href="applying-randomization-inference.html#cb21-5" aria-hidden="true" tabindex="-1"></a>ri_distribution <span class="ot">&lt;-</span> <span class="fu">replicate</span>(</span>
-<span id="cb21-6"><a href="applying-randomization-inference.html#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">n=</span><span class="dv">10000</span>, </span>
-<span id="cb21-7"><a href="applying-randomization-inference.html#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">expr =</span> d[ , .(<span class="at">group_mean =</span> <span class="fu">mean</span>(Y)), <span class="at">keyby =</span> .(<span class="at">ri_treatment =</span> <span class="fu">sample</span>(D))][ , </span>
-<span id="cb21-8"><a href="applying-randomization-inference.html#cb21-8" aria-hidden="true" tabindex="-1"></a>            group_mean[ri_treatment<span class="sc">==</span><span class="dv">1</span>] <span class="sc">-</span> group_mean[ri_treatment<span class="sc">==</span><span class="dv">0</span>]]</span>
-<span id="cb21-9"><a href="applying-randomization-inference.html#cb21-9" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb21-10"><a href="applying-randomization-inference.html#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Examine distribution</span></span>
-<span id="cb21-11"><a href="applying-randomization-inference.html#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb21-12"><a href="applying-randomization-inference.html#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x=</span>ri_distribution), <span class="at">fill =</span> <span class="st">&#39;#003262&#39;</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
-<span id="cb21-13"><a href="applying-randomization-inference.html#cb21-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> true_ate, <span class="at">color =</span> <span class="st">&#39;#FDB515&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb21-14"><a href="applying-randomization-inference.html#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb21-15"><a href="applying-randomization-inference.html#cb21-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">x     =</span> <span class="st">&#39;Randomization Inference Distribution and Estimated ATE&#39;</span>, </span>
-<span id="cb21-16"><a href="applying-randomization-inference.html#cb21-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">y     =</span>  <span class="cn">NULL</span>, </span>
-<span id="cb21-17"><a href="applying-randomization-inference.html#cb21-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&#39;Randomization Inference Distribution and Estimated ATE&#39;</span>)</span></code></pre></div>
 <p><img src="241-livesession_files/figure-html/randomization%20inference%20loop-1.png" width="672" /></p>
 <p>How much of the randomization inference is more extreme than the treatment effect?</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="applying-randomization-inference.html#cb22-1" aria-hidden="true" tabindex="-1"></a>ri_p_value <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">abs</span>(ri_distribution) <span class="sc">&gt;</span> <span class="fu">abs</span>(true_ate))</span>
-<span id="cb22-2"><a href="applying-randomization-inference.html#cb22-2" aria-hidden="true" tabindex="-1"></a>ri_p_value</span></code></pre></div>
 <pre><code>## [1] 0.0226</code></pre>
 <p>Notice that 0.023 of the randomization inference distribution is more extreme than the observed treatment effect. How does this compare to the t-test p-value that we calculated above?</p>
 </div>

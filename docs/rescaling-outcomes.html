@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5.3 Rescaling Outcomes | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5.3 Rescaling Outcomes | Experiments and Causality" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
@@ -24,7 +23,7 @@
 <meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
 
 
-<meta name="date" content="2022-03-30" />
+<meta name="date" content="2022-08-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="covariates.html"/>
 <link rel="next" href="combining-designs.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -357,6 +356,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11" data-path="problems-and-diagnostics.html"><a href="problems-and-diagnostics.html"><i class="fa fa-check"></i><b>11</b> Problems and Diagnostics</a>
 <ul>
 <li class="chapter" data-level="11.1" data-path="learning-objectives-10.html"><a href="learning-objectives-10.html"><i class="fa fa-check"></i><b>11.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="11.2" data-path="goals-of-an-expermient.html"><a href="goals-of-an-expermient.html"><i class="fa fa-check"></i><b>11.2</b> Goals of an Expermient</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="attrition-mediation-and-generalizability.html"><a href="attrition-mediation-and-generalizability.html"><i class="fa fa-check"></i><b>12</b> Attrition, Mediation, and Generalizability</a>
 <ul>
@@ -391,8 +391,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="rescaling-outcomes" class="section level2" number="5.3">
-<h2><span class="header-section-number">5.3</span> Rescaling Outcomes</h2>
+<div id="rescaling-outcomes" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Rescaling Outcomes<a href="rescaling-outcomes.html#rescaling-outcomes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Suppose that in your design, you are able to measure every unit twice, once before they are exposed to treatment, and again after they are exposed to treatment.</p>
 <p>Suppose that we have the following grammar, or notation to describe the experiment:</p>
 <ul>
@@ -403,21 +403,21 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><code>Y</code> is an indicator that we have made a measurement of a unit.</li>
 </ul>
 <p>With these operators set up, we can think about three different experiment designs.</p>
-<div id="design-one-two-group-post-test" class="section level3" number="5.3.1">
-<h3><span class="header-section-number">5.3.1</span> Design One: Two Group Post-Test</h3>
+<div id="design-one-two-group-post-test" class="section level3 hasAnchor" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Design One: Two Group Post-Test<a href="rescaling-outcomes.html#design-one-two-group-post-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To this point, and in nearly every essay proposed for the first assignment in the class, student had in mind a two group, post-test only design. In this experiment design, we randomize an experimental population into two groups, assign treatment to one of these groups, and then observe outcomes. In many ways, the one group pre-post design is the simplest design to implement.</p>
 <pre><code>R X Y 
 R O Y</code></pre>
 </div>
-<div id="design-two-one-group-pre-test-post-test" class="section level3" number="5.3.2">
-<h3><span class="header-section-number">5.3.2</span> Design Two: One Group, Pre-test Post-test</h3>
+<div id="design-two-one-group-pre-test-post-test" class="section level3 hasAnchor" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Design Two: One Group, Pre-test Post-test<a href="rescaling-outcomes.html#design-two-one-group-pre-test-post-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In this case, we take the units that are a part of our experiment, expose them to control and measure these units outcomes, and then expose them to treatment and measure these units outcomes.</p>
 <p>We might write out this design in the following way:</p>
 <pre><code>N O Y1 X Y2</code></pre>
 <p>Does this meet the base definition of an experiment that you’ve written about in your homework? Would David Reiley think that this is an experiment? Would Green and Gerber think that this is an experiment?</p>
 </div>
-<div id="evaluate-the-strengths-of-the-two-designs" class="section level3" number="5.3.3">
-<h3><span class="header-section-number">5.3.3</span> Evaluate the strengths of the two designs</h3>
+<div id="evaluate-the-strengths-of-the-two-designs" class="section level3 hasAnchor" number="5.3.3">
+<h3><span class="header-section-number">5.3.3</span> Evaluate the strengths of the two designs<a href="rescaling-outcomes.html#evaluate-the-strengths-of-the-two-designs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Under what circumstances would you prefer to one or another of these two designs?</p>
 <ul>
 <li>Suppose that you are attempting to learn what part of your code on problem set 2 is leading to a <span class="math inline">\(\LaTeX\)</span> compile error. Which of the experiments would you propose to undertake?</li>

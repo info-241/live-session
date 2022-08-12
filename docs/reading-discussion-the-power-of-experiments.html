@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.4 Reading Discussion: The Power of Experiments | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.4 Reading Discussion: The Power of Experiments | Experiments and Causality" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
@@ -24,7 +23,7 @@
 <meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
 
 
-<meta name="date" content="2022-03-30" />
+<meta name="date" content="2022-08-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="this-causes-that.html"/>
 <link rel="next" href="potential-outcomes.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -357,6 +356,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11" data-path="problems-and-diagnostics.html"><a href="problems-and-diagnostics.html"><i class="fa fa-check"></i><b>11</b> Problems and Diagnostics</a>
 <ul>
 <li class="chapter" data-level="11.1" data-path="learning-objectives-10.html"><a href="learning-objectives-10.html"><i class="fa fa-check"></i><b>11.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="11.2" data-path="goals-of-an-expermient.html"><a href="goals-of-an-expermient.html"><i class="fa fa-check"></i><b>11.2</b> Goals of an Expermient</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="attrition-mediation-and-generalizability.html"><a href="attrition-mediation-and-generalizability.html"><i class="fa fa-check"></i><b>12</b> Attrition, Mediation, and Generalizability</a>
 <ul>
@@ -391,11 +391,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="reading-discussion-the-power-of-experiments" class="section level2" number="2.4">
-<h2><span class="header-section-number">2.4</span> Reading Discussion: The Power of Experiments</h2>
+<div id="reading-discussion-the-power-of-experiments" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Reading Discussion: The Power of Experiments<a href="reading-discussion-the-power-of-experiments.html#reading-discussion-the-power-of-experiments" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><em>The Power of Experiments</em> starts the discussion of experimentation in the workplace with what is, for the course instructors, a uniquely pedestrian example, increasing contributions to taxes. In particular, Her Majesty’s Revenue and Customs sends different versions of a letter to British taxpayers, and observes that different language leads to different amounts of taxes being paid.</p>
-<div id="chapter-one-the-power-of-experiments" class="section level3" number="2.4.1">
-<h3><span class="header-section-number">2.4.1</span> Chapter One: The Power of Experiments</h3>
+<div id="chapter-one-the-power-of-experiments" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Chapter One: The Power of Experiments<a href="reading-discussion-the-power-of-experiments.html#chapter-one-the-power-of-experiments" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
 <li>Is it <em>actually</em> a “big-deal” to increase tax compliance by 2 percentage points?</li>
 <li>On page five, the book identifies five “one-liners” that HMRC chose to send to taxpayers:</li>
@@ -409,8 +409,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>In order for Pasteur to be declared the winner of the vaccine argument, the observers said that every control group sheep had to die and every treatment group (i.e. vaccine-receiving) sheep had to live. Is this a fair burden of proof? Do the frequentest tests that we developed in 203 and are going to use here in 241 set a higher or lower bar than Pasteur faced? What are the merits of a relatively higher or lower bar?</li>
 </ol>
 </div>
-<div id="chapter-two-the-rise-of-experimetnts-in-psychology-and-economics" class="section level3" number="2.4.2">
-<h3><span class="header-section-number">2.4.2</span> Chapter Two: The Rise of Experimetnts in Psychology and Economics</h3>
+<div id="chapter-two-the-rise-of-experimetnts-in-psychology-and-economics" class="section level3 hasAnchor" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Chapter Two: The Rise of Experimetnts in Psychology and Economics<a href="reading-discussion-the-power-of-experiments.html#chapter-two-the-rise-of-experimetnts-in-psychology-and-economics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Freud is noted as being specifically <em>against</em> experimentation. But, <em>PoE</em> then goes on to write, “[Freud’s] big ideas inspired entire fields of psychological research. Including the notion that unconscious processes shape our judgement and behavior, psychological disorders are rooted in the mind rather than the body; and that sexual urges and behavior are worthy of study” (p. 19). Some of the theories that Freud promulgated were found to have evidence that was consistent with the theory; some of these theories could not produce evidence to support the theory; and many were outright contradicted by the evidence.</p>
 <ol style="list-style-type: decimal">
 <li>Is there value in being an “idea person”? How would you ever know if your ideas were actually right if you’re unwilling to evaluate them?</li>
@@ -443,8 +443,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <p>Clearly, all these programs have the same expected number of deaths; but, people can disagree about which of these is the program that we should pursue. Just ask as a poll in the class; and, ask people to justify their beliefs.</p>
 </div>
-<div id="the-rise-of-behavioral-experiments-in-policymaking" class="section level3" number="2.4.3">
-<h3><span class="header-section-number">2.4.3</span> The Rise of Behavioral Experiments in Policymaking</h3>
+<div id="the-rise-of-behavioral-experiments-in-policymaking" class="section level3 hasAnchor" number="2.4.3">
+<h3><span class="header-section-number">2.4.3</span> The Rise of Behavioral Experiments in Policymaking<a href="reading-discussion-the-power-of-experiments.html#the-rise-of-behavioral-experiments-in-policymaking" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><em>PoE</em> points out that experiments abound in policy making. Part of this stems from a truthful ignorance of the optimal policy to pursue. Another part of this stems from the ability of policy makers to make decisions by fiat that affect a large number of people.</p>
 <ol style="list-style-type: decimal">
 <li>Does this justification for experiments align with your current understeanding of the landscape in human-facing data science?</li>

@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.7 Comparing Randomization Inference and Frequentist Inference | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.7 Comparing Randomization Inference and Frequentist Inference | Experiments and Causality" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
@@ -24,7 +23,7 @@
 <meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
 
 
-<meta name="date" content="2022-03-30" />
+<meta name="date" content="2022-08-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="applying-randomization-inference.html"/>
 <link rel="next" href="statistical-power.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -357,6 +356,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11" data-path="problems-and-diagnostics.html"><a href="problems-and-diagnostics.html"><i class="fa fa-check"></i><b>11</b> Problems and Diagnostics</a>
 <ul>
 <li class="chapter" data-level="11.1" data-path="learning-objectives-10.html"><a href="learning-objectives-10.html"><i class="fa fa-check"></i><b>11.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="11.2" data-path="goals-of-an-expermient.html"><a href="goals-of-an-expermient.html"><i class="fa fa-check"></i><b>11.2</b> Goals of an Expermient</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="attrition-mediation-and-generalizability.html"><a href="attrition-mediation-and-generalizability.html"><i class="fa fa-check"></i><b>12</b> Attrition, Mediation, and Generalizability</a>
 <ul>
@@ -391,8 +391,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="comparing-randomization-inference-and-frequentist-inference" class="section level2" number="3.7">
-<h2><span class="header-section-number">3.7</span> Comparing Randomization Inference and Frequentist Inference</h2>
+<div id="comparing-randomization-inference-and-frequentist-inference" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> Comparing Randomization Inference and Frequentist Inference<a href="comparing-randomization-inference-and-frequentist-inference.html#comparing-randomization-inference-and-frequentist-inference" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>If both Randomization Inference and Frequentist Inference produce similar p-values, what is utility in learning another set of methods for communicating estimator-based uncertainty?</p>
 <p>What are the requirements (frequently referred to as “assumptions”) that are necessary for the Frequentist paradigm to provide guarantees? What happens if these guarantees are not, in fact, satisfied or true in the data generating process? How do you react, respond, or address those problems?</p>
 <ul>
@@ -400,37 +400,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>How affected is this p-value by the violation? How do you know this?</li>
 <li>What does it mean for the p-value to be affected by this violation? (<em>Recall that a p-value is just a random variable that is produced through a series of summarizing transformations and then a comparison against a reference distribution.</em>)</li>
 </ul>
-<div id="donations-to-a-political-campaign" class="section level3" number="3.7.1">
-<h3><span class="header-section-number">3.7.1</span> Donations to a political campaign</h3>
+<div id="donations-to-a-political-campaign" class="section level3 hasAnchor" number="3.7.1">
+<h3><span class="header-section-number">3.7.1</span> Donations to a political campaign<a href="comparing-randomization-inference-and-frequentist-inference.html#donations-to-a-political-campaign" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In <em>Field Experiments</em> Green and Gerber provide some useful (hypothetical) data about donations to a political campaign. The data is defined in the following way, <span class="math inline">\(D\)</span> is an indicator for whether the potential donor is assigned to treatment or control, and <span class="math inline">\(Y\)</span> is the outcome of how much the potential donor actually gave.</p>
 <p>Let us provide a little bit more back story, that is necessary for the example to work, fully. Suppose that a progressive political candidate was hosting a fundraiser in Berkeley and has to make a choice about what to serve the attendees at the fundraiser.</p>
 <p>In the <span class="math inline">\(D = 0\)</span> group, suppose that the candidate elects to serve a hippie-vegetarian staple, tofu sauteed in Bragg’s liquid aminos. (It <em>is</em> Berkeley after all.) In the <span class="math inline">\(D=1\)</span> group, suppose that the candidate decides to be a little more, well, progressive in their vegetarian food offerings and instead serves Gado-Gado from Katzen’s <em>The Enchanted Broccoli Forest</em>. (Still Berkeley… .)</p>
 <p>After dinner, and the requisite drum-circle, attendees to this shin-dig are asked to donate to the candidates re-election efforts. Every attendee is expected to contribute something – social norms rule out failing to donate when the collection plate is passed – but the amount donated is at the discretion of the attendee.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="comparing-randomization-inference-and-frequentist-inference.html#cb24-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
-<span id="cb24-2"><a href="comparing-randomization-inference-and-frequentist-inference.html#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, </span>
-<span id="cb24-3"><a href="comparing-randomization-inference-and-frequentist-inference.html#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">D  =</span> <span class="fu">rep</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">each =</span> <span class="dv">10</span>), </span>
-<span id="cb24-4"><a href="comparing-randomization-inference-and-frequentist-inference.html#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Y =</span> <span class="fu">c</span>(<span class="dv">500</span>, <span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">50</span>, <span class="dv">25</span>, <span class="dv">25</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="do">## tofu diners</span></span>
-<span id="cb24-5"><a href="comparing-randomization-inference-and-frequentist-inference.html#cb24-5" aria-hidden="true" tabindex="-1"></a>        <span class="dv">25</span>,  <span class="dv">20</span>,  <span class="dv">15</span>,  <span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">5</span>,  <span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)  <span class="do">## gado gado diners</span></span>
-<span id="cb24-6"><a href="comparing-randomization-inference-and-frequentist-inference.html#cb24-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <ol style="list-style-type: decimal">
-<li>With this data, conduct a <code>t.test</code> to assess whether the choice of dinner affects the amount donated to the campaign. What is your null-hypothesis (be specific), what is your rejection criteria, and do you reject or fail to reject this null hypothesis under the t-test framework.</li>
-</ol>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="comparing-randomization-inference-and-frequentist-inference.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Null Hypothesis: </span></span>
-<span id="cb25-2"><a href="comparing-randomization-inference-and-frequentist-inference.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Rejection Criteria: </span></span>
-<span id="cb25-3"><a href="comparing-randomization-inference-and-frequentist-inference.html#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="comparing-randomization-inference-and-frequentist-inference.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Conduct the Test Here: </span></span>
-<span id="cb25-5"><a href="comparing-randomization-inference-and-frequentist-inference.html#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-6"><a href="comparing-randomization-inference-and-frequentist-inference.html#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Conclusion: </span></span></code></pre></div>
-<ol start="2" style="list-style-type: decimal">
-<li>With this data, use randomization inference to assess whether the choice of dinner affects the amount donated to the campaign. What is your null-hypothesis (be specific), what is your rejection criteria, and do you reject or fail to reject this null hypothesis under the t-test framework.</li>
-</ol>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="comparing-randomization-inference-and-frequentist-inference.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Null Hypothesis: </span></span>
-<span id="cb26-2"><a href="comparing-randomization-inference-and-frequentist-inference.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Rejection Criteria: </span></span>
-<span id="cb26-3"><a href="comparing-randomization-inference-and-frequentist-inference.html#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-4"><a href="comparing-randomization-inference-and-frequentist-inference.html#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Conduct the Test Here:</span></span>
-<span id="cb26-5"><a href="comparing-randomization-inference-and-frequentist-inference.html#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-6"><a href="comparing-randomization-inference-and-frequentist-inference.html#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Conclusion</span></span></code></pre></div>
-<ol style="list-style-type: decimal">
+<li><p>With this data, conduct a <code>t.test</code> to assess whether the choice of dinner affects the amount donated to the campaign. What is your null-hypothesis (be specific), what is your rejection criteria, and do you reject or fail to reject this null hypothesis under the t-test framework.</p></li>
+<li><p>With this data, use randomization inference to assess whether the choice of dinner affects the amount donated to the campaign. What is your null-hypothesis (be specific), what is your rejection criteria, and do you reject or fail to reject this null hypothesis under the t-test framework.</p></li>
 <li><p>Characterize the distribution of the sharp-null distribution of treatment effects. Talk about what, if anything, is notable about it, and what components of the data might be leading to any patterns that you note.</p></li>
 <li><p>How many of the randomization inference loops are larger than the treatment effect that you calculated? How would you use this statement to construct a one-sided test, and an associated p-value?</p></li>
 <li><p>How many of the randomization inference loops are <em>more extreme</em> (:metal:) than the treatment effect that you calculated? How would you use this statement to construct a two-sided test, and an associated p-value?</p></li>

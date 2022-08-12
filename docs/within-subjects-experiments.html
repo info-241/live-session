@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.4 Within subjects experiments | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.4 Within subjects experiments | Experiments and Causality" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
@@ -24,7 +23,7 @@
 <meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
 
 
-<meta name="date" content="2022-03-30" />
+<meta name="date" content="2022-08-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="defining-notation.html"/>
 <link rel="next" href="discussing-the-reading-blake-and-coey-2014.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -357,6 +356,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11" data-path="problems-and-diagnostics.html"><a href="problems-and-diagnostics.html"><i class="fa fa-check"></i><b>11</b> Problems and Diagnostics</a>
 <ul>
 <li class="chapter" data-level="11.1" data-path="learning-objectives-10.html"><a href="learning-objectives-10.html"><i class="fa fa-check"></i><b>11.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="11.2" data-path="goals-of-an-expermient.html"><a href="goals-of-an-expermient.html"><i class="fa fa-check"></i><b>11.2</b> Goals of an Expermient</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="attrition-mediation-and-generalizability.html"><a href="attrition-mediation-and-generalizability.html"><i class="fa fa-check"></i><b>12</b> Attrition, Mediation, and Generalizability</a>
 <ul>
@@ -391,8 +391,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="within-subjects-experiments" class="section level2" number="9.4">
-<h2><span class="header-section-number">9.4</span> Within subjects experiments</h2>
+<div id="within-subjects-experiments" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Within subjects experiments<a href="within-subjects-experiments.html#within-subjects-experiments" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Earlier in the course, we talked about two-group pre-test/post-test experiments. These experiments are exceptionally strong against a large series of threats to identification. And, they form the basis of the expanded topic of a <em>within-subject</em> experiment.</p>
 <ol style="list-style-type: decimal">
 <li>What <em>is</em> a within subject experiment?</li>
@@ -408,8 +408,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Suppose that you were worried that your experimental units might either anticipate being put into treatment or that the treatment they take might have long-run effects. How might you design a test to see if either of these concerns are present in your design?</li>
 </ul>
-<div id="survey-experiments" class="section level3" number="9.4.1">
-<h3><span class="header-section-number">9.4.1</span> Survey Experiments</h3>
+<div id="survey-experiments" class="section level3 hasAnchor" number="9.4.1">
+<h3><span class="header-section-number">9.4.1</span> Survey Experiments<a href="within-subjects-experiments.html#survey-experiments" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>(From Green and Gerber, p.285)</strong>: Concerns about interference between units sometimes arise in survey experiments. For example surveys sometimes administer a series of <em>vignettes</em> involving people with different attributes. A respondent might be told about a low-income person who is randomly described as white or black; after hearing the description, the respondent is asked to rate whether this person deserves public assistance. The respondent is the presented with a vignette about a second person, again randomly described as white or Black, and asked about whether <em>this</em> person deserves public assistance.</p>
 <p>This design creates four experiment groups:</p>
 <ol style="list-style-type: decimal">

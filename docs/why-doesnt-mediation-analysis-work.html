@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>12.2 Why doesn’t mediation analysis work? | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="12.2 Why doesn’t mediation analysis work? | Experiments and Causality" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
@@ -24,7 +23,7 @@
 <meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
 
 
-<meta name="date" content="2022-03-30" />
+<meta name="date" content="2022-08-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="learning-objectives-11.html"/>
 <link rel="next" href="endless-chain-of-why.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -357,6 +356,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11" data-path="problems-and-diagnostics.html"><a href="problems-and-diagnostics.html"><i class="fa fa-check"></i><b>11</b> Problems and Diagnostics</a>
 <ul>
 <li class="chapter" data-level="11.1" data-path="learning-objectives-10.html"><a href="learning-objectives-10.html"><i class="fa fa-check"></i><b>11.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="11.2" data-path="goals-of-an-expermient.html"><a href="goals-of-an-expermient.html"><i class="fa fa-check"></i><b>11.2</b> Goals of an Expermient</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="attrition-mediation-and-generalizability.html"><a href="attrition-mediation-and-generalizability.html"><i class="fa fa-check"></i><b>12</b> Attrition, Mediation, and Generalizability</a>
 <ul>
@@ -391,8 +391,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="why-doesnt-mediation-analysis-work" class="section level2" number="12.2">
-<h2><span class="header-section-number">12.2</span> Why doesn’t mediation analysis work?</h2>
+<div id="why-doesnt-mediation-analysis-work" class="section level2 hasAnchor" number="12.2">
+<h2><span class="header-section-number">12.2</span> Why doesn’t mediation analysis work?<a href="why-doesnt-mediation-analysis-work.html#why-doesnt-mediation-analysis-work" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Here’s a classic case, that is actually very recent. Gaesser et al (2020) present subjects with a short text that describes a stranger in need, for example, someone who has fallen off a motorcycle on the freeway.</p>
 <ul>
 <li><strong>Treatment Group</strong> members were asked to imagine helping the person who had fallen of the motorcycle.</li>
@@ -409,15 +409,14 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>Implicit mediation analysis works in the following way:</p>
 <p><span class="math display">\[
   \begin{aligned}
-    lm(M &amp;\sim \alpha_{1} + aX_{i} + \epsilon_{1}) \\ 
-    lm(Y &amp;\sim \alpha_{2} + cX_{i} + \epsilon_{2}) \\ 
+    lm(M &amp;\sim \alpha_{1} + aX_{i} + \epsilon_{1}) \\
+    lm(Y &amp;\sim \alpha_{2} + cX_{i} + \epsilon_{2}) \\
     lm(Y &amp;\sim \alpha_{3} + bM_{i} + c&#39;X_{i} + \epsilon_{3})
   \end{aligned}
 \]</span></p>
 <p>Where people talk about <span class="math inline">\(c\)</span> as the “total effect” of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span>, and the “direct effect” of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span> as the estimate that is reported in <span class="math inline">\(c&#39;\)</span>.</p>
 <p>Can you draw this system out in the way that we did in 203? Use circles to represent concepts that you’re measuring, and directed arrows to represent causal relationships between these concepts.</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="why-doesnt-mediation-analysis-work.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x=</span><span class="dv">1</span>,<span class="at">y=</span><span class="dv">1</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">type =</span> <span class="st">&#39;n&#39;</span>)</span></code></pre></div>
-<p><img src="241-livesession_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p><img src="241-livesession_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 <p>Once you’ve written out these pathways, what could go wrong in this analysis?</p>
 </div>
             </section>

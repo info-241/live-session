@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.6 Using Independence | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.6 Using Independence | Experiments and Causality" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
@@ -24,7 +23,7 @@
 <meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
 
 
-<meta name="date" content="2022-03-30" />
+<meta name="date" content="2022-08-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="potential-outcomes.html"/>
 <link rel="next" href="use-randomization-to-produce-independence.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -357,6 +356,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11" data-path="problems-and-diagnostics.html"><a href="problems-and-diagnostics.html"><i class="fa fa-check"></i><b>11</b> Problems and Diagnostics</a>
 <ul>
 <li class="chapter" data-level="11.1" data-path="learning-objectives-10.html"><a href="learning-objectives-10.html"><i class="fa fa-check"></i><b>11.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="11.2" data-path="goals-of-an-expermient.html"><a href="goals-of-an-expermient.html"><i class="fa fa-check"></i><b>11.2</b> Goals of an Expermient</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="attrition-mediation-and-generalizability.html"><a href="attrition-mediation-and-generalizability.html"><i class="fa fa-check"></i><b>12</b> Attrition, Mediation, and Generalizability</a>
 <ul>
@@ -391,13 +391,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="using-independence" class="section level2" number="2.6">
-<h2><span class="header-section-number">2.6</span> Using Independence</h2>
+<div id="using-independence" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Using Independence<a href="using-independence.html#using-independence" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Suppose that you have a random variable that is defined as the function,</p>
 <p><span class="math display">\[
-Y = 
+Y =
   \begin{cases}
-    \frac{1}{10} &amp; ,0 \leq y \leq 10 \\ 
+    \frac{1}{10} &amp; ,0 \leq y \leq 10 \\
     0 &amp; \text{, otherwise}
   \end{cases}
 \]</span></p>
@@ -406,12 +406,12 @@ Y =
 </ul>
 <p><span class="math display">\[
 \begin{aligned}
-  E[Y]  &amp;= \int_{0}^{10} y \cdot f_{y}(y) \ dy                       \\ 
-        &amp;= \int_{0}^{10} y \cdot \frac{1}{10} \ dy                   \\ 
-        &amp;= \frac{1}{10}\int_{0}^{10} y \ dy                          \\ 
-        &amp;= \left.\frac{1}{10} \cdot \frac{1}{2}  y^2\right|_{0}^{10} \\ 
-        &amp;= \left.\frac{1}{20}  y^{2} \right|_{0}^{10}                \\ 
-        &amp;= \frac{1}{20} \cdot \left[(100) - (0) \right]              \\ 
+  E[Y]  &amp;= \int_{0}^{10} y \cdot f_{y}(y) \ dy                       \\
+        &amp;= \int_{0}^{10} y \cdot \frac{1}{10} \ dy                   \\
+        &amp;= \frac{1}{10}\int_{0}^{10} y \ dy                          \\
+        &amp;= \left.\frac{1}{10} \cdot \frac{1}{2}  y^2\right|_{0}^{10} \\
+        &amp;= \left.\frac{1}{20}  y^{2} \right|_{0}^{10}                \\
+        &amp;= \frac{1}{20} \cdot \left[(100) - (0) \right]              \\
         &amp;= \frac{1}{20} \cdot 100                                    \\
         &amp;= \mathbf{5}
 \end{aligned}
@@ -424,35 +424,7 @@ Y =
 <li><p><span class="math inline">\(\hat{\theta}_{3} = \frac{1}{n-1} \displaystyle\sum_{i=1}^{N} y_{i}\)</span></p></li>
 <li><p><span class="math inline">\(\hat{\theta}_{4} = \frac{1}{n} \displaystyle\sum_{i=1}^{N} y_{i}\)</span></p></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="using-independence.html#cb1-1" aria-hidden="true" tabindex="-1"></a>conduct_sample <span class="ot">&lt;-</span> <span class="cf">function</span>(size) { </span>
-<span id="cb1-2"><a href="using-independence.html#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">runif</span>(<span class="at">n=</span>size, <span class="at">min=</span><span class="dv">0</span>, <span class="at">max=</span><span class="dv">10</span>)</span>
-<span id="cb1-3"><a href="using-independence.html#cb1-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="using-independence.html#cb2-1" aria-hidden="true" tabindex="-1"></a>theta_1 <span class="ot">&lt;-</span> <span class="cf">function</span>(data) { </span>
-<span id="cb2-2"><a href="using-independence.html#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># take the first element</span></span>
-<span id="cb2-3"><a href="using-independence.html#cb2-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-4"><a href="using-independence.html#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-5"><a href="using-independence.html#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="using-independence.html#cb2-6" aria-hidden="true" tabindex="-1"></a>theta_2 <span class="ot">&lt;-</span> <span class="cf">function</span>(data) { </span>
-<span id="cb2-7"><a href="using-independence.html#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># sum the first two elements and divide by two</span></span>
-<span id="cb2-8"><a href="using-independence.html#cb2-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-9"><a href="using-independence.html#cb2-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-10"><a href="using-independence.html#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="using-independence.html#cb2-11" aria-hidden="true" tabindex="-1"></a>theta_3 <span class="ot">&lt;-</span> <span class="cf">function</span>(data) { </span>
-<span id="cb2-12"><a href="using-independence.html#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># sum the sample, and divide by 1 less than the sample size</span></span>
-<span id="cb2-13"><a href="using-independence.html#cb2-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-14"><a href="using-independence.html#cb2-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-15"><a href="using-independence.html#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="using-independence.html#cb2-16" aria-hidden="true" tabindex="-1"></a>theta_4 <span class="ot">&lt;-</span> <span class="cf">function</span>(data) { </span>
-<span id="cb2-17"><a href="using-independence.html#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># sum the sample, and divide by the sample size </span></span>
-<span id="cb2-18"><a href="using-independence.html#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># honestly, just use the mean call. </span></span>
-<span id="cb2-19"><a href="using-independence.html#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># clearly, this is a silly function to write, since you&#39;re just </span></span>
-<span id="cb2-20"><a href="using-independence.html#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># providing an alias, without modification, to an existing function. </span></span>
-<span id="cb2-21"><a href="using-independence.html#cb2-21" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-22"><a href="using-independence.html#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(data)</span>
-<span id="cb2-23"><a href="using-independence.html#cb2-23" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-24"><a href="using-independence.html#cb2-24" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="using-independence.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">theta_4</span>(<span class="fu">conduct_sample</span>(<span class="at">size=</span><span class="dv">100</span>))</span></code></pre></div>
-<pre><code>## [1] 5.225135</code></pre>
+<pre><code>## [1] 4.438112</code></pre>
 <ul>
 <li>Just to put a fine point on it: **What estimator properties does the sample average provide, and why are these desirable?”</li>
 </ul>

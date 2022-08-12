@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.5 Estimating with Non-compliance | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.5 Estimating with Non-compliance | Experiments and Causality" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
@@ -24,7 +23,7 @@
 <meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
 
 
-<meta name="date" content="2022-03-30" />
+<meta name="date" content="2022-08-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="non-compliance-discussion.html"/>
 <link rel="next" href="two-stage-least-squares.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -357,6 +356,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11" data-path="problems-and-diagnostics.html"><a href="problems-and-diagnostics.html"><i class="fa fa-check"></i><b>11</b> Problems and Diagnostics</a>
 <ul>
 <li class="chapter" data-level="11.1" data-path="learning-objectives-10.html"><a href="learning-objectives-10.html"><i class="fa fa-check"></i><b>11.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="11.2" data-path="goals-of-an-expermient.html"><a href="goals-of-an-expermient.html"><i class="fa fa-check"></i><b>11.2</b> Goals of an Expermient</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="attrition-mediation-and-generalizability.html"><a href="attrition-mediation-and-generalizability.html"><i class="fa fa-check"></i><b>12</b> Attrition, Mediation, and Generalizability</a>
 <ul>
@@ -391,58 +391,30 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="estimating-with-non-compliance" class="section level2" number="8.5">
-<h2><span class="header-section-number">8.5</span> Estimating with Non-compliance</h2>
-<div id="estimating-with-non-compliance-1" class="section level3" number="8.5.1">
-<h3><span class="header-section-number">8.5.1</span> Estimating with non-compliance</h3>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="estimating-with-non-compliance.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
-<span id="cb67-2"><a href="estimating-with-non-compliance.html#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr) </span>
-<span id="cb67-3"><a href="estimating-with-non-compliance.html#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)                 <span class="co"># though we won&#39;t actually use them in this</span></span>
-<span id="cb67-4"><a href="estimating-with-non-compliance.html#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)               <span class="co"># and neither this... </span></span>
-<span id="cb67-5"><a href="estimating-with-non-compliance.html#cb67-5" aria-hidden="true" tabindex="-1"></a><span class="do">## install.packages(&quot;AER&quot;)      # this has a nice wrapper for iv regression</span></span>
-<span id="cb67-6"><a href="estimating-with-non-compliance.html#cb67-6" aria-hidden="true" tabindex="-1"></a>                                <span class="co"># but we can do it by hand with VERY little work </span></span>
-<span id="cb67-7"><a href="estimating-with-non-compliance.html#cb67-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb67-8"><a href="estimating-with-non-compliance.html#cb67-8" aria-hidden="true" tabindex="-1"></a>nrows <span class="ot">=</span> <span class="dv">1000</span></span>
-<span id="cb67-9"><a href="estimating-with-non-compliance.html#cb67-9" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">data.table</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span>nrows) </span>
-<span id="cb67-10"><a href="estimating-with-non-compliance.html#cb67-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb67-11"><a href="estimating-with-non-compliance.html#cb67-11" aria-hidden="true" tabindex="-1"></a>d[ , y0 <span class="sc">:</span><span class="er">=</span> <span class="fu">rnorm</span>(nrows, <span class="at">mean =</span> <span class="dv">10</span>)]</span>
-<span id="cb67-12"><a href="estimating-with-non-compliance.html#cb67-12" aria-hidden="true" tabindex="-1"></a>d[ , tau <span class="sc">:</span><span class="er">=</span> <span class="fu">rnorm</span>(nrows, <span class="at">mean =</span> <span class="dv">5</span>)]</span>
-<span id="cb67-13"><a href="estimating-with-non-compliance.html#cb67-13" aria-hidden="true" tabindex="-1"></a>d[ , y1 <span class="sc">:</span><span class="er">=</span> y0 <span class="sc">+</span> tau]</span>
-<span id="cb67-14"><a href="estimating-with-non-compliance.html#cb67-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb67-15"><a href="estimating-with-non-compliance.html#cb67-15" aria-hidden="true" tabindex="-1"></a>d[ , assigned <span class="sc">:</span><span class="er">=</span> <span class="fu">sample</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">each =</span> nrows <span class="sc">/</span> <span class="dv">2</span>))] <span class="co"># z in the book</span></span>
-<span id="cb67-16"><a href="estimating-with-non-compliance.html#cb67-16" aria-hidden="true" tabindex="-1"></a>d[ , treated <span class="sc">:</span><span class="er">=</span> <span class="dv">0</span>] </span>
-<span id="cb67-17"><a href="estimating-with-non-compliance.html#cb67-17" aria-hidden="true" tabindex="-1"></a>d[assigned <span class="sc">==</span> <span class="dv">1</span>, treated <span class="sc">:</span><span class="er">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>), <span class="at">size =</span> .N, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(.<span class="dv">7</span>, .<span class="dv">3</span>))]</span>
-<span id="cb67-18"><a href="estimating-with-non-compliance.html#cb67-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb67-19"><a href="estimating-with-non-compliance.html#cb67-19" aria-hidden="true" tabindex="-1"></a>d[treated <span class="sc">==</span> <span class="dv">1</span>, Y <span class="sc">:</span><span class="er">=</span> y1]</span>
-<span id="cb67-20"><a href="estimating-with-non-compliance.html#cb67-20" aria-hidden="true" tabindex="-1"></a>d[treated <span class="sc">==</span> <span class="dv">0</span>, Y <span class="sc">:</span><span class="er">=</span> y0]</span></code></pre></div>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="estimating-with-non-compliance.html#cb68-1" aria-hidden="true" tabindex="-1"></a>d[ , <span class="fu">mean</span>(y1 <span class="sc">-</span> y0)]</span></code></pre></div>
+<div id="estimating-with-non-compliance" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> Estimating with Non-compliance<a href="estimating-with-non-compliance.html#estimating-with-non-compliance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="estimating-with-non-compliance-1" class="section level3 hasAnchor" number="8.5.1">
+<h3><span class="header-section-number">8.5.1</span> Estimating with non-compliance<a href="estimating-with-non-compliance.html#estimating-with-non-compliance-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <pre><code>## [1] 5.023489</code></pre>
 <p>But, that has all the data in the science table. In real life, we won’t get this.</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="estimating-with-non-compliance.html#cb70-1" aria-hidden="true" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> d[ , .(assigned, treated, Y)]</span>
-<span id="cb70-2"><a href="estimating-with-non-compliance.html#cb70-2" aria-hidden="true" tabindex="-1"></a>d2[ , .(<span class="at">mean =</span> <span class="fu">mean</span>(Y)), by <span class="ot">=</span> assigned][ , <span class="fu">diff</span>(mean)]</span></code></pre></div>
 <pre><code>## [1] 3.427019</code></pre>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="estimating-with-non-compliance.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">*</span> .<span class="dv">7</span></span></code></pre></div>
 <pre><code>## [1] 3.5</code></pre>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="estimating-with-non-compliance.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="do">## rats. we /know/ that the treatment effect is 5, but when we look at the</span></span>
-<span id="cb74-2"><a href="estimating-with-non-compliance.html#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="do">## intent to treat effect, we only estimate a difference of 3.5 or so. </span></span></code></pre></div>
 <p>Suppose that we cannot evaluate whether someone was /actually/ treated or not.
 - In this case, we will ONLY be able to recover the ITT.
 - This requires that you suspect reality for a moment and suppose we don’t have the <code>treated</code> measurement.</p>
 </div>
-<div id="estimate-the-intent-to-treat-effect" class="section level3" number="8.5.2">
-<h3><span class="header-section-number">8.5.2</span> Estimate the Intent to Treat Effect</h3>
+<div id="estimate-the-intent-to-treat-effect" class="section level3 hasAnchor" number="8.5.2">
+<h3><span class="header-section-number">8.5.2</span> Estimate the Intent to Treat Effect<a href="estimating-with-non-compliance.html#estimate-the-intent-to-treat-effect" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
-<div id="estimate-the-compliance-rate" class="section level3" number="8.5.3">
-<h3><span class="header-section-number">8.5.3</span> Estimate the Compliance Rate</h3>
+<div id="estimate-the-compliance-rate" class="section level3 hasAnchor" number="8.5.3">
+<h3><span class="header-section-number">8.5.3</span> Estimate the Compliance Rate<a href="estimating-with-non-compliance.html#estimate-the-compliance-rate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
-<div id="compute-the-cace" class="section level3" number="8.5.4">
-<h3><span class="header-section-number">8.5.4</span> Compute the CACE</h3>
+<div id="compute-the-cace" class="section level3 hasAnchor" number="8.5.4">
+<h3><span class="header-section-number">8.5.4</span> Compute the CACE<a href="estimating-with-non-compliance.html#compute-the-cace" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Because you have the ITT and the compliance rate, estimate the CACE</p>
 </div>
-<div id="do-you-get-the-same-thing-with-this-subset-estimator" class="section level3" number="8.5.5">
-<h3><span class="header-section-number">8.5.5</span> Do you get the same thing with this subset estimator?</h3>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="estimating-with-non-compliance.html#cb75-1" aria-hidden="true" tabindex="-1"></a>d2[assigned <span class="sc">==</span> <span class="dv">1</span> , .(<span class="at">group_mean =</span> <span class="fu">mean</span>(Y)), by <span class="ot">=</span> .(treated)] <span class="sc">%&gt;%</span></span>
-<span id="cb75-2"><a href="estimating-with-non-compliance.html#cb75-2" aria-hidden="true" tabindex="-1"></a>    .[ , <span class="fu">diff</span>(group_mean)]</span></code></pre></div>
+<div id="do-you-get-the-same-thing-with-this-subset-estimator" class="section level3 hasAnchor" number="8.5.5">
+<h3><span class="header-section-number">8.5.5</span> Do you get the same thing with this subset estimator?<a href="estimating-with-non-compliance.html#do-you-get-the-same-thing-with-this-subset-estimator" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <pre><code>## [1] -5.104661</code></pre>
 <p>Notice that this does not have clear estimate of the uncertainty associated with it. This is a bummer.</p>
 <p>In order to estimate with a reliable standard error, we can turn to two stage least squares.</p>

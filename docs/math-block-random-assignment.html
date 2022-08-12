@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.3 Math: Block random assignment | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.3 Math: Block random assignment | Experiments and Causality" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
@@ -24,7 +23,7 @@
 <meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
 
 
-<meta name="date" content="2022-03-30" />
+<meta name="date" content="2022-08-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="setting-terms-blocking.html"/>
 <link rel="next" href="intuition-block-random-assignment.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -357,6 +356,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11" data-path="problems-and-diagnostics.html"><a href="problems-and-diagnostics.html"><i class="fa fa-check"></i><b>11</b> Problems and Diagnostics</a>
 <ul>
 <li class="chapter" data-level="11.1" data-path="learning-objectives-10.html"><a href="learning-objectives-10.html"><i class="fa fa-check"></i><b>11.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="11.2" data-path="goals-of-an-expermient.html"><a href="goals-of-an-expermient.html"><i class="fa fa-check"></i><b>11.2</b> Goals of an Expermient</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="attrition-mediation-and-generalizability.html"><a href="attrition-mediation-and-generalizability.html"><i class="fa fa-check"></i><b>12</b> Attrition, Mediation, and Generalizability</a>
 <ul>
@@ -391,15 +391,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="math-block-random-assignment" class="section level2" number="4.3">
-<h2><span class="header-section-number">4.3</span> Math: Block random assignment</h2>
+<div id="math-block-random-assignment" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Math: Block random assignment<a href="math-block-random-assignment.html#math-block-random-assignment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In equation 3.6 (on page 61) of <em>Field Experiments</em> Green and Gerber write,</p>
-<p><span class="math display">\[ 
+<p><span class="math display">\[
   \widehat{SE} = \sqrt{\frac{\widehat{Var}(Y_{i}(0))}{N-m} + \frac{\widehat{Var}(Y_{i}(1))}{m}}
 \]</span></p>
 <p>When we block randomize, we’re essentially creating smaller groups of units and producing an estimate of the variance within each of those smaller groups of units.</p>
 <p>How do the authors arrive at the following formula for a block randomized standard error?</p>
-<p><span class="math display">\[ 
+<p><span class="math display">\[
   \widehat{SE}(\widehat{ATE}_{blocked}) = \sqrt{\sum_{j=1}^{J}\left(\frac{N_{j}}{N}\right)^2 * \widehat{SE}^2(\widehat{ATE}_{j})}
 \]</span></p>
 <ul>
@@ -408,7 +408,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>Is it possible that you block, without increasing power, even if the blocking variable is actually useful?</li>
 </ul>
 <p>Green and Gerber, in equation 3.10, write that the overall <span class="math inline">\(ATE\)</span> of the population is:</p>
-<p><span class="math display">\[ 
+<p><span class="math display">\[
   ATE = \sum_{j=1}^{J} \frac{N_{j}}{N} ATE_{j}
 \]</span></p>
 <ul>

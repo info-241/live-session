@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.3 This Causes That | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.3 This Causes That | Experiments and Causality" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
@@ -24,7 +23,7 @@
 <meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
 
 
-<meta name="date" content="2022-03-30" />
+<meta name="date" content="2022-08-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="revisiting-ideas-of-science.html"/>
 <link rel="next" href="reading-discussion-the-power-of-experiments.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -357,6 +356,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11" data-path="problems-and-diagnostics.html"><a href="problems-and-diagnostics.html"><i class="fa fa-check"></i><b>11</b> Problems and Diagnostics</a>
 <ul>
 <li class="chapter" data-level="11.1" data-path="learning-objectives-10.html"><a href="learning-objectives-10.html"><i class="fa fa-check"></i><b>11.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="11.2" data-path="goals-of-an-expermient.html"><a href="goals-of-an-expermient.html"><i class="fa fa-check"></i><b>11.2</b> Goals of an Expermient</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="attrition-mediation-and-generalizability.html"><a href="attrition-mediation-and-generalizability.html"><i class="fa fa-check"></i><b>12</b> Attrition, Mediation, and Generalizability</a>
 <ul>
@@ -391,11 +391,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="this-causes-that" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> This Causes That</h2>
+<div id="this-causes-that" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> This Causes That<a href="this-causes-that.html#this-causes-that" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>What does it mean for an action to cause an outcome? Don’t worry about conducting the experiment, or any measurement concerns at this point, just engage with the concepts.</p>
-<div id="damn-fine-coffee" class="section level3" number="2.3.1">
-<h3><span class="header-section-number">2.3.1</span> Damn fine coffee</h3>
+<div id="damn-fine-coffee" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Damn fine coffee<a href="this-causes-that.html#damn-fine-coffee" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Uvs7pmISe8I" title="Damn Fine Coffee" frameborder="0">
 </iframe>
 <p>Suppose that you’re getting ready for class, and you want to make sure that you’re at your best. So, you drink a cup of water, eat a small snack, and brew a small pot of coffee for while you’re in class.</p>
@@ -413,8 +413,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>Could coffee have no effect for some people, and you would still say it causes alertness?</li>
 </ul>
 </div>
-<div id="meditation-for-focus" class="section level3" number="2.3.2">
-<h3><span class="header-section-number">2.3.2</span> Meditation for focus</h3>
+<div id="meditation-for-focus" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Meditation for focus<a href="this-causes-that.html#meditation-for-focus" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Suppose that you’re getting ready for class, and you want ensure that you’re at your best. So, you find a quiet place, and set your mind at ease with whatever form of meditation you think might be helpful.</p>
 <blockquote>
 <p>If I meditate before class, will it cause me to be more focused?</p>
@@ -426,8 +426,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>Some people are frustrated by not being able to quiet their thoughts, and actually find meditation frustrating. Can this be true, and still believe that meditation causes focus?</li>
 </ul>
 </div>
-<div id="selling-coffee-and-meditation" class="section level3" number="2.3.3">
-<h3><span class="header-section-number">2.3.3</span> Selling coffee and meditation</h3>
+<div id="selling-coffee-and-meditation" class="section level3 hasAnchor" number="2.3.3">
+<h3><span class="header-section-number">2.3.3</span> Selling coffee and meditation<a href="this-causes-that.html#selling-coffee-and-meditation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Suppose that you’re an enterprising soul, and you want to sell a book about brewing coffee as a meditation. You reason that there must be a niche for this approach. To get the word out, you place a few flyers with tear off phone-numbers at the local yoga studios and tech incubators (good intuition to find those MIDS students).</p>
 <blockquote>
 <p>If shown a flyer for coffee-meditation, will it cause someone to take my training?</p>
@@ -440,26 +440,26 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>One might be a radical behaviorist (Skinner is perhaps the most famous in this line of thinking) that says, “In matters of human behavior, if I cannot see it, then I cannot reason or know about.” If this is your view, then you would simply stop your investigation (and reasoning) at the conclusion of your experiment.</p>
 <p>In many ways, experiments suited only to answer empirical, observable questions. These are the questions, and lens proposed by the radical behaviorist paradigm.</p>
 </div>
-<div id="limits-of-behaviorist-reasoning" class="section level3" number="2.3.4">
-<h3><span class="header-section-number">2.3.4</span> Limits of Behaviorist Reasoning</h3>
+<div id="limits-of-behaviorist-reasoning" class="section level3 hasAnchor" number="2.3.4">
+<h3><span class="header-section-number">2.3.4</span> Limits of Behaviorist Reasoning<a href="this-causes-that.html#limits-of-behaviorist-reasoning" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>If you accept only that coffee has this effect, and that it is measurable, are you able to translate this knowledge to a new context?</p>
 <ul>
 <li>Suppose that your experiments finds an effect of coffee on alertness: those who drink a cup of coffee are more alert in class.</li>
 <li>Suppose, though, that you’re out of coffee <em>tonight</em>. A radical behaviorist would simply say, “I know not what to drink then to increase my alertness.”</li>
 </ul>
 </div>
-<div id="reflecting-on-causes" class="section level3" number="2.3.5">
-<h3><span class="header-section-number">2.3.5</span> Reflecting on Causes</h3>
+<div id="reflecting-on-causes" class="section level3 hasAnchor" number="2.3.5">
+<h3><span class="header-section-number">2.3.5</span> Reflecting on Causes<a href="this-causes-that.html#reflecting-on-causes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Does anything unify questions of causes?</p>
 <p>When you think about <em>{this}</em> causing <em>{that}</em>, do you think about it at a population level, a smaller group level, or at the individual level?</p>
 </div>
-<div id="evaluating-value" class="section level3" number="2.3.6">
-<h3><span class="header-section-number">2.3.6</span> Evaluating Value</h3>
+<div id="evaluating-value" class="section level3 hasAnchor" number="2.3.6">
+<h3><span class="header-section-number">2.3.6</span> Evaluating Value<a href="this-causes-that.html#evaluating-value" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Is this an entirely academic exercise, the discussion of <em>{this}</em> causing <em>{that}</em>? Or, is there some value to thinking about things in these terms? Susan Athey, whom we read last week, seems to think that there is value in distinguishing between associations and causes. However, hers is a view that is generated by an academic; much like the views of David and David, and all of the live session instructors. We’re all academics, so maybe we’re being <em>typical</em> academic pedants.</p>
 <p>What is a case, perhaps that you read or wrote about for your first essay, mistakenly believing they had measured a causal effect? What would happen if they implemented the policy that is implicated in their study? Or, what would happen if they took action consonant with what their study purports to find?</p>
 </div>
-<div id="value-of-theory" class="section level3" number="2.3.7">
-<h3><span class="header-section-number">2.3.7</span> Value of Theory</h3>
+<div id="value-of-theory" class="section level3 hasAnchor" number="2.3.7">
+<h3><span class="header-section-number">2.3.7</span> Value of Theory<a href="this-causes-that.html#value-of-theory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Can you produce several theories (some of them might be silly) about why coffee might increase alertness in class?
 <ul>
@@ -471,8 +471,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>Does Lakatos’ approach to <em>Science</em> provide such a method?</li>
 </ul>
 </div>
-<div id="evaluating-theories" class="section level3" number="2.3.8">
-<h3><span class="header-section-number">2.3.8</span> Evaluating Theories</h3>
+<div id="evaluating-theories" class="section level3 hasAnchor" number="2.3.8">
+<h3><span class="header-section-number">2.3.8</span> Evaluating Theories<a href="this-causes-that.html#evaluating-theories" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>What data might you be able to produce that would allow you to “drive a wedge” between the different theories?</li>
 <li>This ability to proactively deign an experiment to distinguish between theories is the goal you’re striving to achieve, <em>and it is very hard to accomplish</em>.</li>

@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.9 Blocking or Clustering? | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.9 Blocking or Clustering? | Experiments and Causality" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
@@ -24,7 +23,7 @@
 <meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
 
 
-<meta name="date" content="2022-03-30" />
+<meta name="date" content="2022-08-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="clustering.html"/>
 <link rel="next" href="covariates-and-regression.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -357,6 +356,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11" data-path="problems-and-diagnostics.html"><a href="problems-and-diagnostics.html"><i class="fa fa-check"></i><b>11</b> Problems and Diagnostics</a>
 <ul>
 <li class="chapter" data-level="11.1" data-path="learning-objectives-10.html"><a href="learning-objectives-10.html"><i class="fa fa-check"></i><b>11.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="11.2" data-path="goals-of-an-expermient.html"><a href="goals-of-an-expermient.html"><i class="fa fa-check"></i><b>11.2</b> Goals of an Expermient</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="attrition-mediation-and-generalizability.html"><a href="attrition-mediation-and-generalizability.html"><i class="fa fa-check"></i><b>12</b> Attrition, Mediation, and Generalizability</a>
 <ul>
@@ -391,10 +391,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="blocking-or-clustering" class="section level2" number="4.9">
-<h2><span class="header-section-number">4.9</span> Blocking or Clustering?</h2>
-<div id="let-is-snow" class="section level3" number="4.9.1">
-<h3><span class="header-section-number">4.9.1</span> Let is snow!</h3>
+<div id="blocking-or-clustering" class="section level2 hasAnchor" number="4.9">
+<h2><span class="header-section-number">4.9</span> Blocking or Clustering?<a href="blocking-or-clustering.html#blocking-or-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="let-is-snow" class="section level3 hasAnchor" number="4.9.1">
+<h3><span class="header-section-number">4.9.1</span> Let is snow!<a href="blocking-or-clustering.html#let-is-snow" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Suppose we want to measure the effect of snowplowing on local retail activity. We design an experiment that plows some locations but not others. Which of the following do you prefer? Explain the relative advantages and disadvantages of each option.</p>
 <ul>
 <li>On a given street, we randomly assign which businesses we plow in front of.</li>
@@ -409,8 +409,8 @@ We will assign treatment at the neighborhood level. Now consider blocking this e
 <li>What benefit do we expect blocking to have on our ATE estimator?</li>
 </ul>
 </div>
-<div id="strolling-through-berkeley" class="section level3" number="4.9.2">
-<h3><span class="header-section-number">4.9.2</span> Strolling through Berkeley</h3>
+<div id="strolling-through-berkeley" class="section level3 hasAnchor" number="4.9.2">
+<h3><span class="header-section-number">4.9.2</span> Strolling through Berkeley<a href="blocking-or-clustering.html#strolling-through-berkeley" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>David Reiley walks through Berkeley and observes retail shops. As he goes, he takes each pair of stores he encounters, flips a coin, and goes into one store in each pair to give them a free Google ad coupon. He later observes how much each spent on Google ads in the month after.</p>
 <ul>
 <li>Why might this increase power compared to picking stores totally at random?</li>
@@ -419,8 +419,8 @@ We will assign treatment at the neighborhood level. Now consider blocking this e
 <li>Reiley picks one side of each street to treat on many streets.</li>
 </ul>
 </div>
-<div id="always-low-prices" class="section level3" number="4.9.3">
-<h3><span class="header-section-number">4.9.3</span> Always low prices?</h3>
+<div id="always-low-prices" class="section level3 hasAnchor" number="4.9.3">
+<h3><span class="header-section-number">4.9.3</span> Always low prices?<a href="blocking-or-clustering.html#always-low-prices" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Imagine that an executive at Walmart gives you the keys to the pricing at the store and asks you to determine how demand for goods changes depending on the pricing of those goods? Basically, does “rolling back prices” lead to increased demand? And by how much?</p>
 <ul>
 <li>What are the different levels at which you could assign different prices?</li>

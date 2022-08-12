@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.6 What is the causal model we hold? | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.6 What is the causal model we hold? | Experiments and Causality" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
@@ -24,7 +23,7 @@
 <meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
 
 
-<meta name="date" content="2022-03-30" />
+<meta name="date" content="2022-08-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="make-data-1.html"/>
 <link rel="next" href="a-more-complicated-example.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -357,6 +356,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11" data-path="problems-and-diagnostics.html"><a href="problems-and-diagnostics.html"><i class="fa fa-check"></i><b>11</b> Problems and Diagnostics</a>
 <ul>
 <li class="chapter" data-level="11.1" data-path="learning-objectives-10.html"><a href="learning-objectives-10.html"><i class="fa fa-check"></i><b>11.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="11.2" data-path="goals-of-an-expermient.html"><a href="goals-of-an-expermient.html"><i class="fa fa-check"></i><b>11.2</b> Goals of an Expermient</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="attrition-mediation-and-generalizability.html"><a href="attrition-mediation-and-generalizability.html"><i class="fa fa-check"></i><b>12</b> Attrition, Mediation, and Generalizability</a>
 <ul>
@@ -391,18 +391,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="what-is-the-causal-model-we-hold" class="section level2" number="6.6">
-<h2><span class="header-section-number">6.6</span> What is the causal model we hold?</h2>
+<div id="what-is-the-causal-model-we-hold" class="section level2 hasAnchor" number="6.6">
+<h2><span class="header-section-number">6.6</span> What is the causal model we hold?<a href="what-is-the-causal-model-we-hold.html#what-is-the-causal-model-we-hold" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>When we are thinking about the causal model here, we’re saying, “I think that the conditional expectation of Y depends on the treatment status”. But, maybe I think I want to also control for the variable <code>bad_control</code>.</p>
 <p>In fact, we can estimate a reliable causal effect for <em>either</em> <code>D</code> on <code>Y</code>, <em>or</em> <code>D</code> on <code>bad_control</code>, but not the two together.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="what-is-the-causal-model-we-hold.html#cb38-1" aria-hidden="true" tabindex="-1"></a>model_1 <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(Y <span class="sc">~</span> D)]</span>
-<span id="cb38-2"><a href="what-is-the-causal-model-we-hold.html#cb38-2" aria-hidden="true" tabindex="-1"></a>model_2 <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(Y <span class="sc">~</span> bad_control)]</span></code></pre></div>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="what-is-the-causal-model-we-hold.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(</span>
-<span id="cb39-2"><a href="what-is-the-causal-model-we-hold.html#cb39-2" aria-hidden="true" tabindex="-1"></a>  model_1, model_2, </span>
-<span id="cb39-3"><a href="what-is-the-causal-model-we-hold.html#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&#39;text&#39;</span>, </span>
-<span id="cb39-4"><a href="what-is-the-causal-model-we-hold.html#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">se =</span> <span class="fu">list</span>(<span class="fu">rse</span>(model_1), <span class="fu">rse</span>(model_2)), </span>
-<span id="cb39-5"><a href="what-is-the-causal-model-we-hold.html#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">omit.stat =</span> <span class="fu">c</span>(<span class="st">&#39;ser&#39;</span>, <span class="st">&#39;f&#39;</span>)</span>
-<span id="cb39-6"><a href="what-is-the-causal-model-we-hold.html#cb39-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## 
 ## =========================================
 ##                  Dependent variable:     
@@ -425,15 +417,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## Adjusted R2      0.148          0.094    
 ## =========================================
 ## Note:         *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
-<div id="do-the-estimates-match-the-world" class="section level3" number="6.6.1">
-<h3><span class="header-section-number">6.6.1</span> Do the estimates match the world?</h3>
+<div id="do-the-estimates-match-the-world" class="section level3 hasAnchor" number="6.6.1">
+<h3><span class="header-section-number">6.6.1</span> Do the estimates match the world?<a href="what-is-the-causal-model-we-hold.html#do-the-estimates-match-the-world" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When you look at what the models have estimated, do they match the data that we created above?</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="what-is-the-causal-model-we-hold.html#cb41-1" aria-hidden="true" tabindex="-1"></a>model_3 <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(Y <span class="sc">~</span> D <span class="sc">+</span> bad_control)]</span></code></pre></div>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="what-is-the-causal-model-we-hold.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(</span>
-<span id="cb42-2"><a href="what-is-the-causal-model-we-hold.html#cb42-2" aria-hidden="true" tabindex="-1"></a>  model_1, model_2, model_3,</span>
-<span id="cb42-3"><a href="what-is-the-causal-model-we-hold.html#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&#39;text&#39;</span>, </span>
-<span id="cb42-4"><a href="what-is-the-causal-model-we-hold.html#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">se =</span> <span class="fu">list</span>(<span class="fu">rse</span>(model_1), <span class="fu">rse</span>(model_2), <span class="fu">rse</span>(model_3))</span>
-<span id="cb42-5"><a href="what-is-the-causal-model-we-hold.html#cb42-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## 
 ## ==============================================================================================
 ##                                                Dependent variable:                            

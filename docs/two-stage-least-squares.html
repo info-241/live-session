@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.6 Two Stage Least Squares | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.6 Two Stage Least Squares | Experiments and Causality" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
@@ -24,7 +23,7 @@
 <meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
 
 
-<meta name="date" content="2022-03-30" />
+<meta name="date" content="2022-08-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="estimating-with-non-compliance.html"/>
 <link rel="next" href="spillover-and-interference.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -357,6 +356,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11" data-path="problems-and-diagnostics.html"><a href="problems-and-diagnostics.html"><i class="fa fa-check"></i><b>11</b> Problems and Diagnostics</a>
 <ul>
 <li class="chapter" data-level="11.1" data-path="learning-objectives-10.html"><a href="learning-objectives-10.html"><i class="fa fa-check"></i><b>11.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="11.2" data-path="goals-of-an-expermient.html"><a href="goals-of-an-expermient.html"><i class="fa fa-check"></i><b>11.2</b> Goals of an Expermient</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="attrition-mediation-and-generalizability.html"><a href="attrition-mediation-and-generalizability.html"><i class="fa fa-check"></i><b>12</b> Attrition, Mediation, and Generalizability</a>
 <ul>
@@ -391,52 +391,30 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="two-stage-least-squares" class="section level2" number="8.6">
-<h2><span class="header-section-number">8.6</span> Two Stage Least Squares</h2>
+<div id="two-stage-least-squares" class="section level2 hasAnchor" number="8.6">
+<h2><span class="header-section-number">8.6</span> Two Stage Least Squares<a href="two-stage-least-squares.html#two-stage-least-squares" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Two-stage least squares estimators have the benefits of</p>
 <ol style="list-style-type: decimal">
 <li>Doing <em>exactly</em> the same thing that the CACE = ITT / ITT_{d}; but,</li>
 <li>Doing it in a way that has known standard errors that are quickly and easily computable.</li>
 </ol>
-<div id="first-stage" class="section level3" number="8.6.1">
-<h3><span class="header-section-number">8.6.1</span> First Stage</h3>
+<div id="first-stage" class="section level3 hasAnchor" number="8.6.1">
+<h3><span class="header-section-number">8.6.1</span> First Stage<a href="two-stage-least-squares.html#first-stage" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In the first stage we:</p>
 <ul>
 <li>Estimate the proportion of people who are receive treatment as a function of being assigned to treatment.</li>
 <li>In the case of one-sided non compliance this is <em>exactly</em> the same thing as estimating the
 ITT_{d}, right?</li>
 </ul>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="two-stage-least-squares.html#cb77-1" aria-hidden="true" tabindex="-1"></a>first <span class="ot">&lt;-</span> <span class="st">&#39;fill this in&#39;</span></span></code></pre></div>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="two-stage-least-squares.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="do">## calculate the fitted values from this regression</span></span>
-<span id="cb78-2"><a href="two-stage-least-squares.html#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="do">##   - that is, just multiply the coefficients that you estimate from the</span></span>
-<span id="cb78-3"><a href="two-stage-least-squares.html#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="do">##     first stage times the data values. In the event that the exclusion</span></span>
-<span id="cb78-4"><a href="two-stage-least-squares.html#cb78-4" aria-hidden="true" tabindex="-1"></a><span class="do">##     restriction holds, then these predictions are just orthagonal to every</span></span>
-<span id="cb78-5"><a href="two-stage-least-squares.html#cb78-5" aria-hidden="true" tabindex="-1"></a><span class="do">##     thing that is not modeled in your data! </span></span></code></pre></div>
 <p>d2[ , predict := predict(first)]</p>
 </div>
-<div id="second-stage" class="section level3" number="8.6.2">
-<h3><span class="header-section-number">8.6.2</span> Second stage</h3>
+<div id="second-stage" class="section level3 hasAnchor" number="8.6.2">
+<h3><span class="header-section-number">8.6.2</span> Second stage<a href="two-stage-least-squares.html#second-stage" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In the scond stage we:</p>
 <ul>
 <li>Estimate the relationship between the predicted values and the outcome.</li>
 <li>This will just tell you how the outcome changes in response to the amount of change that your treatment assignment is able to produce.</li>
 </ul>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="two-stage-least-squares.html#cb79-1" aria-hidden="true" tabindex="-1"></a>second <span class="ot">&lt;-</span> <span class="st">&#39;fill this in&#39;</span></span>
-<span id="cb79-2"><a href="two-stage-least-squares.html#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="co"># coeftest(second, vcovHC(second, type = &quot;const&quot;)) ## these ses might be wrong. </span></span></code></pre></div>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="two-stage-least-squares.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="do">## I&#39;ll note that the standard errors from this &quot;hand-rolled&quot; 2SLS will not</span></span>
-<span id="cb80-2"><a href="two-stage-least-squares.html#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="do">## be correct (due to some accounting issues in the variance between the predictions</span></span>
-<span id="cb80-3"><a href="two-stage-least-squares.html#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="do">## in the first stage and the second stage.</span></span>
-<span id="cb80-4"><a href="two-stage-least-squares.html#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
-<span id="cb80-5"><a href="two-stage-least-squares.html#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="do">## we can fix this by hand -- though I wouldn&#39;t -- or we can use a library that will</span></span>
-<span id="cb80-6"><a href="two-stage-least-squares.html#cb80-6" aria-hidden="true" tabindex="-1"></a><span class="do">## do the accounting for us, from the library AER</span></span>
-<span id="cb80-7"><a href="two-stage-least-squares.html#cb80-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-8"><a href="two-stage-least-squares.html#cb80-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AER)</span></code></pre></div>
-<pre><code>## Loading required package: car</code></pre>
-<pre><code>## Loading required package: carData</code></pre>
-<pre><code>## Loading required package: survival</code></pre>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="two-stage-least-squares.html#cb84-1" aria-hidden="true" tabindex="-1"></a>iv.model <span class="ot">&lt;-</span> <span class="fu">ivreg</span>(Y <span class="sc">~</span> treated <span class="sc">|</span> assigned, <span class="at">data =</span> d2)</span>
-<span id="cb84-2"><a href="two-stage-least-squares.html#cb84-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-3"><a href="two-stage-least-squares.html#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(iv.model, <span class="at">vcov =</span> <span class="fu">vcovHC</span>(iv.model, <span class="at">type =</span> <span class="st">&quot;const&quot;</span>))</span></code></pre></div>
 <pre><code>## 
 ## t test of coefficients:
 ## 

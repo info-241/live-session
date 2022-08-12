@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.5 With this data, what does the distribution of outcomes look like? | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.5 With this data, what does the distribution of outcomes look like? | Experiments and Causality" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
@@ -24,7 +23,7 @@
 <meta name="author" content="David Reiley, David Broockman, D. Alex Hughes, \ Micah Gell-Redman, Scott Guenther, \ David Wheeler &amp; Conor Healy \ Chris Donaton &amp; Kineret Stanley" />
 
 
-<meta name="date" content="2022-03-30" />
+<meta name="date" content="2022-08-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="intuition-block-random-assignment.html"/>
 <link rel="next" href="technical-benefits-of-blocking.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -357,6 +356,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11" data-path="problems-and-diagnostics.html"><a href="problems-and-diagnostics.html"><i class="fa fa-check"></i><b>11</b> Problems and Diagnostics</a>
 <ul>
 <li class="chapter" data-level="11.1" data-path="learning-objectives-10.html"><a href="learning-objectives-10.html"><i class="fa fa-check"></i><b>11.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="11.2" data-path="goals-of-an-expermient.html"><a href="goals-of-an-expermient.html"><i class="fa fa-check"></i><b>11.2</b> Goals of an Expermient</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="attrition-mediation-and-generalizability.html"><a href="attrition-mediation-and-generalizability.html"><i class="fa fa-check"></i><b>12</b> Attrition, Mediation, and Generalizability</a>
 <ul>
@@ -391,25 +391,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="with-this-data-what-does-the-distribution-of-outcomes-look-like" class="section level2" number="4.5">
-<h2><span class="header-section-number">4.5</span> With this data, what does the distribution of outcomes look like?</h2>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="with-this-data-what-does-the-distribution-of-outcomes-look-like.html#cb29-1" aria-hidden="true" tabindex="-1"></a>experiment_one <span class="ot">&lt;-</span> <span class="fu">sim_normal_study</span>(<span class="at">treatment_effect =</span> <span class="dv">0</span>)</span>
-<span id="cb29-2"><a href="with-this-data-what-does-the-distribution-of-outcomes-look-like.html#cb29-2" aria-hidden="true" tabindex="-1"></a>experiment_two <span class="ot">&lt;-</span> <span class="fu">sim_normal_study</span>(<span class="at">treatment_effect =</span> <span class="dv">10</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="with-this-data-what-does-the-distribution-of-outcomes-look-like.html#cb30-1" aria-hidden="true" tabindex="-1"></a>experiment_one_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> experiment_one<span class="sc">$</span>data) <span class="sc">+</span> </span>
-<span id="cb30-2"><a href="with-this-data-what-does-the-distribution-of-outcomes-look-like.html#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> outcomes, <span class="at">fill =</span> <span class="fu">factor</span>(treatment), <span class="at">linetype =</span> group) <span class="sc">+</span> </span>
-<span id="cb30-3"><a href="with-this-data-what-does-the-distribution-of-outcomes-look-like.html#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
-<span id="cb30-4"><a href="with-this-data-what-does-the-distribution-of-outcomes-look-like.html#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;No effect&#39;</span></span>
-<span id="cb30-5"><a href="with-this-data-what-does-the-distribution-of-outcomes-look-like.html#cb30-5" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb30-6"><a href="with-this-data-what-does-the-distribution-of-outcomes-look-like.html#cb30-6" aria-hidden="true" tabindex="-1"></a>experiment_two_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> experiment_two<span class="sc">$</span>data) <span class="sc">+</span> </span>
-<span id="cb30-7"><a href="with-this-data-what-does-the-distribution-of-outcomes-look-like.html#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> outcomes, <span class="at">fill =</span> <span class="fu">factor</span>(treatment), <span class="at">linetype =</span> group) <span class="sc">+</span> </span>
-<span id="cb30-8"><a href="with-this-data-what-does-the-distribution-of-outcomes-look-like.html#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
-<span id="cb30-9"><a href="with-this-data-what-does-the-distribution-of-outcomes-look-like.html#cb30-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Ten unit effect&#39;</span></span>
-<span id="cb30-10"><a href="with-this-data-what-does-the-distribution-of-outcomes-look-like.html#cb30-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb30-11"><a href="with-this-data-what-does-the-distribution-of-outcomes-look-like.html#cb30-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-12"><a href="with-this-data-what-does-the-distribution-of-outcomes-look-like.html#cb30-12" aria-hidden="true" tabindex="-1"></a>(experiment_one_plot <span class="sc">/</span> experiment_two_plot) <span class="sc">+</span> </span>
-<span id="cb30-13"><a href="with-this-data-what-does-the-distribution-of-outcomes-look-like.html#cb30-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_annotation</span>(<span class="at">title =</span> <span class="st">&#39;Measured Distribution of Estrogen, by Group&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb30-14"><a href="with-this-data-what-does-the-distribution-of-outcomes-look-like.html#cb30-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">&#39;collect&#39;</span>)</span></code></pre></div>
-<p><img src="241-livesession_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div id="with-this-data-what-does-the-distribution-of-outcomes-look-like" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> With this data, what does the distribution of outcomes look like?<a href="with-this-data-what-does-the-distribution-of-outcomes-look-like.html#with-this-data-what-does-the-distribution-of-outcomes-look-like" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="241-livesession_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p>In these two different cases – where there is no treatment effect on top, and when there is a large treatment effect on bottom – what are the group means? Where would they be on these plots?</p>
 <p>Consider the formula for the SE_{ATE}.</p>
 <p><span class="math display">\[
@@ -418,7 +402,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>The important parts to consider for this discussion (despite being not a full statement of the SE) is that the standard error of the difference of group averages is a ratio of the underlying variance of the treatment effect, divided by the number of observations in that group.</p>
 <p><span class="math display">\[
   \begin{aligned}
-  SE[\tau] &amp; \approx \sqrt{\frac{V[Y(1)]}{n_{1}} + \frac{V[Y(0)]}{n_{0}}} \\ 
+  SE[\tau] &amp; \approx \sqrt{\frac{V[Y(1)]}{n_{1}} + \frac{V[Y(0)]}{n_{0}}} \\
            &amp; \approx \sqrt{\frac{E[\left(Y(1) - E[Y(1)]\right)^2]}{n_{1}} + \frac{E[\left(Y(0) - E[Y(0)]\right)^2]}{n_{0}}}
   \end{aligned}
 \]</span></p>
