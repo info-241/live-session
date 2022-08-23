@@ -1,0 +1,14 @@
+base
+data.table
+ggplot2
+patchwork
+stargazer
+sandwich
+zoo
+lmtest
+magrittr
+carData
+car
+survival
+AER
+packrat

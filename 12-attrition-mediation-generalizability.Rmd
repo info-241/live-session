@@ -1,5 +1,10 @@
 # Attrition, Mediation, and Generalizability
 
+```{r}
+
+```
+
+
 The theme for this week, as we mention in the async, is that these are **hard** problems -- in fact, each of these problems are so hard that we do not have an ability to place a clear, numerical answer on *any* of them. 
 
 ## Learning Objectives 

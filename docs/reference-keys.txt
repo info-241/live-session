@@ -1,6 +1,9 @@
 importance-of-experimentation
+core-questions
 learning-objectives
 class-introductions
+student-introductions-breakout-one
+student-introductions-breakout-two
 course-plan
 course-logistics
 learning-model-for-the-class

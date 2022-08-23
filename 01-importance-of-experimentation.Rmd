@@ -1,9 +1,13 @@
 # Importance of Experimentation
 
-**Core questions for today** 
+![Point Reyes National Seashore](./images/point_reyes.jpg)
 
-- Why do we conduct experiments?
+## Core Questions 
+
+This course is about designing experiments that we run in the *real-world*. 
+
 - What is the value of making a causal statement? 
+- Why do we conduct experiments?
 - This is a data science program. With enough data and a savvy enough model, can't we just generate a causal statement that will be right? Can't I generate a statement that converges in probability to the *correct* value?
 
 ## Learning Objectives 
@@ -17,13 +21,26 @@ At the end of this live session, students will be able to
 
 ## Class Introductions 
 
-In no more than 2 minutes, could each student please: 
+## Student Introductions [Breakout One]
 
-- Introduce themselves, announcing their name as they would like it to be pronounced; 
-- Tell us where in the world they are studying; 
-- State what semester they are in the program; 
-- Any descriptive features that they would like the class to know about them (for example, gender pronouns); and, 
-- [Instructor's choice]
+In a breakout room of between three and four students introduce yourself! 
+
+::: {.breakout data-latex=""}
+**Breakout One.** A *name story* is the unique, and individual story that describes how you came to have the name that you do. While there may be many people are called the same thing, each of their name stories is unique. 
+
+Please share: *What is your name story?*
+:::
+
+## Student Introductions [Breakout Two] 
+
+In the same breakout room: 
+
+::: {.breakout data-latex=""}
+**Breakout Two.**
+Like our names, the reasons that we joined this program, our goals and our histories are different. 
+
+Please share: *What is your data science story? How did you wind up here, in this room today?* 
+:::
 
 ## Course Plan 
 
@@ -102,4 +119,4 @@ In *Cargo Cult Science*, Richard Feynman poses a view of science that is about a
 
 1. What is Feynman's view of science? What does he think makes something *scientific*? 
 2. What are ways that individuals fool themselves when they are working as scientists? What are ways that individuals fool themselves when they are working as data scientists? 
-3. How can we as (data) scientists, train ourselves not to be fooled?\footnote{This is a footnote, rendered into an html document.}  
+3. How can we as (data) scientists, train ourselves not to be fooled?^[This is a footnote, rendered into an html document.]
