@@ -1,3 +1,13 @@
+# Bookdown Stuff
+_book/
+_bookdown_files/
+libs/
+
+**/*.bib
+**/*.html
+
+!**/mathjax_header.html
+
 .DS_Store
 .idea
 *.log
