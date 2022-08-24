@@ -50,5 +50,6 @@ jobs:
        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # moves to session GH token
        with:
-          email: dhughes@berkeley.edu
-          build_dir: _book
+          email     : dhughes@berkeley.edu
+          build_dir : _book
+          jekyll    : no
