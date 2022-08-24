@@ -17,6 +17,8 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v1
       - name: Install rmarkdown
         run: Rscript -e 'install.packages(c("rmarkdown","bookdown"))'
+      - name: Install additional packages
+        run: Rscript -e 'install.packages("tidyverse", "data.table", "AER")'
       - name: Render Git Book
         run: Rscript -e 'bookdown::render_book("index.Rmd", output_format="bookdown::gitbook")'
       - name: Render PDF Book
