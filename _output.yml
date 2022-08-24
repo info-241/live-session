@@ -11,7 +11,7 @@ output:
         family: serif
         size: 2
     highlight: tango
-    css: [css/style.css, css/box.css]
+    css: [style.css, css/box.css]
   bookdown::pdf_book:
     keep_tex: TRUE
     includes:
