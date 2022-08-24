@@ -1,6 +1,6 @@
 book_filename: "241-live-session"
 repo: https://github.com/UC-Berkeley-I-School/mids-w241-live-session
-output_dir: "docs"
+output_dir: "_book"
 delete_merged_file: true
 clean: [packages.bib]
 language:
