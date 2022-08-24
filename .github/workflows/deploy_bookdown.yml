@@ -21,8 +21,8 @@ jobs:
         run: Rscript -e 'install.packages(c("tidyverse", "data.table", "sandwich", "stargazer", "lmtest", "AER", "patchwork", "magrittr"))'
       - name: Render Git Book
         run: Rscript -e 'bookdown::render_book("index.Rmd", output_format="bookdown::gitbook")'
-      - name: Render PDF Book
-        run: Rscript -e 'bookdown::render_book("index.Rmd", output_format="bookdown::pdf_book")'
+#      - name: Render PDF Book
+#        run: Rscript -e 'bookdown::render_book("index.Rmd", output_format="bookdown::pdf_book")'
       - uses: actions/upload-artifact@v1
         with:
           name: _book
