@@ -1,7 +1,30 @@
 # Problems and Diagnostics
 
+```{r load packages for unit 11, echo = FALSE, message = FALSE}
+library(data.table)
+library(ggplot2)
+```
+
+```{r set colors for unit 11, echo = FALSE, message = FALSE}
+blue <- '#003262'
+gold <- '#FDB515'
+```
+
+![houston, we have a problem](./images/apollo_13.jpeg)
+
 ## Learning Objectives 
 
-1. 
-2. 
-3. 
+At the conclusion of this week's live session, students will be able to: 
+
+1. **Recall** and enumerate the several types of problems that might arise in the process of conducting a *real-world* experiment. 
+2. **Identify** and **diagnose** when these problems are present in *their* experiment. 
+3. **Analyze** the consequences of these problems, and communicate to an audience how these problems affect the experiment's ability to produce an unbiased causal estimator.
+4. **Propose** a way forward -- how to modify the experiment or modify the estimator. 
+
+## Goals of an Expermient 
+
+Recall that the goal of any experiment -- same as the goal for *your* experiment -- is to identify a causal effect that we have a **guarantee** is unbiased. If we cannot accomplish that, why take the time to conduct the experiment? 
+
+Conducting these experiments is **easy**! At least in a perfect world. The reality is that this world that we live in, and that your data generating process functions within, is far from "perfect". And so, as a consequence, machines that we tell to record data fail; people that we tell to take treatment don't actually take it; doses that we think will be sufficient are not; and a litany of other small concerns! 
+
+This week's task is to acknowledge that nothing will *ever* be perfect, and then to proactively design our data collection system so that we can diagnose problems when they arise. 

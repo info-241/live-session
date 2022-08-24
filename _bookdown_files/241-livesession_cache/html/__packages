@@ -1,4 +1,3 @@
-base
 data.table
 ggplot2
 tidyverse
@@ -10,3 +9,7 @@ dplyr
 stringr
 forcats
 testthat
+wooldridge
+magrittr
+knitr
+patchwork

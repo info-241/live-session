@@ -1,4 +1,3 @@
-base
 data.table
 ggplot2
 tidyverse
@@ -9,3 +8,16 @@ purrr
 dplyr
 stringr
 forcats
+wooldridge
+magrittr
+knitr
+patchwork
+testthat
+stargazer
+sandwich
+zoo
+lmtest
+carData
+car
+survival
+AER
