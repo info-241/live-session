@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7.1 Learning Objectives | Experiments and Causality</title>
+  <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7.1 Learning Objectives | Experiments and Causality" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="/images/coffee.jpeg" />
+  <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
+  <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7.1 Learning Objectives | Experiments and Causality" />
+  
+  <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
+  <meta name="twitter:image" content="/images/coffee.jpeg" />
+
+<meta name="author" content="The 241 Instructional Team" />
+
+
+<meta name="date" content="2022-08-23" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="heterogeneous-treatment-effects.html"/>
+<link rel="next" href="reading-and-discussion-goodson.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css/box.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="index.html#live-session-introduction" id="toc-live-session-introduction">Live Session Introduction</a>
+<ul>
+<li><a href="blooms-taxonomy.html#blooms-taxonomy" id="toc-blooms-taxonomy">Bloom’s Taxonomy</a></li>
+</ul></li>
+<li><a href="importance-of-experimentation.html#importance-of-experimentation" id="toc-importance-of-experimentation"><span class="toc-section-number">1</span> Importance of Experimentation</a>
+<ul>
+<li><a href="core-questions.html#core-questions" id="toc-core-questions"><span class="toc-section-number">1.1</span> Core Questions</a></li>
+<li><a href="learning-objectives.html#learning-objectives" id="toc-learning-objectives"><span class="toc-section-number">1.2</span> Learning Objectives</a></li>
+<li><a href="class-introductions.html#class-introductions" id="toc-class-introductions"><span class="toc-section-number">1.3</span> Class Introductions</a></li>
+<li><a href="student-introductions-breakout-one.html#student-introductions-breakout-one" id="toc-student-introductions-breakout-one"><span class="toc-section-number">1.4</span> Student Introductions [Breakout One]</a></li>
+<li><a href="student-introductions-breakout-two.html#student-introductions-breakout-two" id="toc-student-introductions-breakout-two"><span class="toc-section-number">1.5</span> Student Introductions [Breakout Two]</a></li>
+<li><a href="course-plan.html#course-plan" id="toc-course-plan"><span class="toc-section-number">1.6</span> Course Plan</a></li>
+<li><a href="course-logistics.html#course-logistics" id="toc-course-logistics"><span class="toc-section-number">1.7</span> Course Logistics</a>
+<ul>
+<li><a href="course-logistics.html#learning-model-for-the-class" id="toc-learning-model-for-the-class"><span class="toc-section-number">1.7.1</span> Learning model for the class</a></li>
+<li><a href="course-logistics.html#feedback-model-for-the-class" id="toc-feedback-model-for-the-class"><span class="toc-section-number">1.7.2</span> Feedback model for the class</a></li>
+<li><a href="course-logistics.html#office-hour-model-for-the-class" id="toc-office-hour-model-for-the-class"><span class="toc-section-number">1.7.3</span> Office hour model for the class</a></li>
+</ul></li>
+<li><a href="article-discussion.html#article-discussion" id="toc-article-discussion"><span class="toc-section-number">1.8</span> Article Discussion</a>
+<ul>
+<li><a href="article-discussion.html#predict-or-cause" id="toc-predict-or-cause"><span class="toc-section-number">1.8.1</span> Predict or Cause</a></li>
+<li><a href="article-discussion.html#do-the-suburbs-make-you-fat" id="toc-do-the-suburbs-make-you-fat"><span class="toc-section-number">1.8.2</span> Do the suburbs make you fat?</a></li>
+<li><a href="article-discussion.html#nike-shoes" id="toc-nike-shoes"><span class="toc-section-number">1.8.3</span> Nike Shoes</a></li>
+<li><a href="article-discussion.html#what-is-science-feynmans-view" id="toc-what-is-science-feynmans-view"><span class="toc-section-number">1.8.4</span> What is Science: Feynman’s View</a></li>
+</ul></li>
+</ul></li>
+<li><a href="apples-to-apples.html#apples-to-apples" id="toc-apples-to-apples"><span class="toc-section-number">2</span> Apples to Apples</a>
+<ul>
+<li><a href="learning-objectives-1.html#learning-objectives-1" id="toc-learning-objectives-1"><span class="toc-section-number">2.1</span> Learning Objectives</a></li>
+<li><a href="revisiting-ideas-of-science.html#revisiting-ideas-of-science" id="toc-revisiting-ideas-of-science"><span class="toc-section-number">2.2</span> Revisiting Ideas of Science</a></li>
+<li><a href="this-causes-that.html#this-causes-that" id="toc-this-causes-that"><span class="toc-section-number">2.3</span> This Causes That</a>
+<ul>
+<li><a href="this-causes-that.html#damn-fine-coffee" id="toc-damn-fine-coffee"><span class="toc-section-number">2.3.1</span> Damn fine coffee</a></li>
+<li><a href="this-causes-that.html#meditation-for-focus" id="toc-meditation-for-focus"><span class="toc-section-number">2.3.2</span> Meditation for focus</a></li>
+<li><a href="this-causes-that.html#selling-coffee-and-meditation" id="toc-selling-coffee-and-meditation"><span class="toc-section-number">2.3.3</span> Selling coffee and meditation</a></li>
+<li><a href="this-causes-that.html#limits-of-behaviorist-reasoning" id="toc-limits-of-behaviorist-reasoning"><span class="toc-section-number">2.3.4</span> Limits of Behaviorist Reasoning</a></li>
+<li><a href="this-causes-that.html#reflecting-on-causes" id="toc-reflecting-on-causes"><span class="toc-section-number">2.3.5</span> Reflecting on Causes</a></li>
+<li><a href="this-causes-that.html#evaluating-value" id="toc-evaluating-value"><span class="toc-section-number">2.3.6</span> Evaluating Value</a></li>
+<li><a href="this-causes-that.html#value-of-theory" id="toc-value-of-theory"><span class="toc-section-number">2.3.7</span> Value of Theory</a></li>
+<li><a href="this-causes-that.html#evaluating-theories" id="toc-evaluating-theories"><span class="toc-section-number">2.3.8</span> Evaluating Theories</a></li>
+</ul></li>
+<li><a href="reading-discussion-the-power-of-experiments.html#reading-discussion-the-power-of-experiments" id="toc-reading-discussion-the-power-of-experiments"><span class="toc-section-number">2.4</span> Reading Discussion: The Power of Experiments</a>
+<ul>
+<li><a href="reading-discussion-the-power-of-experiments.html#chapter-one-the-power-of-experiments" id="toc-chapter-one-the-power-of-experiments"><span class="toc-section-number">2.4.1</span> Chapter One: The Power of Experiments</a></li>
+<li><a href="reading-discussion-the-power-of-experiments.html#chapter-two-the-rise-of-experimetnts-in-psychology-and-economics" id="toc-chapter-two-the-rise-of-experimetnts-in-psychology-and-economics"><span class="toc-section-number">2.4.2</span> Chapter Two: The Rise of Experimetnts in Psychology and Economics</a></li>
+<li><a href="reading-discussion-the-power-of-experiments.html#the-rise-of-behavioral-experiments-in-policymaking" id="toc-the-rise-of-behavioral-experiments-in-policymaking"><span class="toc-section-number">2.4.3</span> The Rise of Behavioral Experiments in Policymaking</a></li>
+</ul></li>
+<li><a href="potential-outcomes.html#potential-outcomes" id="toc-potential-outcomes"><span class="toc-section-number">2.5</span> Potential Outcomes</a>
+<ul>
+<li><a href="potential-outcomes.html#defining-potential-outcomes" id="toc-defining-potential-outcomes"><span class="toc-section-number">2.5.1</span> Defining Potential Outcomes</a></li>
+</ul></li>
+<li><a href="using-independence.html#using-independence" id="toc-using-independence"><span class="toc-section-number">2.6</span> Using Independence</a></li>
+<li><a href="use-randomization-to-produce-independence.html#use-randomization-to-produce-independence" id="toc-use-randomization-to-produce-independence"><span class="toc-section-number">2.7</span> Use Randomization to Produce Independence</a></li>
+<li><a href="theoretical-justification.html#theoretical-justification" id="toc-theoretical-justification"><span class="toc-section-number">2.8</span> Theoretical Justification</a></li>
+<li><a href="simulation-example.html#simulation-example" id="toc-simulation-example"><span class="toc-section-number">2.9</span> Simulation Example</a>
+<ul>
+<li><a href="simulation-example.html#assign-to-treatment-and-control" id="toc-assign-to-treatment-and-control"><span class="toc-section-number">2.9.1</span> Assign to Treatment and Control</a></li>
+<li><a href="simulation-example.html#what-if-there-is-selection" id="toc-what-if-there-is-selection"><span class="toc-section-number">2.9.2</span> What if there is selection?</a></li>
+</ul></li>
+<li><a href="requirements-of-an-experiment.html#requirements-of-an-experiment" id="toc-requirements-of-an-experiment"><span class="toc-section-number">2.10</span> Requirements of An Experiment</a>
+<ul>
+<li><a href="requirements-of-an-experiment.html#meta-questions" id="toc-meta-questions"><span class="toc-section-number">2.10.1</span> Meta-Questions</a></li>
+</ul></li>
+</ul></li>
+<li><a href="quantifying-uncertainty.html#quantifying-uncertainty" id="toc-quantifying-uncertainty"><span class="toc-section-number">3</span> Quantifying Uncertainty</a>
+<ul>
+<li><a href="learning-objectives-2.html#learning-objectives-2" id="toc-learning-objectives-2"><span class="toc-section-number">3.1</span> Learning Objectives</a></li>
+<li><a href="power-of-experiments.html#power-of-experiments" id="toc-power-of-experiments"><span class="toc-section-number">3.2</span> Power of Experiments</a>
+<ul>
+<li><a href="power-of-experiments.html#five-key-barriers-to-experimentation" id="toc-five-key-barriers-to-experimentation"><span class="toc-section-number">3.2.1</span> Five Key Barriers to Experimentation</a></li>
+<li><a href="power-of-experiments.html#experimental-ethics" id="toc-experimental-ethics"><span class="toc-section-number">3.2.2</span> Experimental Ethics</a></li>
+</ul></li>
+<li><a href="statistical-uncertainty-randomization-inference-style.html#statistical-uncertainty-randomization-inference-style" id="toc-statistical-uncertainty-randomization-inference-style"><span class="toc-section-number">3.3</span> Statistical Uncertainty – Randomization Inference Style</a></li>
+<li><a href="stating-the-sharp-null.html#stating-the-sharp-null" id="toc-stating-the-sharp-null"><span class="toc-section-number">3.4</span> Stating the sharp null</a></li>
+<li><a href="randomization-inference.html#randomization-inference" id="toc-randomization-inference"><span class="toc-section-number">3.5</span> Randomization Inference</a>
+<ul>
+<li><a href="randomization-inference.html#stating-the-process-of-randomization-inference" id="toc-stating-the-process-of-randomization-inference"><span class="toc-section-number">3.5.1</span> Stating the process of Randomization Inference</a></li>
+<li><a href="randomization-inference.html#questions-about-randomization-inference" id="toc-questions-about-randomization-inference"><span class="toc-section-number">3.5.2</span> Questions about Randomization Inference</a></li>
+</ul></li>
+<li><a href="applying-randomization-inference.html#applying-randomization-inference" id="toc-applying-randomization-inference"><span class="toc-section-number">3.6</span> Applying Randomization Inference</a>
+<ul>
+<li><a href="applying-randomization-inference.html#make-data" id="toc-make-data"><span class="toc-section-number">3.6.1</span> Make Data</a></li>
+<li><a href="applying-randomization-inference.html#plot-data" id="toc-plot-data"><span class="toc-section-number">3.6.2</span> Plot Data</a></li>
+<li><a href="applying-randomization-inference.html#classic-test" id="toc-classic-test"><span class="toc-section-number">3.6.3</span> Classic Test</a></li>
+<li><a href="applying-randomization-inference.html#randomization-inference-test" id="toc-randomization-inference-test"><span class="toc-section-number">3.6.4</span> Randomization Inference Test</a></li>
+</ul></li>
+<li><a href="comparing-randomization-inference-and-frequentist-inference.html#comparing-randomization-inference-and-frequentist-inference" id="toc-comparing-randomization-inference-and-frequentist-inference"><span class="toc-section-number">3.7</span> Comparing Randomization Inference and Frequentist Inference</a>
+<ul>
+<li><a href="comparing-randomization-inference-and-frequentist-inference.html#donations-to-a-political-campaign" id="toc-donations-to-a-political-campaign"><span class="toc-section-number">3.7.1</span> Donations to a political campaign</a></li>
+</ul></li>
+<li><a href="statistical-power.html#statistical-power" id="toc-statistical-power"><span class="toc-section-number">3.8</span> Statistical Power</a></li>
+</ul></li>
+<li><a href="blocking-and-clustering.html#blocking-and-clustering" id="toc-blocking-and-clustering"><span class="toc-section-number">4</span> Blocking and Clustering</a>
+<ul>
+<li><a href="learning-objectives-3.html#learning-objectives-3" id="toc-learning-objectives-3"><span class="toc-section-number">4.1</span> Learning Objectives</a></li>
+<li><a href="setting-terms-blocking.html#setting-terms-blocking" id="toc-setting-terms-blocking"><span class="toc-section-number">4.2</span> Setting terms: Blocking</a></li>
+<li><a href="math-block-random-assignment.html#math-block-random-assignment" id="toc-math-block-random-assignment"><span class="toc-section-number">4.3</span> Math: Block random assignment</a></li>
+<li><a href="intuition-block-random-assignment.html#intuition-block-random-assignment" id="toc-intuition-block-random-assignment"><span class="toc-section-number">4.4</span> Intuition: Block Random Assignment</a></li>
+<li><a href="with-this-data-what-does-the-distribution-of-outcomes-look-like.html#with-this-data-what-does-the-distribution-of-outcomes-look-like" id="toc-with-this-data-what-does-the-distribution-of-outcomes-look-like"><span class="toc-section-number">4.5</span> With this data, what does the distribution of outcomes look like?</a></li>
+<li><a href="technical-benefits-of-blocking.html#technical-benefits-of-blocking" id="toc-technical-benefits-of-blocking"><span class="toc-section-number">4.6</span> Technical Benefits of Blocking</a></li>
+<li><a href="how-should-we-block-randomize.html#how-should-we-block-randomize" id="toc-how-should-we-block-randomize"><span class="toc-section-number">4.7</span> How should we block randomize?</a>
+<ul>
+<li><a href="how-should-we-block-randomize.html#what-makes-a-useful-feature-part-1" id="toc-what-makes-a-useful-feature-part-1"><span class="toc-section-number">4.7.1</span> What makes a useful feature? (part 1)</a></li>
+<li><a href="how-should-we-block-randomize.html#what-makes-a-useful-feature-part-2" id="toc-what-makes-a-useful-feature-part-2"><span class="toc-section-number">4.7.2</span> What makes a useful feature (part 2)</a></li>
+<li><a href="how-should-we-block-randomize.html#strategies-of-blocking" id="toc-strategies-of-blocking"><span class="toc-section-number">4.7.3</span> Strategies of blocking</a></li>
+</ul></li>
+<li><a href="clustering.html#clustering" id="toc-clustering"><span class="toc-section-number">4.8</span> Clustering</a></li>
+<li><a href="blocking-or-clustering.html#blocking-or-clustering" id="toc-blocking-or-clustering"><span class="toc-section-number">4.9</span> Blocking or Clustering?</a>
+<ul>
+<li><a href="blocking-or-clustering.html#let-is-snow" id="toc-let-is-snow"><span class="toc-section-number">4.9.1</span> Let is snow!</a></li>
+<li><a href="blocking-or-clustering.html#strolling-through-berkeley" id="toc-strolling-through-berkeley"><span class="toc-section-number">4.9.2</span> Strolling through Berkeley</a></li>
+<li><a href="blocking-or-clustering.html#always-low-prices" id="toc-always-low-prices"><span class="toc-section-number">4.9.3</span> Always low prices?</a></li>
+</ul></li>
+</ul></li>
+<li><a href="covariates-and-regression.html#covariates-and-regression" id="toc-covariates-and-regression"><span class="toc-section-number">5</span> Covariates and Regression</a>
+<ul>
+<li><a href="learning-objectives-4.html#learning-objectives-4" id="toc-learning-objectives-4"><span class="toc-section-number">5.1</span> Learning Objectives</a></li>
+<li><a href="covariates.html#covariates" id="toc-covariates"><span class="toc-section-number">5.2</span> Covariates</a></li>
+<li><a href="rescaling-outcomes.html#rescaling-outcomes" id="toc-rescaling-outcomes"><span class="toc-section-number">5.3</span> Rescaling Outcomes</a>
+<ul>
+<li><a href="rescaling-outcomes.html#design-one-two-group-post-test" id="toc-design-one-two-group-post-test"><span class="toc-section-number">5.3.1</span> Design One: Two Group Post-Test</a></li>
+<li><a href="rescaling-outcomes.html#design-two-one-group-pre-test-post-test" id="toc-design-two-one-group-pre-test-post-test"><span class="toc-section-number">5.3.2</span> Design Two: One Group, Pre-test Post-test</a></li>
+<li><a href="rescaling-outcomes.html#evaluate-the-strengths-of-the-two-designs" id="toc-evaluate-the-strengths-of-the-two-designs"><span class="toc-section-number">5.3.3</span> Evaluate the strengths of the two designs</a></li>
+</ul></li>
+<li><a href="combining-designs.html#combining-designs" id="toc-combining-designs"><span class="toc-section-number">5.4</span> Combining Designs?</a>
+<ul>
+<li><a href="combining-designs.html#design-three-two-group-pre-test-post-test" id="toc-design-three-two-group-pre-test-post-test"><span class="toc-section-number">5.4.1</span> Design Three: Two Group, Pre-test Post-test</a></li>
+</ul></li>
+<li><a href="working-with-simple-data.html#working-with-simple-data" id="toc-working-with-simple-data"><span class="toc-section-number">5.5</span> Working with simple data</a>
+<ul>
+<li><a href="working-with-simple-data.html#without-blocking" id="toc-without-blocking"><span class="toc-section-number">5.5.1</span> Without blocking</a></li>
+<li><a href="working-with-simple-data.html#with-blocking" id="toc-with-blocking"><span class="toc-section-number">5.5.2</span> With blocking</a></li>
+</ul></li>
+<li><a href="using-measurements-to-diagnose-problems.html#using-measurements-to-diagnose-problems" id="toc-using-measurements-to-diagnose-problems"><span class="toc-section-number">5.6</span> Using Measurements to Diagnose Problems</a></li>
+</ul></li>
+<li><a href="regression-and-multifactor-experiments.html#regression-and-multifactor-experiments" id="toc-regression-and-multifactor-experiments"><span class="toc-section-number">6</span> Regression and Multifactor Experiments</a>
+<ul>
+<li><a href="learning-objectives-5.html#learning-objectives-5" id="toc-learning-objectives-5"><span class="toc-section-number">6.1</span> Learning Objectives</a></li>
+<li><a href="good-controls.html#good-controls" id="toc-good-controls"><span class="toc-section-number">6.2</span> Good Controls</a></li>
+<li><a href="bad-controls.html#bad-controls" id="toc-bad-controls"><span class="toc-section-number">6.3</span> Bad Controls</a></li>
+<li><a href="a-very-simple-example.html#a-very-simple-example" id="toc-a-very-simple-example"><span class="toc-section-number">6.4</span> A Very Simple Example</a></li>
+<li><a href="make-data-1.html#make-data-1" id="toc-make-data-1"><span class="toc-section-number">6.5</span> Make Data</a></li>
+<li><a href="what-is-the-causal-model-we-hold.html#what-is-the-causal-model-we-hold" id="toc-what-is-the-causal-model-we-hold"><span class="toc-section-number">6.6</span> What is the causal model we hold?</a>
+<ul>
+<li><a href="what-is-the-causal-model-we-hold.html#do-the-estimates-match-the-world" id="toc-do-the-estimates-match-the-world"><span class="toc-section-number">6.6.1</span> Do the estimates match the world?</a></li>
+</ul></li>
+<li><a href="a-more-complicated-example.html#a-more-complicated-example" id="toc-a-more-complicated-example"><span class="toc-section-number">6.7</span> A More Complicated Example</a></li>
+<li><a href="look-at-data.html#look-at-data" id="toc-look-at-data"><span class="toc-section-number">6.8</span> Look at Data</a></li>
+<li><a href="estimate-relationships.html#estimate-relationships" id="toc-estimate-relationships"><span class="toc-section-number">6.9</span> Estimate Relationships</a>
+<ul>
+<li><a href="estimate-relationships.html#correct" id="toc-correct"><span class="toc-section-number">6.9.1</span> Correct</a></li>
+<li><a href="estimate-relationships.html#incorrect" id="toc-incorrect"><span class="toc-section-number">6.9.2</span> Incorrect</a></li>
+</ul></li>
+<li><a href="robust-standard-errors.html#robust-standard-errors" id="toc-robust-standard-errors"><span class="toc-section-number">6.10</span> Robust Standard Errors</a></li>
+<li><a href="what-about-clustered-standard-errors.html#what-about-clustered-standard-errors" id="toc-what-about-clustered-standard-errors"><span class="toc-section-number">6.11</span> What about clustered standard errors?</a></li>
+</ul></li>
+<li><a href="heterogeneous-treatment-effects.html#heterogeneous-treatment-effects" id="toc-heterogeneous-treatment-effects"><span class="toc-section-number">7</span> Heterogeneous Treatment Effects</a>
+<ul>
+<li><a href="learning-objectives-6.html#learning-objectives-6" id="toc-learning-objectives-6"><span class="toc-section-number">7.1</span> Learning Objectives</a></li>
+<li><a href="reading-and-discussion-goodson.html#reading-and-discussion-goodson" id="toc-reading-and-discussion-goodson"><span class="toc-section-number">7.2</span> Reading and Discussion: Goodson</a></li>
+<li><a href="coding-and-demo-the-californians.html#coding-and-demo-the-californians" id="toc-coding-and-demo-the-californians"><span class="toc-section-number">7.3</span> Coding and Demo: The Californians</a></li>
+<li><a href="coding-and-discussion-tips-at-a-restaurant.html#coding-and-discussion-tips-at-a-restaurant" id="toc-coding-and-discussion-tips-at-a-restaurant"><span class="toc-section-number">7.4</span> Coding and Discussion: Tips at a Restaurant</a></li>
+</ul></li>
+<li><a href="treatment-noncompliance.html#treatment-noncompliance" id="toc-treatment-noncompliance"><span class="toc-section-number">8</span> Treatment Noncompliance</a>
+<ul>
+<li><a href="learning-objectives-7.html#learning-objectives-7" id="toc-learning-objectives-7"><span class="toc-section-number">8.1</span> Learning Objectives</a></li>
+<li><a href="starting-conversation.html#starting-conversation" id="toc-starting-conversation"><span class="toc-section-number">8.2</span> Starting conversation</a></li>
+<li><a href="design-notation.html#design-notation" id="toc-design-notation"><span class="toc-section-number">8.3</span> Design Notation</a>
+<ul>
+<li><a href="design-notation.html#design-notation-1" id="toc-design-notation-1"><span class="toc-section-number">8.3.1</span> Design Notation</a></li>
+</ul></li>
+<li><a href="non-compliance-discussion.html#non-compliance-discussion" id="toc-non-compliance-discussion"><span class="toc-section-number">8.4</span> Non-compliance Discussion</a></li>
+<li><a href="estimating-with-non-compliance.html#estimating-with-non-compliance" id="toc-estimating-with-non-compliance"><span class="toc-section-number">8.5</span> Estimating with Non-compliance</a>
+<ul>
+<li><a href="estimating-with-non-compliance.html#estimating-with-non-compliance-1" id="toc-estimating-with-non-compliance-1"><span class="toc-section-number">8.5.1</span> Estimating with non-compliance</a></li>
+<li><a href="estimating-with-non-compliance.html#estimate-the-intent-to-treat-effect" id="toc-estimate-the-intent-to-treat-effect"><span class="toc-section-number">8.5.2</span> Estimate the Intent to Treat Effect</a></li>
+<li><a href="estimating-with-non-compliance.html#estimate-the-compliance-rate" id="toc-estimate-the-compliance-rate"><span class="toc-section-number">8.5.3</span> Estimate the Compliance Rate</a></li>
+<li><a href="estimating-with-non-compliance.html#compute-the-cace" id="toc-compute-the-cace"><span class="toc-section-number">8.5.4</span> Compute the CACE</a></li>
+<li><a href="estimating-with-non-compliance.html#do-you-get-the-same-thing-with-this-subset-estimator" id="toc-do-you-get-the-same-thing-with-this-subset-estimator"><span class="toc-section-number">8.5.5</span> Do you get the same thing with this subset estimator?</a></li>
+</ul></li>
+<li><a href="two-stage-least-squares.html#two-stage-least-squares" id="toc-two-stage-least-squares"><span class="toc-section-number">8.6</span> Two Stage Least Squares</a>
+<ul>
+<li><a href="two-stage-least-squares.html#first-stage" id="toc-first-stage"><span class="toc-section-number">8.6.1</span> First Stage</a></li>
+<li><a href="two-stage-least-squares.html#second-stage" id="toc-second-stage"><span class="toc-section-number">8.6.2</span> Second stage</a></li>
+</ul></li>
+</ul></li>
+<li><a href="spillover-and-interference.html#spillover-and-interference" id="toc-spillover-and-interference"><span class="toc-section-number">9</span> Spillover and Interference</a>
+<ul>
+<li><a href="learning-objectives-8.html#learning-objectives-8" id="toc-learning-objectives-8"><span class="toc-section-number">9.1</span> Learning Objectives</a></li>
+<li><a href="defining-terms.html#defining-terms" id="toc-defining-terms"><span class="toc-section-number">9.2</span> Defining Terms</a></li>
+<li><a href="defining-notation.html#defining-notation" id="toc-defining-notation"><span class="toc-section-number">9.3</span> Defining Notation</a>
+<ul>
+<li><a href="defining-notation.html#identify-concepts" id="toc-identify-concepts"><span class="toc-section-number">9.3.1</span> Identify concepts</a></li>
+<li><a href="defining-notation.html#classroom-assignments" id="toc-classroom-assignments"><span class="toc-section-number">9.3.2</span> Classroom Assignments</a></li>
+<li><a href="defining-notation.html#working-with-a-simple-example" id="toc-working-with-a-simple-example"><span class="toc-section-number">9.3.3</span> Working with a simple example</a></li>
+<li><a href="defining-notation.html#working-with-a-more-complex-example" id="toc-working-with-a-more-complex-example"><span class="toc-section-number">9.3.4</span> Working with a more complex example</a></li>
+</ul></li>
+<li><a href="within-subjects-experiments.html#within-subjects-experiments" id="toc-within-subjects-experiments"><span class="toc-section-number">9.4</span> Within subjects experiments</a>
+<ul>
+<li><a href="within-subjects-experiments.html#survey-experiments" id="toc-survey-experiments"><span class="toc-section-number">9.4.1</span> Survey Experiments</a></li>
+</ul></li>
+<li><a href="discussing-the-reading-blake-and-coey-2014.html#discussing-the-reading-blake-and-coey-2014" id="toc-discussing-the-reading-blake-and-coey-2014"><span class="toc-section-number">9.5</span> Discussing the reading: Blake and Coey (2014)</a></li>
+<li><a href="discussing-the-reading-miguel-and-kremer-2004.html#discussing-the-reading-miguel-and-kremer-2004" id="toc-discussing-the-reading-miguel-and-kremer-2004"><span class="toc-section-number">9.6</span> Discussing the reading: Miguel and Kremer (2004)</a></li>
+</ul></li>
+<li><a href="causality-from-observational-data.html#causality-from-observational-data" id="toc-causality-from-observational-data"><span class="toc-section-number">10</span> Causality from Observational Data</a>
+<ul>
+<li><a href="learning-objectives-9.html#learning-objectives-9" id="toc-learning-objectives-9"><span class="toc-section-number">10.1</span> Learning Objectives</a></li>
+<li><a href="the-experimental-ideal.html#the-experimental-ideal" id="toc-the-experimental-ideal"><span class="toc-section-number">10.2</span> The Experimental Ideal</a></li>
+<li><a href="a-continuum-of-plausibility.html#a-continuum-of-plausibility" id="toc-a-continuum-of-plausibility"><span class="toc-section-number">10.3</span> A Continuum of Plausibility</a></li>
+<li><a href="natural-experiments.html#natural-experiments" id="toc-natural-experiments"><span class="toc-section-number">10.4</span> Natural Experiments</a>
+<ul>
+<li><a href="natural-experiments.html#questions-to-consider" id="toc-questions-to-consider"><span class="toc-section-number">10.4.1</span> Questions to consider</a></li>
+<li><a href="natural-experiments.html#breakout-activity" id="toc-breakout-activity"><span class="toc-section-number">10.4.2</span> Breakout activity</a></li>
+<li><a href="natural-experiments.html#how-does-one-analyze-a-natural-experiment" id="toc-how-does-one-analyze-a-natural-experiment"><span class="toc-section-number">10.4.3</span> How does one analyze a natural experiment?</a></li>
+</ul></li>
+<li><a href="can-we-fix-this-estimate.html#can-we-fix-this-estimate" id="toc-can-we-fix-this-estimate"><span class="toc-section-number">10.5</span> Can we fix this estimate?</a></li>
+<li><a href="regression-discontinuity.html#regression-discontinuity" id="toc-regression-discontinuity"><span class="toc-section-number">10.6</span> Regression Discontinuity</a>
+<ul>
+<li><a href="regression-discontinuity.html#why-do-rdd-designs-work" id="toc-why-do-rdd-designs-work"><span class="toc-section-number">10.6.1</span> Why do RDD designs “work”?</a></li>
+<li><a href="regression-discontinuity.html#just-how-common-are-opportunities-for-rdd" id="toc-just-how-common-are-opportunities-for-rdd"><span class="toc-section-number">10.6.2</span> Just how common are opportunities for RDD</a></li>
+<li><a href="regression-discontinuity.html#working-with-regression-discontinuity-designs" id="toc-working-with-regression-discontinuity-designs"><span class="toc-section-number">10.6.3</span> Working with Regression Discontinuity Designs</a></li>
+<li><a href="regression-discontinuity.html#more-realistic-data" id="toc-more-realistic-data"><span class="toc-section-number">10.6.4</span> More realistic data</a></li>
+<li><a href="regression-discontinuity.html#what-about-even-more-challenging-data" id="toc-what-about-even-more-challenging-data"><span class="toc-section-number">10.6.5</span> What about even more challenging data?</a></li>
+</ul></li>
+</ul></li>
+<li><a href="problems-and-diagnostics.html#problems-and-diagnostics" id="toc-problems-and-diagnostics"><span class="toc-section-number">11</span> Problems and Diagnostics</a>
+<ul>
+<li><a href="learning-objectives-10.html#learning-objectives-10" id="toc-learning-objectives-10"><span class="toc-section-number">11.1</span> Learning Objectives</a></li>
+<li><a href="goals-of-an-expermient.html#goals-of-an-expermient" id="toc-goals-of-an-expermient"><span class="toc-section-number">11.2</span> Goals of an Expermient</a></li>
+</ul></li>
+<li><a href="attrition-mediation-and-generalizability.html#attrition-mediation-and-generalizability" id="toc-attrition-mediation-and-generalizability"><span class="toc-section-number">12</span> Attrition, Mediation, and Generalizability</a>
+<ul>
+<li><a href="learning-objectives-11.html#learning-objectives-11" id="toc-learning-objectives-11"><span class="toc-section-number">12.1</span> Learning Objectives</a></li>
+<li><a href="why-doesnt-mediation-analysis-work.html#why-doesnt-mediation-analysis-work" id="toc-why-doesnt-mediation-analysis-work"><span class="toc-section-number">12.2</span> Why doesn’t mediation analysis work?</a></li>
+<li><a href="endless-chain-of-why.html#endless-chain-of-why" id="toc-endless-chain-of-why"><span class="toc-section-number">12.3</span> Endless Chain of Why?</a></li>
+<li><a href="design-an-experiment-to-evaluate-these-possible-causes.html#design-an-experiment-to-evaluate-these-possible-causes" id="toc-design-an-experiment-to-evaluate-these-possible-causes"><span class="toc-section-number">12.4</span> Design an experiment to evaluate these possible causes</a></li>
+<li><a href="generalizability.html#generalizability" id="toc-generalizability"><span class="toc-section-number">12.5</span> Generalizability</a></li>
+</ul></li>
+<li><a href="applications-of-experiments.html#applications-of-experiments" id="toc-applications-of-experiments"><span class="toc-section-number">13</span> Applications of Experiments</a>
+<ul>
+<li><a href="learning-objectives-12.html#learning-objectives-12" id="toc-learning-objectives-12"><span class="toc-section-number">13.1</span> Learning Objectives</a></li>
+</ul></li>
+<li><a href="review-of-the-course.html#review-of-the-course" id="toc-review-of-the-course"><span class="toc-section-number">14</span> Review of the Course</a>
+<ul>
+<li><a href="learning-objectives-13.html#learning-objectives-13" id="toc-learning-objectives-13"><span class="toc-section-number">14.1</span> Learning Objectives</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Experiments and Causality</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="learning-objectives-6" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Learning Objectives</h2>
+<p>At the end of this week, students will be able to</p>
+<ol style="list-style-type: decimal">
+<li>Understand what an HTE is, and what it is not.</li>
+<li>Conduct, test, and interpret models with interaction terms as specific tests of hypotheses.</li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="heterogeneous-treatment-effects.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="reading-and-discussion-goodson.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "serif",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
