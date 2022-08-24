@@ -18,7 +18,7 @@ jobs:
       - name: Install rmarkdown
         run: Rscript -e 'install.packages(c("rmarkdown","bookdown"))'
       - name: Install additional packages
-        run: Rscript -e 'install.packages(c("tidyverse", "data.table", "AER"))'
+        run: Rscript -e 'install.packages(c("tidyverse", "data.table", "AER", "patchwork"))'
       - name: Render Git Book
         run: Rscript -e 'bookdown::render_book("index.Rmd", output_format="bookdown::gitbook")'
       - name: Render PDF Book
