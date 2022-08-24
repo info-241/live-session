@@ -1,6 +1,6 @@
 # Regression and Multifactor Experiments
 
-```{r, echo=FALSE, message=FALSE}
+```{r load packages for unit 06, echo=FALSE, message=FALSE}
 library(data.table) 
 library(stargazer)
 library(sandwich)

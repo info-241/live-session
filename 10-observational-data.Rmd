@@ -1,6 +1,6 @@
 # Causality from Observational Data
 
-```{r load unit10 packages, echo=FALSE, message=FALSE}
+```{r load unit 10 packages, echo=FALSE, message=FALSE}
 library(data.table)
 
 library(sandwich)
@@ -8,7 +8,9 @@ library(lmtest)
 
 library(ggplot2)
 library(patchwork)
+```
 
+```{r settings for unit 10}
 theme_set(theme_minimal())
 berkeley_blue   <- '#003262'
 california_gold <- '#FDB515'
@@ -97,7 +99,6 @@ coeftest(model_wrong, vcov. = vcovHC)
 The promise of two stage-least squares is that it produces unbiased estimates so long as we're able to find something that is random.
 
 ```{r estimate two stage regression}
-
 first_stage <- d[ , lm(schooling ~ lottery)] 
 d[ , schooling_hat:= predict(first_stage)] 
 
@@ -135,7 +136,6 @@ ability_by_lottery / residuals_lottery / residuals_ability
 Another way to think about this is in terms of how the predicted values are associated different features. Specifically, consider: Are the predicted values associated with having won the lottery? Are the predicted values associated with ability?
 
 ```{r}
-
 predicted_lottery <- ggplot(d) + 
   aes(x=as.factor(lottery), y=schooling_hat) + 
   geom_jitter() + 

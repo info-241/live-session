@@ -1,5 +1,11 @@
 # Quantifying Uncertainty
 
+```{r load packages for unit 03, echo=FALSE, message=FALSE, warn=FALSE}
+library(data.table)
+library(ggplot2)
+```
+
+
 ## Learning Objectives 
 
 At the end of this week's live session, students will be able to 

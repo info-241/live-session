@@ -1,5 +1,10 @@
 # Covariates and Regression
 
+```{r load packages for unit 05, echo=FALSE, message=FALSE, warning=FALSE}
+library(data.table)
+```
+
+
 Adding covariates to what we're measuring, even if those covariates are non experimental, can help us improve our
 measurement." 
 

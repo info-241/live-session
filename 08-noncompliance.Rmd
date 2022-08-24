@@ -1,5 +1,13 @@
 # Treatment Noncompliance
 
+```{r load packages for unit 08, echo=FALSE, message=FALSE, warning=FALSE}
+library(data.table)
+library(magrittr) 
+
+library(AER)
+```
+
+
 This begins a section of the class where we are going to evaluate what happens when problems creep into the actual experiments that we are conducting. We are first going to look at what happens when we instruct people to take treatment, but they choose not to. Or, when we instruct people to take control, but they choose to take treatment instead.
 
 It might seem, at first, like we should just proceed by analyzing according to the treatment condition that they actually received. However, because we haven't experimentally assigned this condition, this creates an unprincipled estimator.
@@ -68,10 +76,6 @@ Finally, the authors introduce us to the real point of this week: design notatio
 ### Estimating with non-compliance 
 
 ```{r make data for non-compliance}
-library(data.table)
-library(magrittr) 
-library(lmtest)                 # though we won't actually use them in this
-library(sandwich)               # and neither this... 
 ## install.packages("AER")      # this has a nice wrapper for iv regression
                                 # but we can do it by hand with VERY little work 
 

@@ -46,26 +46,28 @@ if(makeData) {
 
 ## Estimate a model that includes only the treatment effect.
 ## Interpret all the coefficients. 
-mod0 <- 
+mod0 <- ''
 
 ## Estimate a model that includes the treatment effect and
 ## the (highly predictive!) pre-treatment Y val. 
-mod1 <- 
+mod1 <- ''
 
 ## Print the two next to each other, and compare what is going on.
 ## Tell me what is happening in the differences in the intercept
 ## and the preY coefficients. Tell me what is happening in the SE
 ## for the treatment effect. 
-stargazer(mod0, mod1, type = "text")
+
+#stargazer(mod0, mod1, type = "text")
 
 ## Subset the data into two groups based on gender and estimate
 ## a model that only includes the preY and treatment effects.
 ## Print these two models side by side, and tell me what is going
 ## on.
 
-mod2 <- 
-mod3 <- 
-stargazer() 
+mod2 <- ''
+mod3 <- ''
+
+# stargazer() 
 
 ## Based on this, would you conclude that these are different?
 ## Talk about the 95% CI for each.
@@ -81,8 +83,8 @@ stargazer()
 ##     Is the p-value the same or different for this test?
 ##     Why? 
 
-mod4 <- 
-mod5 <- 
+mod4 <- ''
+mod5 <- ''
 
 ## ? anova
 
