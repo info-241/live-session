@@ -3,7 +3,6 @@ _book/
 _bookdown_files/
 libs/
 
-**/*.bib
 **/*.html
 
 !**/mathjax_header.html
