@@ -37,12 +37,25 @@ In breakout rooms, please design an experiment that would be able to measure the
 If there are any limitations to what you design, please voice those concerns and talk about why they arise, relative to an *ideal* experiment (that you are probably unable to conduct). 
     
 ## Non-compliance Discussion
+### Setting Terms of Understanding 
+- What is does the concept of the *intent to treat* effect mean? When is this ITT measurable? When is the ITT an interesting quantity to estimate? When is it uninteresting?  
+- What is the compliance with treatment assignment? How does someone measure $ITT_{D}$? Why do Green and Gerber choose to pick such arcane notation? Why is it necessary to know the compliance rate?  
+- What is the compliers average causal effect (CACE)? Under what conditions is this CACE guaranteed to be *exactly* the same as the ITT? Under what conditions is this CACE larger than the ITT? Under what conditions is it smaller than the ITT? 
+- Is it possible to estimate the CACE without knowing *specifically* who complied? Is it possible to estimate the CACE without knowing anything about compliance rates?   
 
-- What is ITT? 
-- What is ITT_{d}? 
-- What is the CACE? 
-- How does this produce an apples to oranges comparison? 
-- What is the exclusion restriction, and why is it important in this case? 
+### Where Does Noncompliance Occur 
+
+Is all of this concern about non-compliance actually a concern? Or, is this just another example of academics getting ahead of themselves and worrying about things that are not actually a concern? 
+
+:::{.breakout} 
+In three distinct breakout groups, please talk about one of the following scenarios. 
+
+1. **You are a MIDS instructor writing online content to cause students to be their best possible data scientist.** In this role, you write curriculum, record lectures and assign readings, and create homework assignments for students to work on. How might compliance issues affect curriculum choices? 
+2. **You are a non-profit interested in reducing litter at your local surf spot.** In this role, you take steps to raise awareness through signs. How does compliance affect what you are likely to learn in any trial or evaluation of your work? How would you know if someone complies? 
+3. **You are a publisher seeking to sell more copies of the newest, and best causal estimators textbook.** You propose to use pre-roll advertisements on video streaming services to get the word out about the new book. What are all the ways that you can imagine measuring compliance? Which would you propose to use, and why?  How might compliance issues affect what you're able to estimate?
+::: 
+
+When we come back, each student group will have 5 minutes to talk the other two groups through their scenario, including major risks, opportunities, and learning that they took away from the scenario. 
 
 ## Estimating with Non-compliance 
 
@@ -53,42 +66,66 @@ If there are any limitations to what you design, please voice those concerns and
                                 # but we can do it by hand with VERY little work 
 
 nrows = 1000
-d <- data.table(id = 1:nrows) 
 
-d[ , y0 := rnorm(nrows, mean = 10)]
-d[ , tau := rnorm(nrows, mean = 5)]
+d <- data.table(
+  id  = 1:nrows, 
+  y0  = rnorm(nrows, mean=10), 
+  tau = rnorm(nrows, mean=5)
+)
+
+## create a treatment effect
 d[ , y1 := y0 + tau]
 
-d[ , assigned := sample(rep(c(0,1), each = nrows / 2))] # z in the book
+## create an assignment vector and a treatment vector with everybody initially
+## set to be untreated. 
+d[ , assigned := sample(rep(c(0,1), each=nrows/2))] # z in the book
 d[ , treated := 0] 
-d[assigned == 1, treated := sample(c(1,0), size = .N, replace = TRUE, prob = c(.7, .3))]
 
+## then, among the people who are assigned to receive treatment, actually 
+## treat some of them at random. 
+d[
+  assigned == 1, 
+  treated  := sample(
+    x=1:0, size=.N, replace=TRUE, prob=c(.7, .3)
+    )]
+
+## finally, observe: 
+##   - the potential outcomes to treatment for the treatment group; and, 
+##   - the potential outcomes to control for the control group. 
 d[treated == 1, Y := y1]
 d[treated == 0, Y := y0]
 ```
+
+With this data created, we can confirm that the different between potential outcomes to treatment and control still produces the treatment effect. If it doesn't we've got bigger problems than compliance! 
 
 ```{r confirm tau}
 d[ , mean(y1 - y0)]
 ```
 
-But, that has all the data in the science table. In real life, we won't get this. 
+But, the data that we have created to this point has all the data in the science table. In real life, we won't get access to all this data; instead, we get access to observing some potential outcomes for one group and some other potential outcomes for another group. Let's create this restricted set of data to ensure that our estimator can recover the population parameter that we're looking for, even though it only has access to a sample of data from that population. 
 
-```{r}
-d2 <- d[ , .(assigned, treated, Y)]
-d2[ , .(mean = mean(Y)), by = assigned][ , diff(mean)]
+```{r create observed data}
+d_observed <- d[ , .(assigned, treated, Y)]
+```
 
-5 * .7
-## rats. we /know/ that the treatment effect is 5, but when we look at the
-## intent to treat effect, we only estimate a difference of 3.5 or so. 
+Does our estimator for the $ATE$ produce an unbiased estimator of the population parameter, given this sample of data? We know that the population parameter has a treatment effect of $5$.
+
+```{r sample estimator }
+## how would you code a simple two-group ATE estimator? 
 
 ```
 
+### Build Estimators 
 
-Suppose that we cannot evaluate whether someone was /actually/ treated or not. 
-  - In this case, we will ONLY be able to recover the ITT. 
-  - This requires that you suspect reality for a moment and suppose we don't have the `treated` measurement. 
-  
-### Estimate the Intent to Treat Effect
+Suppose that you cannot /actually/ observe whether someone was treated or not. This will require that you suspend reality for a moment, to suppose that we do not have access to the `treateed` variable. 
+
+In this case, what concept **are** you able to estimate? What concept are you **not** able to estimate? 
+
+#### Estimate the Intent to Treat Effect
+
+Use a linear model to estimate the intent to treat effect. What variables do you need to produce this estimate, and what subset of the data (up to, and including the full set of data) do you use to produce this estimate? 
+
+- What should be the magnitude of your ITT estimator, relative to the actual population average treatment effect that we encoded (i.e. 5)? Why do you anticipate that it will be at this level? 
 
 ```{r estimate the itt}
 
@@ -96,34 +133,42 @@ Suppose that we cannot evaluate whether someone was /actually/ treated or not.
 
 ### Estimate the Compliance Rate 
 
-```{r estimate the compliance rate}
+Using the full set of data, estimate the compliance rate in two different ways: 
+
+1. Estimate using a `.N` counter, or `mean` or some other such simple transformation on the data.table. 
+2. Estimate using a linear model, interpreting the coefficient of that model appropriately. 
+
+What are the trade offs to these two different methods? 
+
+```{r estimate the compliance rate two ways. }
 
 ```
 
 ### Compute the CACE 
 
-Because you have the ITT and the compliance rate, estimate the CACE
+Because you have the ITT and the compliance rate, estimate the CACE. Once again, compute this compliance rate in several ways. 
 
-```{r compute cace}
+1. Using a `.N` counter, or `mean` or some other such simple transformation on the **entire**  data.table. Once again, you might notice that this does not have a sampling based uncertainty estimate associated with it. You need not code this now, but talk about how you would produce something akin to a standard error for the mean given this data. 
+2. Using a `.N` counter, or `mean` or some other such simple transformation on a reasonable **subset** of the data.table. 
+  - Will the estimate that you produce on this subset of data be larger, smaller, or about the same as the estimate that you produced on the full data? 
+  - Will the estimate of the standard error for the mean be larger, smaller, or about the same as the estimate that you produced on the full data? 
+3. Finally, estimate the CACE using two linear models. How, if at all, would you produce an estimate of the sampling based uncertainty of these estimates? 
 
+```{r compute cace several ways}
+cace_one   <- 'fill this in' 
+cace_two   <- 'fill this in' 
+cace_three <- 'fill this in' 
 ```
 
-### Do you get the same thing with this subset estimator? 
-
-```{r cace thorugh subsets?}
-d2[assigned == 1 , .(group_mean = mean(Y)), by = .(treated)] %>%
-    .[ , diff(group_mean)]
-```
-
-Notice that this does not have  clear estimate of the uncertainty associated with it. This is a bummer.  
-
-In order to estimate with a reliable standard error, we can turn to two stage least squares.
+How do you feel about the sampling based uncertainty that you can produce with these estimators? 
 
 ## Two Stage Least Squares
 
+In order to estimate with a reliable standard error, we can turn to two stage least squares.
+
 Two-stage least squares estimators have the benefits of
 
-1. Doing _exactly_ the same thing that the CACE = ITT / ITT_{d}; but,
+1. Doing _exactly_ the same thing that the $CACE = ITT / ITT_{d}$; but,
 2. Doing it in a way that has known standard errors that are quickly and easily computable. 
 
 ### First Stage 
@@ -147,12 +192,9 @@ first <- 'fill this in'
 
 ```
 
-
-d2[ , predict := predict(first)]
-
 ### Second stage 
 
-In the scond stage we: 
+In the second stage we: 
 
 - Estimate the relationship between the predicted values and the outcome. 
 - This will just tell you how the outcome changes in response to the amount of change that your treatment assignment is able to produce.
@@ -172,9 +214,9 @@ second <- 'fill this in'
 ## we can fix this by hand -- though I wouldn't -- or we can use a library that will
 ## do the accounting for us, from the library AER
 
-library(AER)
-iv.model <- ivreg(Y ~ treated | assigned, data = d2)
-
-coeftest(iv.model, vcov = vcovHC(iv.model, type = "const"))
+# library(AER)
+# iv.model <- ivreg(Y ~ treated | assigned, data = d2)
+# 
+# coeftest(iv.model, vcov = vcovHC(iv.model, type = "const"))
 
 ```
