@@ -289,7 +289,7 @@ stargazer(m1, m1, m1,
           header = FALSE)
 ```
 
-# Treatment by Treatment Interaction 
+## Treatment by Treatment Interaction 
 
 Summarised data is... a drag. 
 
