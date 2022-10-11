@@ -34,34 +34,7 @@ However, there's a catch. They are worried that taking such an action would be d
 
 In breakout rooms, please design an experiment that would be able to measure the difference in student experience. You will have to propose a measurement, a timescale for that measurement, and a feasible randomization that *could actually* occur given the real-world constraints that what is at question are loud sounds emanating from a 300 foot tower in the middle of a large, busy campus. 
 
-If there are any limitations to what you design, please voice those concerns and talk about why they arise, relative to an *ideal* experiment (that you are proably unable to conduct). 
-
-## Design Notation 
-
-This week, you read three very short chapters in a book by Trochim and Donelly. This reading begins with a series of one-group "threats" to causal inference, which we will enumerate again here: 
-
-- *History threat* 
-- *Maturation threat* 
-- *Testing threat* 
-- *Instrumentation threat* 
-- *Mortality threat* 
-- *Regression threat* 
-
-Many of these contain a plain language statement of a problem that might arise from an experiment design. For example, a maturation threat might mean that as your subjects get older or more experienced through the experiment, they may do better (or worse) at the task that they are being asked to undertake. This isn't an academic-only concern, this is something that is actually likely to happen if you measure performance over a long period of time. 
-
-The author then moves on to describe several multiple-group threats. Notice that each of these multi-group threats are simply "selection-" version of the threads that we have already enumerated. 
-
-> How to do we ensure that we do not witness any of the problems created by these *selection-* threats? 
-
-### Design Notation 
-
-Finally, the authors introduce us to the real point of this week: design notation whereby they provide us with a constrained set of actions that can be taken. 
-
-    R
-    O 
-    Y 
-    N 
-    X 
+If there are any limitations to what you design, please voice those concerns and talk about why they arise, relative to an *ideal* experiment (that you are probably unable to conduct). 
     
 ## Non-compliance Discussion
 

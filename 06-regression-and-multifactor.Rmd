@@ -20,6 +20,33 @@ rse <- function(model) {
 2. 
 3. 
 
+## Design Notation 
+
+This week, you read three very short chapters in a book by Trochim and Donelly. This reading begins with a series of one-group "threats" to causal inference, which we will enumerate again here: 
+
+- *History threat* 
+- *Maturation threat* 
+- *Testing threat* 
+- *Instrumentation threat* 
+- *Mortality threat* 
+- *Regression threat* 
+
+Many of these contain a plain language statement of a problem that might arise from an experiment design. For example, a maturation threat might mean that as your subjects get older or more experienced through the experiment, they may do better (or worse) at the task that they are being asked to undertake. This isn't an academic-only concern, this is something that is actually likely to happen if you measure performance over a long period of time. 
+
+The author then moves on to describe several multiple-group threats. Notice that each of these multi-group threats are simply "selection-" version of the threads that we have already enumerated. 
+
+> How to do we ensure that we do not witness any of the problems created by these *selection-* threats? 
+
+### Design Notation 
+
+Finally, the authors introduce us to the real point of this week: design notation whereby they provide us with a constrained set of actions that can be taken. 
+
+    R
+    O 
+    Y 
+    N 
+    X 
+
 ## Good Controls 
 
 ## Bad Controls 
@@ -29,7 +56,7 @@ What goes wrong with bad controls? Everything!
 ## A Very Simple Example 
 
 ## Make Data 
-Let's make some data in just the same way that we typically make data. We will produce a vector of potential outcoems to control, and then two outcomes that are affected by treatment. One we will consider the outcome that we are interested in understanding as a causal effect, the other, we're going to call the "bad control". 
+Let's make some data in just the same way that we typically make data. We will produce a vector of potential outcomes to control, and then two outcomes that are affected by treatment. One we will consider the outcome that we are interested in understanding as a causal effect, the other, we're going to call the "bad control". 
 
 ```{r}
 make_data <- function(n_rows=1000) { 
@@ -53,6 +80,7 @@ d <- make_data(n_rows=1000)
 
 
 ## What is the causal model we hold? 
+
 When we are thinking about the causal model here, we're saying, "I think that the conditional expectation of Y depends on the treatment status". But, maybe I think I want to also control for the variable `bad_control`. 
 
 In fact, we can estimate a reliable causal effect for *either* `D` on `Y`, *or* `D` on `bad_control`, but not the two together. 
@@ -62,7 +90,7 @@ model_1 <- d[ , lm(Y ~ D)]
 model_2 <- d[ , lm(Y ~ bad_control)]
 ``` 
 
-```{r report treatment and mediator models, message = FALSE}
+```{r report treatment and mediator models, warning=FALSE, message=FALSE}
 stargazer(
   model_1, model_2, 
   type = 'text', 
@@ -79,7 +107,7 @@ When you look at what the models have estimated, do they match the data that we 
 model_3 <- d[ , lm(Y ~ D + bad_control)]
 ``` 
 
-```{r report all three models}
+```{r report all three models, warning=FALSE}
 stargazer(
   model_1, model_2, model_3,
   type = 'text', 
@@ -233,11 +261,7 @@ stargazer(m2, m2, se = list(m2.se, m2.rse),
 
 Ok, now we're a little deeper down the rabbit hole. As we've talked about, clustered standard errors acknowledge that you've got treatment assigned at the cluster level, and that there may be significant covariance in potential outcomes at that cluster level. If this is the case, then we have functionally fewer observations than we have nominally, and we also have less power to detect an effect. 
 
-We've provided you a function to calculate the clustered standard errrors in the homework. And, we've had some considerably back-and-forth between two people who are named Alex on slack. 
-
-Another, relatively recently developed package now exists that *shoud* make considerably more simple the task of estimating clustered standard errors. The package has been developed since the recording of the async material, so we'll do the work to present it here. 
-
-The package is the `multiwayvcov`. 
+To estimate clustered standard errors, we use `sandwich::vcovCL`. 
 
 ```{r} 
 data("PetersenCL", package = "sandwich")
@@ -264,3 +288,31 @@ stargazer(m1, m1, m1,
           type = 'text',
           header = FALSE)
 ```
+
+# Treatment by Treatment Interaction 
+
+Summarised data is... a drag. 
+
+```{r}
+dat <- data.table(y       = rep(NA, 400),
+                  name    = rep(NA, 400),
+                  grammar = rep(NA, 400) )
+
+dat[ , y := c(rep(1, 52), rep(0, 48),
+              rep(1, 29), rep(0, 71),
+              rep(1, 37), rep(0, 63),
+              rep(1, 34), rep(0, 66) )]
+
+dat[ , name    := as.factor(c(rep("C", 200), rep("J",200)))]
+dat[ , grammar := as.factor(rep(c("G", "B", "G", "B"), each = 100) )]
+
+dat[ , ':='(cg = I(name == "C") * I(grammar == "G"),
+           cb = I(name == "C") * I(grammar == "B"),
+           jg = I(name == "J") * I(grammar == "G"),
+           jb = I(name == "J") * I(grammar == "B"))
+   ]
+
+dat
+
+```
+
