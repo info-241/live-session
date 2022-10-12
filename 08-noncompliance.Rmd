@@ -3,7 +3,6 @@
 ```{r load packages for unit 08, echo=FALSE, message=FALSE, warning=FALSE}
 library(data.table)
 library(magrittr) 
-
 library(AER)
 ```
 
