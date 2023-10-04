@@ -157,7 +157,7 @@
 
 \title{Experiments and Causality}
 \author{The 241 Instructional Team\footnote{David Reiley, D. Alex Hughes, David Broockman, Micah Gell-Redman, Scott Guenther, David Wheeler, Josue Martinze}}
-\date{2022-10-11}
+\date{2023-10-03}
 
 \begin{document}
 \maketitle
@@ -946,7 +946,7 @@ Y =
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 5.114125
+## [1] 5.442731
 \end{verbatim}
 
 \begin{itemize}
@@ -1036,13 +1036,12 @@ To begin with, lets work with a \emph{very} simple sample that has 100 observati
 \end{Shaded}
 
 \begin{verbatim}
-##       id        y0        y1
-##    <int>     <num>     <num>
-## 1:     1 0.2835750 0.5335750
-## 2:     2 0.3945008 0.6445008
-## 3:     3 0.2170704 0.4670704
-## 4:     4 0.2583033 0.5083033
-## 5:     5 0.4947309 0.7447309
+##    id        y0        y1
+## 1:  1 0.1549262 0.4049262
+## 2:  2 0.4977568 0.7477568
+## 3:  3 0.9603894 1.2103894
+## 4:  4 0.1164207 0.3664207
+## 5:  5 0.2084791 0.4584791
 \end{verbatim}
 
 In this world, we've taken a sample of \texttt{100} individuals, and at this point, each of those individuals that we've sampled has both a potential outcome to control \textbf{and also} a potential outcome to treatment. We haven't talked at all about measurement yet; we're just asserting that both of these potential outcomes exist for each person.
@@ -1078,13 +1077,12 @@ Suppose that for each unit, you then toss a coin, placing the subject either int
 \end{Shaded}
 
 \begin{verbatim}
-##       id        y0        y1 experimental_assignment
-##    <int>     <num>     <num>                   <int>
-## 1:     1 0.2835750 0.5335750                       1
-## 2:     2 0.3945008 0.6445008                       1
-## 3:     3 0.2170704 0.4670704                       0
-## 4:     4 0.2583033 0.5083033                       1
-## 5:     5 0.4947309 0.7447309                       0
+##    id        y0        y1 experimental_assignment
+## 1:  1 0.1549262 0.4049262                       0
+## 2:  2 0.4977568 0.7477568                       0
+## 3:  3 0.9603894 1.2103894                       1
+## 4:  4 0.1164207 0.3664207                       1
+## 5:  5 0.2084791 0.4584791                       1
 \end{verbatim}
 
 As as comparison, suppose that instead of randomly assigning individuals into treatment and control we allowed individuals to select into treatment and control. And suppose that people with the lowest potential outcomes to control opt to take the treatment. You might think of this as being something like, ``The people who are the most tired are the most likely to drink a cup of coffee before they start class,'' if an example helps you ground this.
@@ -1099,13 +1097,12 @@ Specifically, suppose that any unit that has a potential outcome lower that \tex
 \end{Shaded}
 
 \begin{verbatim}
-##       id        y0        y1 experimental_assignment observational_selection
-##    <int>     <num>     <num>                   <int>                   <num>
-## 1:     1 0.2835750 0.5335750                       1                       1
-## 2:     2 0.3945008 0.6445008                       1                       0
-## 3:     3 0.2170704 0.4670704                       0                       1
-## 4:     4 0.2583033 0.5083033                       1                       1
-## 5:     5 0.4947309 0.7447309                       0                       0
+##    id        y0        y1 experimental_assignment observational_selection
+## 1:  1 0.1549262 0.4049262                       0                       1
+## 2:  2 0.4977568 0.7477568                       0                       0
+## 3:  3 0.9603894 1.2103894                       1                       0
+## 4:  4 0.1164207 0.3664207                       1                       1
+## 5:  5 0.2084791 0.4584791                       1                       1
 \end{verbatim}
 
 These represent two different ways that you might conduct your research, each time with the same subject pool. Of course, in reality you probably would not be able to run these two studies at the same time, but since this is a simulation, we can stretch the confines of reality just a little bit.
@@ -2235,14 +2232,13 @@ In \emph{Field Experiments} on page 74, Green and Gerber provide a table of pote
 \end{Shaded}
 
 \begin{verbatim}
-##    Village     Y     D Block
-##      <int> <int> <int> <int>
-## 1:       1     0     0     1
-## 2:       2     1     0     1
-## 3:       3     2     1     1
-## 4:       4     4     2     1
-## 5:       5     4     0     1
-## 6:       6     6     0     1
+##    Village Y D Block
+## 1:       1 0 0     1
+## 2:       2 1 0     1
+## 3:       3 2 1     1
+## 4:       4 4 2     1
+## 5:       5 4 0     1
+## 6:       6 6 0     1
 \end{verbatim}
 
 Although this will produce numbers that are different than are reported in the book (because R implements sample variance and covariance, and the book instead uses population variance and covariance) compute the following.
@@ -2277,15 +2273,28 @@ Although this will produce numbers that are different than are reported in the b
 \hypertarget{regression-and-multifactor-experiments}{%
 \section{Regression and Multifactor Experiments}\label{regression-and-multifactor-experiments}}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{theme\_set}\NormalTok{(}\FunctionTok{theme\_minimal}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{learning-objectives-5}{%
 \subsection{Learning Objectives}\label{learning-objectives-5}}
+
+At the end of today's session, student will be able to
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
+  \textbf{Understand} the difference between good and bad controls, and \textbf{evaluate} whether a control variable is one or another.
 \item
+  \textbf{Articulate} the importance of asking ``why'' and how this enables search for multifactor experiments.
 \item
+  \textbf{Analyze} multifactor experiments using best-in-class linear models.
+\item
+  \textbf{Appreciate} that the model does not generate interpretation; design does.
 \end{enumerate}
 
 \hypertarget{design-notation}{%
@@ -2355,76 +2364,40 @@ Let's make some data in just the same way that we typically make data. We will p
     \AttributeTok{key =} \StringTok{\textquotesingle{}id\textquotesingle{}}
 \NormalTok{    )}
   
-\NormalTok{  d[ , }\StringTok{\textquotesingle{}:=\textquotesingle{}}\NormalTok{(}
+\NormalTok{  d[, }\StringTok{\textquotesingle{}:=\textquotesingle{}}\NormalTok{(}
+    \DocumentationTok{\#\# each of these are independent of all others}
     \AttributeTok{y0           =} \FunctionTok{runif}\NormalTok{(}\AttributeTok{min=}\SpecialCharTok{{-}}\DecValTok{10}\NormalTok{, }\AttributeTok{max=}\DecValTok{10}\NormalTok{, }\AttributeTok{n=}\NormalTok{.N), }
     \AttributeTok{tau          =} \FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n=}\NormalTok{.N, }\AttributeTok{mean=}\DecValTok{4}\NormalTok{), }
-    \AttributeTok{D            =} \FunctionTok{sample}\NormalTok{(}\AttributeTok{x=}\DecValTok{0}\SpecialCharTok{:}\DecValTok{1}\NormalTok{, }\AttributeTok{size=}\NormalTok{.N, }\AttributeTok{replace=}\ConstantTok{TRUE}\NormalTok{))][ , }\StringTok{\textquotesingle{}:=\textquotesingle{}}\NormalTok{(}
-    \AttributeTok{bad\_control  =} \DecValTok{1} \SpecialCharTok{*}\NormalTok{ D }\SpecialCharTok{+} \FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n=}\NormalTok{.N, }\AttributeTok{mean=}\DecValTok{0}\NormalTok{))][ , }\StringTok{\textquotesingle{}:=\textquotesingle{}}\NormalTok{(}
-    \AttributeTok{Y            =}\NormalTok{ y0 }\SpecialCharTok{+}\NormalTok{ D}\SpecialCharTok{*}\NormalTok{tau }\SpecialCharTok{+}\NormalTok{ bad\_control }\SpecialCharTok{+} \FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n=}\NormalTok{.N)}
-\NormalTok{    )]}
+    \AttributeTok{epsilon      =} \FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n=}\NormalTok{.N, }\AttributeTok{mean=}\DecValTok{0}\NormalTok{, }\AttributeTok{sd=}\DecValTok{2}\NormalTok{), }
+    \AttributeTok{D            =} \FunctionTok{sample}\NormalTok{(}\AttributeTok{x=}\DecValTok{0}\SpecialCharTok{:}\DecValTok{1}\NormalTok{, }\AttributeTok{size=}\NormalTok{.N, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{  )]}
+
+  \DocumentationTok{\#\# the bad control is *very* related to treatment}
+\NormalTok{  d[, bad\_control }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{ tau}\SpecialCharTok{*}\NormalTok{D }\SpecialCharTok{+}\NormalTok{ epsilon]}
+  
+  \CommentTok{\# d[, y0 := runif(min={-}10, max=10, n=.N) + bad\_control ]}
+  
+\NormalTok{  d[, Y }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{ y0 }\SpecialCharTok{+}\NormalTok{ bad\_control }\SpecialCharTok{+}\NormalTok{ epsilon]}
+  
 \NormalTok{  \}}
 
-\NormalTok{d }\OtherTok{\textless{}{-}} \FunctionTok{make\_data}\NormalTok{(}\AttributeTok{n\_rows=}\DecValTok{1000}\NormalTok{)}
+\NormalTok{d }\OtherTok{\textless{}{-}} \FunctionTok{make\_data}\NormalTok{(}\AttributeTok{n\_rows=}\DecValTok{10000}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \hypertarget{what-is-the-causal-model-we-hold}{%
 \subsection{What is the causal model we hold?}\label{what-is-the-causal-model-we-hold}}
 
-When we are thinking about the causal model here, we're saying, ``I think that the conditional expectation of Y depends on the treatment status''. But, maybe I think I want to also control for the variable \texttt{bad\_control}.
+When we are thinking about the causal model here, we're saying, ``I think that the conditional expectation of Y depends on the treatment status''. Or, even more simply, ``Treatment affects outcomes.''
 
-In fact, we can estimate a reliable causal effect for \emph{either} \texttt{D} on \texttt{Y}, \emph{or} \texttt{D} on \texttt{bad\_control}, but not the two together.
+But, maybe I think I want to also control for the variable \texttt{bad\_control}, despite the scary name that it has in the dataset.
+
+In fact, we can estimate a reliable causal effect for \emph{either} \texttt{Y\ \textasciitilde{}\ D} \emph{or} \texttt{bad\_control\ \textasciitilde{}\ D}, but not the two together.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{model\_1 }\OtherTok{\textless{}{-}}\NormalTok{ d[ , }\FunctionTok{lm}\NormalTok{(Y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ D)]}
-\NormalTok{model\_2 }\OtherTok{\textless{}{-}}\NormalTok{ d[ , }\FunctionTok{lm}\NormalTok{(Y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ bad\_control)]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{stargazer}\NormalTok{(}
-\NormalTok{  model\_1, model\_2, }
-  \AttributeTok{type =} \StringTok{\textquotesingle{}text\textquotesingle{}}\NormalTok{, }
-  \AttributeTok{se =} \FunctionTok{list}\NormalTok{(}\FunctionTok{rse}\NormalTok{(model\_1), }\FunctionTok{rse}\NormalTok{(model\_2)), }
-  \AttributeTok{omit.stat =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}ser\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}f\textquotesingle{}}\NormalTok{)}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## =========================================
-##                  Dependent variable:     
-##              ----------------------------
-##                           Y              
-##                   (1)            (2)     
-## -----------------------------------------
-## D               5.154***                 
-##                 (0.391)                  
-##                                          
-## bad_control                   1.821***   
-##                                (0.175)   
-##                                          
-## Constant         0.201        1.704***   
-##                 (0.266)        (0.218)   
-##                                          
-## -----------------------------------------
-## Observations     1,000          1,000    
-## R2               0.149          0.095    
-## Adjusted R2      0.148          0.094    
-## =========================================
-## Note:         *p<0.1; **p<0.05; ***p<0.01
-\end{verbatim}
-
-\hypertarget{do-the-estimates-match-the-world}{%
-\subsubsection{Do the estimates match the world?}\label{do-the-estimates-match-the-world}}
-
-When you look at what the models have estimated, do they match the data that we created above?
-
-\begin{Shaded}
-\begin{Highlighting}[]
+\NormalTok{model\_2 }\OtherTok{\textless{}{-}}\NormalTok{ d[ , }\FunctionTok{lm}\NormalTok{(bad\_control }\SpecialCharTok{\textasciitilde{}}\NormalTok{ D)]}
 \NormalTok{model\_3 }\OtherTok{\textless{}{-}}\NormalTok{ d[ , }\FunctionTok{lm}\NormalTok{(Y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ D }\SpecialCharTok{+}\NormalTok{ bad\_control)]}
 \end{Highlighting}
 \end{Shaded}
@@ -2432,184 +2405,50 @@ When you look at what the models have estimated, do they match the data that we 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{stargazer}\NormalTok{(}
-\NormalTok{  model\_1, model\_2, model\_3,}
+\NormalTok{  model\_1, model\_2, model\_3, }
   \AttributeTok{type =} \StringTok{\textquotesingle{}text\textquotesingle{}}\NormalTok{, }
-  \AttributeTok{se =} \FunctionTok{list}\NormalTok{(}\FunctionTok{rse}\NormalTok{(model\_1), }\FunctionTok{rse}\NormalTok{(model\_2), }\FunctionTok{rse}\NormalTok{(model\_3))}
+  \AttributeTok{se =} \FunctionTok{list}\NormalTok{(}\FunctionTok{rse}\NormalTok{(model\_1), }\FunctionTok{rse}\NormalTok{(model\_2), }\FunctionTok{rse}\NormalTok{(model\_3)),}
+  \AttributeTok{omit.stat =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}ser\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}f\textquotesingle{}}\NormalTok{)}
 \NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ## 
-## ==============================================================================================
-##                                                Dependent variable:                            
-##                     --------------------------------------------------------------------------
-##                                                         Y                                     
-##                               (1)                      (2)                      (3)           
-## ----------------------------------------------------------------------------------------------
-## D                           5.154***                                          4.166***        
-##                             (0.391)                                           (0.428)         
-##                                                                                               
-## bad_control                                          1.821***                 1.069***        
-##                                                      (0.175)                  (0.188)         
-##                                                                                               
-## Constant                     0.201                   1.704***                  0.122          
-##                             (0.266)                  (0.218)                  (0.263)         
-##                                                                                               
-## ----------------------------------------------------------------------------------------------
-## Observations                 1,000                    1,000                    1,000          
-## R2                           0.149                    0.095                    0.176          
-## Adjusted R2                  0.148                    0.094                    0.175          
-## Residual Std. Error     6.157 (df = 998)         6.349 (df = 998)         6.061 (df = 997)    
-## F Statistic         174.636*** (df = 1; 998) 105.053*** (df = 1; 998) 106.678*** (df = 2; 997)
-## ==============================================================================================
-## Note:                                                              *p<0.1; **p<0.05; ***p<0.01
+## ===========================================
+##                   Dependent variable:      
+##              ------------------------------
+##                 Y     bad_control     Y    
+##                (1)        (2)        (3)   
+## -------------------------------------------
+## D            3.923***  3.973***   -3.500***
+##              (0.141)    (0.043)    (0.160) 
+##                                            
+## bad_control                       1.868*** 
+##                                    (0.027) 
+##                                            
+## Constant      0.050      0.028     -0.002  
+##              (0.097)    (0.028)    (0.081) 
+##                                            
+## -------------------------------------------
+## Observations  10,000    10,000     10,000  
+## R2            0.072      0.467      0.365  
+## Adjusted R2   0.072      0.467      0.365  
+## ===========================================
+## Note:           *p<0.1; **p<0.05; ***p<0.01
 \end{verbatim}
 
-Now we're left with an under-estiamte of the causal effect of \texttt{D} on \texttt{Y}, and we've got some estimate of the effect of \texttt{bc} on \texttt{Y}. But, when we built the data, there wasn't such an effect! In fact, what is in here is the relationship between \texttt{y0} and \texttt{Y}, but through a mangled causal pipeline.
+\hypertarget{do-the-estimates-match-the-world}{%
+\subsubsection{Do the estimates match the world?}\label{do-the-estimates-match-the-world}}
 
-\hypertarget{a-more-complicated-example}{%
-\subsection{A More Complicated Example}\label{a-more-complicated-example}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# 1. create data.table}
-\CommentTok{\# 2. create potential outcomes to control}
-\CommentTok{\# 3. create a randomly assigned treatment indicator }
-\CommentTok{\# 4. have that treatment indicator and potential outcomes to control }
-\CommentTok{\#   cause outcomes in B. }
-\CommentTok{\# 5. dichotomize B (think of it like "finishing college" in MHE)}
-\CommentTok{\# 6. build the potential outcomes to treatment as the joint effects of }
-\CommentTok{\#   a. potential outcomes to control}
-\CommentTok{\#   b. the effect of B (which was caused by treatment)}
-\CommentTok{\#   c. the direct effect of treatment on the outcome variable}
-\CommentTok{\# 7 make an "observed Y" vector, just like usual. }
-
-\NormalTok{n\_rows }\OtherTok{\textless{}{-}} \DecValTok{100}
-
-\NormalTok{d }\OtherTok{\textless{}{-}} \FunctionTok{data.table}\NormalTok{(}\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\NormalTok{n\_rows)}
-\NormalTok{d[ , y0    }\SpecialCharTok{:}\ErrorTok{=} \FunctionTok{sample}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{10}\SpecialCharTok{:}\DecValTok{10}\NormalTok{, n\_rows, }\AttributeTok{replace =}\NormalTok{ T)] }
-\NormalTok{d[ , treat }\SpecialCharTok{:}\ErrorTok{=} \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{), n\_rows, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)]}
-\NormalTok{d[ , B     }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{ y0 }\SpecialCharTok{+} \DecValTok{5} \SpecialCharTok{*}\NormalTok{ treat }\SpecialCharTok{+} \FunctionTok{rnorm}\NormalTok{(n\_rows, }\AttributeTok{mean=} \DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \DecValTok{4}\NormalTok{)]}
-\NormalTok{d[ , B     }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{ B }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{] }
-\NormalTok{d[ , y1    }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{ y0 }\SpecialCharTok{+}\NormalTok{ B }\SpecialCharTok{+} \DecValTok{10} \SpecialCharTok{*}\NormalTok{ treat }\SpecialCharTok{+} \FunctionTok{round}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(n\_rows, }\AttributeTok{mean=} \DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \DecValTok{4}\NormalTok{), }\DecValTok{0}\NormalTok{)]}
-\NormalTok{d[ , Y     }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{ y1}\SpecialCharTok{*}\NormalTok{treat }\SpecialCharTok{+}\NormalTok{ y0}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{treat)]}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{look-at-data}{%
-\subsection{Look at Data}\label{look-at-data}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{hist}\NormalTok{(d[,Y], }\AttributeTok{col =} \StringTok{"grey"}\NormalTok{, }
-     \AttributeTok{main =} \StringTok{"Histogram of Observed Outcomes"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{241-live-session_files/figure-latex/unnamed-chunk-7-1.pdf}
-
-\hypertarget{estimate-relationships}{%
-\subsection{Estimate Relationships}\label{estimate-relationships}}
-
-What are the estimates we might be interested in?
-
-\hypertarget{correct}{%
-\subsubsection{Correct}\label{correct}}
-
-Well, the first is the \emph{correct} relationship which is the causal effect of \texttt{treat} on \texttt{Y}. How would we estimate this? Since the underlying conditional expectation function tells us something causal, we can just use a simple linear regression as a method of estimating the causal effect. So, of course, just with a simple linear model.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{m1 }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(Y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ treat, }\AttributeTok{data =}\NormalTok{ d, }\AttributeTok{family =} \StringTok{"gaussian"}\NormalTok{)}
-\FunctionTok{stargazer}\NormalTok{(m1, }\AttributeTok{type =} \StringTok{"latex"}\NormalTok{, }\AttributeTok{omit.stat =} \StringTok{"f"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{FALSE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{table}[!htbp] \centering 
-  \caption{} 
-  \label{} 
-\begin{tabular}{@{\extracolsep{5pt}}lc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
-\cline{2-2} 
-\\[-1.8ex] & Y \\ 
-\hline \\[-1.8ex] 
- treat & 12.751$^{***}$ \\ 
-  & (1.271) \\ 
-  & \\ 
- Constant & $-$1.123 \\ 
-  & (0.834) \\ 
-  & \\ 
-\hline \\[-1.8ex] 
-Observations & 100 \\ 
-Log Likelihood & $-$325.843 \\ 
-Akaike Inf. Crit. & 655.686 \\ 
-\hline 
-\hline \\[-1.8ex] 
-\textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
-\end{tabular} 
-\end{table}
-
-\hypertarget{incorrect}{%
-\subsubsection{Incorrect}\label{incorrect}}
-
-The second, \emph{incorrect} relationship might look at the effect of treatment, among people who have different levels of B. This would just be looking at a model that has both features built into it. Another, simliarly bad estimate might be to subset the model into different groups and look for the treatmnet effect within these groups. This also is silly and, as we'll demonstrate, will not recover anything even remotely related to the treatment effect we're interested in.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{m2  }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(Y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ treat }\SpecialCharTok{+}\NormalTok{ B, }\AttributeTok{data =}\NormalTok{ d, }\AttributeTok{family =} \StringTok{"gaussian"}\NormalTok{)}
-\NormalTok{m3a }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(Y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ treat, }\AttributeTok{data =}\NormalTok{ d[B}\SpecialCharTok{==}\ConstantTok{TRUE}\NormalTok{], }\AttributeTok{family =} \StringTok{"gaussian"}\NormalTok{)}
-\NormalTok{m3b }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(Y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ treat, }\AttributeTok{data =}\NormalTok{ d[B}\SpecialCharTok{==}\ConstantTok{FALSE}\NormalTok{], }\AttributeTok{family =} \StringTok{"gaussian"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{stargazer}\NormalTok{(m1, m2, m3a, m3b, }\AttributeTok{omit.stat =} \StringTok{"f"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{FALSE}\NormalTok{,}
-          \AttributeTok{add.lines =} \FunctionTok{list}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"Subset B?"}\NormalTok{, }\StringTok{"All"}\NormalTok{, }\StringTok{"All"}\NormalTok{, }\StringTok{"T"}\NormalTok{, }\StringTok{"F"}\NormalTok{))}
-\NormalTok{          )}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{table}[!htbp] \centering 
-  \caption{} 
-  \label{} 
-\begin{tabular}{@{\extracolsep{5pt}}lcccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & \multicolumn{4}{c}{\textit{Dependent variable:}} \\ 
-\cline{2-5} 
-\\[-1.8ex] & \multicolumn{4}{c}{Y} \\ 
-\\[-1.8ex] & (1) & (2) & (3) & (4)\\ 
-\hline \\[-1.8ex] 
- treat & 12.751$^{***}$ & 10.104$^{***}$ & 10.106$^{***}$ & 10.100$^{***}$ \\ 
-  & (1.271) & (1.037) & (1.275) & (1.801) \\ 
-  & & & & \\ 
- B &  & 8.502$^{***}$ &  &  \\ 
-  &  & (1.044) &  &  \\ 
-  & & & & \\ 
- Constant & $-$1.123 & $-$5.001$^{***}$ & 3.500$^{***}$ & $-$5.000$^{***}$ \\ 
-  & (0.834) & (0.802) & (0.954) & (0.890) \\ 
-  & & & & \\ 
-\hline \\[-1.8ex] 
-Subset B? & All & All & T & F \\ 
-Observations & 100 & 100 & 59 & 41 \\ 
-Log Likelihood & $-$325.843 & $-$299.783 & $-$177.026 & $-$123.754 \\ 
-Akaike Inf. Crit. & 655.686 & 605.566 & 358.053 & 251.508 \\ 
-\hline 
-\hline \\[-1.8ex] 
-\textit{Note:}  & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
-\end{tabular} 
-\end{table}
+When you look at what the models have estimated, do they match the data that we created above?
 
 \hypertarget{robust-standard-errors}{%
 \subsection{Robust Standard Errors}\label{robust-standard-errors}}
 
-David R. makes the good point in the async material that if we don't have a good reason to assume that the variance is the same between different groups, or really across all values of our explanatory variables, then these variances might, in fact be different, and as a consequence we might have overly optimistic estimates of our standard errors.
+David R. makes the good point in the async material that if we don't have a good reason to assume that the variance is the same between different groups, or really across all values of our explanatory variables, then these variances might, in fact be different! As a consequence we might have overly optimistic estimates of our standard errors.
 
-Why would this be bad? As we've said in the past, if we only want to falsely reject the null hypothesis in 5\% of cases due just to chance (roughly an equivalent thought to a 95\% confidence interval), then if our standard errors are wrong, there is the possibility that we falsely reject the null more frequently.
+\textbf{Why would this be bad?} As we've said in the past, if we only want to falsely reject the null hypothesis in 5\% of cases due just to chance (roughly an equivalent thought to a 95\% confidence interval), then if our standard errors are wrong, there is the possibility that we falsely reject the null more frequently.
 
 So, we think we're only making this type of mistake in 5\% of cases to to random chance, but perhaps we're actually making this type of mistake in 20\% of cases. Why would this be bad? Remind yourself?
 
@@ -2619,39 +2458,84 @@ What is actually happening when we compute HCE? Well, rather than presuming that
 
 Otherwise though, there isn't really \emph{that} strong a penalty to pay.
 
+We're going to load data that has a clustering structure. This data is due to a simulation, initially written by \href{https://academic.oup.com/rfs/article/22/1/435/1585940}{Petersen (2009)}. In this simulation, there are repeated observations of firms for ten years. \href{https://www.r-bloggers.com/2020/04/paper-replication-petersen-2009/}{This post on R-bloggers}, replicates the data, in case you're curious about the specific clustering strucutre.
+
+We're using this data because (a) it has robust standard error considerations; and (b) it has clustering considerations.
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(sandwich) }\CommentTok{\# estimates HCE easily}
+\FunctionTok{library}\NormalTok{(sandwich) }\CommentTok{\# estimates RSE easily}
 \FunctionTok{library}\NormalTok{(lmtest)   }\CommentTok{\# sets up t{-}test easily }
-\NormalTok{d }\OtherTok{\textless{}{-}} \FunctionTok{data}\NormalTok{(petersen)}
 
-\FunctionTok{head}\NormalTok{(d)}
+\FunctionTok{data}\NormalTok{(}\StringTok{\textquotesingle{}PetersenCL\textquotesingle{}}\NormalTok{, }\AttributeTok{package =} \StringTok{\textquotesingle{}sandwich\textquotesingle{}}\NormalTok{)}
+\NormalTok{pcl }\OtherTok{\textless{}{-}} \FunctionTok{data.table}\NormalTok{(PetersenCL)}
+\FunctionTok{head}\NormalTok{(pcl)}
+\end{Highlighting}
+\end{Shaded}
 
+\begin{verbatim}
+##    firm year           x          y
+## 1:    1    1 -1.11397266  2.2515347
+## 2:    1    2 -0.08085376  1.2423458
+## 3:    1    3 -0.23760724 -1.4263762
+## 4:    1    4 -0.15248568 -1.1093940
+## 5:    1    5 -0.00142616  0.9146864
+## 6:    1    6 -1.21273661 -1.4246863
+\end{verbatim}
 
-\NormalTok{m1 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{data =}\NormalTok{ d)}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(pcl[firm }\SpecialCharTok{\textless{}=} \DecValTok{10}\NormalTok{]) }\SpecialCharTok{+} 
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{x, }\AttributeTok{y=}\NormalTok{y, }\AttributeTok{color =} \FunctionTok{factor}\NormalTok{(firm)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{241-live-session_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_1 }\OtherTok{\textless{}{-}}\NormalTok{ pcl[ , }\FunctionTok{lm}\NormalTok{(y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x)]}
 
 \DocumentationTok{\#\# since i have the lmtest loaded; i can call: }
-\FunctionTok{coeftest}\NormalTok{(m1, }\AttributeTok{vcov =} \FunctionTok{vcov}\NormalTok{(m1))}
-
-\DocumentationTok{\#\# to estimate robust SEs is a two line solution}
-\NormalTok{m1}\SpecialCharTok{$}\NormalTok{r.vcov }\OtherTok{\textless{}{-}} \FunctionTok{vcovHC}\NormalTok{(m1)}
-\FunctionTok{coeftest}\NormalTok{(m1, }\AttributeTok{vcov =}\NormalTok{ m1}\SpecialCharTok{$}\NormalTok{r.vcov)}
+\FunctionTok{coeftest}\NormalTok{(model\_1, }\AttributeTok{vcov =} \FunctionTok{vcovHC}\NormalTok{(model\_1, }\AttributeTok{type =} \StringTok{\textquotesingle{}const\textquotesingle{}}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
-These two packagse are recommended packages and are very standard in R. \texttt{data.table} which I've been harping on is a big deal. Lots of people use it. So too is \texttt{ggplot2}. But these two packages, sandwich and lmtest, are \textbf{core}. There is no disputing that.
+\begin{verbatim}
+## 
+## t test of coefficients:
+## 
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 0.029680   0.028359  1.0466   0.2954    
+## x           1.034833   0.028583 36.2041   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{m2}\SpecialCharTok{$}\NormalTok{r.vcov }\OtherTok{\textless{}{-}} \FunctionTok{vcovHC}\NormalTok{(m2, }\AttributeTok{type =} \StringTok{"HC3"}\NormalTok{)}
-\FunctionTok{coeftest}\NormalTok{(m2, }\FunctionTok{vcovHC}\NormalTok{(m2, }\AttributeTok{type =} \StringTok{"const"}\NormalTok{))}
-\FunctionTok{coeftest}\NormalTok{(m2, m2}\SpecialCharTok{$}\NormalTok{r.vcov)}
+\DocumentationTok{\#\# to estimate a robust se is a one line solution }
+\FunctionTok{coeftest}\NormalTok{(model\_1, }\AttributeTok{vcov =} \FunctionTok{vcovHC}\NormalTok{(model\_1, }\AttributeTok{type =} \StringTok{\textquotesingle{}HC3\textquotesingle{}}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
-What has happened in these last two calls? In the first, we estimated the HCE structure using the \texttt{vcovHC} function. In the second, we use that vcov in a t-test for each of the coefficients.
+\begin{verbatim}
+## 
+## t test of coefficients:
+## 
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 0.029680   0.028366  1.0463   0.2955    
+## x           1.034833   0.028412 36.4223   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
 
-There is a specific relationship between the variance-covariance matrix and the standard error. in fact, it is very much like the relationship beween the variance and standard error in any other application we've examined so far. This relationship is the following:
+These two packages are recommended packages and are \textbf{extremely} well used in R. I've been harping on \texttt{data.table} as abig deal, and it is. Lots of people use the frameowrk and it is great. But these two packages -- \texttt{sandwich} and \texttt{lmtest}, are \textbf{core}. There is no disputing that.
+
+There is a specific relationship between the variance-covariance matrix and the standard error. in fact, it is very much like the relationship between the variance and standard error in any other application we've examined so far.
+
+This relationship is the following:
 
 \[
   SE(\hat{\beta}) = \sqrt{diag(vcov)}
@@ -2677,8 +2561,8 @@ But, like as I showed earlier, we can wrap all this up with the \texttt{lmtest} 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{coeftest}\NormalTok{(m2, }\FunctionTok{vcov}\NormalTok{(m2))}
-\FunctionTok{coeftest}\NormalTok{(m2, }\FunctionTok{vcovHC}\NormalTok{(m2))}
+\CommentTok{\# coeftest(m2, vcov(m2))}
+\CommentTok{\# coeftest(m2, vcovHC(m2))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2686,73 +2570,29 @@ What if we wanted to pretty-print ourselves a table? If we are using stargazer, 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{m2.se  }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(}\FunctionTok{diag}\NormalTok{(}\FunctionTok{vcov}\NormalTok{(m2)))}
-\NormalTok{m2.rse }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(}\FunctionTok{diag}\NormalTok{(}\FunctionTok{vcovHC}\NormalTok{(m2, }\AttributeTok{type =} \StringTok{"HC1"}\NormalTok{)))}
-
-\FunctionTok{stargazer}\NormalTok{(m2, m2, }\AttributeTok{se =} \FunctionTok{list}\NormalTok{(m2.se, m2.rse), }
-          \AttributeTok{type =} \StringTok{"latex"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{FALSE}\NormalTok{)}
+\CommentTok{\# m2.se  \textless{}{-} sqrt(diag(vcov(m2)))}
+\CommentTok{\# m2.rse \textless{}{-} sqrt(diag(vcovHC(m2, type = "HC1")))}
+\CommentTok{\# }
+\CommentTok{\# stargazer(m2, m2, se = list(m2.se, m2.rse), }
+\CommentTok{\#           type = "latex", header = FALSE)}
 \end{Highlighting}
 \end{Shaded}
 
 \hypertarget{what-about-clustered-standard-errors}{%
 \subsection{What about clustered standard errors?}\label{what-about-clustered-standard-errors}}
 
-Ok, now we're a little deeper down the rabbit hole. As we've talked about, clustered standard errors acknowledge that you've got treatment assigned at the cluster level, and that there may be significant covariance in potential outcomes at that cluster level. If this is the case, then we have functionally fewer observations than we have nominally, and we also have less power to detect an effect.
+Ok, now we're a little deeper down the rabbit hole.
+
+As we've talked about, clustered standard errors acknowledge that you've got treatment assigned at the cluster level, and that there may be significant covariance in potential outcomes at that cluster level. If this is the case, then we have functionally fewer observations than we have nominally, and we also have less power to detect an effect.
 
 To estimate clustered standard errors, we use \texttt{sandwich::vcovCL}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{data}\NormalTok{(}\StringTok{"PetersenCL"}\NormalTok{, }\AttributeTok{package =} \StringTok{"sandwich"}\NormalTok{)}
-\NormalTok{m1 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{data =}\NormalTok{ PetersenCL)}
+\NormalTok{model\_1 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x, }\AttributeTok{data =}\NormalTok{ pcl)}
 
-\FunctionTok{summary}\NormalTok{(m1)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = y ~ x, data = PetersenCL)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -6.7611 -1.3680 -0.0166  1.3387  8.6779 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  0.02968    0.02836   1.047    0.295    
-## x            1.03483    0.02858  36.204   <2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 2.005 on 4998 degrees of freedom
-## Multiple R-squared:  0.2078, Adjusted R-squared:  0.2076 
-## F-statistic:  1311 on 1 and 4998 DF,  p-value: < 2.2e-16
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\DocumentationTok{\#\# when we clusetr}
-\FunctionTok{coeftest}\NormalTok{(m1, }\FunctionTok{vcovCL}\NormalTok{(m1, }\SpecialCharTok{\textasciitilde{}}\NormalTok{ firm))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## t test of coefficients:
-## 
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) 0.029680   0.067013  0.4429   0.6579    
-## x           1.034833   0.050596 20.4530   <2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\DocumentationTok{\#\# when we don\textquotesingle{}t cluster}
-\FunctionTok{coeftest}\NormalTok{(m1, }\FunctionTok{vcov}\NormalTok{(m1))}
+\DocumentationTok{\#\# without clustering }
+\FunctionTok{coeftest}\NormalTok{(model\_1, }\FunctionTok{vcovHC}\NormalTok{(model\_1, }\AttributeTok{type =} \StringTok{\textquotesingle{}const\textquotesingle{}}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2769,8 +2609,8 @@ To estimate clustered standard errors, we use \texttt{sandwich::vcovCL}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Cluster by both firm, and year}
-\FunctionTok{coeftest}\NormalTok{(m1, }\FunctionTok{vcovCL}\NormalTok{(m1, }\SpecialCharTok{\textasciitilde{}}\NormalTok{ firm }\SpecialCharTok{+}\NormalTok{ year))}
+\DocumentationTok{\#\# when we cluster}
+\FunctionTok{coeftest}\NormalTok{(model\_1, }\FunctionTok{vcovCL}\NormalTok{(model\_1, }\SpecialCharTok{\textasciitilde{}}\NormalTok{ firm, }\AttributeTok{type =} \StringTok{\textquotesingle{}HC3\textquotesingle{}}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2779,8 +2619,8 @@ To estimate clustered standard errors, we use \texttt{sandwich::vcovCL}.
 ## t test of coefficients:
 ## 
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) 0.029680   0.065064  0.4562   0.6483    
-## x           1.034833   0.053558 19.3217   <2e-16 ***
+## (Intercept) 0.029680   0.067143   0.442   0.6585    
+## x           1.034833   0.050816  20.364   <2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
@@ -2798,34 +2638,44 @@ Pretty print that.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## 
-## ======================================================================
-##                                          Dependent variable:          
-##                                 --------------------------------------
-##                                                   y                   
-##                                     (1)          (2)          (3)     
-## ----------------------------------------------------------------------
-## x                                 1.035***     1.035***     1.035***  
-##                                   (0.029)      (0.051)      (0.054)   
-##                                                                       
-## Constant                           0.030        0.030        0.030    
-##                                   (0.028)      (0.067)      (0.065)   
-##                                                                       
-## ----------------------------------------------------------------------
-## Observations                       5,000        5,000        5,000    
-## R2                                 0.208        0.208        0.208    
-## Adjusted R2                        0.208        0.208        0.208    
-## Residual Std. Error (df = 4998)    2.005        2.005        2.005    
-## F Statistic (df = 1; 4998)      1,310.740*** 1,310.740*** 1,310.740***
-## ======================================================================
-## Note:                                      *p<0.1; **p<0.05; ***p<0.01
-\end{verbatim}
-
 \hypertarget{treatment-by-treatment-interaction}{%
 \subsection{Treatment by Treatment Interaction}\label{treatment-by-treatment-interaction}}
 
-Summarised data is\ldots{} a drag.
+Summarized data is\ldots{} a drag.
+
+In the book, we're provided data about responses to questions from purported constituents. These people who are writing letters are either names ``Colin'' or ``José'' and who are either writing with ``good'' or ``bad'' grammar.
+
+But, the book gives us data of the form:
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+& Colin & Colin & José & José \\
+\midrule
+\endhead
+\% Received Reply & 52 & 29 & 37 & 34 \\
+(N) & (100) & (100) & (100) & (100) \\
+\bottomrule
+\end{longtable}
+
+Can you run inference against a table that is structured like that? How would you run a model against that form of ``data''?
+
+\hypertarget{recreate-data}{%
+\subsubsection{Recreate Data}\label{recreate-data}}
+
+In order to get a model running against this data, we're going to make a dataset that has the same information in it, but that we can actually run a model against.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  To begin with, what are the units of observation?
+\item
+  What are the features in the dataset?
+\item
+  What is the outcome in the dataset and how is it coded?
+\end{enumerate}
+
+Once we've been able to name these, we're able to make a \texttt{data.table} that matches this format.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2852,20 +2702,48 @@ Summarised data is\ldots{} a drag.
 \end{Shaded}
 
 \begin{verbatim}
-##          y   name grammar     cg     cb     jg     jb
-##      <num> <fctr>  <fctr> <AsIs> <AsIs> <AsIs> <AsIs>
-##   1:     1      C       G      1      0      0      0
-##   2:     1      C       G      1      0      0      0
-##   3:     1      C       G      1      0      0      0
-##   4:     1      C       G      1      0      0      0
-##   5:     1      C       G      1      0      0      0
-##  ---                                                 
-## 396:     0      J       B      0      0      0      1
-## 397:     0      J       B      0      0      0      1
-## 398:     0      J       B      0      0      0      1
-## 399:     0      J       B      0      0      0      1
-## 400:     0      J       B      0      0      0      1
+##      y name grammar cg cb jg jb
+##   1: 1    C       G  1  0  0  0
+##   2: 1    C       G  1  0  0  0
+##   3: 1    C       G  1  0  0  0
+##   4: 1    C       G  1  0  0  0
+##   5: 1    C       G  1  0  0  0
+##  ---                           
+## 396: 0    J       B  0  0  0  1
+## 397: 0    J       B  0  0  0  1
+## 398: 0    J       B  0  0  0  1
+## 399: 0    J       B  0  0  0  1
+## 400: 0    J       B  0  0  0  1
 \end{verbatim}
+
+If we've got a \texttt{data.table} that matches the format, can we then estimate models that correspond to the models that are written in the book?
+
+The first of these models, which the book and async refer to as a ``saturated model'' have the following form:
+
+\[
+Y_{i} = b_{1}L_{i}\overset{Non-Hispanic}{Good\ Grammar} + 
+  b_{2}L_{i}\overset{Hispanic}{Good\ Grammar} + 
+  b_{3}L_{i}\overset{Non-Hispanic}{Bad\ Grammar} + 
+  b_{4}L_{i}\overset{Hispanic}{Bad\ Grammar} + 
+  u_{i}
+\]
+
+How would you write a regression that produces this output?
+
+\hypertarget{a-more-common-estimating-strategy}{%
+\subsubsection{A more common estimating strategy}\label{a-more-common-estimating-strategy}}
+
+More commonly, but equivalently, we estimate this same form with a treatment-by-treatment interaction model. This has the functional form:
+
+\[
+Y_{i} = \beta_{0} + \beta_{1} J_{i} + \beta_{2} G_{i} + \beta_{3} J_{i}\times G_{i} + u_{i}
+\]
+
+Where, in this model \(J_{i}\) is an indicator for the sender signing ``José'', and \(G_{i}\) is an indicator for the sender using ``good grammar''. Finally, the \(J_{i}\times G_{i}\) is meant to imply that these two indicator are interacted with on another.
+
+How would you write a regression that matches this form?
+
+The book claims that this facilitates testing of nuanced hypotheses, specifically like, ``Is the effect of being named Colin or José different if there is poor grammar compared to if there is good grammar? How would you test this?
 
 \hypertarget{heterogeneous-treatment-effects}{%
 \section{Heterogeneous Treatment Effects}\label{heterogeneous-treatment-effects}}
@@ -3172,7 +3050,7 @@ With this data created, we can confirm that the different between potential outc
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 5.023489
+## [1] 4.985879
 \end{verbatim}
 
 But, the data that we have created to this point has all the data in the science table. In real life, we won't get access to all this data; instead, we get access to observing some potential outcomes for one group and some other potential outcomes for another group. Let's create this restricted set of data to ensure that our estimator can recover the population parameter that we're looking for, even though it only has access to a sample of data from that population.
@@ -3746,8 +3624,8 @@ What would be the consequence of estimating an eventual outcome, using a naive r
 ## t test of coefficients:
 ## 
 ##              Estimate Std. Error t value  Pr(>|t|)    
-## (Intercept) 30.107807   0.089085 337.967 < 2.2e-16 ***
-## schooling    2.037821   0.075628  26.945 < 2.2e-16 ***
+## (Intercept) 24.112215   0.570027  42.300 < 2.2e-16 ***
+## schooling    2.566756   0.053039  48.394 < 2.2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
@@ -3770,6 +3648,44 @@ The promise of two stage-least squares is that it produces unbiased estimates so
 \NormalTok{first\_stage }\OtherTok{\textless{}{-}}\NormalTok{ d[ , }\FunctionTok{lm}\NormalTok{(schooling }\SpecialCharTok{\textasciitilde{}}\NormalTok{ lottery)] }
 \NormalTok{d[ , schooling\_hat}\SpecialCharTok{:}\ErrorTok{=} \FunctionTok{predict}\NormalTok{(first\_stage)] }
 
+\NormalTok{d[ , schooling\_10 }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{ schooling }\SpecialCharTok{\textgreater{}} \DecValTok{10}\NormalTok{]}
+
+\NormalTok{d[ , }\FunctionTok{mean}\NormalTok{(ability), by }\OtherTok{=}\NormalTok{ .(schooling\_10)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    schooling_10        V1
+## 1:        FALSE  9.343827
+## 2:         TRUE 10.435274
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d[ , }\FunctionTok{mean}\NormalTok{(ability), by }\OtherTok{=}\NormalTok{ .(schooling\_hat)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    schooling_hat       V1
+## 1:      10.08391 10.06337
+## 2:      11.08736 10.06078
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d[ , }\FunctionTok{mean}\NormalTok{(ability), by }\OtherTok{=}\NormalTok{ .(lottery)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    lottery       V1
+## 1:   FALSE 10.06337
+## 2:    TRUE 10.06078
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{second\_stage }\OtherTok{\textless{}{-}}\NormalTok{ d[ , }\FunctionTok{lm}\NormalTok{(Y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ schooling\_hat)]}
 \FunctionTok{coeftest}\NormalTok{(second\_stage, }\AttributeTok{vcov. =}\NormalTok{ vcovHC)}
 \end{Highlighting}
@@ -3779,9 +3695,9 @@ The promise of two stage-least squares is that it produces unbiased estimates so
 ## 
 ## t test of coefficients:
 ## 
-##               Estimate Std. Error  t value  Pr(>|t|)    
-## (Intercept)   30.14611    0.15159 198.8665 < 2.2e-16 ***
-## schooling_hat  1.96865    0.20180   9.7557 < 2.2e-16 ***
+##               Estimate Std. Error t value  Pr(>|t|)    
+## (Intercept)   30.46240    2.90018 10.5036 < 2.2e-16 ***
+## schooling_hat  1.96857    0.27245  7.2254 9.913e-13 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
@@ -3822,7 +3738,7 @@ The promise of two stage-least squares is that it produces unbiased estimates so
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{241-live-session_files/figure-latex/unnamed-chunk-21-1.pdf}
+\includegraphics{241-live-session_files/figure-latex/unnamed-chunk-19-1.pdf}
 
 Another way to think about this is in terms of how the predicted values are associated different features. Specifically, consider: Are the predicted values associated with having won the lottery? Are the predicted values associated with ability?
 
@@ -3842,7 +3758,7 @@ Another way to think about this is in terms of how the predicted values are asso
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{241-live-session_files/figure-latex/unnamed-chunk-22-1.pdf}
+\includegraphics{241-live-session_files/figure-latex/unnamed-chunk-20-1.pdf}
 
 \hypertarget{regression-discontinuity}{%
 \subsection{Regression Discontinuity}\label{regression-discontinuity}}
@@ -3915,7 +3831,7 @@ With the data created, let's quickly look at what we are working with. Does the 
 \end{Shaded}
 
 \begin{verbatim}
-## `geom_smooth()` using formula 'y ~ x'
+## `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
 
 \includegraphics{241-live-session_files/figure-latex/first rdd plot-1.pdf}
@@ -3998,7 +3914,7 @@ This has been \emph{very} fortunate data. There is no trend across the running v
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{241-live-session_files/figure-latex/unnamed-chunk-23-1.pdf}
+\includegraphics{241-live-session_files/figure-latex/unnamed-chunk-21-1.pdf}
 
 \begin{verbatim}
 ## NULL
@@ -4036,7 +3952,7 @@ This has been \emph{very} fortunate data. There is no trend across the running v
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{241-live-session_files/figure-latex/unnamed-chunk-24-1.pdf}
+\includegraphics{241-live-session_files/figure-latex/unnamed-chunk-22-1.pdf}
 
 \begin{verbatim}
 ## NULL
@@ -4058,7 +3974,7 @@ This has been \emph{very} fortunate data. There is no trend across the running v
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{241-live-session_files/figure-latex/unnamed-chunk-25-1.pdf}
+\includegraphics{241-live-session_files/figure-latex/unnamed-chunk-23-1.pdf}
 
 \begin{itemize}
 \tightlist
@@ -4172,7 +4088,7 @@ Can you draw this system out in the way that we did in 203? Use circles to repre
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{241-live-session_files/figure-latex/unnamed-chunk-28-1.pdf}
+\includegraphics{241-live-session_files/figure-latex/unnamed-chunk-26-1.pdf}
 
 Once you've written out these pathways, what could go wrong in this analysis?
 

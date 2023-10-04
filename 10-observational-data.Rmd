@@ -84,8 +84,8 @@ d[ , ':='(
   lottery       = rnorm(.N, mean=10, sd=1) > 10
   )]
 
-d[ , schooling := 1.0 * lottery         + rnorm(.N, mean=0, sd=1)]
-d[ , Y         := ability + family_income + 2 * schooling   + rnorm(.N, mean=0, sd=1)]
+d[ , schooling := 1.0 * lottery + ability + rnorm(.N, mean=0, sd=1)]
+d[ , Y         := ability + family_income + 2 * schooling + rnorm(.N, mean=0, sd=1)]
 
 model_wrong <- d[ , lm(Y ~ schooling)]
 coeftest(model_wrong, vcov. = vcovHC)
@@ -101,6 +101,12 @@ The promise of two stage-least squares is that it produces unbiased estimates so
 ```{r estimate two stage regression}
 first_stage <- d[ , lm(schooling ~ lottery)] 
 d[ , schooling_hat:= predict(first_stage)] 
+
+d[ , schooling_10 := schooling > 10]
+
+d[ , mean(ability), by = .(schooling_10)]
+d[ , mean(ability), by = .(schooling_hat)]
+d[ , mean(ability), by = .(lottery)]
 
 second_stage <- d[ , lm(Y ~ schooling_hat)]
 coeftest(second_stage, vcov. = vcovHC)

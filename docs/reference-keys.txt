@@ -100,14 +100,11 @@ a-very-simple-example
 make-data-1
 what-is-the-causal-model-we-hold
 do-the-estimates-match-the-world
-a-more-complicated-example
-look-at-data
-estimate-relationships
-correct
-incorrect
 robust-standard-errors
 what-about-clustered-standard-errors
 treatment-by-treatment-interaction
+recreate-data
+a-more-common-estimating-strategy
 heterogeneous-treatment-effects
 learning-objectives-6
 reading-and-discussion-goodson
