@@ -42,3 +42,19 @@ Suppose that you are going to conduct an experiment that evaluates the effective
 3. **How would you detect?** For these three problems that you've identified, how would you know if the randomization has broken down in this particular way? 
 :::
 
+## Placebo Test 
+
+Earlier in the semester, we talked about Placebo Designs, where we intentionally randomize a group of participants and give them a treatment that we do not think will affect outcomes. This placebo treatment, which you might think of as a sugar pill, is designed to allow compliers (and non-compliers) to identify themselves to the experimenting team, producing more efficient estimates of the compliers average causal effect when there is a lot of treatment non-compliance. 
+
+This week, we introduce the concept of the *Placebo Test* which, importantly, is different than a *Placebo Design*. 
+
+:::{.discussion-question}
+What is a placebo test? How is the concept similar to, and how is it different from, a placebo design? 
+
+- How do you know if a particular feature is a good candidate for a placebo test? 
+- How are placebo tests different from covariate balance checks? 
+- If you fail a placebo test, why is there more uncertainty about how to fix your experiment? 
+:::
+
+
+
