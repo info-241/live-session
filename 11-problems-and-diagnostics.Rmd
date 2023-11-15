@@ -85,3 +85,14 @@ One set will argue in support of the claim: Using new techniques like reinforcem
 
 The other set of breakout rooms will argue against the claim: While these new techniques might afford some benefits, they cannot replace the work that we've been building over the course of the semester. 
 :::
+
+### Reasons for and against Experiments 
+
+:::{.discussion-question} 
+What are the reasons that you can identify *in support of* conducting an experiment? 
+:::
+
+:::{.discussion-question}
+What are the limitations to, or reasons that you might not conduct an experiment? 
+:::
+
