@@ -76,4 +76,12 @@ Suppose that you're conducting an experiment to learn the market-value effect of
 
 Getting experiments done at work is *almost alwasys* an uphill battle! We won't enumerate the reasons (because we will ask you to do so in a moment), but in our experience, there are some serious impediemnts to getting experiments done. 
 
-The good news, from the point of view of your company's leadership 
+The good news, from the point of view of your company's leadership: [A/B Testing is Dead](https://venturebeat.com/automation/offerfit-gets-25m-to-kill-a-b-testing-for-marketing-with-machine-learning-personalization/). 
+
+:::{.breakout}
+Using the tools of this class and the program, in breakout rooms evaluate this claim. All breakout rooms will read and learn about this claim. 
+
+One set will argue in support of the claim: Using new techniques like reinforcement learning and machine generated text, it is possible to determine the most effective messaging without needing to conduct randomized experiments. 
+
+The other set of breakout rooms will argue against the claim: While these new techniques might afford some benefits, they cannot replace the work that we've been building over the course of the semester. 
+:::
