@@ -56,5 +56,18 @@ What is a placebo test? How is the concept similar to, and how is it different f
 - If you fail a placebo test, why is there more uncertainty about how to fix your experiment? 
 :::
 
+## Manipulation Check 
 
+What happens if you don't use a *strong enough* treatment? 
 
+:::{.example}
+Suppose that you're conducting an experiment to learn the market-value effect of holding a MIDS degree from the School of Information. (Gosh, I sure hope it is positive!) You decide that your experiment is going to send two versions of a resume. 
+
+1. **Version 1 (Control)**: The resume contains the candidate's name, work experience, skills, and a nice statement of their purpose searching for a job. But, the resume does not contain any information about a job candidates master's degree. 
+2. **Version 2 (Treatment)**: The resume contains the candidate's name, work experience, skills, and a nice statement of their purpose searching for a job. Then, **after the other materials** the resume lists education at the top of the second page. 
+::: 
+
+:::{.discussion-question}
+- What concerns do you have about the strength of this manipulation? How would you address these concerns? 
+- What is the maximum manipulation that you can imagine using in this experiment? Are you concerned that there might be *too* much manipulation? 
+:::
