@@ -6,8 +6,8 @@ library(ggplot2)
 ```
 
 ```{r set colors for unit 11, echo = FALSE, message = FALSE}
-blue <- '#003262'
-gold <- '#FDB515'
+blue <- "#003262"
+gold <- "#FDB515"
 ```
 
 ![houston, we have a problem](./images/apollo_13.jpeg)
@@ -86,7 +86,7 @@ One set will argue in support of the claim: Using new techniques like reinforcem
 The other set of breakout rooms will argue against the claim: While these new techniques might afford some benefits, they cannot replace the work that we've been building over the course of the semester. 
 :::
 
-### Reasons for and against Experiments 
+### Reasons for and against Exper iments 
 
 :::{.discussion-question} 
 What are the reasons that you can identify *in support of* conducting an experiment? 
