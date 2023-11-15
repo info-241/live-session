@@ -28,3 +28,17 @@ Recall that the goal of any experiment -- same as the goal for *your* experiment
 Conducting these experiments is **easy**! At least in a perfect world. The reality is that this world that we live in, and that your data generating process functions within, is far from "perfect". And so, as a consequence, machines that we tell to record data fail; people that we tell to take treatment don't actually take it; doses that we think will be sufficient are not; and a litany of other small concerns! 
 
 This week's task is to acknowledge that nothing will *ever* be perfect, and then to proactively design our data collection system so that we can diagnose problems when they arise. 
+
+## Problems with Randomization 
+
+Suppose that you are going to conduct an experiment that evaluates the effectiveness of encouragements to complete homework and you have designed the operational details in the following way: 
+
+1. You have randomized the list of currently enrolled MIDS 241 students into three treatment groups. Group A will receive **Always Encouragement**, their instructor will Slack them every day and remind them that Problem Set 4 is coming due; Group B will receive **Baseline Encouragement**, where they will receive the normal communication from the class; Group C will receive **Conditional Encouragement**, where students will only be contacted if their grades are below the class average. 
+2. Although you've designed the experiment, contact for students will require that the individual classroom instructors take action to send the encouragements. 
+
+:::{.breakout}
+1. **How could this randomization break?** In this breakout, list as many specific ways that you think that the list of people who are assigned to Group A, B, and C might not match those who actually are in the groups. How many ways can you imagine? 
+2. **What are the consequences?** After listing all the ways that the randomization *could* breakdown, what are the three ways that you think would be more damaging to generating an unbiased causal estimate? 
+3. **How would you detect?** For these three problems that you've identified, how would you know if the randomization has broken down in this particular way? 
+:::
+
