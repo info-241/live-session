@@ -1,3 +1,4 @@
+exm:unlabeled-div-1
 importance-of-experimentation
 core-questions
 learning-objectives
@@ -155,6 +156,11 @@ what-about-even-more-challenging-data
 problems-and-diagnostics
 learning-objectives-10
 goals-of-an-expermient
+problems-with-randomization
+placebo-test
+manipulation-check
+advocating-for-experimentation
+reasons-for-and-against-experiments
 attrition-mediation-and-generalizability
 learning-objectives-11
 why-doesnt-mediation-analysis-work

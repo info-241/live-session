@@ -5,16 +5,19 @@
 \documentclass[
 ]{article}
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -33,14 +36,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Experiments and Causality},
-  pdfauthor={The 241 Instructional Team},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
 \usepackage{color}
 \usepackage{fancyvrb}
@@ -53,13 +48,13 @@
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
 \newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
 \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\BuiltInTok}[1]{#1}
 \newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
@@ -67,7 +62,7 @@
 \newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
 \newcommand{\ExtensionTok}[1]{#1}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\ImportTok}[1]{#1}
 \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
@@ -76,7 +71,7 @@
 \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
 \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
@@ -154,11 +149,36 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Experiments and Causality},
+  pdfauthor={The 241 Instructional Team},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
 
 \title{Experiments and Causality}
 \author{The 241 Instructional Team\footnote{David Reiley, D. Alex Hughes, David Broockman, Micah Gell-Redman, Scott Guenther, David Wheeler, Josue Martinze}}
-\date{2023-10-03}
+\date{2024-03-05}
 
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{conjecture}{Conjecture}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[section]
+\theoremstyle{definition}
+\newtheorem{hypothesis}{Hypothesis}[section]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
 \begin{document}
 \maketitle
 
@@ -166,14 +186,12 @@
 \setcounter{tocdepth}{2}
 \tableofcontents
 }
-\hypertarget{live-session-introduction}{%
-\section*{Live Session Introduction}\label{live-session-introduction}}
+\section*{Live Session Introduction}\label{live-session-introduction}
 \addcontentsline{toc}{section}{Live Session Introduction}
 
 This is the live session work space for the course. Our goal with this repository, is that we're able to communicate \emph{ahead of time} our aims for each week, and that you can prepare accordingly.
 
-\hypertarget{blooms-taxonomy}{%
-\subsection*{Bloom's Taxonomy}\label{blooms-taxonomy}}
+\subsection*{Bloom's Taxonomy}\label{blooms-taxonomy}
 \addcontentsline{toc}{subsection}{Bloom's Taxonomy}
 
 An effective rubric for student understanding is attributed to Bloom (1956). Referred to as \emph{Bloom's Taxonomy}, this proposes that there is a hierarchy of student understanding; that a student may have one \emph{level} of reasoning skill with a concept, but not another. The taxonomy proposes to be ordered: some levels of reasoning build upon other levels of reasoning.
@@ -197,8 +215,7 @@ In the learning objective that we present in for each live session, we will also
   \textbf{Create} A student can create a new or novel method from axioms or experience, and can evaluate the performance of this new method against existing approaches or methods.
 \end{enumerate}
 
-\hypertarget{importance-of-experimentation}{%
-\section{Importance of Experimentation}\label{importance-of-experimentation}}
+\section{Importance of Experimentation}\label{importance-of-experimentation}
 
 \begin{figure}
 \centering
@@ -206,8 +223,7 @@ In the learning objective that we present in for each live session, we will also
 \caption{Point Reyes National Seashore}
 \end{figure}
 
-\hypertarget{core-questions}{%
-\subsection{Core Questions}\label{core-questions}}
+\subsection{Core Questions}\label{core-questions}
 
 This course is about designing experiments that we run in the \emph{real-world}.
 
@@ -221,8 +237,7 @@ This course is about designing experiments that we run in the \emph{real-world}.
   This is a data science program. With enough data and a savvy enough model, can't we just generate a causal statement that will be right? Can't I generate a statement that converges in probability to the \emph{correct} value?
 \end{itemize}
 
-\hypertarget{learning-objectives}{%
-\subsection{Learning Objectives}\label{learning-objectives}}
+\subsection{Learning Objectives}\label{learning-objectives}
 
 At the end of this live session, students will be able to
 
@@ -239,11 +254,9 @@ At the end of this live session, students will be able to
   \emph{Apply} the framework of causal thinking against a series of studies to determine whether the study has achieved the goal that it intends.
 \end{enumerate}
 
-\hypertarget{class-introductions}{%
-\subsection{Class Introductions}\label{class-introductions}}
+\subsection{Class Introductions}\label{class-introductions}
 
-\hypertarget{student-introductions-breakout-one}{%
-\subsection{Student Introductions {[}Breakout One{]}}\label{student-introductions-breakout-one}}
+\subsection{Student Introductions {[}Breakout One{]}}\label{student-introductions-breakout-one}
 
 In a breakout room of between three and four students introduce yourself!
 
@@ -254,8 +267,7 @@ Please share: \emph{What is your name story?}
 
 \end{breakout}
 
-\hypertarget{student-introductions-breakout-two}{%
-\subsection{Student Introductions {[}Breakout Two{]}}\label{student-introductions-breakout-two}}
+\subsection{Student Introductions {[}Breakout Two{]}}\label{student-introductions-breakout-two}
 
 In the same breakout room:
 
@@ -267,8 +279,7 @@ Please share: \emph{What is your data science story? How did you wind up here, i
 
 \end{breakout}
 
-\hypertarget{course-plan}{%
-\subsection{Course Plan}\label{course-plan}}
+\subsection{Course Plan}\label{course-plan}
 
 The course is built out into three distinct phases
 
@@ -282,8 +293,7 @@ The course is built out into three distinct phases
   \textbf{Part 3} Presents practical considerations when conducting an experiment, including problems that may arise, and how to design an experiment in anticipation of those problems.
 \end{itemize}
 
-\hypertarget{course-logistics}{%
-\subsection{Course Logistics}\label{course-logistics}}
+\subsection{Course Logistics}\label{course-logistics}
 
 \begin{itemize}
 \tightlist
@@ -329,13 +339,11 @@ The course is built out into three distinct phases
   \end{itemize}
 \end{itemize}
 
-\hypertarget{learning-model-for-the-class}{%
-\subsubsection{Learning model for the class}\label{learning-model-for-the-class}}
+\subsubsection{Learning model for the class}\label{learning-model-for-the-class}
 
 The course assignments are designed to put what we have learned in reading, async, and live session into practice in code. In our ideal version of your studying, we would have you working hard together with your classmates in a study group on the assignments, coming to office hours to talk candidly about what is and isn't working, and then \emph{every single student} arriving at a full solution.
 
-\hypertarget{feedback-model-for-the-class}{%
-\subsubsection{Feedback model for the class}\label{feedback-model-for-the-class}}
+\subsubsection{Feedback model for the class}\label{feedback-model-for-the-class}
 
 We want to get you feedback \emph{very} quickly after you turn your assignments.
 
@@ -352,8 +360,7 @@ We want to get you feedback \emph{very} quickly after you turn your assignments.
   You should bring your assignment to office hours after you have turned it in so that we can talk about any differences between your approach, and the instructors approach.
 \end{enumerate}
 
-\hypertarget{office-hour-model-for-the-class}{%
-\subsubsection{Office hour model for the class}\label{office-hour-model-for-the-class}}
+\subsubsection{Office hour model for the class}\label{office-hour-model-for-the-class}
 
 \begin{itemize}
 \tightlist
@@ -363,11 +370,9 @@ We want to get you feedback \emph{very} quickly after you turn your assignments.
   We will hold more than 10 hours of office hours every week; they will all be recorded, and any student is welcome in any office hour
 \end{itemize}
 
-\hypertarget{article-discussion}{%
-\subsection{Article Discussion}\label{article-discussion}}
+\subsection{Article Discussion}\label{article-discussion}
 
-\hypertarget{predict-or-cause}{%
-\subsubsection{Predict or Cause}\label{predict-or-cause}}
+\subsubsection{Predict or Cause}\label{predict-or-cause}
 
 \begin{itemize}
 \tightlist
@@ -387,8 +392,7 @@ We want to get you feedback \emph{very} quickly after you turn your assignments.
   Is there something that is common to each of these examples? Is this a general phenomenon, or is Athey very clever in picking examples? Said differently, is Athey making a clever argument or is a lot of what we do as data scientists actually causal work in disguise?
 \end{itemize}
 
-\hypertarget{do-the-suburbs-make-you-fat}{%
-\subsubsection{Do the suburbs make you fat?}\label{do-the-suburbs-make-you-fat}}
+\subsubsection{Do the suburbs make you fat?}\label{do-the-suburbs-make-you-fat}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -409,8 +413,7 @@ We want to get you feedback \emph{very} quickly after you turn your assignments.
   At the conclusion of reading this paper, do you believe that there is a causal relationship between location and BMI? If so, what compels you to to believe this; if not, why are you not compelled to believe this?
 \end{enumerate}
 
-\hypertarget{nike-shoes}{%
-\subsubsection{Nike Shoes}\label{nike-shoes}}
+\subsubsection{Nike Shoes}\label{nike-shoes}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -429,8 +432,7 @@ We want to get you feedback \emph{very} quickly after you turn your assignments.
   At the conclusion of reading this paper, do you believe that there is a causal relationship between shoes and finish time? If so, what compels you to to believe this; if not, why are you not compelled to believe this?
 \end{enumerate}
 
-\hypertarget{what-is-science-feynmans-view}{%
-\subsubsection{What is Science: Feynman's View}\label{what-is-science-feynmans-view}}
+\subsubsection{What is Science: Feynman's View}\label{what-is-science-feynmans-view}
 
 In \emph{Cargo Cult Science}, Richard Feynman poses a view of science that is about a seeking of the truth.
 
@@ -445,8 +447,7 @@ In \emph{Cargo Cult Science}, Richard Feynman poses a view of science that is ab
   How can we as (data) scientists, train ourselves not to be fooled?\footnote{This is a footnote, rendered into an html document.}
 \end{enumerate}
 
-\hypertarget{apples-to-apples}{%
-\section{Apples to Apples}\label{apples-to-apples}}
+\section{Apples to Apples}\label{apples-to-apples}
 
 \begin{figure}
 \centering
@@ -454,8 +455,7 @@ In \emph{Cargo Cult Science}, Richard Feynman poses a view of science that is ab
 \caption{fruit salad}
 \end{figure}
 
-\hypertarget{learning-objectives-1}{%
-\subsection{Learning Objectives}\label{learning-objectives-1}}
+\subsection{Learning Objectives}\label{learning-objectives-1}
 
 At the conclusion of this week's live session, student will be able to:
 
@@ -472,8 +472,7 @@ At the conclusion of this week's live session, student will be able to:
   \emph{Prove} that the average treatment effect estimator produces an unbiased, consistent estimator for the average treatment effect.
 \end{enumerate}
 
-\hypertarget{revisiting-ideas-of-science}{%
-\subsection{Revisiting Ideas of Science}\label{revisiting-ideas-of-science}}
+\subsection{Revisiting Ideas of Science}\label{revisiting-ideas-of-science}
 
 Questions about epistemology are a \emph{classic} questions. These questions are particularly relevant here at the School of Information. You're working toward being a data scientist that has a full view of not only how to build the technology, but also for how that technology will behave, alter, and affect the people who use it.
 
@@ -485,8 +484,7 @@ The idea of epistemology -- the idea that some things are known truths, while ot
 
 ``Do we know this is true, or do we just believe it to be true?'' is more than just an academic question. In our workplaces we need to know how to take the best course of action. As data scientists we need to know that the answers we are producing stand on some justification. And, for the purposes of this course, we are attempting to separate things that \emph{certainly} cause an outcome from those that we \emph{think} cause an outcome.
 
-\hypertarget{from-last-week}{%
-\subsubsection{From last week}\label{from-last-week}}
+\subsubsection{From last week}\label{from-last-week}
 
 Think back to the reading and discussion from last week: For Feynman, what does it mean to be ``Doing science?''
 
@@ -500,8 +498,7 @@ Think back to the reading and discussion from last week: For Feynman, what does 
   What about computer science or statistics?
 \end{itemize}
 
-\hypertarget{from-this-week-lakatos}{%
-\subsubsection{From this week: Lakatos}\label{from-this-week-lakatos}}
+\subsubsection{From this week: Lakatos}\label{from-this-week-lakatos}
 
 For Lakatos, what does it mean for something to be a part of a science? What does it mean for something to be a part of a psuedo-science? Really, this is a question about how Lakatos draws a line between things that we \emph{know} and things that we \emph{believe}.
 
@@ -519,8 +516,7 @@ Can a single conversation produce knowledge? Can a non-experimental study produc
 
 Can an experiment fail to produce knowledge? If an experiment fails to reject some null hypothesis, does that mean that it has not produced any knowledge?
 
-\hypertarget{this-causes-that}{%
-\subsection{This Causes That}\label{this-causes-that}}
+\subsection{This Causes That}\label{this-causes-that}
 
 \textbf{What does it mean ``to cause''?}
 
@@ -534,13 +530,11 @@ In your own words, what does it mean for an action to \emph{cause} an outcome? D
   How would you describe the idea of ``cause'' to a student who is enrolled in MIDS 203?
 \end{itemize}
 
-\hypertarget{working-cases-of-causality}{%
-\subsection{Working Cases of Causality}\label{working-cases-of-causality}}
+\subsection{Working Cases of Causality}\label{working-cases-of-causality}
 
 In this short section, you are going to apply your breakout group's concept of causality against a series of scenarios. Rather than defining your concept using examples or scenarios, you have built a working conceptual definition that should be able to address the ideas of causality that they are confronted. If you find your group's working definition cannot address the scenario that it is faced with, take the time to alter the definition so that it \emph{can} be useful.
 
-\hypertarget{damn-fine-coffee}{%
-\subsubsection{Damn fine coffee}\label{damn-fine-coffee}}
+\subsubsection{Damn fine coffee}\label{damn-fine-coffee}
 
 Suppose that you're getting ready for class, and you want to make sure that you're at your best. So, you drink a cup of water, eat a small snack, and brew a small pot of coffee for while you're in class.
 
@@ -566,8 +560,7 @@ What does it mean for coffee to cause alertness?
   Could coffee have no effect for some people, and you would still say it causes alertness?
 \end{itemize}
 
-\hypertarget{meditation-for-focus}{%
-\subsubsection{Meditation for focus}\label{meditation-for-focus}}
+\subsubsection{Meditation for focus}\label{meditation-for-focus}
 
 Suppose that you're getting ready for class, and you want ensure that you're at your best. So, you find a quiet place, and set your mind at ease with whatever form of meditation you think might be helpful.
 
@@ -587,8 +580,7 @@ What does it mean for meditation to cause focus?
   Some people are frustrated by not being able to quiet their thoughts, and actually find meditation frustrating. Can this be true, and still believe that meditation causes focus?
 \end{itemize}
 
-\hypertarget{selling-coffee-and-meditation}{%
-\subsubsection{Selling coffee and meditation}\label{selling-coffee-and-meditation}}
+\subsubsection{Selling coffee and meditation}\label{selling-coffee-and-meditation}
 
 Suppose that you're an enterprising soul, and you want to sell a book about brewing coffee as a meditation. You reason that there must be a niche for this approach. To get the word out, you place a few flyers with tear off phone-numbers at the local yoga studios and tech incubators (good intuition to find those MIDS students).
 
@@ -610,8 +602,7 @@ One might be a radical behaviorist who believes that, ``In matters of human beha
 
 In many ways, experiments suited only to answer empirical, observable questions. These are the questions, and lens proposed by the radical behaviorist paradigm.
 
-\hypertarget{limits-of-behaviorist-reasoning}{%
-\subsubsection{Limits of Behaviorist Reasoning}\label{limits-of-behaviorist-reasoning}}
+\subsubsection{Limits of Behaviorist Reasoning}\label{limits-of-behaviorist-reasoning}
 
 Are you comfortable being a radical behaviorist? Are you willing to know only what you can see and observe and measure?
 
@@ -623,22 +614,19 @@ What would you go and consume to make you alert? Why do you think that this will
 
 If you're a radical behaviorist, or in this case, just a reasonable scientist do you have any knowledge of what you should drink?
 
-\hypertarget{reflecting-on-causes}{%
-\subsubsection{Reflecting on Causes}\label{reflecting-on-causes}}
+\subsubsection{Reflecting on Causes}\label{reflecting-on-causes}
 
 Does anything unify questions of causes?
 
 When you think about \emph{\{this\}} causing \emph{\{that\}}, do you think about it at a population level, a smaller group level, or at the individual level?
 
-\hypertarget{evaluating-value}{%
-\subsubsection{Evaluating Value}\label{evaluating-value}}
+\subsubsection{Evaluating Value}\label{evaluating-value}
 
 Is this an entirely academic exercise, the discussion of \emph{\{this\}} causing \emph{\{that\}}? Or, is there some value to thinking about things in these terms? Susan Athey, whom we read last week, seems to think that there is value in distinguishing between associations and causes. However, hers is a view that is generated by an academic; much like the views of David and David, and all of the live session instructors. We're all academics, so maybe we're being \emph{typical} academic pedants.
 
 What is a case, perhaps that you read or wrote about for your first essay, mistakenly believing they had measured a causal effect? What would happen if they implemented the policy that is implicated in their study? Or, what would happen if they took action consonant with what their study purports to find?
 
-\hypertarget{value-of-theory}{%
-\subsubsection{Value of Theory}\label{value-of-theory}}
+\subsubsection{Value of Theory}\label{value-of-theory}
 
 \begin{itemize}
 \tightlist
@@ -660,8 +648,7 @@ What is a case, perhaps that you read or wrote about for your first essay, mista
   Does Lakatos' approach to \emph{Science} provide such a method?
 \end{itemize}
 
-\hypertarget{evaluating-theories}{%
-\subsubsection{Evaluating Theories}\label{evaluating-theories}}
+\subsubsection{Evaluating Theories}\label{evaluating-theories}
 
 \begin{itemize}
 \tightlist
@@ -671,13 +658,11 @@ What is a case, perhaps that you read or wrote about for your first essay, mista
   This ability to proactively deign an experiment to distinguish between theories is the goal you're striving to achieve, \emph{and it is very hard to accomplish}.
 \end{itemize}
 
-\hypertarget{reading-discussion-the-power-of-experiments}{%
-\subsection{Reading Discussion: The Power of Experiments}\label{reading-discussion-the-power-of-experiments}}
+\subsection{Reading Discussion: The Power of Experiments}\label{reading-discussion-the-power-of-experiments}
 
 \emph{The Power of Experiments} starts the discussion of experimentation in the workplace with what is, for the course instructors, a uniquely pedestrian example, increasing contributions to taxes. In particular, Her Majesty's Revenue and Customs sends different versions of a letter to British taxpayers, and observes that different language leads to different amounts of taxes being paid.
 
-\hypertarget{chapter-one-the-power-of-experiments}{%
-\subsubsection{Chapter One: The Power of Experiments}\label{chapter-one-the-power-of-experiments}}
+\subsubsection{Chapter One: The Power of Experiments}\label{chapter-one-the-power-of-experiments}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -704,8 +689,7 @@ What is a case, perhaps that you read or wrote about for your first essay, mista
   In order for Pasteur to be declared the winner of the vaccine argument, the observers said that every control group sheep had to die and every treatment group (i.e.~vaccine-receiving) sheep had to live. Is this a fair burden of proof? Do the frequentest tests that we developed in 203 and are going to use here in 241 set a higher or lower bar than Pasteur faced? What are the merits of a relatively higher or lower bar?
 \end{enumerate}
 
-\hypertarget{chapter-two-the-rise-of-experimetnts-in-psychology-and-economics}{%
-\subsubsection{Chapter Two: The Rise of Experimetnts in Psychology and Economics}\label{chapter-two-the-rise-of-experimetnts-in-psychology-and-economics}}
+\subsubsection{Chapter Two: The Rise of Experimetnts in Psychology and Economics}\label{chapter-two-the-rise-of-experimetnts-in-psychology-and-economics}
 
 Freud is noted as being specifically \emph{against} experimentation. But, \emph{PoE} then goes on to write, ``{[}Freud's{]} big ideas inspired entire fields of psychological research. Including the notion that unconscious processes shape our judgement and behavior, psychological disorders are rooted in the mind rather than the body; and that sexual urges and behavior are worthy of study'' (p.~19). Some of the theories that Freud promulgated were found to have evidence that was consistent with the theory; some of these theories could not produce evidence to support the theory; and many were outright contradicted by the evidence.
 
@@ -768,8 +752,7 @@ The authors also present a countervailing pair of scenarios framed in terms of l
 
 Clearly, all these programs have the same expected number of deaths; but, people can disagree about which of these is the program that we should pursue. Just ask as a poll in the class; and, ask people to justify their beliefs.
 
-\hypertarget{the-rise-of-behavioral-experiments-in-policymaking}{%
-\subsubsection{The Rise of Behavioral Experiments in Policymaking}\label{the-rise-of-behavioral-experiments-in-policymaking}}
+\subsubsection{The Rise of Behavioral Experiments in Policymaking}\label{the-rise-of-behavioral-experiments-in-policymaking}
 
 \emph{PoE} points out that experiments abound in policy making. Part of this stems from a truthful ignorance of the optimal policy to pursue. Another part of this stems from the ability of policy makers to make decisions by fiat that affect a large number of people.
 
@@ -804,8 +787,7 @@ In a section titled \textbf{The nuance behind behavioral insights} the authors s
   We are going to ask you to justify conducting experiments by staking out an extreme point of view, and asking you to convince us that this point of view is so extreme that it cannot be justified. \emph{``Writing that context matters, design choices matter, and unanticipated consequences abound is little more than writing that experiments cannot produce any more useful insights than the theories of Freud. As a result, there is little reason to conduct any experiments because what we learn will be highly contextualized, affected by very small implementation choices, and may generate as many (or more) negative outcomes as positive outcomes.''}
 \end{enumerate}
 
-\hypertarget{potential-outcomes}{%
-\subsection{Potential Outcomes}\label{potential-outcomes}}
+\subsection{Potential Outcomes}\label{potential-outcomes}
 
 Potential outcomes are a system of reasoning, and a corresponding notation, that allow us to talk about observable and un-observable characteristics of the world.
 
@@ -827,8 +809,7 @@ What is your position on \emph{ontology}? What does it mean for something to exi
   Can a concept exist, even if you can't hold it? Even if you haven't seen it?
 \end{itemize}
 
-\hypertarget{defining-potential-outcomes}{%
-\subsubsection{Defining Potential Outcomes}\label{defining-potential-outcomes}}
+\subsubsection{Defining Potential Outcomes}\label{defining-potential-outcomes}
 
 For each of the following sets of notation: (1) Read the notation aloud, not as ``Y sub i zero'', but instead as ``The potential outcome to control \ldots{}''.
 
@@ -855,8 +836,7 @@ For each of the following sets of notation: (1) Read the notation aloud, not as 
   Can a concept exist, even if you can't hold it? Even if you can't see it?
 \end{itemize}
 
-\hypertarget{using-independence}{%
-\subsection{Using Independence}\label{using-independence}}
+\subsection{Using Independence}\label{using-independence}
 
 Suppose that you have a random variable that is defined as the function,
 
@@ -946,7 +926,7 @@ Y =
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 5.442731
+## [1] 5.119069
 \end{verbatim}
 
 \begin{itemize}
@@ -955,13 +935,11 @@ Y =
   Just to put a fine point on it: **What estimator properties does the sample average provide, and why are these desirable?''
 \end{itemize}
 
-\hypertarget{use-randomization-to-produce-independence}{%
-\subsection{Use Randomization to Produce Independence}\label{use-randomization-to-produce-independence}}
+\subsection{Use Randomization to Produce Independence}\label{use-randomization-to-produce-independence}
 
 How can we use the independence that is induced by ``random \textbf{assignment} to treatment'' combined with the sample average estimator to produce an estimate of an otherwise very difficult concept to measure?
 
-\hypertarget{theoretical-justification}{%
-\subsection{Theoretical Justification}\label{theoretical-justification}}
+\subsection{Theoretical Justification}\label{theoretical-justification}
 
 Before we show that this very simple ATE estimator work against a sample of data, it is worth reasoning about whether we can guarantee that it works in a general case. If we can show that it works in a general case, then any specific case inherits that guarantee. However, if we can only reason thorugh the existence of a single examlpe, it is not a sufficient argument to compell us to believe that it must hold for all cases.
 
@@ -1009,8 +987,7 @@ Begin our proof with the statement for what a treatment effect is, \(\tau_{i}\).
   \end{aligned}
 \]
 
-\hypertarget{simulation-example}{%
-\subsection{Simulation Example}\label{simulation-example}}
+\subsection{Simulation Example}\label{simulation-example}
 
 Now, let's work through an example that shows this works not only in the math, but also in the realized, i.e.~sampled, world.
 
@@ -1023,8 +1000,8 @@ To begin with, lets work with a \emph{very} simple sample that has 100 observati
   
 \NormalTok{  d }\OtherTok{\textless{}{-}} \FunctionTok{data.table}\NormalTok{(}\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{100}\NormalTok{)  }
   
-\NormalTok{  d[ , y0 }\SpecialCharTok{:}\ErrorTok{=} \FunctionTok{runif}\NormalTok{(.N, }\AttributeTok{min =} \DecValTok{0}\NormalTok{, }\AttributeTok{max =} \DecValTok{1}\NormalTok{)]}
-\NormalTok{  d[ , y1 }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{ y0 }\SpecialCharTok{+}\NormalTok{ .}\DecValTok{25}\NormalTok{]}
+\NormalTok{  d[ , y0 }\SpecialCharTok{:=} \FunctionTok{runif}\NormalTok{(.N, }\AttributeTok{min =} \DecValTok{0}\NormalTok{, }\AttributeTok{max =} \DecValTok{1}\NormalTok{)]}
+\NormalTok{  d[ , y1 }\SpecialCharTok{:=}\NormalTok{ y0 }\SpecialCharTok{+}\NormalTok{ .}\DecValTok{25}\NormalTok{]}
   
   \FunctionTok{return}\NormalTok{(d)}
 \NormalTok{  \}}
@@ -1036,12 +1013,12 @@ To begin with, lets work with a \emph{very} simple sample that has 100 observati
 \end{Shaded}
 
 \begin{verbatim}
-##    id        y0        y1
-## 1:  1 0.1549262 0.4049262
-## 2:  2 0.4977568 0.7477568
-## 3:  3 0.9603894 1.2103894
-## 4:  4 0.1164207 0.3664207
-## 5:  5 0.2084791 0.4584791
+##    id          y0        y1
+## 1:  1 0.224231620 0.4742316
+## 2:  2 0.171738650 0.4217386
+## 3:  3 0.064441326 0.3144413
+## 4:  4 0.961392523 1.2113925
+## 5:  5 0.006772481 0.2567725
 \end{verbatim}
 
 In this world, we've taken a sample of \texttt{100} individuals, and at this point, each of those individuals that we've sampled has both a potential outcome to control \textbf{and also} a potential outcome to treatment. We haven't talked at all about measurement yet; we're just asserting that both of these potential outcomes exist for each person.
@@ -1066,23 +1043,22 @@ Suppose that for each unit, you then toss a coin, placing the subject either int
   Are some of these methods \emph{more random} than others? Or, are all things that are random equal in their randomness?
 \end{itemize}
 
-\hypertarget{assign-to-treatment-and-control}{%
-\subsubsection{Assign to Treatment and Control}\label{assign-to-treatment-and-control}}
+\subsubsection{Assign to Treatment and Control}\label{assign-to-treatment-and-control}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{d[ , experimental\_assignment }\SpecialCharTok{:}\ErrorTok{=} \FunctionTok{sample}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\DecValTok{1}\NormalTok{, }\AttributeTok{size =}\NormalTok{ .N, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)]}
+\NormalTok{d[ , experimental\_assignment }\SpecialCharTok{:=} \FunctionTok{sample}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\DecValTok{1}\NormalTok{, }\AttributeTok{size =}\NormalTok{ .N, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)]}
 \NormalTok{d[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##    id        y0        y1 experimental_assignment
-## 1:  1 0.1549262 0.4049262                       0
-## 2:  2 0.4977568 0.7477568                       0
-## 3:  3 0.9603894 1.2103894                       1
-## 4:  4 0.1164207 0.3664207                       1
-## 5:  5 0.2084791 0.4584791                       1
+##    id          y0        y1 experimental_assignment
+## 1:  1 0.224231620 0.4742316                       0
+## 2:  2 0.171738650 0.4217386                       0
+## 3:  3 0.064441326 0.3144413                       1
+## 4:  4 0.961392523 1.2113925                       0
+## 5:  5 0.006772481 0.2567725                       1
 \end{verbatim}
 
 As as comparison, suppose that instead of randomly assigning individuals into treatment and control we allowed individuals to select into treatment and control. And suppose that people with the lowest potential outcomes to control opt to take the treatment. You might think of this as being something like, ``The people who are the most tired are the most likely to drink a cup of coffee before they start class,'' if an example helps you ground this.
@@ -1091,18 +1067,18 @@ Specifically, suppose that any unit that has a potential outcome lower that \tex
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{d[ , observational\_selection }\SpecialCharTok{:}\ErrorTok{=} \FunctionTok{ifelse}\NormalTok{(y0 }\SpecialCharTok{\textless{}}\NormalTok{ .}\DecValTok{33}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)]}
+\NormalTok{d[ , observational\_selection }\SpecialCharTok{:=} \FunctionTok{ifelse}\NormalTok{(y0 }\SpecialCharTok{\textless{}}\NormalTok{ .}\DecValTok{33}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)]}
 \NormalTok{d[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##    id        y0        y1 experimental_assignment observational_selection
-## 1:  1 0.1549262 0.4049262                       0                       1
-## 2:  2 0.4977568 0.7477568                       0                       0
-## 3:  3 0.9603894 1.2103894                       1                       0
-## 4:  4 0.1164207 0.3664207                       1                       1
-## 5:  5 0.2084791 0.4584791                       1                       1
+##    id          y0        y1 experimental_assignment observational_selection
+## 1:  1 0.224231620 0.4742316                       0                       1
+## 2:  2 0.171738650 0.4217386                       0                       1
+## 3:  3 0.064441326 0.3144413                       1                       1
+## 4:  4 0.961392523 1.2113925                       0                       0
+## 5:  5 0.006772481 0.2567725                       1                       1
 \end{verbatim}
 
 These represent two different ways that you might conduct your research, each time with the same subject pool. Of course, in reality you probably would not be able to run these two studies at the same time, but since this is a simulation, we can stretch the confines of reality just a little bit.
@@ -1196,8 +1172,7 @@ Even though we aren't able to see it, can we reason about what the sample averag
 
 Put it all together, what has this little demo shown?
 
-\hypertarget{what-if-there-is-selection}{%
-\subsubsection{What if there is selection?}\label{what-if-there-is-selection}}
+\subsubsection{What if there is selection?}\label{what-if-there-is-selection}
 
 What if, rather than being assigned to treatment and control, instead individuals had been able to opt into treatment and control?
 
@@ -1238,8 +1213,7 @@ Produce only the last plot, but this time for the observational, or selected dat
 
 \includegraphics{241-live-session_files/figure-latex/recreate plot -- for selection case-1.pdf}
 
-\hypertarget{requirements-of-an-experiment}{%
-\subsection{Requirements of An Experiment}\label{requirements-of-an-experiment}}
+\subsection{Requirements of An Experiment}\label{requirements-of-an-experiment}
 
 David Reiley makes the case that an experiment is something where we intervene in the world to produce knowledge. This is essentially providing a definition and making an argument that this is the correct definition. One difficulty with argument through definitions is that reasonable people can disagree because their definitions, through their lived experience, just disagree.
 
@@ -1275,8 +1249,7 @@ What do each of these terms mean? Why is each necessary?
   Did the Nurses Health Study, described in the async, satisfy all these three requirements? For any that this experiment did not satisfy, what are the consequences for the scientific knowledge that the experiment generated?
 \end{itemize}
 
-\hypertarget{meta-questions}{%
-\subsubsection{Meta-Questions}\label{meta-questions}}
+\subsubsection{Meta-Questions}\label{meta-questions}
 
 \begin{itemize}
 \tightlist
@@ -1286,11 +1259,9 @@ What do each of these terms mean? Why is each necessary?
   What then, justifies the use of experiments to measure causal effects?
 \end{itemize}
 
-\hypertarget{quantifying-uncertainty}{%
-\section{Quantifying Uncertainty}\label{quantifying-uncertainty}}
+\section{Quantifying Uncertainty}\label{quantifying-uncertainty}
 
-\hypertarget{learning-objectives-2}{%
-\subsection{Learning Objectives}\label{learning-objectives-2}}
+\subsection{Learning Objectives}\label{learning-objectives-2}
 
 At the end of this week's live session, students will be able to
 
@@ -1309,11 +1280,9 @@ At the end of this week's live session, students will be able to
   \emph{Describe} the concept of statistical power and what it means in the context of conducting an experiment.
 \end{enumerate}
 
-\hypertarget{power-of-experiments}{%
-\subsection{Power of Experiments}\label{power-of-experiments}}
+\subsection{Power of Experiments}\label{power-of-experiments}
 
-\hypertarget{five-key-barriers-to-experimentation}{%
-\subsubsection{Five Key Barriers to Experimentation}\label{five-key-barriers-to-experimentation}}
+\subsubsection{Five Key Barriers to Experimentation}\label{five-key-barriers-to-experimentation}
 
 \emph{Power of Experiments} identifies five key barriers to experimentation in companies:
 
@@ -1332,8 +1301,7 @@ At the end of this week's live session, students will be able to
   \textbf{Overconfidence in our ability to guess the effect of an intervention}.
 \end{enumerate}
 
-\hypertarget{experimental-ethics}{%
-\subsubsection{Experimental Ethics}\label{experimental-ethics}}
+\subsubsection{Experimental Ethics}\label{experimental-ethics}
 
 There is a very, \emph{very} strong norm that academic researchers who conduct experiments need to pass their interventions, data collection, and procedures through a review board. This review board expects researchers will weigh the costs borne by the participants of an experimental study against the potential benefits to science from learning the results of this experiment.
 
@@ -1361,8 +1329,7 @@ A research team at Facebook (as your instructors if they have any juicy details 
 \end{itemize}
 \end{quote}
 
-\hypertarget{statistical-uncertainty-randomization-inference-style}{%
-\subsection{Statistical Uncertainty -- Randomization Inference Style}\label{statistical-uncertainty-randomization-inference-style}}
+\subsection{Statistical Uncertainty -- Randomization Inference Style}\label{statistical-uncertainty-randomization-inference-style}
 
 When we are working with a sample of data, estimates produced by an estimator might change -- sometimes being higher than the \emph{true} value, other times lower than the \emph{true} value.
 
@@ -1370,8 +1337,7 @@ In Frequentist inference, we understand the variance in these estimates as \emph
 
 In randomization inference, there is no uncertainty about the parameter estimate that is generated in the experiment: The estimate that we observe is the estimate that we observe. Uncertainty, instead, comes from the acknowledgment that different \emph{randomization} could have been realized, even from within the same sample.
 
-\hypertarget{stating-the-sharp-null}{%
-\subsection{Stating the sharp null}\label{stating-the-sharp-null}}
+\subsection{Stating the sharp null}\label{stating-the-sharp-null}
 
 Suppose that you are evaluating the effect of coffee on students' alertness in class. You reason that drinking coffee will increase students' alertness in class.
 
@@ -1393,11 +1359,9 @@ Continue with our idea of an experiment to evaluate if coffee produces alertness
   Is the sharp null hypothesis a concept that ever makes sense? Is the sharp null hypothesis a concept that is ever, actually, true?
 \end{itemize}
 
-\hypertarget{randomization-inference}{%
-\subsection{Randomization Inference}\label{randomization-inference}}
+\subsection{Randomization Inference}\label{randomization-inference}
 
-\hypertarget{stating-the-process-of-randomization-inference}{%
-\subsubsection{Stating the process of Randomization Inference}\label{stating-the-process-of-randomization-inference}}
+\subsubsection{Stating the process of Randomization Inference}\label{stating-the-process-of-randomization-inference}
 
 Randomization inference is a method of understanding the variability of results in an experiment that you have conducted. It specifically acknowledges several facts:
 
@@ -1416,8 +1380,7 @@ Randomization inference is a method of understanding the variability of results 
   If the \emph{sharp null hypothesis} were to be true (note the subjunctive verb tense there) then, the particular revelation of potential outcomes to treatment and control are inconsequential. Despite seeing only half the data (referred to as the \textbf{Fundamental Problem of Causal Inference}) we actually posess all the data. After all, if the sharp null were true, \(Y_{Alex}(1) = Y_{Alex}(0)\), and \(Y_{David}(1) = Y_{David}(0)\), \(Y_{i}(1) = Y_{i}(0)\) for all of the \(i = {1, \dots, N}\) people who are a part of the experiment.
 \end{enumerate}
 
-\hypertarget{questions-about-randomization-inference}{%
-\subsubsection{Questions about Randomization Inference}\label{questions-about-randomization-inference}}
+\subsubsection{Questions about Randomization Inference}\label{questions-about-randomization-inference}
 
 \begin{itemize}
 \tightlist
@@ -1446,11 +1409,9 @@ Randomization inference is a method of understanding the variability of results 
   \end{itemize}
 \end{itemize}
 
-\hypertarget{applying-randomization-inference}{%
-\subsection{Applying Randomization Inference}\label{applying-randomization-inference}}
+\subsection{Applying Randomization Inference}\label{applying-randomization-inference}
 
-\hypertarget{make-data}{%
-\subsubsection{Make Data}\label{make-data}}
+\subsubsection{Make Data}\label{make-data}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1463,8 +1424,7 @@ Randomization inference is a method of understanding the variability of results 
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{plot-data}{%
-\subsubsection{Plot Data}\label{plot-data}}
+\subsubsection{Plot Data}\label{plot-data}
 
 In the following plot, are you able to assess whether there is a treatment effect simply by looking at the distributions?
 
@@ -1486,8 +1446,7 @@ In the following plot, are you able to assess whether there is a treatment effec
 
 \includegraphics{241-live-session_files/figure-latex/plot data-1.pdf}
 
-\hypertarget{classic-test}{%
-\subsubsection{Classic Test}\label{classic-test}}
+\subsubsection{Classic Test}\label{classic-test}
 
 If you were to write a \emph{classic} test against this data, given what you know about how it was generated, what would be the classic test? What do you learn from this test, and what is the interpretation?
 
@@ -1511,8 +1470,7 @@ If you were to write a \emph{classic} test against this data, given what you kno
 ##       0.2511207       1.2933161
 \end{verbatim}
 
-\hypertarget{randomization-inference-test}{%
-\subsubsection{Randomization Inference Test}\label{randomization-inference-test}}
+\subsubsection{Randomization Inference Test}\label{randomization-inference-test}
 
 Now, instead suppose that you were to conduct the randomization inference. What are the steps to the algorithm for producing a result using randomization?
 
@@ -1572,8 +1530,7 @@ How much of the randomization inference is more extreme than the treatment effec
 
 Notice that 0.023 of the randomization inference distribution is more extreme than the observed treatment effect. How does this compare to the t-test p-value that we calculated above?
 
-\hypertarget{comparing-randomization-inference-and-frequentist-inference}{%
-\subsection{Comparing Randomization Inference and Frequentist Inference}\label{comparing-randomization-inference-and-frequentist-inference}}
+\subsection{Comparing Randomization Inference and Frequentist Inference}\label{comparing-randomization-inference-and-frequentist-inference}
 
 If both Randomization Inference and Frequentist Inference produce similar p-values, what is utility in learning another set of methods for communicating estimator-based uncertainty?
 
@@ -1589,8 +1546,7 @@ What are the requirements (frequently referred to as ``assumptions'') that are n
   What does it mean for the p-value to be affected by this violation? (\emph{Recall that a p-value is just a random variable that is produced through a series of summarizing transformations and then a comparison against a reference distribution.})
 \end{itemize}
 
-\hypertarget{donations-to-a-political-campaign}{%
-\subsubsection{Donations to a political campaign}\label{donations-to-a-political-campaign}}
+\subsubsection{Donations to a political campaign}\label{donations-to-a-political-campaign}
 
 In \emph{Field Experiments} Green and Gerber provide some useful (hypothetical) data about donations to a political campaign. The data is defined in the following way, \(D\) is an indicator for whether the potential donor is assigned to treatment or control, and \(Y\) is the outcome of how much the potential donor actually gave.
 
@@ -1662,8 +1618,7 @@ After dinner, and the requisite drum-circle, attendees to this shin-dig are aske
   Which of the two of these inferential methods do you prefer, randomization inference or a t-test, and why? Ease of use is not an acceptable answer.
 \end{enumerate}
 
-\hypertarget{statistical-power}{%
-\subsection{Statistical Power}\label{statistical-power}}
+\subsection{Statistical Power}\label{statistical-power}
 
 \begin{itemize}
 \tightlist
@@ -1703,8 +1658,7 @@ After dinner, and the requisite drum-circle, attendees to this shin-dig are aske
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{blocking-and-clustering}{%
-\section{Blocking and Clustering}\label{blocking-and-clustering}}
+\section{Blocking and Clustering}\label{blocking-and-clustering}
 
 When assigning treatment to units, unless there are restrictions created by the researcher, any of the treatment assignment vectors are equally probable. Blocking and clustering are ways of restricting the treatment assignments to a subset of the whole schedule of possibilities.
 
@@ -1712,8 +1666,7 @@ When assigning treatment to units, unless there are restrictions created by the 
 
 \emph{Clustering} is a circumstance that arises from a state of the world that \emph{requires} you to assign several similar units to the same condition, be it treatment or control. Through careful design, clustering might not hamper the power of an experiment; though realizing the necessity of a clustered design is typically met with the following statement, ``@\#\$\%, we've got to cluster.''
 
-\hypertarget{learning-objectives-3}{%
-\subsection{Learning Objectives}\label{learning-objectives-3}}
+\subsection{Learning Objectives}\label{learning-objectives-3}
 
 At the end of this week, student will be able to
 
@@ -1730,8 +1683,7 @@ At the end of this week, student will be able to
   \textbf{Analyze} both blocked and clustered experiments using the appropriate test, and generating statements of certainty and uncertainty using \emph{randomization inference}.
 \end{enumerate}
 
-\hypertarget{setting-terms-blocking}{%
-\subsection{Setting terms: Blocking}\label{setting-terms-blocking}}
+\subsection{Setting terms: Blocking}\label{setting-terms-blocking}
 
 \begin{itemize}
 \tightlist
@@ -1743,8 +1695,7 @@ At the end of this week, student will be able to
   Relative to when treatment is administered, when are we able to block? Why are we not able to block after we've assigned treatment?
 \end{itemize}
 
-\hypertarget{math-block-random-assignment}{%
-\subsection{Math: Block random assignment}\label{math-block-random-assignment}}
+\subsection{Math: Block random assignment}\label{math-block-random-assignment}
 
 In equation 3.6 (on page 61) of \emph{Field Experiments} Green and Gerber write,
 
@@ -1799,8 +1750,7 @@ Green and Gerber, in equation 3.10, write that the overall \(ATE\) of the popula
   \end{itemize}
 \end{itemize}
 
-\hypertarget{intuition-block-random-assignment}{%
-\subsection{Intuition: Block Random Assignment}\label{intuition-block-random-assignment}}
+\subsection{Intuition: Block Random Assignment}\label{intuition-block-random-assignment}
 
 To discuss the idea of blocking, consider the working example that David and David present in the async lectures:
 
@@ -1835,7 +1785,7 @@ Suppose that, motivated by your distaste for bunk, casual causal claims about di
         \DocumentationTok{\#\# treatment\_effect = 0 {-}{-}\textgreater{} sharp null is true}
       \AttributeTok{po\_treatment =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{20}\NormalTok{, }\DecValTok{81}\SpecialCharTok{:}\DecValTok{100}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ treatment\_effect, }
       \AttributeTok{treatment =} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{0}\NormalTok{, }\AttributeTok{size =} \DecValTok{40}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{))[ , }\DocumentationTok{\#\# notice we\textquotesingle{}re now assigning}
-\NormalTok{      outcomes }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{ po\_treatment }\SpecialCharTok{*}\NormalTok{ treatment }\SpecialCharTok{+}\NormalTok{ po\_control }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ treatment)]}
+\NormalTok{      outcomes }\SpecialCharTok{:=}\NormalTok{ po\_treatment }\SpecialCharTok{*}\NormalTok{ treatment }\SpecialCharTok{+}\NormalTok{ po\_control }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ treatment)]}
 
 \NormalTok{  ate }\OtherTok{\textless{}{-}}\NormalTok{ d[ , }\FunctionTok{mean}\NormalTok{(outcomes[treatment }\SpecialCharTok{==} \DecValTok{1}\NormalTok{]) }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(outcomes[treatment }\SpecialCharTok{==} \DecValTok{0}\NormalTok{])]}
 \NormalTok{  n\_women\_treatment }\OtherTok{=}\NormalTok{ d[treatment }\SpecialCharTok{==} \DecValTok{1} \SpecialCharTok{\&}\NormalTok{ group }\SpecialCharTok{==} \StringTok{\textquotesingle{}F\textquotesingle{}}\NormalTok{, .N]}
@@ -1849,8 +1799,7 @@ Suppose that, motivated by your distaste for bunk, casual causal claims about di
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{with-this-data-what-does-the-distribution-of-outcomes-look-like}{%
-\subsection{With this data, what does the distribution of outcomes look like?}\label{with-this-data-what-does-the-distribution-of-outcomes-look-like}}
+\subsection{With this data, what does the distribution of outcomes look like?}\label{with-this-data-what-does-the-distribution-of-outcomes-look-like}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1905,8 +1854,7 @@ The important parts to consider for this discussion (despite being not a full st
   What does the expected value of the square of the deviations look like on this plot?
 \end{itemize}
 
-\hypertarget{technical-benefits-of-blocking}{%
-\subsection{Technical Benefits of Blocking}\label{technical-benefits-of-blocking}}
+\subsection{Technical Benefits of Blocking}\label{technical-benefits-of-blocking}
 
 How how does breaking this population into two smaller groups create a reduction in the calculated standard error that you observe from an experiment?
 
@@ -1941,13 +1889,11 @@ How how does breaking this population into two smaller groups create a reduction
 
 \includegraphics{241-live-session_files/figure-latex/unnamed-chunk-2-1.pdf}
 
-\hypertarget{how-should-we-block-randomize}{%
-\subsection{How should we block randomize?}\label{how-should-we-block-randomize}}
+\subsection{How should we block randomize?}\label{how-should-we-block-randomize}
 
 Let's take several discussion points, in order:
 
-\hypertarget{what-makes-a-useful-feature-part-1}{%
-\subsubsection{What makes a useful feature? (part 1)}\label{what-makes-a-useful-feature-part-1}}
+\subsubsection{What makes a useful feature? (part 1)}\label{what-makes-a-useful-feature-part-1}
 
 \begin{itemize}
 \item
@@ -1981,8 +1927,7 @@ Let's take several discussion points, in order:
   \end{enumerate}
 \end{itemize}
 
-\hypertarget{what-makes-a-useful-feature-part-2}{%
-\subsubsection{What makes a useful feature (part 2)}\label{what-makes-a-useful-feature-part-2}}
+\subsubsection{What makes a useful feature (part 2)}\label{what-makes-a-useful-feature-part-2}
 
 \begin{itemize}
 \item
@@ -1999,8 +1944,7 @@ Let's take several discussion points, in order:
   \end{itemize}
 \end{itemize}
 
-\hypertarget{strategies-of-blocking}{%
-\subsubsection{Strategies of blocking}\label{strategies-of-blocking}}
+\subsubsection{Strategies of blocking}\label{strategies-of-blocking}
 
 \begin{itemize}
 \item
@@ -2031,8 +1975,7 @@ Let's take several discussion points, in order:
   \end{itemize}
 \end{itemize}
 
-\hypertarget{clustering}{%
-\subsection{Clustering}\label{clustering}}
+\subsection{Clustering}\label{clustering}
 
 \begin{itemize}
 \tightlist
@@ -2048,11 +1991,9 @@ Let's take several discussion points, in order:
   \end{itemize}
 \end{itemize}
 
-\hypertarget{blocking-or-clustering}{%
-\subsection{Blocking or Clustering?}\label{blocking-or-clustering}}
+\subsection{Blocking or Clustering?}\label{blocking-or-clustering}
 
-\hypertarget{let-is-snow}{%
-\subsubsection{Let is snow!}\label{let-is-snow}}
+\subsubsection{Let is snow!}\label{let-is-snow}
 
 Suppose we want to measure the effect of snowplowing on local retail activity. We design an experiment that plows some locations but not others. Which of the following do you prefer? Explain the relative advantages and disadvantages of each option.
 
@@ -2079,8 +2020,7 @@ We will assign treatment at the neighborhood level. Now consider blocking this e
   What benefit do we expect blocking to have on our ATE estimator?
 \end{itemize}
 
-\hypertarget{strolling-through-berkeley}{%
-\subsubsection{Strolling through Berkeley}\label{strolling-through-berkeley}}
+\subsubsection{Strolling through Berkeley}\label{strolling-through-berkeley}
 
 David Reiley walks through Berkeley and observes retail shops. As he goes, he takes each pair of stores he encounters, flips a coin, and goes into one store in each pair to give them a free Google ad coupon. He later observes how much each spent on Google ads in the month after.
 
@@ -2096,8 +2036,7 @@ David Reiley walks through Berkeley and observes retail shops. As he goes, he ta
   Reiley picks one side of each street to treat on many streets.
 \end{itemize}
 
-\hypertarget{always-low-prices}{%
-\subsubsection{Always low prices?}\label{always-low-prices}}
+\subsubsection{Always low prices?}\label{always-low-prices}
 
 Imagine that an executive at Walmart gives you the keys to the pricing at the store and asks you to determine how demand for goods changes depending on the pricing of those goods? Basically, does ``rolling back prices'' lead to increased demand? And by how much?
 
@@ -2109,14 +2048,12 @@ Imagine that an executive at Walmart gives you the keys to the pricing at the st
   What are the benefits and limitations of assigning different prices at those levels?
 \end{itemize}
 
-\hypertarget{covariates-and-regression}{%
-\section{Covariates and Regression}\label{covariates-and-regression}}
+\section{Covariates and Regression}\label{covariates-and-regression}
 
 Adding covariates to what we're measuring, even if those covariates are non experimental, can help us improve our
 measurement.''
 
-\hypertarget{learning-objectives-4}{%
-\subsection{Learning Objectives}\label{learning-objectives-4}}
+\subsection{Learning Objectives}\label{learning-objectives-4}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2126,8 +2063,7 @@ measurement.''
 \item
 \end{enumerate}
 
-\hypertarget{covariates}{%
-\subsection{Covariates}\label{covariates}}
+\subsection{Covariates}\label{covariates}
 
 \emph{Covariates} as we will call them in this unit are are supplemental variables that do \emph{not} have a causal meaning but which might predict the outcome variable. Because treatment is randomly assigned in an experiment, covariates are not required in order to generate for unbiased inference in an experiment, but including covariates in our estimation of a treatment effect might \emph{improve} the precision of estimates.
 
@@ -2135,8 +2071,7 @@ Typically, covariate adjustment happens through the use of a regression. Blockin
 
 \emph{One important point about covariates}: For the appropriate use of covariates in an analysis of an experiment, the covariates \emph{must} not change as a consequence of treatment assignment. If they change,then they are a down-stream consequence of the experiment, and therefore are a ``result'' of the experiment. (In the future, we will talk about why these are `bad controls'.)
 
-\hypertarget{rescaling-outcomes}{%
-\subsection{Rescaling Outcomes}\label{rescaling-outcomes}}
+\subsection{Rescaling Outcomes}\label{rescaling-outcomes}
 
 Suppose that in your design, you are able to measure every unit twice, once before they are exposed to treatment, and again after they are exposed to treatment.
 
@@ -2158,8 +2093,7 @@ Suppose that we have the following grammar, or notation to describe the experime
 
 With these operators set up, we can think about three different experiment designs.
 
-\hypertarget{design-one-two-group-post-test}{%
-\subsubsection{Design One: Two Group Post-Test}\label{design-one-two-group-post-test}}
+\subsubsection{Design One: Two Group Post-Test}\label{design-one-two-group-post-test}
 
 To this point, and in nearly every essay proposed for the first assignment in the class, student had in mind a two group, post-test only design. In this experiment design, we randomize an experimental population into two groups, assign treatment to one of these groups, and then observe outcomes. In many ways, the one group pre-post design is the simplest design to implement.
 
@@ -2168,8 +2102,7 @@ R X Y
 R O Y
 \end{verbatim}
 
-\hypertarget{design-two-one-group-pre-test-post-test}{%
-\subsubsection{Design Two: One Group, Pre-test Post-test}\label{design-two-one-group-pre-test-post-test}}
+\subsubsection{Design Two: One Group, Pre-test Post-test}\label{design-two-one-group-pre-test-post-test}
 
 In this case, we take the units that are a part of our experiment, expose them to control and measure these units outcomes, and then expose them to treatment and measure these units outcomes.
 
@@ -2181,8 +2114,7 @@ N O Y1 X Y2
 
 Does this meet the base definition of an experiment that you've written about in your homework? Would David Reiley think that this is an experiment? Would Green and Gerber think that this is an experiment?
 
-\hypertarget{evaluate-the-strengths-of-the-two-designs}{%
-\subsubsection{Evaluate the strengths of the two designs}\label{evaluate-the-strengths-of-the-two-designs}}
+\subsubsection{Evaluate the strengths of the two designs}\label{evaluate-the-strengths-of-the-two-designs}
 
 Under what circumstances would you prefer to one or another of these two designs?
 
@@ -2200,13 +2132,11 @@ Under what circumstances would you prefer to one or another of these two designs
 
 Are there general principles, or circumstances that lead you to go one way or another?
 
-\hypertarget{combining-designs}{%
-\subsection{Combining Designs?}\label{combining-designs}}
+\subsection{Combining Designs?}\label{combining-designs}
 
 By combining the two previous designs, it is possible to develop a new design that contains the benefits of each.
 
-\hypertarget{design-three-two-group-pre-test-post-test}{%
-\subsubsection{Design Three: Two Group, Pre-test Post-test}\label{design-three-two-group-pre-test-post-test}}
+\subsubsection{Design Three: Two Group, Pre-test Post-test}\label{design-three-two-group-pre-test-post-test}
 
 In this case, we randomize into two-groups, but we also measure each unit more than once.
 
@@ -2219,8 +2149,7 @@ This design has the benefit of the apples to apples comparison created through r
 
 Even in the case when we don't know \emph{why} outcomes are correlated through time, we can still us this relationship profitably to produce estimates with smaller standard errors.
 
-\hypertarget{working-with-simple-data}{%
-\subsection{Working with simple data}\label{working-with-simple-data}}
+\subsection{Working with simple data}\label{working-with-simple-data}
 
 In \emph{Field Experiments} on page 74, Green and Gerber provide a table of potential outcomes for community public works projects. In the \texttt{Village} varaible is an index from 1-14 of the village id; in the \texttt{Y} variable is the outcome if assigned to control; in the \texttt{D} variable is the outcome if assigned to treatment; and in the \texttt{Block} variable is a variable that indicates the block where the unit was located.
 
@@ -2243,8 +2172,7 @@ In \emph{Field Experiments} on page 74, Green and Gerber provide a table of pote
 
 Although this will produce numbers that are different than are reported in the book (because R implements sample variance and covariance, and the book instead uses population variance and covariance) compute the following.
 
-\hypertarget{without-blocking}{%
-\subsubsection{Without blocking}\label{without-blocking}}
+\subsubsection{Without blocking}\label{without-blocking}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2255,8 +2183,7 @@ Although this will produce numbers that are different than are reported in the b
   With these values, then, compute the standard error of the ATE.
 \end{enumerate}
 
-\hypertarget{with-blocking}{%
-\subsubsection{With blocking}\label{with-blocking}}
+\subsubsection{With blocking}\label{with-blocking}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2267,11 +2194,9 @@ Although this will produce numbers that are different than are reported in the b
   With these values, then compute the standard error of the blocked ATE.
 \end{enumerate}
 
-\hypertarget{using-measurements-to-diagnose-problems}{%
-\subsection{Using Measurements to Diagnose Problems}\label{using-measurements-to-diagnose-problems}}
+\subsection{Using Measurements to Diagnose Problems}\label{using-measurements-to-diagnose-problems}
 
-\hypertarget{regression-and-multifactor-experiments}{%
-\section{Regression and Multifactor Experiments}\label{regression-and-multifactor-experiments}}
+\section{Regression and Multifactor Experiments}\label{regression-and-multifactor-experiments}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2279,8 +2204,7 @@ Although this will produce numbers that are different than are reported in the b
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{learning-objectives-5}{%
-\subsection{Learning Objectives}\label{learning-objectives-5}}
+\subsection{Learning Objectives}\label{learning-objectives-5}
 
 At the end of today's session, student will be able to
 
@@ -2297,8 +2221,7 @@ At the end of today's session, student will be able to
   \textbf{Appreciate} that the model does not generate interpretation; design does.
 \end{enumerate}
 
-\hypertarget{design-notation}{%
-\subsection{Design Notation}\label{design-notation}}
+\subsection{Design Notation}\label{design-notation}
 
 This week, you read three very short chapters in a book by Trochim and Donelly. This reading begins with a series of one-group ``threats'' to causal inference, which we will enumerate again here:
 
@@ -2326,8 +2249,7 @@ The author then moves on to describe several multiple-group threats. Notice that
 How to do we ensure that we do not witness any of the problems created by these \emph{selection-} threats?
 \end{quote}
 
-\hypertarget{design-notation-1}{%
-\subsubsection{Design Notation}\label{design-notation-1}}
+\subsubsection{Design Notation}\label{design-notation-1}
 
 Finally, the authors introduce us to the real point of this week: design notation whereby they provide us with a constrained set of actions that can be taken.
 
@@ -2339,19 +2261,15 @@ N
 X 
 \end{verbatim}
 
-\hypertarget{good-controls}{%
-\subsection{Good Controls}\label{good-controls}}
+\subsection{Good Controls}\label{good-controls}
 
-\hypertarget{bad-controls}{%
-\subsection{Bad Controls}\label{bad-controls}}
+\subsection{Bad Controls}\label{bad-controls}
 
 What goes wrong with bad controls? Everything!
 
-\hypertarget{a-very-simple-example}{%
-\subsection{A Very Simple Example}\label{a-very-simple-example}}
+\subsection{A Very Simple Example}\label{a-very-simple-example}
 
-\hypertarget{make-data-1}{%
-\subsection{Make Data}\label{make-data-1}}
+\subsection{Make Data}\label{make-data-1}
 
 Let's make some data in just the same way that we typically make data. We will produce a vector of potential outcomes to control, and then two outcomes that are affected by treatment. One we will consider the outcome that we are interested in understanding as a causal effect, the other, we're going to call the ``bad control''.
 
@@ -2373,11 +2291,11 @@ Let's make some data in just the same way that we typically make data. We will p
 \NormalTok{  )]}
 
   \DocumentationTok{\#\# the bad control is *very* related to treatment}
-\NormalTok{  d[, bad\_control }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{ tau}\SpecialCharTok{*}\NormalTok{D }\SpecialCharTok{+}\NormalTok{ epsilon]}
+\NormalTok{  d[, bad\_control }\SpecialCharTok{:=}\NormalTok{ tau}\SpecialCharTok{*}\NormalTok{D }\SpecialCharTok{+}\NormalTok{ epsilon]}
   
   \CommentTok{\# d[, y0 := runif(min={-}10, max=10, n=.N) + bad\_control ]}
   
-\NormalTok{  d[, Y }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{ y0 }\SpecialCharTok{+}\NormalTok{ bad\_control }\SpecialCharTok{+}\NormalTok{ epsilon]}
+\NormalTok{  d[, Y }\SpecialCharTok{:=}\NormalTok{ y0 }\SpecialCharTok{+}\NormalTok{ bad\_control }\SpecialCharTok{+}\NormalTok{ epsilon]}
   
 \NormalTok{  \}}
 
@@ -2385,8 +2303,7 @@ Let's make some data in just the same way that we typically make data. We will p
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{what-is-the-causal-model-we-hold}{%
-\subsection{What is the causal model we hold?}\label{what-is-the-causal-model-we-hold}}
+\subsection{What is the causal model we hold?}\label{what-is-the-causal-model-we-hold}
 
 When we are thinking about the causal model here, we're saying, ``I think that the conditional expectation of Y depends on the treatment status''. Or, even more simply, ``Treatment affects outcomes.''
 
@@ -2438,13 +2355,11 @@ In fact, we can estimate a reliable causal effect for \emph{either} \texttt{Y\ \
 ## Note:           *p<0.1; **p<0.05; ***p<0.01
 \end{verbatim}
 
-\hypertarget{do-the-estimates-match-the-world}{%
-\subsubsection{Do the estimates match the world?}\label{do-the-estimates-match-the-world}}
+\subsubsection{Do the estimates match the world?}\label{do-the-estimates-match-the-world}
 
 When you look at what the models have estimated, do they match the data that we created above?
 
-\hypertarget{robust-standard-errors}{%
-\subsection{Robust Standard Errors}\label{robust-standard-errors}}
+\subsection{Robust Standard Errors}\label{robust-standard-errors}
 
 David R. makes the good point in the async material that if we don't have a good reason to assume that the variance is the same between different groups, or really across all values of our explanatory variables, then these variances might, in fact be different! As a consequence we might have overly optimistic estimates of our standard errors.
 
@@ -2578,8 +2493,7 @@ What if we wanted to pretty-print ourselves a table? If we are using stargazer, 
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{what-about-clustered-standard-errors}{%
-\subsection{What about clustered standard errors?}\label{what-about-clustered-standard-errors}}
+\subsection{What about clustered standard errors?}\label{what-about-clustered-standard-errors}
 
 Ok, now we're a little deeper down the rabbit hole.
 
@@ -2638,8 +2552,7 @@ Pretty print that.
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{treatment-by-treatment-interaction}{%
-\subsection{Treatment by Treatment Interaction}\label{treatment-by-treatment-interaction}}
+\subsection{Treatment by Treatment Interaction}\label{treatment-by-treatment-interaction}
 
 Summarized data is\ldots{} a drag.
 
@@ -2648,19 +2561,19 @@ In the book, we're provided data about responses to questions from purported con
 But, the book gives us data of the form:
 
 \begin{longtable}[]{@{}lllll@{}}
-\toprule
+\toprule\noalign{}
 & Colin & Colin & José & José \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \% Received Reply & 52 & 29 & 37 & 34 \\
 (N) & (100) & (100) & (100) & (100) \\
-\bottomrule
 \end{longtable}
 
 Can you run inference against a table that is structured like that? How would you run a model against that form of ``data''?
 
-\hypertarget{recreate-data}{%
-\subsubsection{Recreate Data}\label{recreate-data}}
+\subsubsection{Recreate Data}\label{recreate-data}
 
 In order to get a model running against this data, we're going to make a dataset that has the same information in it, but that we can actually run a model against.
 
@@ -2683,13 +2596,13 @@ Once we've been able to name these, we're able to make a \texttt{data.table} tha
                   \AttributeTok{name    =} \FunctionTok{rep}\NormalTok{(}\ConstantTok{NA}\NormalTok{, }\DecValTok{400}\NormalTok{),}
                   \AttributeTok{grammar =} \FunctionTok{rep}\NormalTok{(}\ConstantTok{NA}\NormalTok{, }\DecValTok{400}\NormalTok{) )}
 
-\NormalTok{dat[ , y }\SpecialCharTok{:}\ErrorTok{=} \FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{52}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{48}\NormalTok{),}
+\NormalTok{dat[ , y }\SpecialCharTok{:=} \FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{52}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{48}\NormalTok{),}
               \FunctionTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{29}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{71}\NormalTok{),}
               \FunctionTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{37}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{63}\NormalTok{),}
               \FunctionTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{34}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{66}\NormalTok{) )]}
 
-\NormalTok{dat[ , name    }\SpecialCharTok{:}\ErrorTok{=} \FunctionTok{as.factor}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\StringTok{"C"}\NormalTok{, }\DecValTok{200}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\StringTok{"J"}\NormalTok{,}\DecValTok{200}\NormalTok{)))]}
-\NormalTok{dat[ , grammar }\SpecialCharTok{:}\ErrorTok{=} \FunctionTok{as.factor}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"G"}\NormalTok{, }\StringTok{"B"}\NormalTok{, }\StringTok{"G"}\NormalTok{, }\StringTok{"B"}\NormalTok{), }\AttributeTok{each =} \DecValTok{100}\NormalTok{) )]}
+\NormalTok{dat[ , name    }\SpecialCharTok{:=} \FunctionTok{as.factor}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\StringTok{"C"}\NormalTok{, }\DecValTok{200}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\StringTok{"J"}\NormalTok{,}\DecValTok{200}\NormalTok{)))]}
+\NormalTok{dat[ , grammar }\SpecialCharTok{:=} \FunctionTok{as.factor}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"G"}\NormalTok{, }\StringTok{"B"}\NormalTok{, }\StringTok{"G"}\NormalTok{, }\StringTok{"B"}\NormalTok{), }\AttributeTok{each =} \DecValTok{100}\NormalTok{) )]}
 
 \NormalTok{dat[ , }\StringTok{\textquotesingle{}:=\textquotesingle{}}\NormalTok{(}\AttributeTok{cg =} \FunctionTok{I}\NormalTok{(name }\SpecialCharTok{==} \StringTok{"C"}\NormalTok{) }\SpecialCharTok{*} \FunctionTok{I}\NormalTok{(grammar }\SpecialCharTok{==} \StringTok{"G"}\NormalTok{),}
            \AttributeTok{cb =} \FunctionTok{I}\NormalTok{(name }\SpecialCharTok{==} \StringTok{"C"}\NormalTok{) }\SpecialCharTok{*} \FunctionTok{I}\NormalTok{(grammar }\SpecialCharTok{==} \StringTok{"B"}\NormalTok{),}
@@ -2730,8 +2643,7 @@ Y_{i} = b_{1}L_{i}\overset{Non-Hispanic}{Good\ Grammar} +
 
 How would you write a regression that produces this output?
 
-\hypertarget{a-more-common-estimating-strategy}{%
-\subsubsection{A more common estimating strategy}\label{a-more-common-estimating-strategy}}
+\subsubsection{A more common estimating strategy}\label{a-more-common-estimating-strategy}
 
 More commonly, but equivalently, we estimate this same form with a treatment-by-treatment interaction model. This has the functional form:
 
@@ -2745,15 +2657,13 @@ How would you write a regression that matches this form?
 
 The book claims that this facilitates testing of nuanced hypotheses, specifically like, ``Is the effect of being named Colin or José different if there is poor grammar compared to if there is good grammar? How would you test this?
 
-\hypertarget{heterogeneous-treatment-effects}{%
-\section{Heterogeneous Treatment Effects}\label{heterogeneous-treatment-effects}}
+\section{Heterogeneous Treatment Effects}\label{heterogeneous-treatment-effects}
 
 When we consider heterogeneous treatment effects, we acknowledge that it is very unlikely that every single person reacts to treatment in exactly the same way. But, are there certain \emph{types} of people who always react more strongly to treatment? Are there certain \emph{types} of people who always react less strongly?
 
 How should we go about (a) looking for HTEs; (b) testings for HTEs with nominal p-value coverages; and (c) reporting HTEs to individuals in a way that make sense?
 
-\hypertarget{learning-objectives-6}{%
-\subsection{Learning Objectives}\label{learning-objectives-6}}
+\subsection{Learning Objectives}\label{learning-objectives-6}
 
 At the end of this week, students will be able to
 
@@ -2766,8 +2676,7 @@ At the end of this week, students will be able to
   Conduct, test, and interpret models with interaction terms as specific tests of hypotheses.
 \end{enumerate}
 
-\hypertarget{reading-and-discussion-goodson}{%
-\subsection{Reading and Discussion: Goodson}\label{reading-and-discussion-goodson}}
+\subsection{Reading and Discussion: Goodson}\label{reading-and-discussion-goodson}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2798,8 +2707,7 @@ At the end of this week, students will be able to
   What are the consequences of peaking, and then stopping early, once we have seen the results?
 \end{enumerate}
 
-\hypertarget{coding-and-demo-the-californians}{%
-\subsection{Coding and Demo: The Californians}\label{coding-and-demo-the-californians}}
+\subsection{Coding and Demo: The Californians}\label{coding-and-demo-the-californians}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2816,9 +2724,9 @@ At the end of this week, students will be able to
                     \AttributeTok{affluence =} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{7}\NormalTok{, sim\_size, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{),}
                     \AttributeTok{preY =} \FunctionTok{rnorm}\NormalTok{(sim\_size, }\AttributeTok{mean =} \DecValTok{100}\NormalTok{, }\AttributeTok{sd =} \DecValTok{7}\NormalTok{),}
                     \AttributeTok{treat =} \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{), sim\_size, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{) )}
-\NormalTok{    d[ , literacy }\SpecialCharTok{:}\ErrorTok{=} \FunctionTok{rnorm}\NormalTok{(sim\_size, }\AttributeTok{mean =}\NormalTok{ d}\SpecialCharTok{$}\NormalTok{affluence, }\AttributeTok{sd =} \DecValTok{2}\NormalTok{)]}
-\NormalTok{    d[ , tau      }\SpecialCharTok{:}\ErrorTok{=} \FunctionTok{rnorm}\NormalTok{(sim\_size, }\AttributeTok{mean =} \DecValTok{5} \SpecialCharTok{+}\NormalTok{ californian)] }\DocumentationTok{\#\# + d$affluence)}
-\NormalTok{    d[ , postY    }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{  preY }\SpecialCharTok{+}\NormalTok{ tau}\SpecialCharTok{*}\NormalTok{treat]}
+\NormalTok{    d[ , literacy }\SpecialCharTok{:=} \FunctionTok{rnorm}\NormalTok{(sim\_size, }\AttributeTok{mean =}\NormalTok{ d}\SpecialCharTok{$}\NormalTok{affluence, }\AttributeTok{sd =} \DecValTok{2}\NormalTok{)]}
+\NormalTok{    d[ , tau      }\SpecialCharTok{:=} \FunctionTok{rnorm}\NormalTok{(sim\_size, }\AttributeTok{mean =} \DecValTok{5} \SpecialCharTok{+}\NormalTok{ californian)] }\DocumentationTok{\#\# + d$affluence)}
+\NormalTok{    d[ , postY    }\SpecialCharTok{:=}\NormalTok{  preY }\SpecialCharTok{+}\NormalTok{ tau}\SpecialCharTok{*}\NormalTok{treat]}
 \NormalTok{\}}
 
 \DocumentationTok{\#\# What is the (unobserved) true average treatment effect?}
@@ -2879,8 +2787,7 @@ At the end of this week, students will be able to
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{coding-and-discussion-tips-at-a-restaurant}{%
-\subsection{Coding and Discussion: Tips at a Restaurant}\label{coding-and-discussion-tips-at-a-restaurant}}
+\subsection{Coding and Discussion: Tips at a Restaurant}\label{coding-and-discussion-tips-at-a-restaurant}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2916,8 +2823,7 @@ At the end of this week, students will be able to
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{treatment-noncompliance}{%
-\section{Treatment Noncompliance}\label{treatment-noncompliance}}
+\section{Treatment Noncompliance}\label{treatment-noncompliance}
 
 This begins a section of the class where we are going to evaluate what happens when problems creep into the actual experiments that we are conducting. We are first going to look at what happens when we instruct people to take treatment, but they choose not to. Or, when we instruct people to take control, but they choose to take treatment instead.
 
@@ -2925,8 +2831,7 @@ It might seem, at first, like we should just proceed by analyzing according to t
 
 This doesn't mean that all is lost however. We can redefine the causal quantity that we are estimating, and produce a reliable estimate of this new concept.We're going to present two such concepts this week. The first concept is the idea of the intent to treat effect (the ITT). The second concept is the idea of the treatment effect among compliers, which we will call the CACE.
 
-\hypertarget{learning-objectives-7}{%
-\subsection{Learning Objectives}\label{learning-objectives-7}}
+\subsection{Learning Objectives}\label{learning-objectives-7}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2939,8 +2844,7 @@ This doesn't mean that all is lost however. We can redefine the causal quantity 
   \textbf{Utilize} a new class of model, the two-stage least squares model, or 2SLS, which is the appropriate model choice when we are dealing with either one- or two-sided non-compliance.
 \end{enumerate}
 
-\hypertarget{starting-conversation}{%
-\subsection{Starting conversation}\label{starting-conversation}}
+\subsection{Starting conversation}\label{starting-conversation}
 
 Life on campus is exciting! Whether students are involved in affinity groups, advocacy groups, protest groups, or just party groups, student life on campus is exciting. We're not to be left out! We're not to be denied the chance to make our voices heard.
 
@@ -2960,11 +2864,9 @@ In breakout rooms, please design an experiment that would be able to measure the
 
 If there are any limitations to what you design, please voice those concerns and talk about why they arise, relative to an \emph{ideal} experiment (that you are probably unable to conduct).
 
-\hypertarget{non-compliance-discussion}{%
-\subsection{Non-compliance Discussion}\label{non-compliance-discussion}}
+\subsection{Non-compliance Discussion}\label{non-compliance-discussion}
 
-\hypertarget{setting-terms-of-understanding}{%
-\subsubsection{Setting Terms of Understanding}\label{setting-terms-of-understanding}}
+\subsubsection{Setting Terms of Understanding}\label{setting-terms-of-understanding}
 
 \begin{itemize}
 \tightlist
@@ -2978,8 +2880,7 @@ If there are any limitations to what you design, please voice those concerns and
   Is it possible to estimate the CACE without knowing \emph{specifically} who complied? Is it possible to estimate the CACE without knowing anything about compliance rates?
 \end{itemize}
 
-\hypertarget{where-does-noncompliance-occur}{%
-\subsubsection{Where Does Noncompliance Occur}\label{where-does-noncompliance-occur}}
+\subsubsection{Where Does Noncompliance Occur}\label{where-does-noncompliance-occur}
 
 Is all of this concern about non-compliance actually a concern? Or, is this just another example of academics getting ahead of themselves and worrying about things that are not actually a concern?
 
@@ -2998,11 +2899,9 @@ In three distinct breakout groups, please talk about one of the following scenar
 
 When we come back, each student group will have 5 minutes to talk the other two groups through their scenario, including major risks, opportunities, and learning that they took away from the scenario.
 
-\hypertarget{estimating-with-non-compliance}{%
-\subsection{Estimating with Non-compliance}\label{estimating-with-non-compliance}}
+\subsection{Estimating with Non-compliance}\label{estimating-with-non-compliance}
 
-\hypertarget{estimating-with-non-compliance-1}{%
-\subsubsection{Estimating with non-compliance}\label{estimating-with-non-compliance-1}}
+\subsubsection{Estimating with non-compliance}\label{estimating-with-non-compliance-1}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3018,26 +2917,26 @@ When we come back, each student group will have 5 minutes to talk the other two 
 \NormalTok{)}
 
 \DocumentationTok{\#\# create a treatment effect}
-\NormalTok{d[ , y1 }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{ y0 }\SpecialCharTok{+}\NormalTok{ tau]}
+\NormalTok{d[ , y1 }\SpecialCharTok{:=}\NormalTok{ y0 }\SpecialCharTok{+}\NormalTok{ tau]}
 
 \DocumentationTok{\#\# create an assignment vector and a treatment vector with everybody initially}
 \DocumentationTok{\#\# set to be untreated. }
-\NormalTok{d[ , assigned }\SpecialCharTok{:}\ErrorTok{=} \FunctionTok{sample}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{each=}\NormalTok{nrows}\SpecialCharTok{/}\DecValTok{2}\NormalTok{))] }\CommentTok{\# z in the book}
-\NormalTok{d[ , treated }\SpecialCharTok{:}\ErrorTok{=} \DecValTok{0}\NormalTok{] }
+\NormalTok{d[ , assigned }\SpecialCharTok{:=} \FunctionTok{sample}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{each=}\NormalTok{nrows}\SpecialCharTok{/}\DecValTok{2}\NormalTok{))] }\CommentTok{\# z in the book}
+\NormalTok{d[ , treated }\SpecialCharTok{:=} \DecValTok{0}\NormalTok{] }
 
 \DocumentationTok{\#\# then, among the people who are assigned to receive treatment, actually }
 \DocumentationTok{\#\# treat some of them at random. }
 \NormalTok{d[}
 \NormalTok{  assigned }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, }
-\NormalTok{  treated  }\SpecialCharTok{:}\ErrorTok{=} \FunctionTok{sample}\NormalTok{(}
+\NormalTok{  treated  }\SpecialCharTok{:=} \FunctionTok{sample}\NormalTok{(}
     \AttributeTok{x=}\DecValTok{1}\SpecialCharTok{:}\DecValTok{0}\NormalTok{, }\AttributeTok{size=}\NormalTok{.N, }\AttributeTok{replace=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{prob=}\FunctionTok{c}\NormalTok{(.}\DecValTok{7}\NormalTok{, .}\DecValTok{3}\NormalTok{)}
 \NormalTok{    )]}
 
 \DocumentationTok{\#\# finally, observe: }
 \DocumentationTok{\#\#   {-} the potential outcomes to treatment for the treatment group; and, }
 \DocumentationTok{\#\#   {-} the potential outcomes to control for the control group. }
-\NormalTok{d[treated }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, Y }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{ y1]}
-\NormalTok{d[treated }\SpecialCharTok{==} \DecValTok{0}\NormalTok{, Y }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{ y0]}
+\NormalTok{d[treated }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, Y }\SpecialCharTok{:=}\NormalTok{ y1]}
+\NormalTok{d[treated }\SpecialCharTok{==} \DecValTok{0}\NormalTok{, Y }\SpecialCharTok{:=}\NormalTok{ y0]}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3069,15 +2968,13 @@ Does our estimator for the \(ATE\) produce an unbiased estimator of the populati
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{build-estimators}{%
-\subsubsection{Build Estimators}\label{build-estimators}}
+\subsubsection{Build Estimators}\label{build-estimators}
 
 Suppose that you cannot /actually/ observe whether someone was treated or not. This will require that you suspend reality for a moment, to suppose that we do not have access to the \texttt{treateed} variable.
 
 In this case, what concept \textbf{are} you able to estimate? What concept are you \textbf{not} able to estimate?
 
-\hypertarget{estimate-the-intent-to-treat-effect}{%
-\paragraph{Estimate the Intent to Treat Effect}\label{estimate-the-intent-to-treat-effect}}
+\paragraph{Estimate the Intent to Treat Effect}\label{estimate-the-intent-to-treat-effect}
 
 Use a linear model to estimate the intent to treat effect. What variables do you need to produce this estimate, and what subset of the data (up to, and including the full set of data) do you use to produce this estimate?
 
@@ -3087,8 +2984,7 @@ Use a linear model to estimate the intent to treat effect. What variables do you
   What should be the magnitude of your ITT estimator, relative to the actual population average treatment effect that we encoded (i.e.~5)? Why do you anticipate that it will be at this level?
 \end{itemize}
 
-\hypertarget{estimate-the-compliance-rate}{%
-\subsubsection{Estimate the Compliance Rate}\label{estimate-the-compliance-rate}}
+\subsubsection{Estimate the Compliance Rate}\label{estimate-the-compliance-rate}
 
 Using the full set of data, estimate the compliance rate in two different ways:
 
@@ -3103,8 +2999,7 @@ Using the full set of data, estimate the compliance rate in two different ways:
 
 What are the trade offs to these two different methods?
 
-\hypertarget{compute-the-cace}{%
-\subsubsection{Compute the CACE}\label{compute-the-cace}}
+\subsubsection{Compute the CACE}\label{compute-the-cace}
 
 Because you have the ITT and the compliance rate, estimate the CACE. Once again, compute this compliance rate in several ways.
 
@@ -3143,8 +3038,7 @@ Because you have the ITT and the compliance rate, estimate the CACE. Once again,
 
 How do you feel about the sampling based uncertainty that you can produce with these estimators?
 
-\hypertarget{two-stage-least-squares}{%
-\subsection{Two Stage Least Squares}\label{two-stage-least-squares}}
+\subsection{Two Stage Least Squares}\label{two-stage-least-squares}
 
 In order to estimate with a reliable standard error, we can turn to two stage least squares.
 
@@ -3159,8 +3053,7 @@ Two-stage least squares estimators have the benefits of
   Doing it in a way that has known standard errors that are quickly and easily computable.
 \end{enumerate}
 
-\hypertarget{first-stage}{%
-\subsubsection{First Stage}\label{first-stage}}
+\subsubsection{First Stage}\label{first-stage}
 
 In the first stage we:
 
@@ -3189,8 +3082,7 @@ In the first stage we:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{second-stage}{%
-\subsubsection{Second stage}\label{second-stage}}
+\subsubsection{Second stage}\label{second-stage}
 
 In the second stage we:
 
@@ -3225,8 +3117,7 @@ In the second stage we:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{spillover-and-interference}{%
-\section{Spillover and Interference}\label{spillover-and-interference}}
+\section{Spillover and Interference}\label{spillover-and-interference}
 
 At the outset of the course, we enumerate three hard-core requirement of an experiment design. In addition to intervening in the world, to produce an unbiased estimator of a treatment effect, we require that an experiment:
 
@@ -3245,8 +3136,7 @@ In previous weeks, we've engaged with how to evaluate whether a treatment has be
 
 There are two possibilities. First, we might design our experiment to minimize the effects of interference between units by re-designing or measuring differently. In doing so, we endeavor to maintain the measurement of an individual-level treatment effect, through a multi-group experiment. Second, we might acknowledge the existence of interference and expand our thinking about what \emph{is} a treatment effect.
 
-\hypertarget{learning-objectives-8}{%
-\subsection{Learning Objectives}\label{learning-objectives-8}}
+\subsection{Learning Objectives}\label{learning-objectives-8}
 
 At the conclusion of this week, student will be able to:
 
@@ -3261,8 +3151,7 @@ At the conclusion of this week, student will be able to:
   \textbf{Identify} common situations where interference is likely to occur, and anticipate some methods of mitigating, ameliorating, or designing in response to this interference.
 \end{enumerate}
 
-\hypertarget{defining-terms}{%
-\subsection{Defining Terms}\label{defining-terms}}
+\subsection{Defining Terms}\label{defining-terms}
 
 \begin{itemize}
 \tightlist
@@ -3284,11 +3173,9 @@ At the conclusion of this week, student will be able to:
   Now, be \emph{very} precise with your language: Using the term ``potential-outcomes'' how do Green and Gerber define interference?
 \end{itemize}
 
-\hypertarget{defining-notation}{%
-\subsection{Defining Notation}\label{defining-notation}}
+\subsection{Defining Notation}\label{defining-notation}
 
-\hypertarget{identify-concepts}{%
-\subsubsection{Identify concepts}\label{identify-concepts}}
+\subsubsection{Identify concepts}\label{identify-concepts}
 
 Until this week, we have used two concepts to describe treatment assignment and application:
 
@@ -3312,8 +3199,7 @@ What concept is identified in the following notation:
   Interpret the expression \(Y_{i}(\mathbf{d}) = Y_{i}(d)\) and explain how it conveys the non-interference assumption.
 \end{itemize}
 
-\hypertarget{classroom-assignments}{%
-\subsubsection{Classroom Assignments}\label{classroom-assignments}}
+\subsubsection{Classroom Assignments}\label{classroom-assignments}
 
 \textbf{(From Green and Gerber, p.~283)}: Sometimes researcher are reluctant to randomly assign individual students in elementary classrooms because they are concerned that treatments administered to some students are likely to spill over to untreated students in the same classroom.
 
@@ -3330,8 +3216,7 @@ In an attempt to get around possible violations of the non-interference assumpti
   An \emph{estimand} is the concept that an estimator is attempting to estimate. For example, the ATE estimator produces an unbiased, consistent estimate of the individual-level causal effect. What causal estimand does the clustered design identify? Does this estimand include or exclude spillovers within classrooms? What about spillovers between classrooms? What about spillovers between schools?
 \end{enumerate}
 
-\hypertarget{working-with-a-simple-example}{%
-\subsubsection{Working with a simple example}\label{working-with-a-simple-example}}
+\subsubsection{Working with a simple example}\label{working-with-a-simple-example}
 
 Suppose that we are conducting an experiment where we examine the effects of releasing solution sets early to some students in the 241 classroom.
 
@@ -3365,8 +3250,7 @@ Suppose that we are conducting an experiment where we examine the effects of rel
   Given what you have stated about this small world, how many treatment assignment conditions do you have to be aware of?
 \end{itemize}
 
-\hypertarget{working-with-a-more-complex-example}{%
-\subsubsection{Working with a more complex example}\label{working-with-a-more-complex-example}}
+\subsubsection{Working with a more complex example}\label{working-with-a-more-complex-example}
 
 Suppose that we are conducting an experiment where we examine the effects of releasing solution sets early to some students in \textbf{a law school} classroom. Law school is notoriously competitive, and outside one's immediate group of friends, there is little collaboration.
 
@@ -3387,8 +3271,7 @@ Suppose that we are conducting an experiment where we examine the effects of rel
   Given this example, are the potential outcomes for curved exam score different for \emph{A} if \emph{W} receives or does not receive a solution?
 \end{itemize}
 
-\hypertarget{within-subjects-experiments}{%
-\subsection{Within subjects experiments}\label{within-subjects-experiments}}
+\subsection{Within subjects experiments}\label{within-subjects-experiments}
 
 Earlier in the course, we talked about two-group pre-test/post-test experiments. These experiments are exceptionally strong against a large series of threats to identification. And, they form the basis of the expanded topic of a \emph{within-subject} experiment.
 
@@ -3421,8 +3304,7 @@ What do these two assumptions mean in terms of what you are measuring at the ind
   Suppose that you were worried that your experimental units might either anticipate being put into treatment or that the treatment they take might have long-run effects. How might you design a test to see if either of these concerns are present in your design?
 \end{itemize}
 
-\hypertarget{survey-experiments}{%
-\subsubsection{Survey Experiments}\label{survey-experiments}}
+\subsubsection{Survey Experiments}\label{survey-experiments}
 
 \textbf{(From Green and Gerber, p.285)}: Concerns about interference between units sometimes arise in survey experiments. For example surveys sometimes administer a series of \emph{vignettes} involving people with different attributes. A respondent might be told about a low-income person who is randomly described as white or black; after hearing the description, the respondent is asked to rate whether this person deserves public assistance. The respondent is the presented with a vignette about a second person, again randomly described as white or Black, and asked about whether \emph{this} person deserves public assistance.
 
@@ -3458,8 +3340,7 @@ Questions to answer:
   Suppose a researcher analyzing this experiment estimates the average \emph{race effect} by comparing the average evaluation of the white recipient to the average evaluation of the black recipient. Is this a sound approach? Why or why not?
 \end{enumerate}
 
-\hypertarget{discussing-the-reading-blake-and-coey-2014}{%
-\subsection{Discussing the reading: Blake and Coey (2014)}\label{discussing-the-reading-blake-and-coey-2014}}
+\subsection{Discussing the reading: Blake and Coey (2014)}\label{discussing-the-reading-blake-and-coey-2014}
 
 Here is a link to the \href{https://github.com/UC-Berkeley-I-School/mids-w241/blob/main/readings/Blake.2014.pdf}{reading}.
 
@@ -3486,8 +3367,7 @@ Here is a link to the \href{https://github.com/UC-Berkeley-I-School/mids-w241/bl
   Do you see an example of a stepped-wedge design in this article? Explain.
 \end{itemize}
 
-\hypertarget{discussing-the-reading-miguel-and-kremer-2004}{%
-\subsection{Discussing the reading: Miguel and Kremer (2004)}\label{discussing-the-reading-miguel-and-kremer-2004}}
+\subsection{Discussing the reading: Miguel and Kremer (2004)}\label{discussing-the-reading-miguel-and-kremer-2004}
 
 Here is a link to the \href{https://github.com/UC-Berkeley-I-School/mids-w241/blob/main/readings/Miguel.2004.pdf}{reading}.
 
@@ -3514,8 +3394,7 @@ Here is a link to the \href{https://github.com/UC-Berkeley-I-School/mids-w241/bl
   Do you see an example of a stepped-wedge design in this article? Explain.
 \end{itemize}
 
-\hypertarget{causality-from-observational-data}{%
-\section{Causality from Observational Data}\label{causality-from-observational-data}}
+\section{Causality from Observational Data}\label{causality-from-observational-data}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3533,8 +3412,7 @@ Here is a link to the \href{https://github.com/UC-Berkeley-I-School/mids-w241/bl
 
 What happens if we cannot run an experiment? Perhaps we don't have the budget or time, perhaps the context is too fraught to conduct an experiment. Should we walk away and learn nothing?
 
-\hypertarget{learning-objectives-9}{%
-\subsection{Learning Objectives}\label{learning-objectives-9}}
+\subsection{Learning Objectives}\label{learning-objectives-9}
 
 At the end of this weeks \emph{extensive} content, students should be able to
 
@@ -3551,8 +3429,7 @@ At the end of this weeks \emph{extensive} content, students should be able to
   \textbf{Communicate} the risks and limitations that are brought about when using observational data to make causal claims.
 \end{enumerate}
 
-\hypertarget{the-experimental-ideal}{%
-\subsection{The Experimental Ideal}\label{the-experimental-ideal}}
+\subsection{The Experimental Ideal}\label{the-experimental-ideal}
 
 If you've been through this once, you've been through it one-hundred times this semester, but it might be worth re-stating what we get out of conducting a randomized experiment. Consider this a sage smudging at the beginning of a spooky week.
 
@@ -3560,8 +3437,7 @@ If you've been through this once, you've been through it one-hundred times this 
 Why do we conduct experiments? What guarantees exist as a result of a well-run experiment?
 \end{quote}
 
-\hypertarget{a-continuum-of-plausibility}{%
-\subsection{A Continuum of Plausibility}\label{a-continuum-of-plausibility}}
+\subsection{A Continuum of Plausibility}\label{a-continuum-of-plausibility}
 
 As we are talking today, consider the fully-randomized, full-compliance, full-reporting, high-powered field experiment to be the high-water mark of credibility. Under such a scenario, we can think of any analysis that we undertake as producing a highly-credible, highly-reliable estimate of a treatment effect.
 
@@ -3569,15 +3445,13 @@ Through our discussion this week, we hope to name where we think other technique
 
 However, as data scientists who \emph{have to get work done} we need to be able to produce the best possible statement about a treatment effect, and if we have any misgivings about those statements, be able to provide a clear statement about the risk that is attendant to using them.
 
-\hypertarget{natural-experiments}{%
-\subsection{Natural Experiments}\label{natural-experiments}}
+\subsection{Natural Experiments}\label{natural-experiments}
 
 Natural experiments are experiments that have been conducted by someone \emph{other} than the researcher. If you remember back to Problem Set 1, consider the case of the early childhood education that is provided by the state. When the state \emph{chose} who to provide education to based on need, this was clearly not an experiment because it isn't possible to fully understand the selection criteria used by the state, and so it is not possible to make a strong statement that any estimate produced from a two-group estimator wouldn't be possibly subject to confounding.
 
 But, what about the case where the state \emph{randomly assigned} some kids to get the treatment? Is there any reason that we should discount this simply because it wasn't us to do the assigning? What hubris!
 
-\hypertarget{questions-to-consider}{%
-\subsubsection{Questions to consider}\label{questions-to-consider}}
+\subsubsection{Questions to consider}\label{questions-to-consider}
 
 \begin{itemize}
 \tightlist
@@ -3589,8 +3463,7 @@ But, what about the case where the state \emph{randomly assigned} some kids to g
   How will you know when you've actually \emph{found} something that is a natural experiment?
 \end{itemize}
 
-\hypertarget{breakout-activity}{%
-\subsubsection{Breakout activity}\label{breakout-activity}}
+\subsubsection{Breakout activity}\label{breakout-activity}
 
 \begin{itemize}
 \tightlist
@@ -3600,8 +3473,7 @@ But, what about the case where the state \emph{randomly assigned} some kids to g
   After the members of the team have spent a few moments thinking about things that might be random, ask yourselves, ``What might we be able to learn downstream from this experiment?'' What is the most plausible thing that you might learn? What is the longest, most extreme possibility that you might learn?
 \end{itemize}
 
-\hypertarget{how-does-one-analyze-a-natural-experiment}{%
-\subsubsection{How does one analyze a natural experiment?}\label{how-does-one-analyze-a-natural-experiment}}
+\subsubsection{How does one analyze a natural experiment?}\label{how-does-one-analyze-a-natural-experiment}
 
 If a natural experiment is just a randomization conducted by someone else -- is there anything different that we need to do in order to analyze it? Why or why not?
 
@@ -3638,17 +3510,16 @@ What would be the consequence of estimating an eventual outcome, using a naive r
   What relationship would you have to change in this data generating process in order to flip the bias of the estimate from estimating a value that is higher than the truth, to estimate a value that is lower than the truth?
 \end{itemize}
 
-\hypertarget{can-we-fix-this-estimate}{%
-\subsection{Can we fix this estimate?}\label{can-we-fix-this-estimate}}
+\subsection{Can we fix this estimate?}\label{can-we-fix-this-estimate}
 
 The promise of two stage-least squares is that it produces unbiased estimates so long as we're able to find something that is random.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{first\_stage }\OtherTok{\textless{}{-}}\NormalTok{ d[ , }\FunctionTok{lm}\NormalTok{(schooling }\SpecialCharTok{\textasciitilde{}}\NormalTok{ lottery)] }
-\NormalTok{d[ , schooling\_hat}\SpecialCharTok{:}\ErrorTok{=} \FunctionTok{predict}\NormalTok{(first\_stage)] }
+\NormalTok{d[ , schooling\_hat}\SpecialCharTok{:=} \FunctionTok{predict}\NormalTok{(first\_stage)] }
 
-\NormalTok{d[ , schooling\_10 }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{ schooling }\SpecialCharTok{\textgreater{}} \DecValTok{10}\NormalTok{]}
+\NormalTok{d[ , schooling\_10 }\SpecialCharTok{:=}\NormalTok{ schooling }\SpecialCharTok{\textgreater{}} \DecValTok{10}\NormalTok{]}
 
 \NormalTok{d[ , }\FunctionTok{mean}\NormalTok{(ability), by }\OtherTok{=}\NormalTok{ .(schooling\_10)]}
 \end{Highlighting}
@@ -3717,7 +3588,7 @@ The promise of two stage-least squares is that it produces unbiased estimates so
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{d[ , residuals }\SpecialCharTok{:}\ErrorTok{=} \FunctionTok{resid}\NormalTok{(first\_stage)]}
+\NormalTok{d[ , residuals }\SpecialCharTok{:=} \FunctionTok{resid}\NormalTok{(first\_stage)]}
 
 \NormalTok{ability\_by\_lottery }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(d) }\SpecialCharTok{+} 
   \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ability, }\AttributeTok{fill =} \FunctionTok{as.factor}\NormalTok{(lottery)) }\SpecialCharTok{+} 
@@ -3760,15 +3631,13 @@ Another way to think about this is in terms of how the predicted values are asso
 
 \includegraphics{241-live-session_files/figure-latex/unnamed-chunk-20-1.pdf}
 
-\hypertarget{regression-discontinuity}{%
-\subsection{Regression Discontinuity}\label{regression-discontinuity}}
+\subsection{Regression Discontinuity}\label{regression-discontinuity}
 
 Regression discontinuity is a \emph{really} clever idea, that when the data presents itself and the analysis is done correctly, provides a \emph{very} compelling argument for having captured a causal effect.
 
 The key insight in the case of regression discontinuity is that we might \emph{not} need something that is actually random in order to produce a credible treatment effect. All we need is treatment assignment mechanism that is not correlated with potential outcomes. And, the argument for regression discontinuity is that if you make a comparison set similar enough along a scoring variable, then it would be very hard for people on one-side or the other-side of an arbitrary point in the scoring variable to be different.
 
-\hypertarget{why-do-rdd-designs-work}{%
-\subsubsection{Why do RDD designs ``work''?}\label{why-do-rdd-designs-work}}
+\subsubsection{Why do RDD designs ``work''?}\label{why-do-rdd-designs-work}
 
 \begin{itemize}
 \item
@@ -3781,8 +3650,7 @@ The key insight in the case of regression discontinuity is that we might \emph{n
   How do I identify \emph{where} the cut-point in the forcing variable is located?
 \end{itemize}
 
-\hypertarget{just-how-common-are-opportunities-for-rdd}{%
-\subsubsection{Just how common are opportunities for RDD}\label{just-how-common-are-opportunities-for-rdd}}
+\subsubsection{Just how common are opportunities for RDD}\label{just-how-common-are-opportunities-for-rdd}
 
 Here's a controversial point of view: Everything that we do as data scientists is to make low-dimensional representations of higher dimensional space. Let's have a jam-session where the class and instructors take turns naming places where a RDD could be run. We'll start with:
 
@@ -3793,8 +3661,7 @@ Here's a controversial point of view: Everything that we do as data scientists i
   Now you\ldots{}
 \end{itemize}
 
-\hypertarget{working-with-regression-discontinuity-designs}{%
-\subsubsection{Working with Regression Discontinuity Designs}\label{working-with-regression-discontinuity-designs}}
+\subsubsection{Working with Regression Discontinuity Designs}\label{working-with-regression-discontinuity-designs}
 
 Let's look at see what is happening when we're working with RDD designs. To start, let's build some data. Read through each of the lines below, and note what is happening with the data being created. (\emph{Notice that we are chaining together the data.table after we create \texttt{y0} and again after we create \texttt{y1}.})
 
@@ -3807,8 +3674,8 @@ Let's look at see what is happening when we're working with RDD designs. To star
   \AttributeTok{tau     =} \FunctionTok{rnorm}\NormalTok{(.N, }\AttributeTok{mean=}\DecValTok{0}\NormalTok{, }\AttributeTok{sd=}\DecValTok{2}\NormalTok{), }
   \AttributeTok{running =} \FunctionTok{runif}\NormalTok{(.N, }\AttributeTok{min=}\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{, }\AttributeTok{max=}\DecValTok{2}\NormalTok{), }
   \AttributeTok{y0      =} \FunctionTok{runif}\NormalTok{(.N, }\AttributeTok{min=}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\AttributeTok{max=}\DecValTok{1}\NormalTok{)) ][ , }
-\NormalTok{  y1     }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{ y0 }\SpecialCharTok{+}\NormalTok{ tau ][ , }
-\NormalTok{  Y      }\SpecialCharTok{:}\ErrorTok{=} \FunctionTok{ifelse}\NormalTok{(running }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{, y1, y0)]}
+\NormalTok{  y1     }\SpecialCharTok{:=}\NormalTok{ y0 }\SpecialCharTok{+}\NormalTok{ tau ][ , }
+\NormalTok{  Y      }\SpecialCharTok{:=} \FunctionTok{ifelse}\NormalTok{(running }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{, y1, y0)]}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3870,8 +3737,7 @@ With the data created, let's quickly look at what we are working with. Does the 
 
 This has been \emph{very} fortunate data. There is no trend across the running variable, and things seem mostly linear on both sides. Naturally, the real world is not so tidy.
 
-\hypertarget{more-realistic-data}{%
-\subsubsection{More realistic data}\label{more-realistic-data}}
+\subsubsection{More realistic data}\label{more-realistic-data}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3879,7 +3745,7 @@ This has been \emph{very} fortunate data. There is no trend across the running v
 \NormalTok{d[ , }\StringTok{\textquotesingle{}:=\textquotesingle{}}\NormalTok{(}
   \AttributeTok{running =} \FunctionTok{runif}\NormalTok{(}\AttributeTok{n=}\NormalTok{.N, }\AttributeTok{min=}\DecValTok{0}\NormalTok{, }\AttributeTok{max=}\DecValTok{10}\NormalTok{), }
   \AttributeTok{cov1    =} \FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n=}\NormalTok{.N)) ][ ,}
-\NormalTok{  Y }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{ running }\SpecialCharTok{*} \FloatTok{0.1} \SpecialCharTok{{-}} \FloatTok{0.2} \SpecialCharTok{*}\NormalTok{ cov1 }\SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{*} \FunctionTok{I}\NormalTok{(running }\SpecialCharTok{\textgreater{}} \DecValTok{5}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n=}\NormalTok{.N)]}
+\NormalTok{  Y }\SpecialCharTok{:=}\NormalTok{ running }\SpecialCharTok{*} \FloatTok{0.1} \SpecialCharTok{{-}} \FloatTok{0.2} \SpecialCharTok{*}\NormalTok{ cov1 }\SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{*} \FunctionTok{I}\NormalTok{(running }\SpecialCharTok{\textgreater{}} \DecValTok{5}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n=}\NormalTok{.N)]}
 
 \NormalTok{d[ , }\FunctionTok{plot}\NormalTok{(}\AttributeTok{x=}\NormalTok{running, }\AttributeTok{y=}\NormalTok{Y, }\AttributeTok{col=}\NormalTok{berkeley\_blue, }\AttributeTok{pch=}\DecValTok{19}\NormalTok{)]}
 \end{Highlighting}
@@ -3958,8 +3824,7 @@ This has been \emph{very} fortunate data. There is no trend across the running v
 ## NULL
 \end{verbatim}
 
-\hypertarget{what-about-even-more-challenging-data}{%
-\subsubsection{What about even more challenging data?}\label{what-about-even-more-challenging-data}}
+\subsubsection{What about even more challenging data?}\label{what-about-even-more-challenging-data}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3982,8 +3847,7 @@ This has been \emph{very} fortunate data. There is no trend across the running v
   What model would you fit against this data?
 \end{itemize}
 
-\hypertarget{problems-and-diagnostics}{%
-\section{Problems and Diagnostics}\label{problems-and-diagnostics}}
+\section{Problems and Diagnostics}\label{problems-and-diagnostics}
 
 \begin{figure}
 \centering
@@ -3991,8 +3855,7 @@ This has been \emph{very} fortunate data. There is no trend across the running v
 \caption{houston, we have a problem}
 \end{figure}
 
-\hypertarget{learning-objectives-10}{%
-\subsection{Learning Objectives}\label{learning-objectives-10}}
+\subsection{Learning Objectives}\label{learning-objectives-10}
 
 At the conclusion of this week's live session, students will be able to:
 
@@ -4009,8 +3872,7 @@ At the conclusion of this week's live session, students will be able to:
   \textbf{Propose} a way forward -- how to modify the experiment or modify the estimator.
 \end{enumerate}
 
-\hypertarget{goals-of-an-expermient}{%
-\subsection{Goals of an Expermient}\label{goals-of-an-expermient}}
+\subsection{Goals of an Expermient}\label{goals-of-an-expermient}
 
 Recall that the goal of any experiment -- same as the goal for \emph{your} experiment -- is to identify a causal effect that we have a \textbf{guarantee} is unbiased. If we cannot accomplish that, why take the time to conduct the experiment?
 
@@ -4018,13 +3880,104 @@ Conducting these experiments is \textbf{easy}! At least in a perfect world. The 
 
 This week's task is to acknowledge that nothing will \emph{ever} be perfect, and then to proactively design our data collection system so that we can diagnose problems when they arise.
 
-\hypertarget{attrition-mediation-and-generalizability}{%
-\section{Attrition, Mediation, and Generalizability}\label{attrition-mediation-and-generalizability}}
+\subsection{Problems with Randomization}\label{problems-with-randomization}
+
+Suppose that you are going to conduct an experiment that evaluates the effectiveness of encouragements to complete homework and you have designed the operational details in the following way:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  You have randomized the list of currently enrolled MIDS 241 students into three treatment groups. Group A will receive \textbf{Always Encouragement}, their instructor will Slack them every day and remind them that Problem Set 4 is coming due; Group B will receive \textbf{Baseline Encouragement}, where they will receive the normal communication from the class; Group C will receive \textbf{Conditional Encouragement}, where students will only be contacted if their grades are below the class average.
+\item
+  Although you've designed the experiment, contact for students will require that the individual classroom instructors take action to send the encouragements.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{How could this randomization break?} In this breakout, list as many specific ways that you think that the list of people who are assigned to Group A, B, and C might not match those who actually are in the groups. How many ways can you imagine?
+\item
+  \textbf{What are the consequences?} After listing all the ways that the randomization \emph{could} breakdown, what are the three ways that you think would be more damaging to generating an unbiased causal estimate?
+\item
+  \textbf{How would you detect?} For these three problems that you've identified, how would you know if the randomization has broken down in this particular way?
+\end{enumerate}
+
+\subsection{Placebo Test}\label{placebo-test}
+
+Earlier in the semester, we talked about Placebo Designs, where we intentionally randomize a group of participants and give them a treatment that we do not think will affect outcomes. This placebo treatment, which you might think of as a sugar pill, is designed to allow compliers (and non-compliers) to identify themselves to the experimenting team, producing more efficient estimates of the compliers average causal effect when there is a lot of treatment non-compliance.
+
+This week, we introduce the concept of the \emph{Placebo Test} which, importantly, is different than a \emph{Placebo Design}.
+
+What is a placebo test? How is the concept similar to, and how is it different from, a placebo design?
+
+\begin{itemize}
+\tightlist
+\item
+  How do you know if a particular feature is a good candidate for a placebo test?
+\item
+  How are placebo tests different from covariate balance checks?
+\item
+  If you fail a placebo test, why is there more uncertainty about how to fix your experiment?
+\end{itemize}
+
+\subsection{Manipulation Check}\label{manipulation-check}
+
+What happens if you don't use a \emph{strong enough} treatment?
+
+\begin{example}
+
+Suppose that you're conducting an experiment to learn the market-value effect of holding a MIDS degree from the School of Information. (Gosh, I sure hope it is positive!) You decide that your experiment is going to send two versions of a resume.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Version 1 (Control)}: The resume contains the candidate's name, work experience, skills, and a nice statement of their purpose searching for a job. But, the resume does not contain any information about a job candidates master's degree.
+\item
+  \textbf{Version 2 (Treatment)}: The resume contains the candidate's name, work experience, skills, and a nice statement of their purpose searching for a job. Then, \textbf{after the other materials} the resume lists education at the top of the second page.
+\end{enumerate}
+
+\end{example}
+
+\begin{itemize}
+\tightlist
+\item
+  What concerns do you have about the strength of this manipulation? How would you address these concerns?
+\item
+  What is the maximum manipulation that you can imagine using in this experiment? Are you concerned that there might be \emph{too} much manipulation?
+\end{itemize}
+
+\subsection{Advocating for Experimentation}\label{advocating-for-experimentation}
+
+Getting experiments done at work is \emph{almost alwasys} an uphill battle! We won't enumerate the reasons (because we will ask you to do so in a moment), but in our experience, there are some serious impediemnts to getting experiments done.
+
+The good news, from the point of view of your company's leadership: \href{https://venturebeat.com/automation/offerfit-gets-25m-to-kill-a-b-testing-for-marketing-with-machine-learning-personalization/}{A/B Testing is Dead}.
+
+Using the tools of this class and the program, in breakout rooms evaluate this claim. All breakout rooms will read and learn about this claim.
+
+One set will argue in support of the claim: Using new techniques like reinforcement learning and machine generated text, it is possible to determine the most effective messaging without needing to conduct randomized experiments.
+
+The other set of breakout rooms will argue against the claim: While these new techniques might afford some benefits, they cannot replace the work that we've been building over the course of the semester.
+
+\subsubsection{Reasons for and against Experiments}\label{reasons-for-and-against-experiments}
+
+Think about getting an experiment conducted either at work or in your lab.
+
+\begin{itemize}
+\tightlist
+\item
+  What are the reasons that you can identify \emph{in support of} conducting an experiment?
+\item
+  What are the limitations to, or reasons that you might not conduct an experiment?
+\end{itemize}
+
+\section{Attrition, Mediation, and Generalizability}\label{attrition-mediation-and-generalizability}
 
 The theme for this week, as we mention in the async, is that these are \textbf{hard} problems -- in fact, each of these problems are so hard that we do not have an ability to place a clear, numerical answer on \emph{any} of them.
 
-\hypertarget{learning-objectives-11}{%
-\subsection{Learning Objectives}\label{learning-objectives-11}}
+\subsection{Learning Objectives}\label{learning-objectives-11}
 
 At the conclusion of this week, students will be able to
 
@@ -4038,8 +3991,7 @@ At the conclusion of this week, students will be able to
 \item
 \end{enumerate}
 
-\hypertarget{why-doesnt-mediation-analysis-work}{%
-\subsection{Why doesn't mediation analysis work?}\label{why-doesnt-mediation-analysis-work}}
+\subsection{Why doesn't mediation analysis work?}\label{why-doesnt-mediation-analysis-work}
 
 Here's a classic case, that is actually very recent. Gaesser et al (2020) present subjects with a short text that describes a stranger in need, for example, someone who has fallen off a motorcycle on the freeway.
 
@@ -4092,8 +4044,7 @@ Can you draw this system out in the way that we did in 203? Use circles to repre
 
 Once you've written out these pathways, what could go wrong in this analysis?
 
-\hypertarget{endless-chain-of-why}{%
-\subsection{Endless Chain of Why?}\label{endless-chain-of-why}}
+\subsection{Endless Chain of Why?}\label{endless-chain-of-why}
 
 Return back to the example that we talked about at the \emph{very} first week of class, that living in a suburban environment causes a measurable increase in people's BMI. In a five-minute breakout room, produce an enumerated list of theories about \emph{why} living in the suburbs might increase someone's BMI.
 
@@ -4106,15 +4057,13 @@ Return back to the example that we talked about at the \emph{very} first week of
   The team that lists the most hilarious possible cause also gets a gold star.
 \end{enumerate}
 
-\hypertarget{design-an-experiment-to-evaluate-these-possible-causes}{%
-\subsection{Design an experiment to evaluate these possible causes}\label{design-an-experiment-to-evaluate-these-possible-causes}}
+\subsection{Design an experiment to evaluate these possible causes}\label{design-an-experiment-to-evaluate-these-possible-causes}
 
 Now that we've got the list of causes created, and discussed, let's pick a smaller set of the possible causes, and have each group go back into their breakout room for five more minutes to \textbf{specifically} design an experiment that would produce evidence in support of (or in contrast to) their specific theory. Here's the thing: in creating your test, you're trying \textbf{as best as possible} to isolate one, and only one mechanism. So, an experiment that is able to change only a single mechanism is preferred to an experiment that tests who mechanisms at once.
 
 When we come back from this breakout, each team will spend three minutes presenting the design that they produced to test their theory, and the other groups will reason about whether there are other mechanisms that \emph{could} be at play in producing differences in outcomes.
 
-\hypertarget{generalizability}{%
-\subsection{Generalizability}\label{generalizability}}
+\subsection{Generalizability}\label{generalizability}
 
 Recall the Arizona towel example that we read in \emph{Field Experiments}. It goes something like this, ``There is a door hanger that goes into the bathroom of a Best Western that asks individuals to reuse their towels in an effort to lower environmental impact. There is a large effect in the first period of the study, but there is a smaller, and statistically insignificant effect in the second period of the study.
 
@@ -4147,11 +4096,9 @@ Now, suppose that you're the decision-maker who has to decide whether to run the
 
 Throughout the async, David Broockman highlights the extreme difficulty in generating data that tests mechanisms. So, isn't the Bates and Glennerster argument tantamount to saying, ``Just think about this impossible thing that you're never going to be able to measure?'' Or, can you use their framework profitably to generalize to other contexts?
 
-\hypertarget{applications-of-experiments}{%
-\section{Applications of Experiments}\label{applications-of-experiments}}
+\section{Applications of Experiments}\label{applications-of-experiments}
 
-\hypertarget{learning-objectives-12}{%
-\subsection{Learning Objectives}\label{learning-objectives-12}}
+\subsection{Learning Objectives}\label{learning-objectives-12}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -4161,11 +4108,9 @@ Throughout the async, David Broockman highlights the extreme difficulty in gener
 \item
 \end{enumerate}
 
-\hypertarget{review-of-the-course}{%
-\section{Review of the Course}\label{review-of-the-course}}
+\section{Review of the Course}\label{review-of-the-course}
 
-\hypertarget{learning-objectives-13}{%
-\subsection{Learning Objectives}\label{learning-objectives-13}}
+\subsection{Learning Objectives}\label{learning-objectives-13}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
