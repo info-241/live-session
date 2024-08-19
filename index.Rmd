@@ -1,7 +1,7 @@
 ---
 title: "Experiments and Causality"
 cover-image: "images/coffee.jpeg"
-author: "The 241 Instructional Team^[David Reiley, D. Alex Hughes, David Broockman, Micah Gell-Redman, Scott Guenther, David Wheeler, Josue Martinze]"
+author: "The 241 Instructional Team^[David Reiley, D. Alex Hughes, David Broockman, Micah Gell-Redman, Scott Guenther, David Wheeler, Josue Martinez, Maya Duru"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 document_class: book 
