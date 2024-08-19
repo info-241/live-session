@@ -1,7 +1,7 @@
 # Bookdown Stuff
 _book/
 _bookdown_files/
-libs/
+# libs/
 
 .DS_Store
 .idea
