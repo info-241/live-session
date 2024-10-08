@@ -20,10 +20,10 @@
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
 
-<meta name="author" content="The 241 Instructional Team^[David Reiley, D. Alex Hughes, David Broockman, Micah Gell-Redman, Scott Guenther, David Wheeler, Josue Martinez, Maya Duru" />
+<meta name="author" content="The 241 Instructional Team" />
 
 
-<meta name="date" content="2024-08-19" />
+<meta name="date" content="2024-10-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -299,6 +299,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.10.1" data-path="treatment-by-treatment-interaction.html"><a href="treatment-by-treatment-interaction.html#recreate-data"><i class="fa fa-check"></i><b>6.10.1</b> Recreate Data</a></li>
 <li class="chapter" data-level="6.10.2" data-path="treatment-by-treatment-interaction.html"><a href="treatment-by-treatment-interaction.html#a-more-common-estimating-strategy"><i class="fa fa-check"></i><b>6.10.2</b> A more common estimating strategy</a></li>
 </ul></li>
+<li class="chapter" data-level="6.11" data-path="pre-test-post-test.html"><a href="pre-test-post-test.html"><i class="fa fa-check"></i><b>6.11</b> Pre-Test, Post-Test</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="pre-test-post-test.html"><a href="pre-test-post-test.html#the-difference-in-differences-model"><i class="fa fa-check"></i><b>6.11.1</b> The Difference in Differences Model</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="heterogeneous-treatment-effects.html"><a href="heterogeneous-treatment-effects.html"><i class="fa fa-check"></i><b>7</b> Heterogeneous Treatment Effects</a>
 <ul>
@@ -431,16 +435,14 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb39-13"><a href="make-data-1.html#cb39-13" tabindex="-1"></a>    <span class="at">D            =</span> <span class="fu">sample</span>(<span class="at">x=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">size=</span>.N, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb39-14"><a href="make-data-1.html#cb39-14" tabindex="-1"></a>  )]</span>
 <span id="cb39-15"><a href="make-data-1.html#cb39-15" tabindex="-1"></a></span>
-<span id="cb39-16"><a href="make-data-1.html#cb39-16" tabindex="-1"></a>  <span class="do">## the bad control is *very* related to treatment</span></span>
-<span id="cb39-17"><a href="make-data-1.html#cb39-17" tabindex="-1"></a>  d[, bad_control <span class="sc">:=</span> tau<span class="sc">*</span>D <span class="sc">+</span> epsilon]</span>
-<span id="cb39-18"><a href="make-data-1.html#cb39-18" tabindex="-1"></a>  </span>
-<span id="cb39-19"><a href="make-data-1.html#cb39-19" tabindex="-1"></a>  <span class="co"># d[, y0 := runif(min=-10, max=10, n=.N) + bad_control ]</span></span>
+<span id="cb39-16"><a href="make-data-1.html#cb39-16" tabindex="-1"></a>  <span class="do">## send 1/2 the effect through the bad control</span></span>
+<span id="cb39-17"><a href="make-data-1.html#cb39-17" tabindex="-1"></a>  <span class="do">## and the other 1/2 through a direct channel</span></span>
+<span id="cb39-18"><a href="make-data-1.html#cb39-18" tabindex="-1"></a>  d[, bad_control <span class="sc">:=</span> .<span class="dv">5</span><span class="sc">*</span>tau<span class="sc">*</span>D <span class="sc">+</span> epsilon]</span>
+<span id="cb39-19"><a href="make-data-1.html#cb39-19" tabindex="-1"></a>  d[, Y <span class="sc">:=</span> y0 <span class="sc">+</span> bad_control <span class="sc">+</span> .<span class="dv">5</span><span class="sc">*</span>tau<span class="sc">*</span>D <span class="sc">+</span> epsilon]</span>
 <span id="cb39-20"><a href="make-data-1.html#cb39-20" tabindex="-1"></a>  </span>
-<span id="cb39-21"><a href="make-data-1.html#cb39-21" tabindex="-1"></a>  d[, Y <span class="sc">:=</span> y0 <span class="sc">+</span> bad_control <span class="sc">+</span> epsilon]</span>
-<span id="cb39-22"><a href="make-data-1.html#cb39-22" tabindex="-1"></a>  </span>
-<span id="cb39-23"><a href="make-data-1.html#cb39-23" tabindex="-1"></a>  }</span>
-<span id="cb39-24"><a href="make-data-1.html#cb39-24" tabindex="-1"></a></span>
-<span id="cb39-25"><a href="make-data-1.html#cb39-25" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">make_data</span>(<span class="at">n_rows=</span><span class="dv">10000</span>)</span></code></pre></div>
+<span id="cb39-21"><a href="make-data-1.html#cb39-21" tabindex="-1"></a>  }</span>
+<span id="cb39-22"><a href="make-data-1.html#cb39-22" tabindex="-1"></a></span>
+<span id="cb39-23"><a href="make-data-1.html#cb39-23" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">make_data</span>(<span class="at">n_rows=</span><span class="dv">10000</span>)</span></code></pre></div>
 </div>
             </section>
 

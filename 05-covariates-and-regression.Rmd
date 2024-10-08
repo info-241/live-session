@@ -57,7 +57,7 @@ Does this meet the base definition of an experiment that you've written about in
 
 Under what circumstances would you prefer to one or another of these two designs? 
 
-- Suppose that you are attempting to learn what part of your code on problem set 2 is leading to a $\LaTeX$ compile error. Which of the experiments would you propose to undertake? 
+- Suppose that you are attempting to learn what part of your code on problem set 2 is leading to a Latex compile error. Which of the experiments would you propose to undertake? 
 - Suppose that you are attempting to learn the effects of giving a birthday gift to twins where measurement is magically easy. 
 - Suppose that you are attempting to learn about the effect of coffee on alertness, measured as the number of characters written down while attending async lectures. 
 - Suppose that you are attempting to learn about the effect of coffee on alertness, measured through galvanic skin conductance? 

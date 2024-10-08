@@ -84,12 +84,10 @@ make_data <- function(n_rows=1000) {
     D            = sample(x=0:1, size=.N, replace = TRUE)
   )]
 
-  ## the bad control is *very* related to treatment
-  d[, bad_control := tau*D + epsilon]
-  
-  # d[, y0 := runif(min=-10, max=10, n=.N) + bad_control ]
-  
-  d[, Y := y0 + bad_control + epsilon]
+  ## send 1/2 the effect through the bad control
+  ## and the other 1/2 through a direct channel
+  d[, bad_control := .5*tau*D + epsilon]
+  d[, Y := y0 + bad_control + .5*tau*D + epsilon]
   
   }
 
@@ -106,7 +104,7 @@ In fact, we can estimate a reliable causal effect for *either* `Y ~ D` *or* `bad
 
 ```{r estimate treatment and mediator models}
 model_1 <- d[ , lm(Y ~ D)]
-model_2 <- d[ , lm(bad_control ~ D)]
+model_2 <- d[ , lm(Y ~ bad_control)]
 model_3 <- d[ , lm(Y ~ D + bad_control)]
 ```
 
@@ -441,3 +439,18 @@ How would you write a regression that matches this form?
 ```
 
 The book claims that this facilitates testing of nuanced hypotheses, specifically like, "Is the effect of being named Colin or José different if there is poor grammar compared to if there is good grammar? How would you test this?
+
+## Pre-Test, Post-Test
+
+The Pre-Test, Post-Test model is the *most core* :metal: experiment design that is out there. 
+
+1. How would you represent this in the "Grammar of Experiments" that we talked about last week? 
+2. What threats to validity are present in this design? To what extent are they present? 
+3. What type of model would you estimate in order to match the efficiency of the *design* with the efficiency of the model? 
+
+### The Difference in Differences Model 
+
+The Difference in Differences model, sometimes referred to as the D-in-D model, or the D&D model, is the regression equivalent of the paired t-test. 
+
+1. The D-in-D model is *extensible* meaning that you can include extra information in the model, as "good controls" to try to improve the model performance. 
+2. The D-in-D model is *efficient* because it uses all the possible information from the experiment design in the model. You could also, always analyze your experiment with a simple between-subjects comparison, but it will be noisier if there is variability between subjects.

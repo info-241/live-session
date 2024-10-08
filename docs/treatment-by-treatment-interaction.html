@@ -20,10 +20,10 @@
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
 
-<meta name="author" content="The 241 Instructional Team^[David Reiley, D. Alex Hughes, David Broockman, Micah Gell-Redman, Scott Guenther, David Wheeler, Josue Martinez, Maya Duru" />
+<meta name="author" content="The 241 Instructional Team" />
 
 
-<meta name="date" content="2024-08-19" />
+<meta name="date" content="2024-10-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="what-about-clustered-standard-errors.html"/>
-<link rel="next" href="heterogeneous-treatment-effects.html"/>
+<link rel="next" href="pre-test-post-test.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -299,6 +299,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.10.1" data-path="treatment-by-treatment-interaction.html"><a href="treatment-by-treatment-interaction.html#recreate-data"><i class="fa fa-check"></i><b>6.10.1</b> Recreate Data</a></li>
 <li class="chapter" data-level="6.10.2" data-path="treatment-by-treatment-interaction.html"><a href="treatment-by-treatment-interaction.html#a-more-common-estimating-strategy"><i class="fa fa-check"></i><b>6.10.2</b> A more common estimating strategy</a></li>
 </ul></li>
+<li class="chapter" data-level="6.11" data-path="pre-test-post-test.html"><a href="pre-test-post-test.html"><i class="fa fa-check"></i><b>6.11</b> Pre-Test, Post-Test</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="pre-test-post-test.html"><a href="pre-test-post-test.html#the-difference-in-differences-model"><i class="fa fa-check"></i><b>6.11.1</b> The Difference in Differences Model</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="heterogeneous-treatment-effects.html"><a href="heterogeneous-treatment-effects.html"><i class="fa fa-check"></i><b>7</b> Heterogeneous Treatment Effects</a>
 <ul>
@@ -507,17 +511,15 @@ Y_{i} = \beta_{0} + \beta_{1} J_{i} + \beta_{2} G_{i} + \beta_{3} J_{i}\times G_
 <p>Where, in this model <span class="math inline">\(J_{i}\)</span> is an indicator for the sender signing “José”, and <span class="math inline">\(G_{i}\)</span> is an indicator for the sender using “good grammar”. Finally, the <span class="math inline">\(J_{i}\times G_{i}\)</span> is meant to imply that these two indicator are interacted with on another.</p>
 <p>How would you write a regression that matches this form?</p>
 <p>The book claims that this facilitates testing of nuanced hypotheses, specifically like, “Is the effect of being named Colin or José different if there is poor grammar compared to if there is good grammar? How would you test this?</p>
-
 </div>
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
 <a href="what-about-clustered-standard-errors.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="heterogeneous-treatment-effects.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="pre-test-post-test.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

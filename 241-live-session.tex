@@ -153,13 +153,13 @@
 \urlstyle{same}
 \hypersetup{
   pdftitle={Experiments and Causality},
-  pdfauthor={The 241 Instructional Team\^{}{[}David Reiley, D. Alex Hughes, David Broockman, Micah Gell-Redman, Scott Guenther, David Wheeler, Josue Martinez, Maya Duru},
+  pdfauthor={The 241 Instructional Team},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
 \title{Experiments and Causality}
-\author{The 241 Instructional Team\^{}{[}David Reiley, D. Alex Hughes, David Broockman, Micah Gell-Redman, Scott Guenther, David Wheeler, Josue Martinez, Maya Duru}
-\date{2024-08-19}
+\author{The 241 Instructional Team\footnote{David Reiley, D. Alex Hughes, David Broockman, Micah Gell-Redman, Scott Guenther, David Wheeler, Josue Martinez, Maya Duru}}
+\date{2024-10-08}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[section]
@@ -925,7 +925,7 @@ Y =
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 5.337376
+## [1] 4.996119
 \end{verbatim}
 
 \begin{itemize}
@@ -1012,13 +1012,13 @@ To begin with, lets work with a \emph{very} simple sample that has 100 observati
 \end{Shaded}
 
 \begin{verbatim}
-##       id        y0        y1
-##    <int>     <num>     <num>
-## 1:     1 0.3429360 0.5929360
-## 2:     2 0.4033632 0.6533632
-## 3:     3 0.9005136 1.1505136
-## 4:     4 0.9450945 1.1950945
-## 5:     5 0.3530713 0.6030713
+##       id         y0        y1
+##    <int>      <num>     <num>
+## 1:     1 0.06093625 0.3109363
+## 2:     2 0.56917951 0.8191795
+## 3:     3 0.04419090 0.2941909
+## 4:     4 0.28185948 0.5318595
+## 5:     5 0.10674195 0.3567419
 \end{verbatim}
 
 In this world, we've taken a sample of \texttt{100} individuals, and at this point, each of those individuals that we've sampled has both a potential outcome to control \textbf{and also} a potential outcome to treatment. We haven't talked at all about measurement yet; we're just asserting that both of these potential outcomes exist for each person.
@@ -1053,13 +1053,13 @@ Suppose that for each unit, you then toss a coin, placing the subject either int
 \end{Shaded}
 
 \begin{verbatim}
-##       id        y0        y1 experimental_assignment
-##    <int>     <num>     <num>                   <int>
-## 1:     1 0.3429360 0.5929360                       1
-## 2:     2 0.4033632 0.6533632                       0
-## 3:     3 0.9005136 1.1505136                       0
-## 4:     4 0.9450945 1.1950945                       0
-## 5:     5 0.3530713 0.6030713                       0
+##       id         y0        y1 experimental_assignment
+##    <int>      <num>     <num>                   <int>
+## 1:     1 0.06093625 0.3109363                       1
+## 2:     2 0.56917951 0.8191795                       1
+## 3:     3 0.04419090 0.2941909                       1
+## 4:     4 0.28185948 0.5318595                       1
+## 5:     5 0.10674195 0.3567419                       1
 \end{verbatim}
 
 As as comparison, suppose that instead of randomly assigning individuals into treatment and control we allowed individuals to select into treatment and control. And suppose that people with the lowest potential outcomes to control opt to take the treatment. You might think of this as being something like, ``The people who are the most tired are the most likely to drink a cup of coffee before they start class,'' if an example helps you ground this.
@@ -1074,13 +1074,13 @@ Specifically, suppose that any unit that has a potential outcome lower that \tex
 \end{Shaded}
 
 \begin{verbatim}
-##       id        y0        y1 experimental_assignment observational_selection
-##    <int>     <num>     <num>                   <int>                   <num>
-## 1:     1 0.3429360 0.5929360                       1                       0
-## 2:     2 0.4033632 0.6533632                       0                       0
-## 3:     3 0.9005136 1.1505136                       0                       0
-## 4:     4 0.9450945 1.1950945                       0                       0
-## 5:     5 0.3530713 0.6030713                       0                       0
+##       id         y0        y1 experimental_assignment observational_selection
+##    <int>      <num>     <num>                   <int>                   <num>
+## 1:     1 0.06093625 0.3109363                       1                       1
+## 2:     2 0.56917951 0.8191795                       1                       0
+## 3:     3 0.04419090 0.2941909                       1                       1
+## 4:     4 0.28185948 0.5318595                       1                       1
+## 5:     5 0.10674195 0.3567419                       1                       1
 \end{verbatim}
 
 These represent two different ways that you might conduct your research, each time with the same subject pool. Of course, in reality you probably would not be able to run these two studies at the same time, but since this is a simulation, we can stretch the confines of reality just a little bit.
@@ -1094,7 +1094,7 @@ These represent two different ways that you might conduct your research, each ti
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-live-session_files/figure-latex/create first plot-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/create first plot-1.pdf}}
 
 What's actually happening in this? It might be more clear if we add arrows to this plot to show.
 
@@ -1109,7 +1109,7 @@ What's actually happening in this? It might be more clear if we add arrows to th
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-live-session_files/figure-latex/show the movement between potential outcomes-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/show the movement between potential outcomes-1.pdf}}
 
 Even though these potential outcomes exist for all the units, is it possible to actually see them for all the units? How do we go about showing, and then measuring the potential outcomes to control for a set of units? How about the potential outcomes to treatment?
 
@@ -1131,7 +1131,7 @@ Even though these potential outcomes exist for all the units, is it possible to 
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-live-session_files/figure-latex/add points to plot-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/add points to plot-1.pdf}}
 
 What are the averages of these samples that have been assigned to treatment?
 
@@ -1150,7 +1150,7 @@ What are the averages of these samples that have been assigned to treatment?
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-live-session_files/figure-latex/add estimates from unbiased estimator-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/add estimates from unbiased estimator-1.pdf}}
 
 Even though we aren't able to see it, can we reason about what the sample average would be if we could see both of an individual's potential outcome to treatment and control?
 
@@ -1170,7 +1170,7 @@ Even though we aren't able to see it, can we reason about what the sample averag
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-live-session_files/figure-latex/add population expected values-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/add population expected values-1.pdf}}
 
 Put it all together, what has this little demo shown?
 
@@ -1213,7 +1213,7 @@ Produce only the last plot, but this time for the observational, or selected dat
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-live-session_files/figure-latex/recreate plot -- for selection case-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/recreate plot -- for selection case-1.pdf}}
 
 \subsection{Requirements of An Experiment}\label{requirements-of-an-experiment}
 
@@ -1446,7 +1446,7 @@ In the following plot, are you able to assess whether there is a treatment effec
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-live-session_files/figure-latex/plot data-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/plot data-1.pdf}}
 
 \subsubsection{Classic Test}\label{classic-test}
 
@@ -1515,7 +1515,7 @@ Now, instead suppose that you were to conduct the randomization inference. What 
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-live-session_files/figure-latex/randomization inference loop-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/randomization inference loop-1.pdf}}
 
 How much of the randomization inference is more extreme than the treatment effect?
 
@@ -1829,7 +1829,7 @@ Suppose that, motivated by your distaste for bunk, casual causal claims about di
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-live-session_files/figure-latex/unnamed-chunk-1-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-1-1.pdf}}
 
 In these two different cases -- where there is no treatment effect on top, and when there is a large treatment effect on bottom -- what are the group means? Where would they be on these plots?
 
@@ -1889,7 +1889,7 @@ How how does breaking this population into two smaller groups create a reduction
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-live-session_files/figure-latex/unnamed-chunk-2-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-2-1.pdf}}
 
 \subsection{How should we block randomize?}\label{how-should-we-block-randomize}
 
@@ -2123,7 +2123,7 @@ Under what circumstances would you prefer to one or another of these two designs
 \begin{itemize}
 \tightlist
 \item
-  Suppose that you are attempting to learn what part of your code on problem set 2 is leading to a \(\LaTeX\) compile error. Which of the experiments would you propose to undertake?
+  Suppose that you are attempting to learn what part of your code on problem set 2 is leading to a Latex compile error. Which of the experiments would you propose to undertake?
 \item
   Suppose that you are attempting to learn the effects of giving a birthday gift to twins where measurement is magically easy.
 \item
@@ -2293,12 +2293,10 @@ Let's make some data in just the same way that we typically make data. We will p
     \AttributeTok{D            =} \FunctionTok{sample}\NormalTok{(}\AttributeTok{x=}\DecValTok{0}\SpecialCharTok{:}\DecValTok{1}\NormalTok{, }\AttributeTok{size=}\NormalTok{.N, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
 \NormalTok{  )]}
 
-  \DocumentationTok{\#\# the bad control is *very* related to treatment}
-\NormalTok{  d[, bad\_control }\SpecialCharTok{:=}\NormalTok{ tau}\SpecialCharTok{*}\NormalTok{D }\SpecialCharTok{+}\NormalTok{ epsilon]}
-  
-  \CommentTok{\# d[, y0 := runif(min={-}10, max=10, n=.N) + bad\_control ]}
-  
-\NormalTok{  d[, Y }\SpecialCharTok{:=}\NormalTok{ y0 }\SpecialCharTok{+}\NormalTok{ bad\_control }\SpecialCharTok{+}\NormalTok{ epsilon]}
+  \DocumentationTok{\#\# send 1/2 the effect through the bad control}
+  \DocumentationTok{\#\# and the other 1/2 through a direct channel}
+\NormalTok{  d[, bad\_control }\SpecialCharTok{:=}\NormalTok{ .}\DecValTok{5}\SpecialCharTok{*}\NormalTok{tau}\SpecialCharTok{*}\NormalTok{D }\SpecialCharTok{+}\NormalTok{ epsilon]}
+\NormalTok{  d[, Y }\SpecialCharTok{:=}\NormalTok{ y0 }\SpecialCharTok{+}\NormalTok{ bad\_control }\SpecialCharTok{+}\NormalTok{ .}\DecValTok{5}\SpecialCharTok{*}\NormalTok{tau}\SpecialCharTok{*}\NormalTok{D }\SpecialCharTok{+}\NormalTok{ epsilon]}
   
 \NormalTok{  \}}
 
@@ -2317,7 +2315,7 @@ In fact, we can estimate a reliable causal effect for \emph{either} \texttt{Y\ \
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{model\_1 }\OtherTok{\textless{}{-}}\NormalTok{ d[ , }\FunctionTok{lm}\NormalTok{(Y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ D)]}
-\NormalTok{model\_2 }\OtherTok{\textless{}{-}}\NormalTok{ d[ , }\FunctionTok{lm}\NormalTok{(bad\_control }\SpecialCharTok{\textasciitilde{}}\NormalTok{ D)]}
+\NormalTok{model\_2 }\OtherTok{\textless{}{-}}\NormalTok{ d[ , }\FunctionTok{lm}\NormalTok{(Y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ bad\_control)]}
 \NormalTok{model\_3 }\OtherTok{\textless{}{-}}\NormalTok{ d[ , }\FunctionTok{lm}\NormalTok{(Y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ D }\SpecialCharTok{+}\NormalTok{ bad\_control)]}
 \end{Highlighting}
 \end{Shaded}
@@ -2335,27 +2333,27 @@ In fact, we can estimate a reliable causal effect for \emph{either} \texttt{Y\ \
 
 \begin{verbatim}
 ## 
-## ===========================================
-##                   Dependent variable:      
-##              ------------------------------
-##                 Y     bad_control     Y    
-##                (1)        (2)        (3)   
-## -------------------------------------------
-## D            3.923***  3.973***   -3.500***
-##              (0.141)    (0.043)    (0.160) 
-##                                            
-## bad_control                       1.868*** 
-##                                    (0.027) 
-##                                            
-## Constant      0.050      0.028     -0.002  
-##              (0.097)    (0.028)    (0.081) 
-##                                            
-## -------------------------------------------
-## Observations  10,000    10,000     10,000  
-## R2            0.072      0.467      0.365  
-## Adjusted R2   0.072      0.467      0.365  
-## ===========================================
-## Note:           *p<0.1; **p<0.05; ***p<0.01
+## ==========================================
+##                   Dependent variable:     
+##              -----------------------------
+##                            Y              
+##                 (1)       (2)       (3)   
+## ------------------------------------------
+## D            3.923***              0.049  
+##               (0.141)             (0.129) 
+##                                           
+## bad_control            1.974***  1.970*** 
+##                         (0.026)   (0.029) 
+##                                           
+## Constant       0.050     0.015    -0.005  
+##               (0.097)   (0.064)   (0.081) 
+##                                           
+## ------------------------------------------
+## Observations  10,000    10,000    10,000  
+## R2             0.072     0.371     0.371  
+## Adjusted R2    0.072     0.371     0.371  
+## ==========================================
+## Note:          *p<0.1; **p<0.05; ***p<0.01
 \end{verbatim}
 
 \subsubsection{Do the estimates match the world?}\label{do-the-estimates-match-the-world}
@@ -2410,7 +2408,7 @@ We're using this data because (a) it has robust standard error considerations; a
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-live-session_files/figure-latex/unnamed-chunk-8-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-8-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2661,6 +2659,34 @@ Where, in this model \(J_{i}\) is an indicator for the sender signing ``José'',
 How would you write a regression that matches this form?
 
 The book claims that this facilitates testing of nuanced hypotheses, specifically like, ``Is the effect of being named Colin or José different if there is poor grammar compared to if there is good grammar? How would you test this?
+
+\subsection{Pre-Test, Post-Test}\label{pre-test-post-test}
+
+The Pre-Test, Post-Test model is the \emph{most core} :metal: experiment design that is out there.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  How would you represent this in the ``Grammar of Experiments'' that we talked about last week?
+\item
+  What threats to validity are present in this design? To what extent are they present?
+\item
+  What type of model would you estimate in order to match the efficiency of the \emph{design} with the efficiency of the model?
+\end{enumerate}
+
+\subsubsection{The Difference in Differences Model}\label{the-difference-in-differences-model}
+
+The Difference in Differences model, sometimes referred to as the D-in-D model, or the D\&D model, is the regression equivalent of the paired t-test.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The D-in-D model is \emph{extensible} meaning that you can include extra information in the model, as ``good controls'' to try to improve the model performance.
+\item
+  The D-in-D model is \emph{efficient} because it uses all the possible information from the experiment design in the model. You could also, always analyze your experiment with a simple between-subjects comparison, but it will be noisier if there is variability between subjects.
+\end{enumerate}
 
 \section{Heterogeneous Treatment Effects}\label{heterogeneous-treatment-effects}
 
@@ -3617,7 +3643,7 @@ The promise of two stage-least squares is that it produces unbiased estimates so
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-live-session_files/figure-latex/unnamed-chunk-19-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-19-1.pdf}}
 
 Another way to think about this is in terms of how the predicted values are associated different features. Specifically, consider: Are the predicted values associated with having won the lottery? Are the predicted values associated with ability?
 
@@ -3637,7 +3663,7 @@ Another way to think about this is in terms of how the predicted values are asso
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-live-session_files/figure-latex/unnamed-chunk-20-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-20-1.pdf}}
 
 \subsection{Regression Discontinuity}\label{regression-discontinuity}
 
@@ -3709,7 +3735,7 @@ With the data created, let's quickly look at what we are working with. Does the 
 ## `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-live-session_files/figure-latex/first rdd plot-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/first rdd plot-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3737,7 +3763,7 @@ With the data created, let's quickly look at what we are working with. Does the 
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-live-session_files/figure-latex/second rdd plot-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/second rdd plot-1.pdf}}
 
 \begin{verbatim}
 ## NULL
@@ -3759,7 +3785,7 @@ This has been \emph{very} fortunate data. There is no trend across the running v
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-live-session_files/figure-latex/slightly more realistic data-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/slightly more realistic data-1.pdf}}
 
 \begin{verbatim}
 ## NULL
@@ -3788,7 +3814,7 @@ This has been \emph{very} fortunate data. There is no trend across the running v
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-live-session_files/figure-latex/unnamed-chunk-21-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-21-1.pdf}}
 
 \begin{verbatim}
 ## NULL
@@ -3826,7 +3852,7 @@ This has been \emph{very} fortunate data. There is no trend across the running v
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-live-session_files/figure-latex/unnamed-chunk-22-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-22-1.pdf}}
 
 \begin{verbatim}
 ## NULL
@@ -3847,7 +3873,7 @@ This has been \emph{very} fortunate data. There is no trend across the running v
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-live-session_files/figure-latex/unnamed-chunk-23-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-23-1.pdf}}
 
 \begin{itemize}
 \tightlist
@@ -4048,7 +4074,7 @@ Can you draw this system out in the way that we did in 203? Use circles to repre
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-live-session_files/figure-latex/unnamed-chunk-26-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-26-1.pdf}}
 
 Once you've written out these pathways, what could go wrong in this analysis?
 

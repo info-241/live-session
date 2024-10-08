@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.5 Student Introductions [Breakout Two] | Experiments and Causality</title>
+  <title>6.11 Pre-Test, Post-Test | Experiments and Causality</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.5 Student Introductions [Breakout Two] | Experiments and Causality" />
+  <meta property="og:title" content="6.11 Pre-Test, Post-Test | Experiments and Causality" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.5 Student Introductions [Breakout Two] | Experiments and Causality" />
+  <meta name="twitter:title" content="6.11 Pre-Test, Post-Test | Experiments and Causality" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="student-introductions-breakout-one.html"/>
-<link rel="next" href="course-plan.html"/>
+<link rel="prev" href="treatment-by-treatment-interaction.html"/>
+<link rel="next" href="heterogeneous-treatment-effects.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -417,22 +417,32 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="student-introductions-breakout-two" class="section level2 hasAnchor" number="1.5">
-<h2><span class="header-section-number">1.5</span> Student Introductions [Breakout Two]<a href="student-introductions-breakout-two.html#student-introductions-breakout-two" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In the same breakout room:</p>
-<div class="breakout">
-<p><strong>Breakout Two.</strong>
-Like our names, the reasons that we joined this program, our goals and our histories are different.</p>
-<p>Please share: <em>What is your data science story? How did you wind up here, in this room today?</em></p>
+<div id="pre-test-post-test" class="section level2 hasAnchor" number="6.11">
+<h2><span class="header-section-number">6.11</span> Pre-Test, Post-Test<a href="pre-test-post-test.html#pre-test-post-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The Pre-Test, Post-Test model is the <em>most core</em> :metal: experiment design that is out there.</p>
+<ol style="list-style-type: decimal">
+<li>How would you represent this in the “Grammar of Experiments” that we talked about last week?</li>
+<li>What threats to validity are present in this design? To what extent are they present?</li>
+<li>What type of model would you estimate in order to match the efficiency of the <em>design</em> with the efficiency of the model?</li>
+</ol>
+<div id="the-difference-in-differences-model" class="section level3 hasAnchor" number="6.11.1">
+<h3><span class="header-section-number">6.11.1</span> The Difference in Differences Model<a href="pre-test-post-test.html#the-difference-in-differences-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The Difference in Differences model, sometimes referred to as the D-in-D model, or the D&amp;D model, is the regression equivalent of the paired t-test.</p>
+<ol style="list-style-type: decimal">
+<li>The D-in-D model is <em>extensible</em> meaning that you can include extra information in the model, as “good controls” to try to improve the model performance.</li>
+<li>The D-in-D model is <em>efficient</em> because it uses all the possible information from the experiment design in the model. You could also, always analyze your experiment with a simple between-subjects comparison, but it will be noisier if there is variability between subjects.</li>
+</ol>
+
 </div>
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="student-introductions-breakout-one.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="course-plan.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="treatment-by-treatment-interaction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="heterogeneous-treatment-effects.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -106,6 +106,8 @@ what-about-clustered-standard-errors
 treatment-by-treatment-interaction
 recreate-data
 a-more-common-estimating-strategy
+pre-test-post-test
+the-difference-in-differences-model
 heterogeneous-treatment-effects
 learning-objectives-6
 reading-and-discussion-goodson

@@ -20,10 +20,10 @@
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
 
-<meta name="author" content="The 241 Instructional Team^[David Reiley, D. Alex Hughes, David Broockman, Micah Gell-Redman, Scott Guenther, David Wheeler, Josue Martinez, Maya Duru" />
+<meta name="author" content="The 241 Instructional Team" />
 
 
-<meta name="date" content="2024-08-19" />
+<meta name="date" content="2024-10-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -299,6 +299,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.10.1" data-path="treatment-by-treatment-interaction.html"><a href="treatment-by-treatment-interaction.html#recreate-data"><i class="fa fa-check"></i><b>6.10.1</b> Recreate Data</a></li>
 <li class="chapter" data-level="6.10.2" data-path="treatment-by-treatment-interaction.html"><a href="treatment-by-treatment-interaction.html#a-more-common-estimating-strategy"><i class="fa fa-check"></i><b>6.10.2</b> A more common estimating strategy</a></li>
 </ul></li>
+<li class="chapter" data-level="6.11" data-path="pre-test-post-test.html"><a href="pre-test-post-test.html"><i class="fa fa-check"></i><b>6.11</b> Pre-Test, Post-Test</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="pre-test-post-test.html"><a href="pre-test-post-test.html#the-difference-in-differences-model"><i class="fa fa-check"></i><b>6.11.1</b> The Difference in Differences Model</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="heterogeneous-treatment-effects.html"><a href="heterogeneous-treatment-effects.html"><i class="fa fa-check"></i><b>7</b> Heterogeneous Treatment Effects</a>
 <ul>
@@ -419,7 +423,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>But, maybe I think I want to also control for the variable <code>bad_control</code>, despite the scary name that it has in the dataset.</p>
 <p>In fact, we can estimate a reliable causal effect for <em>either</em> <code>Y ~ D</code> <em>or</em> <code>bad_control ~ D</code>, but not the two together.</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="what-is-the-causal-model-we-hold.html#cb40-1" tabindex="-1"></a>model_1 <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(Y <span class="sc">~</span> D)]</span>
-<span id="cb40-2"><a href="what-is-the-causal-model-we-hold.html#cb40-2" tabindex="-1"></a>model_2 <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(bad_control <span class="sc">~</span> D)]</span>
+<span id="cb40-2"><a href="what-is-the-causal-model-we-hold.html#cb40-2" tabindex="-1"></a>model_2 <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(Y <span class="sc">~</span> bad_control)]</span>
 <span id="cb40-3"><a href="what-is-the-causal-model-we-hold.html#cb40-3" tabindex="-1"></a>model_3 <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(Y <span class="sc">~</span> D <span class="sc">+</span> bad_control)]</span></code></pre></div>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="what-is-the-causal-model-we-hold.html#cb41-1" tabindex="-1"></a><span class="fu">stargazer</span>(</span>
 <span id="cb41-2"><a href="what-is-the-causal-model-we-hold.html#cb41-2" tabindex="-1"></a>  model_1, model_2, model_3, </span>
@@ -428,27 +432,27 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb41-5"><a href="what-is-the-causal-model-we-hold.html#cb41-5" tabindex="-1"></a>  <span class="at">omit.stat =</span> <span class="fu">c</span>(<span class="st">&#39;ser&#39;</span>, <span class="st">&#39;f&#39;</span>)</span>
 <span id="cb41-6"><a href="what-is-the-causal-model-we-hold.html#cb41-6" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## 
-## ===========================================
-##                   Dependent variable:      
-##              ------------------------------
-##                 Y     bad_control     Y    
-##                (1)        (2)        (3)   
-## -------------------------------------------
-## D            3.923***  3.973***   -3.500***
-##              (0.141)    (0.043)    (0.160) 
-##                                            
-## bad_control                       1.868*** 
-##                                    (0.027) 
-##                                            
-## Constant      0.050      0.028     -0.002  
-##              (0.097)    (0.028)    (0.081) 
-##                                            
-## -------------------------------------------
-## Observations  10,000    10,000     10,000  
-## R2            0.072      0.467      0.365  
-## Adjusted R2   0.072      0.467      0.365  
-## ===========================================
-## Note:           *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
+## ==========================================
+##                   Dependent variable:     
+##              -----------------------------
+##                            Y              
+##                 (1)       (2)       (3)   
+## ------------------------------------------
+## D            3.923***              0.049  
+##               (0.141)             (0.129) 
+##                                           
+## bad_control            1.974***  1.970*** 
+##                         (0.026)   (0.029) 
+##                                           
+## Constant       0.050     0.015    -0.005  
+##               (0.097)   (0.064)   (0.081) 
+##                                           
+## ------------------------------------------
+## Observations  10,000    10,000    10,000  
+## R2             0.072     0.371     0.371  
+## Adjusted R2    0.072     0.371     0.371  
+## ==========================================
+## Note:          *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
 <div id="do-the-estimates-match-the-world" class="section level3 hasAnchor" number="6.7.1">
 <h3><span class="header-section-number">6.7.1</span> Do the estimates match the world?<a href="what-is-the-causal-model-we-hold.html#do-the-estimates-match-the-world" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When you look at what the models have estimated, do they match the data that we created above?</p>
