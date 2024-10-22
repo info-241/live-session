@@ -159,7 +159,7 @@
 
 \title{Experiments and Causality}
 \author{The 241 Instructional Team\footnote{David Reiley, D. Alex Hughes, David Broockman, Micah Gell-Redman, Scott Guenther, David Wheeler, Josue Martinez, Maya Duru}}
-\date{2024-10-08}
+\date{2024-10-22}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[section]
@@ -925,7 +925,7 @@ Y =
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4.996119
+## [1] 5.268492
 \end{verbatim}
 
 \begin{itemize}
@@ -1012,13 +1012,13 @@ To begin with, lets work with a \emph{very} simple sample that has 100 observati
 \end{Shaded}
 
 \begin{verbatim}
-##       id         y0        y1
-##    <int>      <num>     <num>
-## 1:     1 0.06093625 0.3109363
-## 2:     2 0.56917951 0.8191795
-## 3:     3 0.04419090 0.2941909
-## 4:     4 0.28185948 0.5318595
-## 5:     5 0.10674195 0.3567419
+##       id        y0        y1
+##    <int>     <num>     <num>
+## 1:     1 0.7525683 1.0025683
+## 2:     2 0.7882246 1.0382246
+## 3:     3 0.5318738 0.7818738
+## 4:     4 0.9098974 1.1598974
+## 5:     5 0.6705158 0.9205158
 \end{verbatim}
 
 In this world, we've taken a sample of \texttt{100} individuals, and at this point, each of those individuals that we've sampled has both a potential outcome to control \textbf{and also} a potential outcome to treatment. We haven't talked at all about measurement yet; we're just asserting that both of these potential outcomes exist for each person.
@@ -1053,13 +1053,13 @@ Suppose that for each unit, you then toss a coin, placing the subject either int
 \end{Shaded}
 
 \begin{verbatim}
-##       id         y0        y1 experimental_assignment
-##    <int>      <num>     <num>                   <int>
-## 1:     1 0.06093625 0.3109363                       1
-## 2:     2 0.56917951 0.8191795                       1
-## 3:     3 0.04419090 0.2941909                       1
-## 4:     4 0.28185948 0.5318595                       1
-## 5:     5 0.10674195 0.3567419                       1
+##       id        y0        y1 experimental_assignment
+##    <int>     <num>     <num>                   <int>
+## 1:     1 0.7525683 1.0025683                       0
+## 2:     2 0.7882246 1.0382246                       0
+## 3:     3 0.5318738 0.7818738                       1
+## 4:     4 0.9098974 1.1598974                       1
+## 5:     5 0.6705158 0.9205158                       1
 \end{verbatim}
 
 As as comparison, suppose that instead of randomly assigning individuals into treatment and control we allowed individuals to select into treatment and control. And suppose that people with the lowest potential outcomes to control opt to take the treatment. You might think of this as being something like, ``The people who are the most tired are the most likely to drink a cup of coffee before they start class,'' if an example helps you ground this.
@@ -1074,13 +1074,13 @@ Specifically, suppose that any unit that has a potential outcome lower that \tex
 \end{Shaded}
 
 \begin{verbatim}
-##       id         y0        y1 experimental_assignment observational_selection
-##    <int>      <num>     <num>                   <int>                   <num>
-## 1:     1 0.06093625 0.3109363                       1                       1
-## 2:     2 0.56917951 0.8191795                       1                       0
-## 3:     3 0.04419090 0.2941909                       1                       1
-## 4:     4 0.28185948 0.5318595                       1                       1
-## 5:     5 0.10674195 0.3567419                       1                       1
+##       id        y0        y1 experimental_assignment observational_selection
+##    <int>     <num>     <num>                   <int>                   <num>
+## 1:     1 0.7525683 1.0025683                       0                       0
+## 2:     2 0.7882246 1.0382246                       0                       0
+## 3:     3 0.5318738 0.7818738                       1                       0
+## 4:     4 0.9098974 1.1598974                       1                       0
+## 5:     5 0.6705158 0.9205158                       1                       0
 \end{verbatim}
 
 These represent two different ways that you might conduct your research, each time with the same subject pool. Of course, in reality you probably would not be able to run these two studies at the same time, but since this is a simulation, we can stretch the confines of reality just a little bit.
@@ -2295,8 +2295,8 @@ Let's make some data in just the same way that we typically make data. We will p
 
   \DocumentationTok{\#\# send 1/2 the effect through the bad control}
   \DocumentationTok{\#\# and the other 1/2 through a direct channel}
-\NormalTok{  d[, bad\_control }\SpecialCharTok{:=}\NormalTok{ .}\DecValTok{5}\SpecialCharTok{*}\NormalTok{tau}\SpecialCharTok{*}\NormalTok{D }\SpecialCharTok{+}\NormalTok{ epsilon]}
-\NormalTok{  d[, Y }\SpecialCharTok{:=}\NormalTok{ y0 }\SpecialCharTok{+}\NormalTok{ bad\_control }\SpecialCharTok{+}\NormalTok{ .}\DecValTok{5}\SpecialCharTok{*}\NormalTok{tau}\SpecialCharTok{*}\NormalTok{D }\SpecialCharTok{+}\NormalTok{ epsilon]}
+\NormalTok{  d[, bad\_control }\SpecialCharTok{:=}\NormalTok{ .}\DecValTok{5}\SpecialCharTok{*}\NormalTok{tau}\SpecialCharTok{*}\NormalTok{D }\SpecialCharTok{+}\NormalTok{ .}\DecValTok{2}\SpecialCharTok{*}\NormalTok{epsilon]}
+\NormalTok{  d[, Y }\SpecialCharTok{:=}\NormalTok{ y0 }\SpecialCharTok{+}\NormalTok{ bad\_control }\SpecialCharTok{+}\NormalTok{ .}\DecValTok{5}\SpecialCharTok{*}\NormalTok{tau}\SpecialCharTok{*}\NormalTok{D }\SpecialCharTok{+}\NormalTok{ .}\DecValTok{8}\SpecialCharTok{*}\NormalTok{epsilon]}
   
 \NormalTok{  \}}
 
@@ -2315,7 +2315,7 @@ In fact, we can estimate a reliable causal effect for \emph{either} \texttt{Y\ \
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{model\_1 }\OtherTok{\textless{}{-}}\NormalTok{ d[ , }\FunctionTok{lm}\NormalTok{(Y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ D)]}
-\NormalTok{model\_2 }\OtherTok{\textless{}{-}}\NormalTok{ d[ , }\FunctionTok{lm}\NormalTok{(Y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ bad\_control)]}
+\NormalTok{model\_2 }\OtherTok{\textless{}{-}}\NormalTok{ d[ , }\FunctionTok{lm}\NormalTok{(Y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ bad\_control )]}
 \NormalTok{model\_3 }\OtherTok{\textless{}{-}}\NormalTok{ d[ , }\FunctionTok{lm}\NormalTok{(Y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ D }\SpecialCharTok{+}\NormalTok{ bad\_control)]}
 \end{Highlighting}
 \end{Shaded}
@@ -2339,19 +2339,19 @@ In fact, we can estimate a reliable causal effect for \emph{either} \texttt{Y\ \
 ##                            Y              
 ##                 (1)       (2)       (3)   
 ## ------------------------------------------
-## D            3.923***              0.049  
-##               (0.141)             (0.129) 
+## D            3.962***            -3.350***
+##               (0.123)             (0.248) 
 ##                                           
-## bad_control            1.974***  1.970*** 
-##                         (0.026)   (0.029) 
+## bad_control            2.354***  3.659*** 
+##                         (0.052)   (0.110) 
 ##                                           
-## Constant       0.050     0.015    -0.005  
-##               (0.097)   (0.064)   (0.081) 
+## Constant       0.022   -0.357***   0.002  
+##               (0.085)   (0.078)   (0.081) 
 ##                                           
 ## ------------------------------------------
 ## Observations  10,000    10,000    10,000  
-## R2             0.072     0.371     0.371  
-## Adjusted R2    0.072     0.371     0.371  
+## R2             0.094     0.169     0.184  
+## Adjusted R2    0.093     0.169     0.184  
 ## ==========================================
 ## Note:          *p<0.1; **p<0.05; ***p<0.01
 \end{verbatim}
@@ -2688,6 +2688,18 @@ The Difference in Differences model, sometimes referred to as the D-in-D model, 
   The D-in-D model is \emph{efficient} because it uses all the possible information from the experiment design in the model. You could also, always analyze your experiment with a simple between-subjects comparison, but it will be noisier if there is variability between subjects.
 \end{enumerate}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(data.table)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(here)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## here() starts at /Users/dhughes/teaching/241/info-241-live-session
+\end{verbatim}
+
 \section{Heterogeneous Treatment Effects}\label{heterogeneous-treatment-effects}
 
 When we consider heterogeneous treatment effects, we acknowledge that it is very unlikely that every single person reacts to treatment in exactly the same way. But, are there certain \emph{types} of people who always react more strongly to treatment? Are there certain \emph{types} of people who always react less strongly?
@@ -2745,78 +2757,164 @@ At the end of this week, students will be able to
 \FunctionTok{library}\NormalTok{(data.table)}
 \FunctionTok{library}\NormalTok{(stargazer)}
 
-\NormalTok{makeData }\OtherTok{\textless{}{-}} \ConstantTok{TRUE}
+\NormalTok{make\_data }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(sim\_size) \{ }
+\NormalTok{    d }\OtherTok{\textless{}{-}} \FunctionTok{data.table}\NormalTok{(}
+      \AttributeTok{id              =} \DecValTok{1}\SpecialCharTok{:}\NormalTok{sim\_size,}
+      \AttributeTok{cal\_stanford    =} \FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}cal\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}stanford\textquotesingle{}}\NormalTok{), }\AttributeTok{each =}\NormalTok{ sim\_size}\SpecialCharTok{/}\DecValTok{2}\NormalTok{),}
+      \AttributeTok{affluence       =} \FunctionTok{c}\NormalTok{(}
+        \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{7}\NormalTok{, }\AttributeTok{size =}\NormalTok{ sim\_size}\SpecialCharTok{/}\DecValTok{2}\NormalTok{, }\AttributeTok{replace =}\NormalTok{ T, }\AttributeTok{prob =} \FunctionTok{c}\NormalTok{(.}\DecValTok{1}\NormalTok{, .}\DecValTok{2}\NormalTok{, .}\DecValTok{2}\NormalTok{, .}\DecValTok{2}\NormalTok{, .}\DecValTok{2}\NormalTok{, .}\DecValTok{05}\NormalTok{, .}\DecValTok{05}\NormalTok{)),}
+        \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{7}\NormalTok{, }\AttributeTok{size =}\NormalTok{ sim\_size}\SpecialCharTok{/}\DecValTok{2}\NormalTok{, }\AttributeTok{replace =}\NormalTok{ T, }\AttributeTok{prob =} \FunctionTok{c}\NormalTok{(.}\DecValTok{05}\NormalTok{, .}\DecValTok{05}\NormalTok{, .}\DecValTok{05}\NormalTok{, .}\DecValTok{15}\NormalTok{, .}\DecValTok{2}\NormalTok{, .}\DecValTok{2}\NormalTok{, .}\DecValTok{3}\NormalTok{))),       }
+      \AttributeTok{founder\_motivation =} \FunctionTok{rnorm}\NormalTok{(sim\_size, }\AttributeTok{mean =} \DecValTok{100}\NormalTok{, }\AttributeTok{sd =} \DecValTok{7}\NormalTok{), }
+      \AttributeTok{treatment\_group =} \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{), sim\_size, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{      )}
 
-\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
-
-\ControlFlowTok{if}\NormalTok{(makeData) \{}
-\NormalTok{    sim\_size }\OtherTok{\textless{}{-}} \DecValTok{1000}
-\NormalTok{    d }\OtherTok{\textless{}{-}} \FunctionTok{data.table}\NormalTok{(}\AttributeTok{californian =} \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{), sim\_size, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{),}
-                    \AttributeTok{affluence =} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{7}\NormalTok{, sim\_size, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{),}
-                    \AttributeTok{preY =} \FunctionTok{rnorm}\NormalTok{(sim\_size, }\AttributeTok{mean =} \DecValTok{100}\NormalTok{, }\AttributeTok{sd =} \DecValTok{7}\NormalTok{),}
-                    \AttributeTok{treat =} \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{), sim\_size, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{) )}
-\NormalTok{    d[ , literacy }\SpecialCharTok{:=} \FunctionTok{rnorm}\NormalTok{(sim\_size, }\AttributeTok{mean =}\NormalTok{ d}\SpecialCharTok{$}\NormalTok{affluence, }\AttributeTok{sd =} \DecValTok{2}\NormalTok{)]}
-\NormalTok{    d[ , tau      }\SpecialCharTok{:=} \FunctionTok{rnorm}\NormalTok{(sim\_size, }\AttributeTok{mean =} \DecValTok{5} \SpecialCharTok{+}\NormalTok{ californian)] }\DocumentationTok{\#\# + d$affluence)}
-\NormalTok{    d[ , postY    }\SpecialCharTok{:=}\NormalTok{  preY }\SpecialCharTok{+}\NormalTok{ tau}\SpecialCharTok{*}\NormalTok{treat]}
+\NormalTok{    d[ , capital\_access }\SpecialCharTok{:=} \FunctionTok{rnorm}\NormalTok{(sim\_size, }\AttributeTok{mean =}\NormalTok{ d}\SpecialCharTok{$}\NormalTok{affluence, }\AttributeTok{sd =} \DecValTok{2}\NormalTok{)]}
+\NormalTok{    d[ , tau            }\SpecialCharTok{:=} \FunctionTok{rnorm}\NormalTok{(sim\_size, }\AttributeTok{mean =} \DecValTok{5} \SpecialCharTok{+} \DecValTok{5}\SpecialCharTok{*}\FunctionTok{I}\NormalTok{(cal\_stanford }\SpecialCharTok{==} \StringTok{\textquotesingle{}cal\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ affluence)]}
+\NormalTok{    d[ , founding\_prob  }\SpecialCharTok{:=}\NormalTok{  founder\_motivation }\SpecialCharTok{+}\NormalTok{ tau}\SpecialCharTok{*}\NormalTok{treatment\_group]}
+    
+    \FunctionTok{return}\NormalTok{(d)}
 \NormalTok{\}}
-
-\DocumentationTok{\#\# What is the (unobserved) true average treatment effect?}
-
-\DocumentationTok{\#\# Estimate a model that includes only the treatment effect.}
-\DocumentationTok{\#\# Interpret all the coefficients. }
-\NormalTok{mod0 }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}\textquotesingle{}}
-
-\DocumentationTok{\#\# Estimate a model that includes the treatment effect and}
-\DocumentationTok{\#\# the (highly predictive!) pre{-}treatment Y val. }
-\NormalTok{mod1 }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}\textquotesingle{}}
-
-\DocumentationTok{\#\# Print the two next to each other, and compare what is going on.}
-\DocumentationTok{\#\# Tell me what is happening in the differences in the intercept}
-\DocumentationTok{\#\# and the preY coefficients. Tell me what is happening in the SE}
-\DocumentationTok{\#\# for the treatment effect. }
-
-\CommentTok{\#stargazer(mod0, mod1, type = "text")}
-
-\DocumentationTok{\#\# Subset the data into two groups based on gender and estimate}
-\DocumentationTok{\#\# a model that only includes the preY and treatment effects.}
-\DocumentationTok{\#\# Print these two models side by side, and tell me what is going}
-\DocumentationTok{\#\# on.}
-
-\NormalTok{mod2 }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}\textquotesingle{}}
-\NormalTok{mod3 }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}\textquotesingle{}}
-
-\CommentTok{\# stargazer() }
-
-\DocumentationTok{\#\# Based on this, would you conclude that these are different?}
-\DocumentationTok{\#\# Talk about the 95\% CI for each.}
-\DocumentationTok{\#\# ?confint}
-
-\DocumentationTok{\#\# Now, estimate two more models:}
-\DocumentationTok{\#\#  1. A model with preY, treatment and gender indicator}
-\DocumentationTok{\#\#  2. A model with prey, treatment, gender, and treatment*gender}
-\DocumentationTok{\#\#     interaction}
-\DocumentationTok{\#\#  3. Test for the necessisity of the interaction; first using a}
-\DocumentationTok{\#\#     t{-}test. This should be really, really simple. Then, using a}
-\DocumentationTok{\#\#     f{-}test for the nested models (see the anova(...) call).}
-\DocumentationTok{\#\#     Is the p{-}value the same or different for this test?}
-\DocumentationTok{\#\#     Why? }
-
-\NormalTok{mod4 }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}\textquotesingle{}}
-\NormalTok{mod5 }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}\textquotesingle{}}
-
-\DocumentationTok{\#\# ? anova}
-
-\DocumentationTok{\#\# Finally, use the results from model 5 to tell me what the treatment}
-\DocumentationTok{\#\# effect is for males and for californians.}
-
-
-\DocumentationTok{\#\# }
-\DocumentationTok{\#\# AT HOME:}
-\DocumentationTok{\#\# Work to examine what including the other affluence and literacy}
-\DocumentationTok{\#\# triggers does to your estimates.}
-\DocumentationTok{\#\#}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d }\OtherTok{\textless{}{-}} \FunctionTok{make\_data}\NormalTok{(}\AttributeTok{sim\_size =} \DecValTok{1000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Overall Treatment Effect}\label{overall-treatment-effect}
+
+What is the (unobserved) true average treatment effect? Estimate a model that includes only the treatment effect and interpret all the coefficients.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_0 }\OtherTok{\textless{}{-}}\NormalTok{ d[ , }\FunctionTok{lm}\NormalTok{(founding\_prob }\SpecialCharTok{\textasciitilde{}}\NormalTok{ treatment\_group)]}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Founder Motivation}\label{founder-motivation}
+
+Estimate a model that includes the (nearly impossible to measure) variable about \texttt{motivation}. What happens to your estimates? Why does this happen?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_1 }\OtherTok{\textless{}{-}}\NormalTok{ d[ , }\FunctionTok{lm}\NormalTok{(founding\_prob }\SpecialCharTok{\textasciitilde{}}\NormalTok{ treatment\_group }\SpecialCharTok{+}\NormalTok{ founder\_motivation)]}
+\end{Highlighting}
+\end{Shaded}
+
+Print these two modeles next to one another and describe what is happening and why.
+
+\begin{itemize}
+\tightlist
+\item
+  Are the intercept terms the same? Why or why not?
+\item
+  Are the standard errors teh same? Why or why not?
+\item
+  Are the estimate treatment effects the same? Why or why not?
+\end{itemize}
+
+\subsubsection{Subset Models}\label{subset-models}
+
+Subset the data into two groups based on \texttt{cal\_stanford} and estimate
+a model that only includes the treatment effects.
+
+Print these two models side by side, and tell me what is going
+on.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_cal      }\OtherTok{\textless{}{-}}\NormalTok{ d[cal\_stanford }\SpecialCharTok{==} \StringTok{\textquotesingle{}cal\textquotesingle{}}\NormalTok{, }\FunctionTok{lm}\NormalTok{(founding\_prob }\SpecialCharTok{\textasciitilde{}}\NormalTok{ treatment\_group)]}
+\NormalTok{model\_stanford }\OtherTok{\textless{}{-}}\NormalTok{ d[cal\_stanford }\SpecialCharTok{==} \StringTok{\textquotesingle{}stanford\textquotesingle{}}\NormalTok{, }\FunctionTok{lm}\NormalTok{(founding\_prob }\SpecialCharTok{\textasciitilde{}}\NormalTok{ treatment\_group)]}
+
+\FunctionTok{stargazer}\NormalTok{(}
+\NormalTok{  model\_cal, model\_stanford, }
+  \AttributeTok{type =} \StringTok{\textquotesingle{}text\textquotesingle{}}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## ===========================================================
+##                                    Dependent variable:     
+##                                ----------------------------
+##                                       founding_prob        
+##                                     (1)            (2)     
+## -----------------------------------------------------------
+## treatment_group                  13.359***      9.839***   
+##                                   (0.636)        (0.661)   
+##                                                            
+## Constant                         99.804***     100.031***  
+##                                   (0.438)        (0.466)   
+##                                                            
+## -----------------------------------------------------------
+## Observations                        500            500     
+## R2                                 0.470          0.308    
+## Adjusted R2                        0.468          0.307    
+## Residual Std. Error (df = 498)     7.104          7.386    
+## F Statistic (df = 1; 498)        440.848***    221.810***  
+## ===========================================================
+## Note:                           *p<0.1; **p<0.05; ***p<0.01
+\end{verbatim}
+
+Based on this, would you conclude that these are different? Use the \texttt{confint()} function on each of these models to inform this discussion -- this is a total trap, because there is very weak statistical basis for what you're about to say, but do it anyways.
+
+\subsubsection{Interaction Model To Test}\label{interaction-model-to-test}
+
+The models that you estimated above are extremely intuitive to talk about, and are probably the right models to report to collaborators, especially those who aren't read into this class. \textbf{But}, they don't include a formal statisical test.
+
+To conduct this test, we're going to rely on the \textbf{same model form} as we used for treatment-by-treatment investigations -- the difference in differences model.
+
+Estimate a model that interacts the treatment indicator with the \texttt{cal\_stanford} indicator, and report what you see from this model.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_interaction }\OtherTok{\textless{}{-}}\NormalTok{ d[ , }\FunctionTok{lm}\NormalTok{(founding\_prob }\SpecialCharTok{\textasciitilde{}}\NormalTok{ treatment\_group }\SpecialCharTok{*}\NormalTok{ cal\_stanford)]}
+
+\FunctionTok{summary}\NormalTok{(model\_interaction)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = founding_prob ~ treatment_group * cal_stanford)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -23.7099  -4.8896  -0.2101   4.9203  24.4802 
+## 
+## Coefficients:
+##                                      Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                           99.8039     0.4468 223.361  < 2e-16 ***
+## treatment_group                       13.3588     0.6490  20.583  < 2e-16 ***
+## cal_stanfordstanford                   0.2271     0.6394   0.355 0.722564    
+## treatment_group:cal_stanfordstanford  -3.5197     0.9172  -3.837 0.000132 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 7.246 on 996 degrees of freedom
+## Multiple R-squared:  0.3989, Adjusted R-squared:  0.3971 
+## F-statistic: 220.3 on 3 and 996 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\subsection{? anova}\label{anova}
+
+\subsection{Finally, use the results from model 5 to tell me what the treatment}\label{finally-use-the-results-from-model-5-to-tell-me-what-the-treatment}
+
+\subsection{effect is for males and for californians.}\label{effect-is-for-males-and-for-californians.}
+
+\subsection{}\label{section}
+
+\subsection{AT HOME:}\label{at-home}
+
+\subsection{Work to examine what including the other affluence and literacy}\label{work-to-examine-what-including-the-other-affluence-and-literacy}
+
+\subsection{triggers does to your estimates.}\label{triggers-does-to-your-estimates.}
+
+\subsection{}\label{section-1}
 
 \subsection{Coding and Discussion: Tips at a Restaurant}\label{coding-and-discussion-tips-at-a-restaurant}
 
@@ -2851,6 +2949,43 @@ At the end of this week, students will be able to
 \DocumentationTok{\#\#    {-} Is there one gender identity that receives higher tips in this restaurant? }
 \DocumentationTok{\#\#    {-} Is there a gender that has a higher treatment effect? What is the }
 \DocumentationTok{\#\#      test that you would run to assess this? }
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Sleeeeeeeeeeeep\ldots{}}\label{sleeeeeeeeeeeep}
+
+Suppose that you've conducted an experiment to evaluate the effectiveness of meditation prior to sleeping. Some people are free to do what they want, while others are assigned to a 10 minute guided mindfulness exercise before they go to bed. Treatment is randomly assigned at the individual-level, and people are placed into their groups (and maintained in those groups) for 10 days; then, after two weeks, the groups are flipped.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  What does the design of this experiment look like?
+
+  R
+  R
+\item
+  Suppose that you also possess some data about the individuals. Specifically, you collect:
+\item
+  Their age;
+\item
+  Their coffee drinking habits;
+\item
+  Their tea drinking habits;
+\item
+  The number of people in their bed on a typical weeknight;
+\item
+  The number of cats they own;
+\item
+  The number of dogs they own.
+\item
+  First, is there an effect of treatment? Combine the data that you have on hand to write the first, best model.
+\item
+  Are there are parts of the population that this is especially effective (or ineffective)? How do you know?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{load}\NormalTok{(}\AttributeTok{file =} \FunctionTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"sleep\_study.Rdata"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2980,7 +3115,7 @@ With this data created, we can confirm that the different between potential outc
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4.985879
+## [1] 4.990989
 \end{verbatim}
 
 But, the data that we have created to this point has all the data in the science table. In real life, we won't get access to all this data; instead, we get access to observing some potential outcomes for one group and some other potential outcomes for another group. Let's create this restricted set of data to ensure that our estimator can recover the population parameter that we're looking for, even though it only has access to a sample of data from that population.
@@ -3643,7 +3778,7 @@ The promise of two stage-least squares is that it produces unbiased estimates so
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-19-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-23-1.pdf}}
 
 Another way to think about this is in terms of how the predicted values are associated different features. Specifically, consider: Are the predicted values associated with having won the lottery? Are the predicted values associated with ability?
 
@@ -3663,7 +3798,7 @@ Another way to think about this is in terms of how the predicted values are asso
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-20-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-24-1.pdf}}
 
 \subsection{Regression Discontinuity}\label{regression-discontinuity}
 
@@ -3814,7 +3949,7 @@ This has been \emph{very} fortunate data. There is no trend across the running v
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-21-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-25-1.pdf}}
 
 \begin{verbatim}
 ## NULL
@@ -3852,7 +3987,7 @@ This has been \emph{very} fortunate data. There is no trend across the running v
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-22-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-26-1.pdf}}
 
 \begin{verbatim}
 ## NULL
@@ -3873,7 +4008,7 @@ This has been \emph{very} fortunate data. There is no trend across the running v
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-23-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-27-1.pdf}}
 
 \begin{itemize}
 \tightlist
@@ -4074,7 +4209,7 @@ Can you draw this system out in the way that we did in 203? Use circles to repre
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-26-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-30-1.pdf}}
 
 Once you've written out these pathways, what could go wrong in this analysis?
 

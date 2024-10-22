@@ -23,7 +23,7 @@
 <meta name="author" content="The 241 Instructional Team" />
 
 
-<meta name="date" content="2024-10-08" />
+<meta name="date" content="2024-10-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -308,8 +308,23 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="7.1" data-path="learning-objectives-6.html"><a href="learning-objectives-6.html"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="7.2" data-path="reading-and-discussion-goodson.html"><a href="reading-and-discussion-goodson.html"><i class="fa fa-check"></i><b>7.2</b> Reading and Discussion: Goodson</a></li>
-<li class="chapter" data-level="7.3" data-path="coding-and-demo-the-californians.html"><a href="coding-and-demo-the-californians.html"><i class="fa fa-check"></i><b>7.3</b> Coding and Demo: The Californians</a></li>
-<li class="chapter" data-level="7.4" data-path="coding-and-discussion-tips-at-a-restaurant.html"><a href="coding-and-discussion-tips-at-a-restaurant.html"><i class="fa fa-check"></i><b>7.4</b> Coding and Discussion: Tips at a Restaurant</a></li>
+<li class="chapter" data-level="7.3" data-path="coding-and-demo-the-californians.html"><a href="coding-and-demo-the-californians.html"><i class="fa fa-check"></i><b>7.3</b> Coding and Demo: The Californians</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="coding-and-demo-the-californians.html"><a href="coding-and-demo-the-californians.html#overall-treatment-effect"><i class="fa fa-check"></i><b>7.3.1</b> Overall Treatment Effect</a></li>
+<li class="chapter" data-level="7.3.2" data-path="coding-and-demo-the-californians.html"><a href="coding-and-demo-the-californians.html#founder-motivation"><i class="fa fa-check"></i><b>7.3.2</b> Founder Motivation</a></li>
+<li class="chapter" data-level="7.3.3" data-path="coding-and-demo-the-californians.html"><a href="coding-and-demo-the-californians.html#subset-models"><i class="fa fa-check"></i><b>7.3.3</b> Subset Models</a></li>
+<li class="chapter" data-level="7.3.4" data-path="coding-and-demo-the-californians.html"><a href="coding-and-demo-the-californians.html#interaction-model-to-test"><i class="fa fa-check"></i><b>7.3.4</b> Interaction Model To Test</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>7.4</b> ? anova</a></li>
+<li class="chapter" data-level="7.5" data-path="finally-use-the-results-from-model-5-to-tell-me-what-the-treatment.html"><a href="finally-use-the-results-from-model-5-to-tell-me-what-the-treatment.html"><i class="fa fa-check"></i><b>7.5</b> Finally, use the results from model 5 to tell me what the treatment</a></li>
+<li class="chapter" data-level="7.6" data-path="effect-is-for-males-and-for-californians..html"><a href="effect-is-for-males-and-for-californians..html"><i class="fa fa-check"></i><b>7.6</b> effect is for males and for californians.</a></li>
+<li class="chapter" data-level="7.7" data-path="section.html"><a href="section.html"><i class="fa fa-check"></i><b>7.7</b> </a></li>
+<li class="chapter" data-level="7.8" data-path="at-home.html"><a href="at-home.html"><i class="fa fa-check"></i><b>7.8</b> AT HOME:</a></li>
+<li class="chapter" data-level="7.9" data-path="work-to-examine-what-including-the-other-affluence-and-literacy.html"><a href="work-to-examine-what-including-the-other-affluence-and-literacy.html"><i class="fa fa-check"></i><b>7.9</b> Work to examine what including the other affluence and literacy</a></li>
+<li class="chapter" data-level="7.10" data-path="triggers-does-to-your-estimates..html"><a href="triggers-does-to-your-estimates..html"><i class="fa fa-check"></i><b>7.10</b> triggers does to your estimates.</a></li>
+<li class="chapter" data-level="7.11" data-path="section-1.html"><a href="section-1.html"><i class="fa fa-check"></i><b>7.11</b> </a></li>
+<li class="chapter" data-level="7.12" data-path="coding-and-discussion-tips-at-a-restaurant.html"><a href="coding-and-discussion-tips-at-a-restaurant.html"><i class="fa fa-check"></i><b>7.12</b> Coding and Discussion: Tips at a Restaurant</a></li>
+<li class="chapter" data-level="7.13" data-path="sleeeeeeeeeeeep.html"><a href="sleeeeeeeeeeeep.html"><i class="fa fa-check"></i><b>7.13</b> Sleeeeeeeeeeeep…</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="treatment-noncompliance.html"><a href="treatment-noncompliance.html"><i class="fa fa-check"></i><b>8</b> Treatment Noncompliance</a>
 <ul>
@@ -423,7 +438,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>But, maybe I think I want to also control for the variable <code>bad_control</code>, despite the scary name that it has in the dataset.</p>
 <p>In fact, we can estimate a reliable causal effect for <em>either</em> <code>Y ~ D</code> <em>or</em> <code>bad_control ~ D</code>, but not the two together.</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="what-is-the-causal-model-we-hold.html#cb40-1" tabindex="-1"></a>model_1 <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(Y <span class="sc">~</span> D)]</span>
-<span id="cb40-2"><a href="what-is-the-causal-model-we-hold.html#cb40-2" tabindex="-1"></a>model_2 <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(Y <span class="sc">~</span> bad_control)]</span>
+<span id="cb40-2"><a href="what-is-the-causal-model-we-hold.html#cb40-2" tabindex="-1"></a>model_2 <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(Y <span class="sc">~</span> bad_control )]</span>
 <span id="cb40-3"><a href="what-is-the-causal-model-we-hold.html#cb40-3" tabindex="-1"></a>model_3 <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(Y <span class="sc">~</span> D <span class="sc">+</span> bad_control)]</span></code></pre></div>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="what-is-the-causal-model-we-hold.html#cb41-1" tabindex="-1"></a><span class="fu">stargazer</span>(</span>
 <span id="cb41-2"><a href="what-is-the-causal-model-we-hold.html#cb41-2" tabindex="-1"></a>  model_1, model_2, model_3, </span>
@@ -438,19 +453,19 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##                            Y              
 ##                 (1)       (2)       (3)   
 ## ------------------------------------------
-## D            3.923***              0.049  
-##               (0.141)             (0.129) 
+## D            3.962***            -3.350***
+##               (0.123)             (0.248) 
 ##                                           
-## bad_control            1.974***  1.970*** 
-##                         (0.026)   (0.029) 
+## bad_control            2.354***  3.659*** 
+##                         (0.052)   (0.110) 
 ##                                           
-## Constant       0.050     0.015    -0.005  
-##               (0.097)   (0.064)   (0.081) 
+## Constant       0.022   -0.357***   0.002  
+##               (0.085)   (0.078)   (0.081) 
 ##                                           
 ## ------------------------------------------
 ## Observations  10,000    10,000    10,000  
-## R2             0.072     0.371     0.371  
-## Adjusted R2    0.072     0.371     0.371  
+## R2             0.094     0.169     0.184  
+## Adjusted R2    0.093     0.169     0.184  
 ## ==========================================
 ## Note:          *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
 <div id="do-the-estimates-match-the-world" class="section level3 hasAnchor" number="6.7.1">

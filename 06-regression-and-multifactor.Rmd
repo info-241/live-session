@@ -86,8 +86,8 @@ make_data <- function(n_rows=1000) {
 
   ## send 1/2 the effect through the bad control
   ## and the other 1/2 through a direct channel
-  d[, bad_control := .5*tau*D + epsilon]
-  d[, Y := y0 + bad_control + .5*tau*D + epsilon]
+  d[, bad_control := .5*tau*D + .2*epsilon]
+  d[, Y := y0 + bad_control + .5*tau*D + .8*epsilon]
   
   }
 
@@ -104,7 +104,7 @@ In fact, we can estimate a reliable causal effect for *either* `Y ~ D` *or* `bad
 
 ```{r estimate treatment and mediator models}
 model_1 <- d[ , lm(Y ~ D)]
-model_2 <- d[ , lm(Y ~ bad_control)]
+model_2 <- d[ , lm(Y ~ bad_control )]
 model_3 <- d[ , lm(Y ~ D + bad_control)]
 ```
 

@@ -23,7 +23,7 @@
 <meta name="author" content="The 241 Instructional Team" />
 
 
-<meta name="date" content="2024-10-08" />
+<meta name="date" content="2024-10-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="reading-and-discussion-goodson.html"/>
-<link rel="next" href="coding-and-discussion-tips-at-a-restaurant.html"/>
+<link rel="next" href="anova.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -308,8 +308,23 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="7.1" data-path="learning-objectives-6.html"><a href="learning-objectives-6.html"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="7.2" data-path="reading-and-discussion-goodson.html"><a href="reading-and-discussion-goodson.html"><i class="fa fa-check"></i><b>7.2</b> Reading and Discussion: Goodson</a></li>
-<li class="chapter" data-level="7.3" data-path="coding-and-demo-the-californians.html"><a href="coding-and-demo-the-californians.html"><i class="fa fa-check"></i><b>7.3</b> Coding and Demo: The Californians</a></li>
-<li class="chapter" data-level="7.4" data-path="coding-and-discussion-tips-at-a-restaurant.html"><a href="coding-and-discussion-tips-at-a-restaurant.html"><i class="fa fa-check"></i><b>7.4</b> Coding and Discussion: Tips at a Restaurant</a></li>
+<li class="chapter" data-level="7.3" data-path="coding-and-demo-the-californians.html"><a href="coding-and-demo-the-californians.html"><i class="fa fa-check"></i><b>7.3</b> Coding and Demo: The Californians</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="coding-and-demo-the-californians.html"><a href="coding-and-demo-the-californians.html#overall-treatment-effect"><i class="fa fa-check"></i><b>7.3.1</b> Overall Treatment Effect</a></li>
+<li class="chapter" data-level="7.3.2" data-path="coding-and-demo-the-californians.html"><a href="coding-and-demo-the-californians.html#founder-motivation"><i class="fa fa-check"></i><b>7.3.2</b> Founder Motivation</a></li>
+<li class="chapter" data-level="7.3.3" data-path="coding-and-demo-the-californians.html"><a href="coding-and-demo-the-californians.html#subset-models"><i class="fa fa-check"></i><b>7.3.3</b> Subset Models</a></li>
+<li class="chapter" data-level="7.3.4" data-path="coding-and-demo-the-californians.html"><a href="coding-and-demo-the-californians.html#interaction-model-to-test"><i class="fa fa-check"></i><b>7.3.4</b> Interaction Model To Test</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>7.4</b> ? anova</a></li>
+<li class="chapter" data-level="7.5" data-path="finally-use-the-results-from-model-5-to-tell-me-what-the-treatment.html"><a href="finally-use-the-results-from-model-5-to-tell-me-what-the-treatment.html"><i class="fa fa-check"></i><b>7.5</b> Finally, use the results from model 5 to tell me what the treatment</a></li>
+<li class="chapter" data-level="7.6" data-path="effect-is-for-males-and-for-californians..html"><a href="effect-is-for-males-and-for-californians..html"><i class="fa fa-check"></i><b>7.6</b> effect is for males and for californians.</a></li>
+<li class="chapter" data-level="7.7" data-path="section.html"><a href="section.html"><i class="fa fa-check"></i><b>7.7</b> </a></li>
+<li class="chapter" data-level="7.8" data-path="at-home.html"><a href="at-home.html"><i class="fa fa-check"></i><b>7.8</b> AT HOME:</a></li>
+<li class="chapter" data-level="7.9" data-path="work-to-examine-what-including-the-other-affluence-and-literacy.html"><a href="work-to-examine-what-including-the-other-affluence-and-literacy.html"><i class="fa fa-check"></i><b>7.9</b> Work to examine what including the other affluence and literacy</a></li>
+<li class="chapter" data-level="7.10" data-path="triggers-does-to-your-estimates..html"><a href="triggers-does-to-your-estimates..html"><i class="fa fa-check"></i><b>7.10</b> triggers does to your estimates.</a></li>
+<li class="chapter" data-level="7.11" data-path="section-1.html"><a href="section-1.html"><i class="fa fa-check"></i><b>7.11</b> </a></li>
+<li class="chapter" data-level="7.12" data-path="coding-and-discussion-tips-at-a-restaurant.html"><a href="coding-and-discussion-tips-at-a-restaurant.html"><i class="fa fa-check"></i><b>7.12</b> Coding and Discussion: Tips at a Restaurant</a></li>
+<li class="chapter" data-level="7.13" data-path="sleeeeeeeeeeeep.html"><a href="sleeeeeeeeeeeep.html"><i class="fa fa-check"></i><b>7.13</b> Sleeeeeeeeeeeep…</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="treatment-noncompliance.html"><a href="treatment-noncompliance.html"><i class="fa fa-check"></i><b>8</b> Treatment Noncompliance</a>
 <ul>
@@ -419,79 +434,108 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="coding-and-demo-the-californians" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> Coding and Demo: The Californians<a href="coding-and-demo-the-californians.html#coding-and-demo-the-californians" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="coding-and-demo-the-californians.html#cb60-1" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
-<span id="cb60-2"><a href="coding-and-demo-the-californians.html#cb60-2" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span>
-<span id="cb60-3"><a href="coding-and-demo-the-californians.html#cb60-3" tabindex="-1"></a></span>
-<span id="cb60-4"><a href="coding-and-demo-the-californians.html#cb60-4" tabindex="-1"></a>makeData <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
-<span id="cb60-5"><a href="coding-and-demo-the-californians.html#cb60-5" tabindex="-1"></a></span>
-<span id="cb60-6"><a href="coding-and-demo-the-californians.html#cb60-6" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb60-7"><a href="coding-and-demo-the-californians.html#cb60-7" tabindex="-1"></a></span>
-<span id="cb60-8"><a href="coding-and-demo-the-californians.html#cb60-8" tabindex="-1"></a><span class="cf">if</span>(makeData) {</span>
-<span id="cb60-9"><a href="coding-and-demo-the-californians.html#cb60-9" tabindex="-1"></a>    sim_size <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb60-10"><a href="coding-and-demo-the-californians.html#cb60-10" tabindex="-1"></a>    d <span class="ot">&lt;-</span> <span class="fu">data.table</span>(<span class="at">californian =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), sim_size, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb60-11"><a href="coding-and-demo-the-californians.html#cb60-11" tabindex="-1"></a>                    <span class="at">affluence =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>, sim_size, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb60-12"><a href="coding-and-demo-the-californians.html#cb60-12" tabindex="-1"></a>                    <span class="at">preY =</span> <span class="fu">rnorm</span>(sim_size, <span class="at">mean =</span> <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">7</span>),</span>
-<span id="cb60-13"><a href="coding-and-demo-the-californians.html#cb60-13" tabindex="-1"></a>                    <span class="at">treat =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), sim_size, <span class="at">replace =</span> <span class="cn">TRUE</span>) )</span>
-<span id="cb60-14"><a href="coding-and-demo-the-californians.html#cb60-14" tabindex="-1"></a>    d[ , literacy <span class="sc">:=</span> <span class="fu">rnorm</span>(sim_size, <span class="at">mean =</span> d<span class="sc">$</span>affluence, <span class="at">sd =</span> <span class="dv">2</span>)]</span>
-<span id="cb60-15"><a href="coding-and-demo-the-californians.html#cb60-15" tabindex="-1"></a>    d[ , tau      <span class="sc">:=</span> <span class="fu">rnorm</span>(sim_size, <span class="at">mean =</span> <span class="dv">5</span> <span class="sc">+</span> californian)] <span class="do">## + d$affluence)</span></span>
-<span id="cb60-16"><a href="coding-and-demo-the-californians.html#cb60-16" tabindex="-1"></a>    d[ , postY    <span class="sc">:=</span>  preY <span class="sc">+</span> tau<span class="sc">*</span>treat]</span>
-<span id="cb60-17"><a href="coding-and-demo-the-californians.html#cb60-17" tabindex="-1"></a>}</span>
-<span id="cb60-18"><a href="coding-and-demo-the-californians.html#cb60-18" tabindex="-1"></a></span>
-<span id="cb60-19"><a href="coding-and-demo-the-californians.html#cb60-19" tabindex="-1"></a><span class="do">## What is the (unobserved) true average treatment effect?</span></span>
-<span id="cb60-20"><a href="coding-and-demo-the-californians.html#cb60-20" tabindex="-1"></a></span>
-<span id="cb60-21"><a href="coding-and-demo-the-californians.html#cb60-21" tabindex="-1"></a><span class="do">## Estimate a model that includes only the treatment effect.</span></span>
-<span id="cb60-22"><a href="coding-and-demo-the-californians.html#cb60-22" tabindex="-1"></a><span class="do">## Interpret all the coefficients. </span></span>
-<span id="cb60-23"><a href="coding-and-demo-the-californians.html#cb60-23" tabindex="-1"></a>mod0 <span class="ot">&lt;-</span> <span class="st">&#39;&#39;</span></span>
-<span id="cb60-24"><a href="coding-and-demo-the-californians.html#cb60-24" tabindex="-1"></a></span>
-<span id="cb60-25"><a href="coding-and-demo-the-californians.html#cb60-25" tabindex="-1"></a><span class="do">## Estimate a model that includes the treatment effect and</span></span>
-<span id="cb60-26"><a href="coding-and-demo-the-californians.html#cb60-26" tabindex="-1"></a><span class="do">## the (highly predictive!) pre-treatment Y val. </span></span>
-<span id="cb60-27"><a href="coding-and-demo-the-californians.html#cb60-27" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span> <span class="st">&#39;&#39;</span></span>
-<span id="cb60-28"><a href="coding-and-demo-the-californians.html#cb60-28" tabindex="-1"></a></span>
-<span id="cb60-29"><a href="coding-and-demo-the-californians.html#cb60-29" tabindex="-1"></a><span class="do">## Print the two next to each other, and compare what is going on.</span></span>
-<span id="cb60-30"><a href="coding-and-demo-the-californians.html#cb60-30" tabindex="-1"></a><span class="do">## Tell me what is happening in the differences in the intercept</span></span>
-<span id="cb60-31"><a href="coding-and-demo-the-californians.html#cb60-31" tabindex="-1"></a><span class="do">## and the preY coefficients. Tell me what is happening in the SE</span></span>
-<span id="cb60-32"><a href="coding-and-demo-the-californians.html#cb60-32" tabindex="-1"></a><span class="do">## for the treatment effect. </span></span>
-<span id="cb60-33"><a href="coding-and-demo-the-californians.html#cb60-33" tabindex="-1"></a></span>
-<span id="cb60-34"><a href="coding-and-demo-the-californians.html#cb60-34" tabindex="-1"></a><span class="co">#stargazer(mod0, mod1, type = &quot;text&quot;)</span></span>
-<span id="cb60-35"><a href="coding-and-demo-the-californians.html#cb60-35" tabindex="-1"></a></span>
-<span id="cb60-36"><a href="coding-and-demo-the-californians.html#cb60-36" tabindex="-1"></a><span class="do">## Subset the data into two groups based on gender and estimate</span></span>
-<span id="cb60-37"><a href="coding-and-demo-the-californians.html#cb60-37" tabindex="-1"></a><span class="do">## a model that only includes the preY and treatment effects.</span></span>
-<span id="cb60-38"><a href="coding-and-demo-the-californians.html#cb60-38" tabindex="-1"></a><span class="do">## Print these two models side by side, and tell me what is going</span></span>
-<span id="cb60-39"><a href="coding-and-demo-the-californians.html#cb60-39" tabindex="-1"></a><span class="do">## on.</span></span>
-<span id="cb60-40"><a href="coding-and-demo-the-californians.html#cb60-40" tabindex="-1"></a></span>
-<span id="cb60-41"><a href="coding-and-demo-the-californians.html#cb60-41" tabindex="-1"></a>mod2 <span class="ot">&lt;-</span> <span class="st">&#39;&#39;</span></span>
-<span id="cb60-42"><a href="coding-and-demo-the-californians.html#cb60-42" tabindex="-1"></a>mod3 <span class="ot">&lt;-</span> <span class="st">&#39;&#39;</span></span>
-<span id="cb60-43"><a href="coding-and-demo-the-californians.html#cb60-43" tabindex="-1"></a></span>
-<span id="cb60-44"><a href="coding-and-demo-the-californians.html#cb60-44" tabindex="-1"></a><span class="co"># stargazer() </span></span>
-<span id="cb60-45"><a href="coding-and-demo-the-californians.html#cb60-45" tabindex="-1"></a></span>
-<span id="cb60-46"><a href="coding-and-demo-the-californians.html#cb60-46" tabindex="-1"></a><span class="do">## Based on this, would you conclude that these are different?</span></span>
-<span id="cb60-47"><a href="coding-and-demo-the-californians.html#cb60-47" tabindex="-1"></a><span class="do">## Talk about the 95% CI for each.</span></span>
-<span id="cb60-48"><a href="coding-and-demo-the-californians.html#cb60-48" tabindex="-1"></a><span class="do">## ?confint</span></span>
-<span id="cb60-49"><a href="coding-and-demo-the-californians.html#cb60-49" tabindex="-1"></a></span>
-<span id="cb60-50"><a href="coding-and-demo-the-californians.html#cb60-50" tabindex="-1"></a><span class="do">## Now, estimate two more models:</span></span>
-<span id="cb60-51"><a href="coding-and-demo-the-californians.html#cb60-51" tabindex="-1"></a><span class="do">##  1. A model with preY, treatment and gender indicator</span></span>
-<span id="cb60-52"><a href="coding-and-demo-the-californians.html#cb60-52" tabindex="-1"></a><span class="do">##  2. A model with prey, treatment, gender, and treatment*gender</span></span>
-<span id="cb60-53"><a href="coding-and-demo-the-californians.html#cb60-53" tabindex="-1"></a><span class="do">##     interaction</span></span>
-<span id="cb60-54"><a href="coding-and-demo-the-californians.html#cb60-54" tabindex="-1"></a><span class="do">##  3. Test for the necessisity of the interaction; first using a</span></span>
-<span id="cb60-55"><a href="coding-and-demo-the-californians.html#cb60-55" tabindex="-1"></a><span class="do">##     t-test. This should be really, really simple. Then, using a</span></span>
-<span id="cb60-56"><a href="coding-and-demo-the-californians.html#cb60-56" tabindex="-1"></a><span class="do">##     f-test for the nested models (see the anova(...) call).</span></span>
-<span id="cb60-57"><a href="coding-and-demo-the-californians.html#cb60-57" tabindex="-1"></a><span class="do">##     Is the p-value the same or different for this test?</span></span>
-<span id="cb60-58"><a href="coding-and-demo-the-californians.html#cb60-58" tabindex="-1"></a><span class="do">##     Why? </span></span>
-<span id="cb60-59"><a href="coding-and-demo-the-californians.html#cb60-59" tabindex="-1"></a></span>
-<span id="cb60-60"><a href="coding-and-demo-the-californians.html#cb60-60" tabindex="-1"></a>mod4 <span class="ot">&lt;-</span> <span class="st">&#39;&#39;</span></span>
-<span id="cb60-61"><a href="coding-and-demo-the-californians.html#cb60-61" tabindex="-1"></a>mod5 <span class="ot">&lt;-</span> <span class="st">&#39;&#39;</span></span>
-<span id="cb60-62"><a href="coding-and-demo-the-californians.html#cb60-62" tabindex="-1"></a></span>
-<span id="cb60-63"><a href="coding-and-demo-the-californians.html#cb60-63" tabindex="-1"></a><span class="do">## ? anova</span></span>
-<span id="cb60-64"><a href="coding-and-demo-the-californians.html#cb60-64" tabindex="-1"></a></span>
-<span id="cb60-65"><a href="coding-and-demo-the-californians.html#cb60-65" tabindex="-1"></a><span class="do">## Finally, use the results from model 5 to tell me what the treatment</span></span>
-<span id="cb60-66"><a href="coding-and-demo-the-californians.html#cb60-66" tabindex="-1"></a><span class="do">## effect is for males and for californians.</span></span>
-<span id="cb60-67"><a href="coding-and-demo-the-californians.html#cb60-67" tabindex="-1"></a></span>
-<span id="cb60-68"><a href="coding-and-demo-the-californians.html#cb60-68" tabindex="-1"></a></span>
-<span id="cb60-69"><a href="coding-and-demo-the-californians.html#cb60-69" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb60-70"><a href="coding-and-demo-the-californians.html#cb60-70" tabindex="-1"></a><span class="do">## AT HOME:</span></span>
-<span id="cb60-71"><a href="coding-and-demo-the-californians.html#cb60-71" tabindex="-1"></a><span class="do">## Work to examine what including the other affluence and literacy</span></span>
-<span id="cb60-72"><a href="coding-and-demo-the-californians.html#cb60-72" tabindex="-1"></a><span class="do">## triggers does to your estimates.</span></span>
-<span id="cb60-73"><a href="coding-and-demo-the-californians.html#cb60-73" tabindex="-1"></a><span class="do">##</span></span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="coding-and-demo-the-californians.html#cb62-1" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb62-2"><a href="coding-and-demo-the-californians.html#cb62-2" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span>
+<span id="cb62-3"><a href="coding-and-demo-the-californians.html#cb62-3" tabindex="-1"></a></span>
+<span id="cb62-4"><a href="coding-and-demo-the-californians.html#cb62-4" tabindex="-1"></a>make_data <span class="ot">&lt;-</span> <span class="cf">function</span>(sim_size) { </span>
+<span id="cb62-5"><a href="coding-and-demo-the-californians.html#cb62-5" tabindex="-1"></a>    d <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
+<span id="cb62-6"><a href="coding-and-demo-the-californians.html#cb62-6" tabindex="-1"></a>      <span class="at">id              =</span> <span class="dv">1</span><span class="sc">:</span>sim_size,</span>
+<span id="cb62-7"><a href="coding-and-demo-the-californians.html#cb62-7" tabindex="-1"></a>      <span class="at">cal_stanford    =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&#39;cal&#39;</span>, <span class="st">&#39;stanford&#39;</span>), <span class="at">each =</span> sim_size<span class="sc">/</span><span class="dv">2</span>),</span>
+<span id="cb62-8"><a href="coding-and-demo-the-californians.html#cb62-8" tabindex="-1"></a>      <span class="at">affluence       =</span> <span class="fu">c</span>(</span>
+<span id="cb62-9"><a href="coding-and-demo-the-californians.html#cb62-9" tabindex="-1"></a>        <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>, <span class="at">size =</span> sim_size<span class="sc">/</span><span class="dv">2</span>, <span class="at">replace =</span> T, <span class="at">prob =</span> <span class="fu">c</span>(.<span class="dv">1</span>, .<span class="dv">2</span>, .<span class="dv">2</span>, .<span class="dv">2</span>, .<span class="dv">2</span>, .<span class="dv">05</span>, .<span class="dv">05</span>)),</span>
+<span id="cb62-10"><a href="coding-and-demo-the-californians.html#cb62-10" tabindex="-1"></a>        <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>, <span class="at">size =</span> sim_size<span class="sc">/</span><span class="dv">2</span>, <span class="at">replace =</span> T, <span class="at">prob =</span> <span class="fu">c</span>(.<span class="dv">05</span>, .<span class="dv">05</span>, .<span class="dv">05</span>, .<span class="dv">15</span>, .<span class="dv">2</span>, .<span class="dv">2</span>, .<span class="dv">3</span>))),       </span>
+<span id="cb62-11"><a href="coding-and-demo-the-californians.html#cb62-11" tabindex="-1"></a>      <span class="at">founder_motivation =</span> <span class="fu">rnorm</span>(sim_size, <span class="at">mean =</span> <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">7</span>), </span>
+<span id="cb62-12"><a href="coding-and-demo-the-californians.html#cb62-12" tabindex="-1"></a>      <span class="at">treatment_group =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), sim_size, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb62-13"><a href="coding-and-demo-the-californians.html#cb62-13" tabindex="-1"></a>      )</span>
+<span id="cb62-14"><a href="coding-and-demo-the-californians.html#cb62-14" tabindex="-1"></a></span>
+<span id="cb62-15"><a href="coding-and-demo-the-californians.html#cb62-15" tabindex="-1"></a>    d[ , capital_access <span class="sc">:=</span> <span class="fu">rnorm</span>(sim_size, <span class="at">mean =</span> d<span class="sc">$</span>affluence, <span class="at">sd =</span> <span class="dv">2</span>)]</span>
+<span id="cb62-16"><a href="coding-and-demo-the-californians.html#cb62-16" tabindex="-1"></a>    d[ , tau            <span class="sc">:=</span> <span class="fu">rnorm</span>(sim_size, <span class="at">mean =</span> <span class="dv">5</span> <span class="sc">+</span> <span class="dv">5</span><span class="sc">*</span><span class="fu">I</span>(cal_stanford <span class="sc">==</span> <span class="st">&#39;cal&#39;</span>) <span class="sc">+</span> affluence)]</span>
+<span id="cb62-17"><a href="coding-and-demo-the-californians.html#cb62-17" tabindex="-1"></a>    d[ , founding_prob  <span class="sc">:=</span>  founder_motivation <span class="sc">+</span> tau<span class="sc">*</span>treatment_group]</span>
+<span id="cb62-18"><a href="coding-and-demo-the-californians.html#cb62-18" tabindex="-1"></a>    </span>
+<span id="cb62-19"><a href="coding-and-demo-the-californians.html#cb62-19" tabindex="-1"></a>    <span class="fu">return</span>(d)</span>
+<span id="cb62-20"><a href="coding-and-demo-the-californians.html#cb62-20" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="coding-and-demo-the-californians.html#cb63-1" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">make_data</span>(<span class="at">sim_size =</span> <span class="dv">1000</span>)</span></code></pre></div>
+<div id="overall-treatment-effect" class="section level3 hasAnchor" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> Overall Treatment Effect<a href="coding-and-demo-the-californians.html#overall-treatment-effect" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>What is the (unobserved) true average treatment effect? Estimate a model that includes only the treatment effect and interpret all the coefficients.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="coding-and-demo-the-californians.html#cb64-1" tabindex="-1"></a>model_0 <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(founding_prob <span class="sc">~</span> treatment_group)]</span></code></pre></div>
+</div>
+<div id="founder-motivation" class="section level3 hasAnchor" number="7.3.2">
+<h3><span class="header-section-number">7.3.2</span> Founder Motivation<a href="coding-and-demo-the-californians.html#founder-motivation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Estimate a model that includes the (nearly impossible to measure) variable about <code>motivation</code>. What happens to your estimates? Why does this happen?</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="coding-and-demo-the-californians.html#cb65-1" tabindex="-1"></a>model_1 <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(founding_prob <span class="sc">~</span> treatment_group <span class="sc">+</span> founder_motivation)]</span></code></pre></div>
+<p>Print these two modeles next to one another and describe what is happening and why.</p>
+<ul>
+<li>Are the intercept terms the same? Why or why not?</li>
+<li>Are the standard errors teh same? Why or why not?</li>
+<li>Are the estimate treatment effects the same? Why or why not?</li>
+</ul>
+</div>
+<div id="subset-models" class="section level3 hasAnchor" number="7.3.3">
+<h3><span class="header-section-number">7.3.3</span> Subset Models<a href="coding-and-demo-the-californians.html#subset-models" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Subset the data into two groups based on <code>cal_stanford</code> and estimate
+a model that only includes the treatment effects.</p>
+<p>Print these two models side by side, and tell me what is going
+on.</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="coding-and-demo-the-californians.html#cb66-1" tabindex="-1"></a>model_cal      <span class="ot">&lt;-</span> d[cal_stanford <span class="sc">==</span> <span class="st">&#39;cal&#39;</span>, <span class="fu">lm</span>(founding_prob <span class="sc">~</span> treatment_group)]</span>
+<span id="cb66-2"><a href="coding-and-demo-the-californians.html#cb66-2" tabindex="-1"></a>model_stanford <span class="ot">&lt;-</span> d[cal_stanford <span class="sc">==</span> <span class="st">&#39;stanford&#39;</span>, <span class="fu">lm</span>(founding_prob <span class="sc">~</span> treatment_group)]</span>
+<span id="cb66-3"><a href="coding-and-demo-the-californians.html#cb66-3" tabindex="-1"></a></span>
+<span id="cb66-4"><a href="coding-and-demo-the-californians.html#cb66-4" tabindex="-1"></a><span class="fu">stargazer</span>(</span>
+<span id="cb66-5"><a href="coding-and-demo-the-californians.html#cb66-5" tabindex="-1"></a>  model_cal, model_stanford, </span>
+<span id="cb66-6"><a href="coding-and-demo-the-californians.html#cb66-6" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&#39;text&#39;</span></span>
+<span id="cb66-7"><a href="coding-and-demo-the-californians.html#cb66-7" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## 
+## ===========================================================
+##                                    Dependent variable:     
+##                                ----------------------------
+##                                       founding_prob        
+##                                     (1)            (2)     
+## -----------------------------------------------------------
+## treatment_group                  13.359***      9.839***   
+##                                   (0.636)        (0.661)   
+##                                                            
+## Constant                         99.804***     100.031***  
+##                                   (0.438)        (0.466)   
+##                                                            
+## -----------------------------------------------------------
+## Observations                        500            500     
+## R2                                 0.470          0.308    
+## Adjusted R2                        0.468          0.307    
+## Residual Std. Error (df = 498)     7.104          7.386    
+## F Statistic (df = 1; 498)        440.848***    221.810***  
+## ===========================================================
+## Note:                           *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
+<p>Based on this, would you conclude that these are different? Use the <code>confint()</code> function on each of these models to inform this discussion – this is a total trap, because there is very weak statistical basis for what you’re about to say, but do it anyways.</p>
+</div>
+<div id="interaction-model-to-test" class="section level3 hasAnchor" number="7.3.4">
+<h3><span class="header-section-number">7.3.4</span> Interaction Model To Test<a href="coding-and-demo-the-californians.html#interaction-model-to-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The models that you estimated above are extremely intuitive to talk about, and are probably the right models to report to collaborators, especially those who aren’t read into this class. <strong>But</strong>, they don’t include a formal statisical test.</p>
+<p>To conduct this test, we’re going to rely on the <strong>same model form</strong> as we used for treatment-by-treatment investigations – the difference in differences model.</p>
+<p>Estimate a model that interacts the treatment indicator with the <code>cal_stanford</code> indicator, and report what you see from this model.</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="coding-and-demo-the-californians.html#cb68-1" tabindex="-1"></a>model_interaction <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(founding_prob <span class="sc">~</span> treatment_group <span class="sc">*</span> cal_stanford)]</span>
+<span id="cb68-2"><a href="coding-and-demo-the-californians.html#cb68-2" tabindex="-1"></a></span>
+<span id="cb68-3"><a href="coding-and-demo-the-californians.html#cb68-3" tabindex="-1"></a><span class="fu">summary</span>(model_interaction)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = founding_prob ~ treatment_group * cal_stanford)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -23.7099  -4.8896  -0.2101   4.9203  24.4802 
+## 
+## Coefficients:
+##                                      Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                           99.8039     0.4468 223.361  &lt; 2e-16 ***
+## treatment_group                       13.3588     0.6490  20.583  &lt; 2e-16 ***
+## cal_stanfordstanford                   0.2271     0.6394   0.355 0.722564    
+## treatment_group:cal_stanfordstanford  -3.5197     0.9172  -3.837 0.000132 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 7.246 on 996 degrees of freedom
+## Multiple R-squared:  0.3989, Adjusted R-squared:  0.3971 
+## F-statistic: 220.3 on 3 and 996 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
 </div>
             </section>
 
@@ -499,7 +543,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="reading-and-discussion-goodson.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="coding-and-discussion-tips-at-a-restaurant.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="anova.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
