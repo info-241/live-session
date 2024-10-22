@@ -1,3 +1,10 @@
+```{r}
+library(data.table)
+library(ggplot2)
+library(here)
+```
+
+
 # Heterogeneous Treatment Effects
 
 When we consider heterogeneous treatment effects, we acknowledge that it is very unlikely that every single person reacts to treatment in exactly the same way. But, are there certain *types* of people who always react more strongly to treatment? Are there certain *types* of people who always react less strongly? 
@@ -23,68 +30,90 @@ At the end of this week, students will be able to
 
 ## Coding and Demo: The Californians 
 
-```{r, eval = FALSE, echo = TRUE}
+```{r data simulation function, eval = TRUE, echo = TRUE}
 library(data.table)
 library(stargazer)
 
-makeData <- TRUE
+make_data <- function(sim_size) { 
+    d <- data.table(
+      id              = 1:sim_size,
+      cal_stanford    = rep(c('cal', 'stanford'), each = sim_size/2),
+      affluence       = c(
+        sample(1:7, size = sim_size/2, replace = T, prob = c(.1, .2, .2, .2, .2, .05, .05)),
+        sample(1:7, size = sim_size/2, replace = T, prob = c(.05, .05, .05, .15, .2, .2, .3))),       
+      founder_motivation = rnorm(sim_size, mean = 100, sd = 7), 
+      treatment_group = sample(c(0,1), sim_size, replace = TRUE)
+      )
 
-set.seed(1)
-
-if(makeData) {
-    sim_size <- 1000
-    d <- data.table(californian = sample(c(0,1), sim_size, replace = TRUE),
-                    affluence = sample(1:7, sim_size, replace = TRUE),
-                    preY = rnorm(sim_size, mean = 100, sd = 7),
-                    treat = sample(c(0,1), sim_size, replace = TRUE) )
-    d[ , literacy := rnorm(sim_size, mean = d$affluence, sd = 2)]
-    d[ , tau      := rnorm(sim_size, mean = 5 + californian)] ## + d$affluence)
-    d[ , postY    :=  preY + tau*treat]
+    d[ , capital_access := rnorm(sim_size, mean = d$affluence, sd = 2)]
+    d[ , tau            := rnorm(sim_size, mean = 5 + 5*I(cal_stanford == 'cal') + affluence)]
+    d[ , founding_prob  :=  founder_motivation + tau*treatment_group]
+    
+    return(d)
 }
+```
 
-## What is the (unobserved) true average treatment effect?
+```{r create data for sim}
+d <- make_data(sim_size = 1000)
+```
 
-## Estimate a model that includes only the treatment effect.
-## Interpret all the coefficients. 
-mod0 <- ''
+### Overall Treatment Effect 
 
-## Estimate a model that includes the treatment effect and
-## the (highly predictive!) pre-treatment Y val. 
-mod1 <- ''
+What is the (unobserved) true average treatment effect? Estimate a model that includes only the treatment effect and interpret all the coefficients.
 
-## Print the two next to each other, and compare what is going on.
-## Tell me what is happening in the differences in the intercept
-## and the preY coefficients. Tell me what is happening in the SE
-## for the treatment effect. 
+```{r baseline model}
+model_0 <- d[ , lm(founding_prob ~ treatment_group)]
+```
 
-#stargazer(mod0, mod1, type = "text")
+### Founder Motivation 
 
-## Subset the data into two groups based on gender and estimate
-## a model that only includes the preY and treatment effects.
-## Print these two models side by side, and tell me what is going
-## on.
+Estimate a model that includes the (nearly impossible to measure) variable about `motivation`. What happens to your estimates? Why does this happen? 
 
-mod2 <- ''
-mod3 <- ''
+```{r motivation model}
+model_1 <- d[ , lm(founding_prob ~ treatment_group + founder_motivation)]
+```
 
-# stargazer() 
+Print these two modeles next to one another and describe what is happening and why.
 
-## Based on this, would you conclude that these are different?
-## Talk about the 95% CI for each.
-## ?confint
+- Are the intercept terms the same? Why or why not? 
+- Are the standard errors teh same? Why or why not? 
+- Are the estimate treatment effects the same? Why or why not? 
 
-## Now, estimate two more models:
-##  1. A model with preY, treatment and gender indicator
-##  2. A model with prey, treatment, gender, and treatment*gender
-##     interaction
-##  3. Test for the necessisity of the interaction; first using a
-##     t-test. This should be really, really simple. Then, using a
-##     f-test for the nested models (see the anova(...) call).
-##     Is the p-value the same or different for this test?
-##     Why? 
+### Subset Models 
 
-mod4 <- ''
-mod5 <- ''
+Subset the data into two groups based on `cal_stanford` and estimate
+a model that only includes the treatment effects.
+
+Print these two models side by side, and tell me what is going
+on.
+
+```{r}
+model_cal      <- d[cal_stanford == 'cal', lm(founding_prob ~ treatment_group)]
+model_stanford <- d[cal_stanford == 'stanford', lm(founding_prob ~ treatment_group)]
+
+stargazer(
+  model_cal, model_stanford, 
+  type = 'text'
+)
+```
+
+
+Based on this, would you conclude that these are different? Use the `confint()` function on each of these models to inform this discussion -- this is a total trap, because there is very weak statistical basis for what you're about to say, but do it anyways. 
+
+### Interaction Model To Test 
+
+The models that you estimated above are extremely intuitive to talk about, and are probably the right models to report to collaborators, especially those who aren't read into this class. **But**, they don't include a formal statisical test. 
+
+To conduct this test, we're going to rely on the **same model form** as we used for treatment-by-treatment investigations -- the difference in differences model. 
+
+Estimate a model that interacts the treatment indicator with the `cal_stanford` indicator, and report what you see from this model. 
+
+```{r}
+model_interaction <- d[ , lm(founding_prob ~ treatment_group * cal_stanford)]
+
+summary(model_interaction)
+```
+
 
 ## ? anova
 
@@ -97,9 +126,6 @@ mod5 <- ''
 ## Work to examine what including the other affluence and literacy
 ## triggers does to your estimates.
 ##
-
-```
-
 
 ## Coding and Discussion: Tips at a Restaurant 
 
@@ -134,5 +160,33 @@ d <- fread('http://hdl.handle.net/10079/cd6be01a-a827-4312-a2fa-74329ce7f96d')
 ##    - Is there one gender identity that receives higher tips in this restaurant? 
 ##    - Is there a gender that has a higher treatment effect? What is the 
 ##      test that you would run to assess this? 
+```
+
+## Sleeeeeeeeeeeep...
+
+Suppose that you've conducted an experiment to evaluate the effectiveness of meditation prior to sleeping. Some people are free to do what they want, while others are assigned to a 10 minute guided mindfulness exercise before they go to bed. Treatment is randomly assigned at the individual-level, and people are placed into their groups (and maintained in those groups) for 10 days; then, after two weeks, the groups are flipped. 
+
+1. What does the design of this experiment look like? 
+
+    R
+    R
+
+2. Suppose that you also possess some data about the individuals. Specifically, you collect: 
+  1. Their age; 
+  2. Their coffee drinking habits; 
+  3. Their tea drinking habits; 
+  4. The number of people in their bed on a typical weeknight; 
+  5. The number of cats they own; 
+  6. The number of dogs they own. 
+
+3. First, is there an effect of treatment? Combine the data that you have on hand to write the first, best model. 
+4. Are there are parts of the population that this is especially effective (or ineffective)? How do you know? 
+
+```{r}
+load(file = here("data", "sleep_study.Rdata"))
+```
+
+```{r}
+
 ```
 
