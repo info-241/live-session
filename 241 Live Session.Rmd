@@ -2036,11 +2036,9 @@ This doesn't mean that all is lost however. We can redefine the causal quantity 
 
 Life on campus is exciting! Whether students are involved in affinity groups, advocacy groups, protest groups, or just party groups, student life on campus is exciting. We're not to be left out! We're not to be denied the chance to make our voices heard. 
 
-But, because we're usually calling in via Zoom, we don't have the typical problems that students and faculty complain about -- parking, enrollment, sports tickets, and beer availability. What we do have to complain about is that "*god awful*" sound of the bell-tower ringing every hour on the hour. 
+What is there to  complain about? How about that "*god awful*" sound of the bell-tower ringing every hour on the hour. 
 
-Suppose that we are to discuss this *very.* *important.* *issue.* before a panel of the deans and University administration. And, further suppose that in light of global events of the past several years, they're actually amenable to what we're proposing -- cutting off those bells, and providing the Berkeley Carillon player a generous retirement. 
-
-![University Carillonist](https://www.youtube.com/watch?v=K_8vta9XDpc)
+Suppose that we are to discuss this *very.* *important.* *issue.* before a panel of the deans and University administration. And, further suppose that in light of global events of the past several years, they're actually amenable to what we're proposing -- cutting off those bells, and providing the Berkeley Carillon player a generous retirement. [University Carillonist Video](https://www.youtube.com/watch?v=K_8vta9XDpc). 
 
 However, there's a catch. They are worried that taking such an action would be detrimental to the student experience on campus, and they would like to measure the causal effect of playing vs. not playing the Carillon while students are changing classes. 
 
