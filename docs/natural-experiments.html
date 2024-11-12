@@ -461,6 +461,37 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>However, suppose that <code>schooling</code> which is the indicator that someone actually got schooling at a magnet school is correlated with ability, with family income, and with lottery.</li>
 </ul>
 <p>What would be the consequence of estimating an eventual outcome, using a naive regression?</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="natural-experiments.html#cb83-1" tabindex="-1"></a>make_iv_data <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">instrument_strength=</span><span class="fl">1.0</span>) { </span>
+<span id="cb83-2"><a href="natural-experiments.html#cb83-2" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">2</span>)</span>
+<span id="cb83-3"><a href="natural-experiments.html#cb83-3" tabindex="-1"></a></span>
+<span id="cb83-4"><a href="natural-experiments.html#cb83-4" tabindex="-1"></a>  d <span class="ot">&lt;-</span> <span class="fu">data.table</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>)</span>
+<span id="cb83-5"><a href="natural-experiments.html#cb83-5" tabindex="-1"></a>  </span>
+<span id="cb83-6"><a href="natural-experiments.html#cb83-6" tabindex="-1"></a>  <span class="do">## These are all independent of one another. </span></span>
+<span id="cb83-7"><a href="natural-experiments.html#cb83-7" tabindex="-1"></a>  d[ , <span class="st">&#39;:=&#39;</span>(</span>
+<span id="cb83-8"><a href="natural-experiments.html#cb83-8" tabindex="-1"></a>    <span class="at">ability       =</span> <span class="fu">rnorm</span>(.N, <span class="at">mean=</span><span class="dv">10</span>, <span class="at">sd=</span><span class="dv">1</span>), </span>
+<span id="cb83-9"><a href="natural-experiments.html#cb83-9" tabindex="-1"></a>    <span class="at">family_income =</span> <span class="fu">rnorm</span>(.N, <span class="at">mean=</span><span class="dv">20</span>, <span class="at">sd=</span><span class="dv">2</span>), </span>
+<span id="cb83-10"><a href="natural-experiments.html#cb83-10" tabindex="-1"></a>    <span class="at">lottery       =</span> <span class="fu">rnorm</span>(.N, <span class="at">mean=</span><span class="dv">10</span>, <span class="at">sd=</span><span class="dv">1</span>) <span class="sc">&gt;</span> <span class="dv">10</span> <span class="do">## Win if larger than 10</span></span>
+<span id="cb83-11"><a href="natural-experiments.html#cb83-11" tabindex="-1"></a>    )]</span>
+<span id="cb83-12"><a href="natural-experiments.html#cb83-12" tabindex="-1"></a>  </span>
+<span id="cb83-13"><a href="natural-experiments.html#cb83-13" tabindex="-1"></a>  <span class="do">## Create a schooling indicator. This has the following characteristics: </span></span>
+<span id="cb83-14"><a href="natural-experiments.html#cb83-14" tabindex="-1"></a>  <span class="do">##   - It is related to winning the lottery (which was random) </span></span>
+<span id="cb83-15"><a href="natural-experiments.html#cb83-15" tabindex="-1"></a>  <span class="do">##   - It is related to ability</span></span>
+<span id="cb83-16"><a href="natural-experiments.html#cb83-16" tabindex="-1"></a>  <span class="do">##   - It has some &quot;white noise&quot; just so that the model will estimate. </span></span>
+<span id="cb83-17"><a href="natural-experiments.html#cb83-17" tabindex="-1"></a>  d[ , schooling <span class="sc">:=</span> instrument_strength <span class="sc">*</span> lottery <span class="sc">+</span> ability <span class="sc">+</span> <span class="fu">rnorm</span>(.N, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)]</span>
+<span id="cb83-18"><a href="natural-experiments.html#cb83-18" tabindex="-1"></a>  </span>
+<span id="cb83-19"><a href="natural-experiments.html#cb83-19" tabindex="-1"></a>  <span class="do">## Create the outcome, which might be earnings. This has the following characteristics: </span></span>
+<span id="cb83-20"><a href="natural-experiments.html#cb83-20" tabindex="-1"></a>  <span class="do">##   - It is affected by schooling (Yay!) </span></span>
+<span id="cb83-21"><a href="natural-experiments.html#cb83-21" tabindex="-1"></a>  <span class="do">##   - It is affected by ability (Yay!) </span></span>
+<span id="cb83-22"><a href="natural-experiments.html#cb83-22" tabindex="-1"></a>  <span class="do">##   - It is affected by family income :| </span></span>
+<span id="cb83-23"><a href="natural-experiments.html#cb83-23" tabindex="-1"></a>  </span>
+<span id="cb83-24"><a href="natural-experiments.html#cb83-24" tabindex="-1"></a>  d[ , earnings <span class="sc">:=</span> <span class="dv">2</span> <span class="sc">*</span> schooling <span class="sc">+</span> ability <span class="sc">+</span> family_income <span class="sc">+</span>  <span class="fu">rnorm</span>(.N, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)]</span>
+<span id="cb83-25"><a href="natural-experiments.html#cb83-25" tabindex="-1"></a>  <span class="fu">return</span>(d)</span>
+<span id="cb83-26"><a href="natural-experiments.html#cb83-26" tabindex="-1"></a>}</span>
+<span id="cb83-27"><a href="natural-experiments.html#cb83-27" tabindex="-1"></a></span>
+<span id="cb83-28"><a href="natural-experiments.html#cb83-28" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">make_iv_data</span>(<span class="at">instrument_strength =</span> <span class="fl">1.0</span>)</span>
+<span id="cb83-29"><a href="natural-experiments.html#cb83-29" tabindex="-1"></a></span>
+<span id="cb83-30"><a href="natural-experiments.html#cb83-30" tabindex="-1"></a>model_wrong <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(earnings <span class="sc">~</span> schooling)]</span>
+<span id="cb83-31"><a href="natural-experiments.html#cb83-31" tabindex="-1"></a><span class="fu">coeftest</span>(model_wrong, <span class="at">vcov. =</span> vcovHC)</span></code></pre></div>
 <pre><code>## 
 ## t test of coefficients:
 ## 

@@ -162,7 +162,7 @@
 \contentsline {subsubsection}{\numberline {10.4.1}Questions to consider}{62}{subsubsection.10.4.1}%
 \contentsline {subsubsection}{\numberline {10.4.2}Breakout activity}{62}{subsubsection.10.4.2}%
 \contentsline {subsubsection}{\numberline {10.4.3}How does one analyze a natural experiment?}{62}{subsubsection.10.4.3}%
-\contentsline {subsection}{\numberline {10.5}Can we fix this estimate?}{62}{subsection.10.5}%
+\contentsline {subsection}{\numberline {10.5}Can we fix this estimate?}{63}{subsection.10.5}%
 \contentsline {subsection}{\numberline {10.6}Regression Discontinuity}{67}{subsection.10.6}%
 \contentsline {subsubsection}{\numberline {10.6.1}Why do RDD designs ``work''?}{67}{subsubsection.10.6.1}%
 \contentsline {subsubsection}{\numberline {10.6.2}Just how common are opportunities for RDD}{67}{subsubsection.10.6.2}%

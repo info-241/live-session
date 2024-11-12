@@ -73,7 +73,7 @@ Consider simulated data that is created in the following way:
 
 What would be the consequence of estimating an eventual outcome, using a naive regression?
 
-```{r make iv data, echo=FALSE}
+```{r make iv data, echo=TRUE}
 make_iv_data <- function(instrument_strength=1.0) { 
   set.seed(2)
 

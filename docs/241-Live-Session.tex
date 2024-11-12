@@ -925,7 +925,7 @@ Y =
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 5.108882
+## [1] 4.885482
 \end{verbatim}
 
 \begin{itemize}
@@ -1012,13 +1012,13 @@ To begin with, lets work with a \emph{very} simple sample that has 100 observati
 \end{Shaded}
 
 \begin{verbatim}
-##       id        y0        y1
-##    <int>     <num>     <num>
-## 1:     1 0.0359143 0.2859143
-## 2:     2 0.5604277 0.8104277
-## 3:     3 0.1181611 0.3681611
-## 4:     4 0.6650333 0.9150333
-## 5:     5 0.8332791 1.0832791
+##       id          y0        y1
+##    <int>       <num>     <num>
+## 1:     1 0.006563012 0.2565630
+## 2:     2 0.818627354 1.0686274
+## 3:     3 0.544375357 0.7943754
+## 4:     4 0.514207404 0.7642074
+## 5:     5 0.362957955 0.6129580
 \end{verbatim}
 
 In this world, we've taken a sample of \texttt{100} individuals, and at this point, each of those individuals that we've sampled has both a potential outcome to control \textbf{and also} a potential outcome to treatment. We haven't talked at all about measurement yet; we're just asserting that both of these potential outcomes exist for each person.
@@ -1053,13 +1053,13 @@ Suppose that for each unit, you then toss a coin, placing the subject either int
 \end{Shaded}
 
 \begin{verbatim}
-##       id        y0        y1 experimental_assignment
-##    <int>     <num>     <num>                   <int>
-## 1:     1 0.0359143 0.2859143                       0
-## 2:     2 0.5604277 0.8104277                       0
-## 3:     3 0.1181611 0.3681611                       1
-## 4:     4 0.6650333 0.9150333                       1
-## 5:     5 0.8332791 1.0832791                       0
+##       id          y0        y1 experimental_assignment
+##    <int>       <num>     <num>                   <int>
+## 1:     1 0.006563012 0.2565630                       0
+## 2:     2 0.818627354 1.0686274                       0
+## 3:     3 0.544375357 0.7943754                       0
+## 4:     4 0.514207404 0.7642074                       0
+## 5:     5 0.362957955 0.6129580                       0
 \end{verbatim}
 
 As as comparison, suppose that instead of randomly assigning individuals into treatment and control we allowed individuals to select into treatment and control. And suppose that people with the lowest potential outcomes to control opt to take the treatment. You might think of this as being something like, ``The people who are the most tired are the most likely to drink a cup of coffee before they start class,'' if an example helps you ground this.
@@ -1074,13 +1074,13 @@ Specifically, suppose that any unit that has a potential outcome lower that \tex
 \end{Shaded}
 
 \begin{verbatim}
-##       id        y0        y1 experimental_assignment observational_selection
-##    <int>     <num>     <num>                   <int>                   <num>
-## 1:     1 0.0359143 0.2859143                       0                       1
-## 2:     2 0.5604277 0.8104277                       0                       0
-## 3:     3 0.1181611 0.3681611                       1                       1
-## 4:     4 0.6650333 0.9150333                       1                       0
-## 5:     5 0.8332791 1.0832791                       0                       0
+##       id          y0        y1 experimental_assignment observational_selection
+##    <int>       <num>     <num>                   <int>                   <num>
+## 1:     1 0.006563012 0.2565630                       0                       1
+## 2:     2 0.818627354 1.0686274                       0                       0
+## 3:     3 0.544375357 0.7943754                       0                       0
+## 4:     4 0.514207404 0.7642074                       0                       0
+## 5:     5 0.362957955 0.6129580                       0                       0
 \end{verbatim}
 
 These represent two different ways that you might conduct your research, each time with the same subject pool. Of course, in reality you probably would not be able to run these two studies at the same time, but since this is a simulation, we can stretch the confines of reality just a little bit.
@@ -3650,6 +3650,42 @@ Consider simulated data that is created in the following way:
 \end{itemize}
 
 What would be the consequence of estimating an eventual outcome, using a naive regression?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{make\_iv\_data }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(}\AttributeTok{instrument\_strength=}\FloatTok{1.0}\NormalTok{) \{ }
+  \FunctionTok{set.seed}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+
+\NormalTok{  d }\OtherTok{\textless{}{-}} \FunctionTok{data.table}\NormalTok{(}\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{1000}\NormalTok{)}
+  
+  \DocumentationTok{\#\# These are all independent of one another. }
+\NormalTok{  d[ , }\StringTok{\textquotesingle{}:=\textquotesingle{}}\NormalTok{(}
+    \AttributeTok{ability       =} \FunctionTok{rnorm}\NormalTok{(.N, }\AttributeTok{mean=}\DecValTok{10}\NormalTok{, }\AttributeTok{sd=}\DecValTok{1}\NormalTok{), }
+    \AttributeTok{family\_income =} \FunctionTok{rnorm}\NormalTok{(.N, }\AttributeTok{mean=}\DecValTok{20}\NormalTok{, }\AttributeTok{sd=}\DecValTok{2}\NormalTok{), }
+    \AttributeTok{lottery       =} \FunctionTok{rnorm}\NormalTok{(.N, }\AttributeTok{mean=}\DecValTok{10}\NormalTok{, }\AttributeTok{sd=}\DecValTok{1}\NormalTok{) }\SpecialCharTok{\textgreater{}} \DecValTok{10} \DocumentationTok{\#\# Win if larger than 10}
+\NormalTok{    )]}
+  
+  \DocumentationTok{\#\# Create a schooling indicator. This has the following characteristics: }
+  \DocumentationTok{\#\#   {-} It is related to winning the lottery (which was random) }
+  \DocumentationTok{\#\#   {-} It is related to ability}
+  \DocumentationTok{\#\#   {-} It has some "white noise" just so that the model will estimate. }
+\NormalTok{  d[ , schooling }\SpecialCharTok{:=}\NormalTok{ instrument\_strength }\SpecialCharTok{*}\NormalTok{ lottery }\SpecialCharTok{+}\NormalTok{ ability }\SpecialCharTok{+} \FunctionTok{rnorm}\NormalTok{(.N, }\AttributeTok{mean=}\DecValTok{0}\NormalTok{, }\AttributeTok{sd=}\DecValTok{1}\NormalTok{)]}
+  
+  \DocumentationTok{\#\# Create the outcome, which might be earnings. This has the following characteristics: }
+  \DocumentationTok{\#\#   {-} It is affected by schooling (Yay!) }
+  \DocumentationTok{\#\#   {-} It is affected by ability (Yay!) }
+  \DocumentationTok{\#\#   {-} It is affected by family income :| }
+  
+\NormalTok{  d[ , earnings }\SpecialCharTok{:=} \DecValTok{2} \SpecialCharTok{*}\NormalTok{ schooling }\SpecialCharTok{+}\NormalTok{ ability }\SpecialCharTok{+}\NormalTok{ family\_income }\SpecialCharTok{+}  \FunctionTok{rnorm}\NormalTok{(.N, }\AttributeTok{mean=}\DecValTok{0}\NormalTok{, }\AttributeTok{sd=}\DecValTok{1}\NormalTok{)]}
+  \FunctionTok{return}\NormalTok{(d)}
+\NormalTok{\}}
+
+\NormalTok{d }\OtherTok{\textless{}{-}} \FunctionTok{make\_iv\_data}\NormalTok{(}\AttributeTok{instrument\_strength =} \FloatTok{1.0}\NormalTok{)}
+
+\NormalTok{model\_wrong }\OtherTok{\textless{}{-}}\NormalTok{ d[ , }\FunctionTok{lm}\NormalTok{(earnings }\SpecialCharTok{\textasciitilde{}}\NormalTok{ schooling)]}
+\FunctionTok{coeftest}\NormalTok{(model\_wrong, }\AttributeTok{vcov. =}\NormalTok{ vcovHC)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 ## 
