@@ -159,7 +159,7 @@
 
 \title{Experiments and Causality}
 \author{The 241 Instructional Team\footnote{David Reiley, D. Alex Hughes, David Broockman, Micah Gell-Redman, Scott Guenther, David Wheeler, Josue Martinez, Maya Duru}}
-\date{2024-10-22}
+\date{2024-11-12}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[section]
@@ -925,7 +925,7 @@ Y =
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 5.151218
+## [1] 5.108882
 \end{verbatim}
 
 \begin{itemize}
@@ -1014,11 +1014,11 @@ To begin with, lets work with a \emph{very} simple sample that has 100 observati
 \begin{verbatim}
 ##       id        y0        y1
 ##    <int>     <num>     <num>
-## 1:     1 0.8513640 1.1013640
-## 2:     2 0.9310262 1.1810262
-## 3:     3 0.1989101 0.4489101
-## 4:     4 0.5452364 0.7952364
-## 5:     5 0.5268063 0.7768063
+## 1:     1 0.0359143 0.2859143
+## 2:     2 0.5604277 0.8104277
+## 3:     3 0.1181611 0.3681611
+## 4:     4 0.6650333 0.9150333
+## 5:     5 0.8332791 1.0832791
 \end{verbatim}
 
 In this world, we've taken a sample of \texttt{100} individuals, and at this point, each of those individuals that we've sampled has both a potential outcome to control \textbf{and also} a potential outcome to treatment. We haven't talked at all about measurement yet; we're just asserting that both of these potential outcomes exist for each person.
@@ -1055,11 +1055,11 @@ Suppose that for each unit, you then toss a coin, placing the subject either int
 \begin{verbatim}
 ##       id        y0        y1 experimental_assignment
 ##    <int>     <num>     <num>                   <int>
-## 1:     1 0.8513640 1.1013640                       0
-## 2:     2 0.9310262 1.1810262                       1
-## 3:     3 0.1989101 0.4489101                       1
-## 4:     4 0.5452364 0.7952364                       1
-## 5:     5 0.5268063 0.7768063                       0
+## 1:     1 0.0359143 0.2859143                       0
+## 2:     2 0.5604277 0.8104277                       0
+## 3:     3 0.1181611 0.3681611                       1
+## 4:     4 0.6650333 0.9150333                       1
+## 5:     5 0.8332791 1.0832791                       0
 \end{verbatim}
 
 As as comparison, suppose that instead of randomly assigning individuals into treatment and control we allowed individuals to select into treatment and control. And suppose that people with the lowest potential outcomes to control opt to take the treatment. You might think of this as being something like, ``The people who are the most tired are the most likely to drink a cup of coffee before they start class,'' if an example helps you ground this.
@@ -1076,11 +1076,11 @@ Specifically, suppose that any unit that has a potential outcome lower that \tex
 \begin{verbatim}
 ##       id        y0        y1 experimental_assignment observational_selection
 ##    <int>     <num>     <num>                   <int>                   <num>
-## 1:     1 0.8513640 1.1013640                       0                       0
-## 2:     2 0.9310262 1.1810262                       1                       0
-## 3:     3 0.1989101 0.4489101                       1                       1
-## 4:     4 0.5452364 0.7952364                       1                       0
-## 5:     5 0.5268063 0.7768063                       0                       0
+## 1:     1 0.0359143 0.2859143                       0                       1
+## 2:     2 0.5604277 0.8104277                       0                       0
+## 3:     3 0.1181611 0.3681611                       1                       1
+## 4:     4 0.6650333 0.9150333                       1                       0
+## 5:     5 0.8332791 1.0832791                       0                       0
 \end{verbatim}
 
 These represent two different ways that you might conduct your research, each time with the same subject pool. Of course, in reality you probably would not be able to run these two studies at the same time, but since this is a simulation, we can stretch the confines of reality just a little bit.
@@ -3591,7 +3591,7 @@ At the end of this weeks \emph{extensive} content, students should be able to
 
 \subsection{The Experimental Ideal}\label{the-experimental-ideal}
 
-If you've been through this once, you've been through it one-hundred times this semester, but it might be worth re-stating what we get out of conducting a randomized experiment. Consider this a sage smudging at the beginning of a spooky week.
+If you've been through this once, you've been through it one-hundred times this semester, but it might be worth re-stating what we get out of conducting a randomized experiment.
 
 \begin{quote}
 Why do we conduct experiments? What guarantees exist as a result of a well-run experiment?
@@ -3681,46 +3681,11 @@ The promise of two stage-least squares is that it produces unbiased estimates so
 
 \NormalTok{d[ , schooling\_10 }\SpecialCharTok{:=}\NormalTok{ schooling }\SpecialCharTok{\textgreater{}} \DecValTok{10}\NormalTok{]}
 
-\NormalTok{d[ , }\FunctionTok{mean}\NormalTok{(ability), by }\OtherTok{=}\NormalTok{ .(schooling\_10)]}
-\end{Highlighting}
-\end{Shaded}
+\CommentTok{\# d[ , mean(ability), by = .(schooling\_10)]}
+\CommentTok{\# d[ , mean(ability), by = .(schooling\_hat)]}
+\CommentTok{\# d[ , mean(ability), by = .(lottery)]}
 
-\begin{verbatim}
-##    schooling_10        V1
-##          <lgcl>     <num>
-## 1:        FALSE  9.343827
-## 2:         TRUE 10.435274
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{d[ , }\FunctionTok{mean}\NormalTok{(ability), by }\OtherTok{=}\NormalTok{ .(schooling\_hat)]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##    schooling_hat       V1
-##            <num>    <num>
-## 1:      10.08391 10.06337
-## 2:      11.08736 10.06078
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{d[ , }\FunctionTok{mean}\NormalTok{(ability), by }\OtherTok{=}\NormalTok{ .(lottery)]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##    lottery       V1
-##     <lgcl>    <num>
-## 1:   FALSE 10.06337
-## 2:    TRUE 10.06078
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{second\_stage }\OtherTok{\textless{}{-}}\NormalTok{ d[ , }\FunctionTok{lm}\NormalTok{(Y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ schooling\_hat)]}
+\NormalTok{second\_stage }\OtherTok{\textless{}{-}}\NormalTok{ d[ , }\FunctionTok{lm}\NormalTok{(earnings }\SpecialCharTok{\textasciitilde{}}\NormalTok{ schooling\_hat)]}
 \FunctionTok{coeftest}\NormalTok{(second\_stage, }\AttributeTok{vcov. =}\NormalTok{ vcovHC)}
 \end{Highlighting}
 \end{Shaded}
@@ -3737,62 +3702,130 @@ The promise of two stage-least squares is that it produces unbiased estimates so
 \end{verbatim}
 
 \begin{itemize}
+\tightlist
 \item
   How or why does this work?
 \item
   How does simply making predictions from the first stage regression generate eventual estimates that are unbaised?
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Consider looking at the residuals from the first stage regression
-  \end{itemize}
+\item
+  Consider looking at the residuals from the first stage regression
 \end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{d[ , residuals }\SpecialCharTok{:=} \FunctionTok{resid}\NormalTok{(first\_stage)]}
 
-\NormalTok{ability\_by\_lottery }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(d) }\SpecialCharTok{+} 
-  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ability, }\AttributeTok{fill =} \FunctionTok{as.factor}\NormalTok{(lottery)) }\SpecialCharTok{+} 
-  \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{alpha=}\FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} 
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title=}\StringTok{\textquotesingle{}Ability by lottery\textquotesingle{}}\NormalTok{)}
+\NormalTok{earnings\_by\_lottery }\OtherTok{\textless{}{-}} 
+  \FunctionTok{ggplot}\NormalTok{(d) }\SpecialCharTok{+} 
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ earnings, }\AttributeTok{fill =} \FunctionTok{as.factor}\NormalTok{(lottery)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{)}
+\NormalTok{earnings\_by\_ability }\OtherTok{\textless{}{-}} 
+  \FunctionTok{ggplot}\NormalTok{(d) }\SpecialCharTok{+} 
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ earnings, }\AttributeTok{x =}\NormalTok{ ability, }\AttributeTok{color =} \FunctionTok{as.factor}\NormalTok{(lottery)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{()}
+\NormalTok{earnings\_by\_family\_income }\OtherTok{\textless{}{-}} 
+  \FunctionTok{ggplot}\NormalTok{(d) }\SpecialCharTok{+} 
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ earnings, }\AttributeTok{x =}\NormalTok{ family\_income, }\AttributeTok{color =} \FunctionTok{as.factor}\NormalTok{(lottery)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{()}
 
-\NormalTok{residuals\_lottery }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(d) }\SpecialCharTok{+} 
-  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{residuals, }\AttributeTok{fill=}\FunctionTok{as.factor}\NormalTok{(lottery)) }\SpecialCharTok{+} 
-  \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{alpha=}\FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} 
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{\textquotesingle{}Residuals by lottery\textquotesingle{}}\NormalTok{)}
-
-\NormalTok{residuals\_ability }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(d) }\SpecialCharTok{+} 
-  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{residuals, }\AttributeTok{fill=}\FunctionTok{as.factor}\NormalTok{(ability}\SpecialCharTok{\textgreater{}}\DecValTok{10}\NormalTok{)) }\SpecialCharTok{+} 
-  \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{alpha=}\FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} 
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{\textquotesingle{}Residuals by ability\textquotesingle{}}\NormalTok{)}
-
-\NormalTok{ability\_by\_lottery }\SpecialCharTok{/}\NormalTok{ residuals\_lottery }\SpecialCharTok{/}\NormalTok{ residuals\_ability}
+\NormalTok{earnings\_by\_lottery }\SpecialCharTok{/}\NormalTok{ earnings\_by\_ability }\SpecialCharTok{/}\NormalTok{ earnings\_by\_family\_income}
 \end{Highlighting}
 \end{Shaded}
 
 \pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-23-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{residuals\_lottery }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(d) }\SpecialCharTok{+} 
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ residuals, }\AttributeTok{fill =} \FunctionTok{as.factor}\NormalTok{(lottery)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{\textquotesingle{}Residuals by lottery\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{residuals\_ability }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(d) }\SpecialCharTok{+} 
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ residuals, }\AttributeTok{fill =} \FunctionTok{as.factor}\NormalTok{(ability }\SpecialCharTok{\textgreater{}} \DecValTok{10}\NormalTok{)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{\textquotesingle{}Residuals by ability\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{residuals\_lottery }\SpecialCharTok{/}\NormalTok{ residuals\_ability}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-24-1.pdf}}
 
 Another way to think about this is in terms of how the predicted values are associated different features. Specifically, consider: Are the predicted values associated with having won the lottery? Are the predicted values associated with ability?
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{predicted\_lottery }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(d) }\SpecialCharTok{+} 
-  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\FunctionTok{as.factor}\NormalTok{(lottery), }\AttributeTok{y=}\NormalTok{schooling\_hat) }\SpecialCharTok{+} 
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{as.factor}\NormalTok{(lottery), }\AttributeTok{y =}\NormalTok{ schooling\_hat) }\SpecialCharTok{+} 
   \FunctionTok{geom\_jitter}\NormalTok{() }\SpecialCharTok{+} 
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title=}\StringTok{\textquotesingle{}Predicted Values and Lottery Winning\textquotesingle{}}\NormalTok{) }
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{\textquotesingle{}Predicted Values and Lottery Winning\textquotesingle{}}\NormalTok{) }
 
 \NormalTok{predicted\_ability }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(d) }\SpecialCharTok{+} 
-  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ability, }\AttributeTok{y=}\NormalTok{schooling\_hat, }\AttributeTok{color =} \FunctionTok{as.factor}\NormalTok{(lottery)) }\SpecialCharTok{+} 
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ ability, }\AttributeTok{y =}\NormalTok{ schooling\_hat, }\AttributeTok{color =} \FunctionTok{as.factor}\NormalTok{(lottery)) }\SpecialCharTok{+} 
   \FunctionTok{geom\_jitter}\NormalTok{() }\SpecialCharTok{+} 
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title=}\StringTok{\textquotesingle{}Predicted Values and Ability\textquotesingle{}}\NormalTok{)}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{\textquotesingle{}Predicted Values and Ability\textquotesingle{}}\NormalTok{)}
 
 \NormalTok{predicted\_lottery }\SpecialCharTok{/}\NormalTok{ predicted\_ability}
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-24-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-25-1.pdf}}
+
+Notice that this entire system works because there is \textbf{some} randomness in the instrument. If there were no randomness in the instrument, or if the instrument had only a small effect on the causal feature that we care about, we will have bias creep back into the estimate.
+
+\begin{quote}
+Said another way: This isn't a magic trick that works every time. You \textbf{actually} need randomness, and a strong relationship in order for the the two-stage least squares estimate to work to identify a causal effect.
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d\_weak\_instrument }\OtherTok{\textless{}{-}} \FunctionTok{make\_iv\_data}\NormalTok{(}\AttributeTok{instrument\_strength =}\NormalTok{ .}\DecValTok{1}\NormalTok{)}
+
+\NormalTok{biased\_estimate }\OtherTok{\textless{}{-}}\NormalTok{ d\_weak\_instrument[ , }\FunctionTok{lm}\NormalTok{(earnings }\SpecialCharTok{\textasciitilde{}}\NormalTok{ schooling)]}
+
+\NormalTok{first\_stage }\OtherTok{\textless{}{-}}\NormalTok{ d\_weak\_instrument[ , }\FunctionTok{lm}\NormalTok{(schooling }\SpecialCharTok{\textasciitilde{}}\NormalTok{ lottery)]}
+\NormalTok{d\_weak\_instrument[ , schooling\_hat }\SpecialCharTok{:=} \FunctionTok{predict}\NormalTok{(first\_stage)]}
+
+\NormalTok{second\_stage }\OtherTok{\textless{}{-}}\NormalTok{ d\_weak\_instrument[ , }\FunctionTok{lm}\NormalTok{(earnings }\SpecialCharTok{\textasciitilde{}}\NormalTok{ schooling\_hat)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{stargazer}\SpecialCharTok{::}\FunctionTok{stargazer}\NormalTok{(}
+\NormalTok{  biased\_estimate, second\_stage, }
+  \AttributeTok{type =} \StringTok{"text"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## ===========================================================
+##                                    Dependent variable:     
+##                                ----------------------------
+##                                          earnings          
+##                                      (1)            (2)    
+## -----------------------------------------------------------
+## schooling                          2.645***                
+##                                    (0.053)                 
+##                                                            
+## schooling_hat                                      1.695   
+##                                                   (2.635)  
+##                                                            
+## Constant                          23.587***       33.220   
+##                                    (0.543)       (26.712)  
+##                                                            
+## -----------------------------------------------------------
+## Observations                        1,000          1,000   
+## R2                                  0.713         0.0004   
+## Adjusted R2                         0.713         -0.001   
+## Residual Std. Error (df = 998)      2.304          4.302   
+## F Statistic (df = 1; 998)        2,483.207***      0.414   
+## ===========================================================
+## Note:                           *p<0.1; **p<0.05; ***p<0.01
+\end{verbatim}
 
 \subsection{Regression Discontinuity}\label{regression-discontinuity}
 
@@ -3866,6 +3899,8 @@ With the data created, let's quickly look at what we are working with. Does the 
 
 \pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/first rdd plot-1.pdf}}
 
+We're going to start doing some wacky stuff, subsetting data, and fitting models to subsets of that data. This is behavior that \texttt{ggplot2} takes an opinionated stance against; as such, we're going to work in base plots. Don't worry about the plotting syntax as much as what you're seeing in them.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{d[ , }\FunctionTok{plot}\NormalTok{(}\AttributeTok{x=}\NormalTok{running, }\AttributeTok{y=}\NormalTok{Y, }\AttributeTok{pch =} \DecValTok{19}\NormalTok{, }\AttributeTok{col=}\NormalTok{berkeley\_blue)]}
@@ -3905,6 +3940,7 @@ This has been \emph{very} fortunate data. There is no trend across the running v
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{d }\OtherTok{\textless{}{-}} \FunctionTok{data.table}\NormalTok{(}\AttributeTok{id=}\DecValTok{1}\SpecialCharTok{:}\NormalTok{N)}
+
 \NormalTok{d[ , }\StringTok{\textquotesingle{}:=\textquotesingle{}}\NormalTok{(}
   \AttributeTok{running =} \FunctionTok{runif}\NormalTok{(}\AttributeTok{n=}\NormalTok{.N, }\AttributeTok{min=}\DecValTok{0}\NormalTok{, }\AttributeTok{max=}\DecValTok{10}\NormalTok{), }
   \AttributeTok{cov1    =} \FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n=}\NormalTok{.N)) ][ ,}
@@ -3943,7 +3979,7 @@ This has been \emph{very} fortunate data. There is no trend across the running v
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-25-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-28-1.pdf}}
 
 \begin{verbatim}
 ## NULL
@@ -3981,7 +4017,7 @@ This has been \emph{very} fortunate data. There is no trend across the running v
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-26-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-29-1.pdf}}
 
 \begin{verbatim}
 ## NULL
@@ -4002,7 +4038,7 @@ This has been \emph{very} fortunate data. There is no trend across the running v
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-27-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-30-1.pdf}}
 
 \begin{itemize}
 \tightlist
@@ -4203,7 +4239,7 @@ Can you draw this system out in the way that we did in 203? Use circles to repre
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-30-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{241-Live-Session_files/figure-latex/unnamed-chunk-33-1.pdf}}
 
 Once you've written out these pathways, what could go wrong in this analysis?
 

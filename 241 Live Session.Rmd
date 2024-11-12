@@ -2412,7 +2412,7 @@ At the end of this weeks *extensive* content, students should be able to
 
 ## The Experimental Ideal
 
-If you've been through this once, you've been through it one-hundred times this semester, but it might be worth re-stating what we get out of conducting a randomized experiment. Consider this a sage smudging at the beginning of a spooky week.
+If you've been through this once, you've been through it one-hundred times this semester, but it might be worth re-stating what we get out of conducting a randomized experiment. 
 
 > Why do we conduct experiments? What guarantees exist as a result of a well-run experiment?
 
@@ -2455,20 +2455,36 @@ Consider simulated data that is created in the following way:
 What would be the consequence of estimating an eventual outcome, using a naive regression?
 
 ```{r make iv data, echo=FALSE}
-set.seed(2)
+make_iv_data <- function(instrument_strength=1.0) { 
+  set.seed(2)
 
-d <- data.table(id = 1:1000)
+  d <- data.table(id = 1:1000)
+  
+  ## These are all independent of one another. 
+  d[ , ':='(
+    ability       = rnorm(.N, mean=10, sd=1), 
+    family_income = rnorm(.N, mean=20, sd=2), 
+    lottery       = rnorm(.N, mean=10, sd=1) > 10 ## Win if larger than 10
+    )]
+  
+  ## Create a schooling indicator. This has the following characteristics: 
+  ##   - It is related to winning the lottery (which was random) 
+  ##   - It is related to ability
+  ##   - It has some "white noise" just so that the model will estimate. 
+  d[ , schooling := instrument_strength * lottery + ability + rnorm(.N, mean=0, sd=1)]
+  
+  ## Create the outcome, which might be earnings. This has the following characteristics: 
+  ##   - It is affected by schooling (Yay!) 
+  ##   - It is affected by ability (Yay!) 
+  ##   - It is affected by family income :| 
+  
+  d[ , earnings := 2 * schooling + ability + family_income +  rnorm(.N, mean=0, sd=1)]
+  return(d)
+}
 
-d[ , ':='(
-  ability       = rnorm(.N, mean=10, sd=1), 
-  family_income = rnorm(.N, mean=20, sd=2), 
-  lottery       = rnorm(.N, mean=10, sd=1) > 10
-  )]
+d <- make_iv_data(instrument_strength = 1.0)
 
-d[ , schooling := 1.0 * lottery + ability + rnorm(.N, mean=0, sd=1)]
-d[ , Y         := ability + family_income + 2 * schooling + rnorm(.N, mean=0, sd=1)]
-
-model_wrong <- d[ , lm(Y ~ schooling)]
+model_wrong <- d[ , lm(earnings ~ schooling)]
 coeftest(model_wrong, vcov. = vcovHC)
 ```
 
@@ -2485,56 +2501,90 @@ d[ , schooling_hat:= predict(first_stage)]
 
 d[ , schooling_10 := schooling > 10]
 
-d[ , mean(ability), by = .(schooling_10)]
-d[ , mean(ability), by = .(schooling_hat)]
-d[ , mean(ability), by = .(lottery)]
+# d[ , mean(ability), by = .(schooling_10)]
+# d[ , mean(ability), by = .(schooling_hat)]
+# d[ , mean(ability), by = .(lottery)]
 
-second_stage <- d[ , lm(Y ~ schooling_hat)]
+second_stage <- d[ , lm(earnings ~ schooling_hat)]
 coeftest(second_stage, vcov. = vcovHC)
 ```
 
 -   How or why does this work?
-
 -   How does simply making predictions from the first stage regression generate eventual estimates that are unbaised?
-
-    -   Consider looking at the residuals from the first stage regression
+-   Consider looking at the residuals from the first stage regression
 
 ```{r}
 d[ , residuals := resid(first_stage)]
 
-ability_by_lottery <- ggplot(d) + 
-  aes(x=ability, fill = as.factor(lottery)) + 
-  geom_density(alpha=0.5) + 
-  labs(title='Ability by lottery')
+earnings_by_lottery <- 
+  ggplot(d) + 
+  aes(x = earnings, fill = as.factor(lottery)) + 
+  geom_density(alpha = 0.5)
+earnings_by_ability <- 
+  ggplot(d) + 
+  aes(y = earnings, x = ability, color = as.factor(lottery)) + 
+  geom_point()
+earnings_by_family_income <- 
+  ggplot(d) + 
+  aes(y = earnings, x = family_income, color = as.factor(lottery)) + 
+  geom_point()
 
+earnings_by_lottery / earnings_by_ability / earnings_by_family_income
+```
+
+```{r}
 residuals_lottery <- ggplot(d) + 
-  aes(x=residuals, fill=as.factor(lottery)) + 
-  geom_density(alpha=0.5) + 
+  aes(x = residuals, fill = as.factor(lottery)) + 
+  geom_density(alpha = 0.5) + 
   labs(title = 'Residuals by lottery')
 
 residuals_ability <- ggplot(d) + 
-  aes(x=residuals, fill=as.factor(ability>10)) + 
-  geom_density(alpha=0.5) + 
+  aes(x = residuals, fill = as.factor(ability > 10)) + 
+  geom_density(alpha = 0.5) + 
   labs(title = 'Residuals by ability')
 
-ability_by_lottery / residuals_lottery / residuals_ability
+residuals_lottery / residuals_ability
 ```
 
 Another way to think about this is in terms of how the predicted values are associated different features. Specifically, consider: Are the predicted values associated with having won the lottery? Are the predicted values associated with ability?
 
 ```{r}
 predicted_lottery <- ggplot(d) + 
-  aes(x=as.factor(lottery), y=schooling_hat) + 
+  aes(x = as.factor(lottery), y = schooling_hat) + 
   geom_jitter() + 
-  labs(title='Predicted Values and Lottery Winning') 
+  labs(title = 'Predicted Values and Lottery Winning') 
 
 predicted_ability <- ggplot(d) + 
-  aes(x=ability, y=schooling_hat, color = as.factor(lottery)) + 
+  aes(x = ability, y = schooling_hat, color = as.factor(lottery)) + 
   geom_jitter() + 
-  labs(title='Predicted Values and Ability')
+  labs(title = 'Predicted Values and Ability')
 
 predicted_lottery / predicted_ability
 ```
+
+Notice that this entire system works because there is **some** randomness in the instrument. If there were no randomness in the instrument, or if the instrument had only a small effect on the causal feature that we care about, we will have bias creep back into the estimate. 
+
+> Said another way: This isn't a magic trick that works every time. You **actually** need randomness, and a strong relationship in order for the the two-stage least squares estimate to work to identify a causal effect. 
+
+```{r}
+d_weak_instrument <- make_iv_data(instrument_strength = .1)
+
+biased_estimate <- d_weak_instrument[ , lm(earnings ~ schooling)]
+
+first_stage <- d_weak_instrument[ , lm(schooling ~ lottery)]
+d_weak_instrument[ , schooling_hat := predict(first_stage)]
+
+second_stage <- d_weak_instrument[ , lm(earnings ~ schooling_hat)]
+```
+
+```{r}
+stargazer::stargazer(
+  biased_estimate, second_stage, 
+  type = "text"
+)
+```
+
+
 
 ## Regression Discontinuity
 
@@ -2584,12 +2634,13 @@ With the data created, let's quickly look at what we are working with. Does the 
 -   If not, why not and how would you propose to change the plot?
 
 ```{r first rdd plot}
-
 ggplot(d) + 
   aes(x=running, y=Y) + 
   geom_point() + 
   stat_smooth(method = 'lm', se=FALSE)
 ```
+
+We're going to start doing some wacky stuff, subsetting data, and fitting models to subsets of that data. This is behavior that `ggplot2` takes an opinionated stance against; as such, we're going to work in base plots. Don't worry about the plotting syntax as much as what you're seeing in them. 
 
 ```{r second rdd plot}
 d[ , plot(x=running, y=Y, pch = 19, col=berkeley_blue)]
@@ -2604,6 +2655,7 @@ This has been *very* fortunate data. There is no trend across the running variab
 ```{r slightly more realistic data}
 
 d <- data.table(id=1:N)
+
 d[ , ':='(
   running = runif(n=.N, min=0, max=10), 
   cov1    = rnorm(n=.N)) ][ ,
@@ -2627,8 +2679,6 @@ d[ , plot(x=running, y=Y, col=berkeley_blue, pch=19)]
   d[running < 5.2 & running > 4.8 , plot(x=running, y=Y, col=berkeley_blue, pch=19)]
     d[running < 5 , lines(lowess(running, Y), col=california_gold, lwd=10)]
     d[running > 5 , lines(lowess(running, Y), col=california_gold, lwd=10)]  
-
-
 ```
 
 ### What about even more challenging data?

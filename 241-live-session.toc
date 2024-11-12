@@ -163,27 +163,27 @@
 \contentsline {subsubsection}{\numberline {10.4.2}Breakout activity}{62}{subsubsection.10.4.2}%
 \contentsline {subsubsection}{\numberline {10.4.3}How does one analyze a natural experiment?}{62}{subsubsection.10.4.3}%
 \contentsline {subsection}{\numberline {10.5}Can we fix this estimate?}{62}{subsection.10.5}%
-\contentsline {subsection}{\numberline {10.6}Regression Discontinuity}{65}{subsection.10.6}%
-\contentsline {subsubsection}{\numberline {10.6.1}Why do RDD designs ``work''?}{65}{subsubsection.10.6.1}%
-\contentsline {subsubsection}{\numberline {10.6.2}Just how common are opportunities for RDD}{65}{subsubsection.10.6.2}%
-\contentsline {subsubsection}{\numberline {10.6.3}Working with Regression Discontinuity Designs}{66}{subsubsection.10.6.3}%
-\contentsline {subsubsection}{\numberline {10.6.4}More realistic data}{68}{subsubsection.10.6.4}%
-\contentsline {subsubsection}{\numberline {10.6.5}What about even more challenging data?}{70}{subsubsection.10.6.5}%
-\contentsline {section}{\numberline {11}Problems and Diagnostics}{71}{section.11}%
-\contentsline {subsection}{\numberline {11.1}Learning Objectives}{71}{subsection.11.1}%
-\contentsline {subsection}{\numberline {11.2}Goals of an Expermient}{71}{subsection.11.2}%
-\contentsline {subsection}{\numberline {11.3}Problems with Randomization}{72}{subsection.11.3}%
-\contentsline {subsection}{\numberline {11.4}Placebo Test}{72}{subsection.11.4}%
-\contentsline {subsection}{\numberline {11.5}Manipulation Check}{72}{subsection.11.5}%
-\contentsline {subsection}{\numberline {11.6}Advocating for Experimentation}{73}{subsection.11.6}%
-\contentsline {subsubsection}{\numberline {11.6.1}Reasons for and against Experiments}{73}{subsubsection.11.6.1}%
-\contentsline {section}{\numberline {12}Attrition, Mediation, and Generalizability}{73}{section.12}%
-\contentsline {subsection}{\numberline {12.1}Learning Objectives}{73}{subsection.12.1}%
-\contentsline {subsection}{\numberline {12.2}Why doesn't mediation analysis work?}{73}{subsection.12.2}%
-\contentsline {subsection}{\numberline {12.3}Endless Chain of Why?}{75}{subsection.12.3}%
-\contentsline {subsection}{\numberline {12.4}Design an experiment to evaluate these possible causes}{75}{subsection.12.4}%
-\contentsline {subsection}{\numberline {12.5}Generalizability}{75}{subsection.12.5}%
-\contentsline {section}{\numberline {13}Applications of Experiments}{76}{section.13}%
-\contentsline {subsection}{\numberline {13.1}Learning Objectives}{76}{subsection.13.1}%
-\contentsline {section}{\numberline {14}Review of the Course}{76}{section.14}%
-\contentsline {subsection}{\numberline {14.1}Learning Objectives}{76}{subsection.14.1}%
+\contentsline {subsection}{\numberline {10.6}Regression Discontinuity}{67}{subsection.10.6}%
+\contentsline {subsubsection}{\numberline {10.6.1}Why do RDD designs ``work''?}{67}{subsubsection.10.6.1}%
+\contentsline {subsubsection}{\numberline {10.6.2}Just how common are opportunities for RDD}{67}{subsubsection.10.6.2}%
+\contentsline {subsubsection}{\numberline {10.6.3}Working with Regression Discontinuity Designs}{67}{subsubsection.10.6.3}%
+\contentsline {subsubsection}{\numberline {10.6.4}More realistic data}{69}{subsubsection.10.6.4}%
+\contentsline {subsubsection}{\numberline {10.6.5}What about even more challenging data?}{71}{subsubsection.10.6.5}%
+\contentsline {section}{\numberline {11}Problems and Diagnostics}{72}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Learning Objectives}{72}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Goals of an Expermient}{72}{subsection.11.2}%
+\contentsline {subsection}{\numberline {11.3}Problems with Randomization}{73}{subsection.11.3}%
+\contentsline {subsection}{\numberline {11.4}Placebo Test}{73}{subsection.11.4}%
+\contentsline {subsection}{\numberline {11.5}Manipulation Check}{73}{subsection.11.5}%
+\contentsline {subsection}{\numberline {11.6}Advocating for Experimentation}{74}{subsection.11.6}%
+\contentsline {subsubsection}{\numberline {11.6.1}Reasons for and against Experiments}{74}{subsubsection.11.6.1}%
+\contentsline {section}{\numberline {12}Attrition, Mediation, and Generalizability}{74}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Learning Objectives}{74}{subsection.12.1}%
+\contentsline {subsection}{\numberline {12.2}Why doesn't mediation analysis work?}{74}{subsection.12.2}%
+\contentsline {subsection}{\numberline {12.3}Endless Chain of Why?}{76}{subsection.12.3}%
+\contentsline {subsection}{\numberline {12.4}Design an experiment to evaluate these possible causes}{76}{subsection.12.4}%
+\contentsline {subsection}{\numberline {12.5}Generalizability}{76}{subsection.12.5}%
+\contentsline {section}{\numberline {13}Applications of Experiments}{77}{section.13}%
+\contentsline {subsection}{\numberline {13.1}Learning Objectives}{77}{subsection.13.1}%
+\contentsline {section}{\numberline {14}Review of the Course}{77}{section.14}%
+\contentsline {subsection}{\numberline {14.1}Learning Objectives}{77}{subsection.14.1}%
