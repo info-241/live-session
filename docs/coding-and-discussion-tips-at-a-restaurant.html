@@ -5,25 +5,25 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.12 Coding and Discussion: Tips at a Restaurant | Experiments and Causality</title>
-  <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Information Management course called Experiments and Causality." />
+  <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.12 Coding and Discussion: Tips at a Restaurant | Experiments and Causality" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/images/coffee.jpeg" />
-  <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
+  <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Information Management course called Experiments and Causality." />
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="7.12 Coding and Discussion: Tips at a Restaurant | Experiments and Causality" />
   
-  <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
+  <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Information Management course called Experiments and Causality." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
 
-<meta name="author" content="The 241 Instructional Team" />
+<meta name="author" content="Alex Hughes" />
 
 
-<meta name="date" content="2024-11-12" />
+<meta name="date" content="2025-08-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,8 +55,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -66,7 +67,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -137,7 +138,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Live Session Introduction</a>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Live Session Introduction</a></li>
+<li class="chapter" data-level="" data-path="course-introduction.html"><a href="course-introduction.html"><i class="fa fa-check"></i>Course Introduction</a>
 <ul>
 <li class="chapter" data-level="" data-path="blooms-taxonomy.html"><a href="blooms-taxonomy.html"><i class="fa fa-check"></i>Bloom’s Taxonomy</a></li>
 </ul></li>
@@ -434,35 +436,35 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="coding-and-discussion-tips-at-a-restaurant" class="section level2 hasAnchor" number="7.12">
 <h2><span class="header-section-number">7.12</span> Coding and Discussion: Tips at a Restaurant<a href="coding-and-discussion-tips-at-a-restaurant.html#coding-and-discussion-tips-at-a-restaurant" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-1" tabindex="-1"></a><span class="do">## Green and Gerber: Question 9.6</span></span>
-<span id="cb70-2"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-2" tabindex="-1"></a><span class="do">## a, b, and c. </span></span>
-<span id="cb70-3"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-3" tabindex="-1"></a></span>
-<span id="cb70-4"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-4" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&#39;http://hdl.handle.net/10079/cd6be01a-a827-4312-a2fa-74329ce7f96d&#39;</span>)</span>
-<span id="cb70-5"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-5" tabindex="-1"></a></span>
-<span id="cb70-6"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-6" tabindex="-1"></a><span class="do">## a. (Probably skip this one)</span></span>
-<span id="cb70-7"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-7" tabindex="-1"></a><span class="do">##    Suppose that you ignored the gender of the server and simply analyzed whether</span></span>
-<span id="cb70-8"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-8" tabindex="-1"></a><span class="do">##    the happyface treatment has and effect (and/or) a heterogeneous effects. Use randomization inference </span></span>
-<span id="cb70-9"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-9" tabindex="-1"></a><span class="do">##    to test whether the Variance of \tau = 0 using randomization inference by </span></span>
-<span id="cb70-10"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-10" tabindex="-1"></a><span class="do">##    comparing the variance of potential outcomes in treatment and control. </span></span>
-<span id="cb70-11"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-11" tabindex="-1"></a></span>
-<span id="cb70-12"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-12" tabindex="-1"></a><span class="do">## b. Write down a regression model that depicts the effect of the gender of </span></span>
-<span id="cb70-13"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-13" tabindex="-1"></a><span class="do">##    the waitstaff, whether they put a happyface on the bill, and the interaction </span></span>
-<span id="cb70-14"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-14" tabindex="-1"></a><span class="do">##    of these factors. </span></span>
-<span id="cb70-15"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-15" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb70-16"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-16" tabindex="-1"></a></span>
-<span id="cb70-17"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-17" tabindex="-1"></a><span class="do">## c. Estimate the regression model that you wrote down in (b) and test the </span></span>
-<span id="cb70-18"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-18" tabindex="-1"></a><span class="do">##    interaction between waitstaff and the happyface treatment. </span></span>
-<span id="cb70-19"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-19" tabindex="-1"></a><span class="do">##    Is the interaction significant. </span></span>
-<span id="cb70-20"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-20" tabindex="-1"></a></span>
-<span id="cb70-21"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-21" tabindex="-1"></a><span class="do">## d. Waiting tables in the time of covid: Suppose that you&#39;re on the waitstaff </span></span>
-<span id="cb70-22"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-22" tabindex="-1"></a><span class="do">##    at this restaurant, and while you&#39;re waiting tables you&#39;re FULLY garbed </span></span>
-<span id="cb70-23"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-23" tabindex="-1"></a><span class="do">##    up: facemask, face-shield, full operating gown, and so on. </span></span>
-<span id="cb70-24"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-24" tabindex="-1"></a><span class="do">##    What this means is that you have the choice to reveal a gender identity</span></span>
-<span id="cb70-25"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-25" tabindex="-1"></a><span class="do">##    that is either &quot;Male&quot; or &quot;Female&quot; to the patrons. </span></span>
-<span id="cb70-26"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-26" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb70-27"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-27" tabindex="-1"></a><span class="do">##    - Is there one gender identity that receives higher tips in this restaurant? </span></span>
-<span id="cb70-28"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-28" tabindex="-1"></a><span class="do">##    - Is there a gender that has a higher treatment effect? What is the </span></span>
-<span id="cb70-29"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb70-29" tabindex="-1"></a><span class="do">##      test that you would run to assess this? </span></span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-1" tabindex="-1"></a><span class="do">## Green and Gerber: Question 9.6</span></span>
+<span id="cb69-2"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-2" tabindex="-1"></a><span class="do">## a, b, and c. </span></span>
+<span id="cb69-3"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-3" tabindex="-1"></a></span>
+<span id="cb69-4"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-4" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&#39;http://hdl.handle.net/10079/cd6be01a-a827-4312-a2fa-74329ce7f96d&#39;</span>)</span>
+<span id="cb69-5"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-5" tabindex="-1"></a></span>
+<span id="cb69-6"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-6" tabindex="-1"></a><span class="do">## a. (Probably skip this one)</span></span>
+<span id="cb69-7"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-7" tabindex="-1"></a><span class="do">##    Suppose that you ignored the gender of the server and simply analyzed whether</span></span>
+<span id="cb69-8"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-8" tabindex="-1"></a><span class="do">##    the happyface treatment has and effect (and/or) a heterogeneous effects. Use randomization inference </span></span>
+<span id="cb69-9"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-9" tabindex="-1"></a><span class="do">##    to test whether the Variance of \tau = 0 using randomization inference by </span></span>
+<span id="cb69-10"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-10" tabindex="-1"></a><span class="do">##    comparing the variance of potential outcomes in treatment and control. </span></span>
+<span id="cb69-11"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-11" tabindex="-1"></a></span>
+<span id="cb69-12"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-12" tabindex="-1"></a><span class="do">## b. Write down a regression model that depicts the effect of the gender of </span></span>
+<span id="cb69-13"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-13" tabindex="-1"></a><span class="do">##    the waitstaff, whether they put a happyface on the bill, and the interaction </span></span>
+<span id="cb69-14"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-14" tabindex="-1"></a><span class="do">##    of these factors. </span></span>
+<span id="cb69-15"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-15" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb69-16"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-16" tabindex="-1"></a></span>
+<span id="cb69-17"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-17" tabindex="-1"></a><span class="do">## c. Estimate the regression model that you wrote down in (b) and test the </span></span>
+<span id="cb69-18"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-18" tabindex="-1"></a><span class="do">##    interaction between waitstaff and the happyface treatment. </span></span>
+<span id="cb69-19"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-19" tabindex="-1"></a><span class="do">##    Is the interaction significant. </span></span>
+<span id="cb69-20"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-20" tabindex="-1"></a></span>
+<span id="cb69-21"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-21" tabindex="-1"></a><span class="do">## d. Waiting tables in the time of covid: Suppose that you&#39;re on the waitstaff </span></span>
+<span id="cb69-22"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-22" tabindex="-1"></a><span class="do">##    at this restaurant, and while you&#39;re waiting tables you&#39;re FULLY garbed </span></span>
+<span id="cb69-23"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-23" tabindex="-1"></a><span class="do">##    up: facemask, face-shield, full operating gown, and so on. </span></span>
+<span id="cb69-24"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-24" tabindex="-1"></a><span class="do">##    What this means is that you have the choice to reveal a gender identity</span></span>
+<span id="cb69-25"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-25" tabindex="-1"></a><span class="do">##    that is either &quot;Male&quot; or &quot;Female&quot; to the patrons. </span></span>
+<span id="cb69-26"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-26" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb69-27"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-27" tabindex="-1"></a><span class="do">##    - Is there one gender identity that receives higher tips in this restaurant? </span></span>
+<span id="cb69-28"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-28" tabindex="-1"></a><span class="do">##    - Is there a gender that has a higher treatment effect? What is the </span></span>
+<span id="cb69-29"><a href="coding-and-discussion-tips-at-a-restaurant.html#cb69-29" tabindex="-1"></a><span class="do">##      test that you would run to assess this? </span></span></code></pre></div>
 </div>
             </section>
 
@@ -484,43 +486,43 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "serif",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "section",
-"scroll_highlight": true
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "serif",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true
+  }
 });
 });
 </script>

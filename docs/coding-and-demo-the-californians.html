@@ -5,25 +5,25 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.3 Coding and Demo: The Californians | Experiments and Causality</title>
-  <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Information Management course called Experiments and Causality." />
+  <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.3 Coding and Demo: The Californians | Experiments and Causality" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/images/coffee.jpeg" />
-  <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
+  <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Information Management course called Experiments and Causality." />
   <meta name="github-repo" content="UC-Berkeley-I-School/mids-w241-live-session" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="7.3 Coding and Demo: The Californians | Experiments and Causality" />
   
-  <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Experiments and Causality." />
+  <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Information Management course called Experiments and Causality." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
 
-<meta name="author" content="The 241 Instructional Team" />
+<meta name="author" content="Alex Hughes" />
 
 
-<meta name="date" content="2024-11-12" />
+<meta name="date" content="2025-08-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,8 +55,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -66,7 +67,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -137,7 +138,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Live Session Introduction</a>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Live Session Introduction</a></li>
+<li class="chapter" data-level="" data-path="course-introduction.html"><a href="course-introduction.html"><i class="fa fa-check"></i>Course Introduction</a>
 <ul>
 <li class="chapter" data-level="" data-path="blooms-taxonomy.html"><a href="blooms-taxonomy.html"><i class="fa fa-check"></i>Bloom’s Taxonomy</a></li>
 </ul></li>
@@ -434,36 +436,36 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="coding-and-demo-the-californians" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> Coding and Demo: The Californians<a href="coding-and-demo-the-californians.html#coding-and-demo-the-californians" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="coding-and-demo-the-californians.html#cb62-1" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
-<span id="cb62-2"><a href="coding-and-demo-the-californians.html#cb62-2" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span>
-<span id="cb62-3"><a href="coding-and-demo-the-californians.html#cb62-3" tabindex="-1"></a></span>
-<span id="cb62-4"><a href="coding-and-demo-the-californians.html#cb62-4" tabindex="-1"></a>make_data <span class="ot">&lt;-</span> <span class="cf">function</span>(sim_size) { </span>
-<span id="cb62-5"><a href="coding-and-demo-the-californians.html#cb62-5" tabindex="-1"></a>    d <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
-<span id="cb62-6"><a href="coding-and-demo-the-californians.html#cb62-6" tabindex="-1"></a>      <span class="at">id              =</span> <span class="dv">1</span><span class="sc">:</span>sim_size,</span>
-<span id="cb62-7"><a href="coding-and-demo-the-californians.html#cb62-7" tabindex="-1"></a>      <span class="at">cal_stanford    =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&#39;cal&#39;</span>, <span class="st">&#39;stanford&#39;</span>), <span class="at">each =</span> sim_size<span class="sc">/</span><span class="dv">2</span>),</span>
-<span id="cb62-8"><a href="coding-and-demo-the-californians.html#cb62-8" tabindex="-1"></a>      <span class="at">affluence       =</span> <span class="fu">c</span>(</span>
-<span id="cb62-9"><a href="coding-and-demo-the-californians.html#cb62-9" tabindex="-1"></a>        <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>, <span class="at">size =</span> sim_size<span class="sc">/</span><span class="dv">2</span>, <span class="at">replace =</span> T, <span class="at">prob =</span> <span class="fu">c</span>(.<span class="dv">1</span>, .<span class="dv">2</span>, .<span class="dv">2</span>, .<span class="dv">2</span>, .<span class="dv">2</span>, .<span class="dv">05</span>, .<span class="dv">05</span>)),</span>
-<span id="cb62-10"><a href="coding-and-demo-the-californians.html#cb62-10" tabindex="-1"></a>        <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>, <span class="at">size =</span> sim_size<span class="sc">/</span><span class="dv">2</span>, <span class="at">replace =</span> T, <span class="at">prob =</span> <span class="fu">c</span>(.<span class="dv">05</span>, .<span class="dv">05</span>, .<span class="dv">05</span>, .<span class="dv">15</span>, .<span class="dv">2</span>, .<span class="dv">2</span>, .<span class="dv">3</span>))),       </span>
-<span id="cb62-11"><a href="coding-and-demo-the-californians.html#cb62-11" tabindex="-1"></a>      <span class="at">founder_motivation =</span> <span class="fu">rnorm</span>(sim_size, <span class="at">mean =</span> <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">7</span>), </span>
-<span id="cb62-12"><a href="coding-and-demo-the-californians.html#cb62-12" tabindex="-1"></a>      <span class="at">treatment_group =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), sim_size, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb62-13"><a href="coding-and-demo-the-californians.html#cb62-13" tabindex="-1"></a>      )</span>
-<span id="cb62-14"><a href="coding-and-demo-the-californians.html#cb62-14" tabindex="-1"></a></span>
-<span id="cb62-15"><a href="coding-and-demo-the-californians.html#cb62-15" tabindex="-1"></a>    d[ , capital_access <span class="sc">:=</span> <span class="fu">rnorm</span>(sim_size, <span class="at">mean =</span> d<span class="sc">$</span>affluence, <span class="at">sd =</span> <span class="dv">2</span>)]</span>
-<span id="cb62-16"><a href="coding-and-demo-the-californians.html#cb62-16" tabindex="-1"></a>    d[ , tau            <span class="sc">:=</span> <span class="fu">rnorm</span>(sim_size, <span class="at">mean =</span> <span class="dv">5</span> <span class="sc">+</span> <span class="dv">5</span><span class="sc">*</span><span class="fu">I</span>(cal_stanford <span class="sc">==</span> <span class="st">&#39;cal&#39;</span>) <span class="sc">+</span> affluence)]</span>
-<span id="cb62-17"><a href="coding-and-demo-the-californians.html#cb62-17" tabindex="-1"></a>    d[ , founding_prob  <span class="sc">:=</span>  founder_motivation <span class="sc">+</span> tau<span class="sc">*</span>treatment_group]</span>
-<span id="cb62-18"><a href="coding-and-demo-the-californians.html#cb62-18" tabindex="-1"></a>    </span>
-<span id="cb62-19"><a href="coding-and-demo-the-californians.html#cb62-19" tabindex="-1"></a>    <span class="fu">return</span>(d)</span>
-<span id="cb62-20"><a href="coding-and-demo-the-californians.html#cb62-20" tabindex="-1"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="coding-and-demo-the-californians.html#cb63-1" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">make_data</span>(<span class="at">sim_size =</span> <span class="dv">1000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="coding-and-demo-the-californians.html#cb61-1" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb61-2"><a href="coding-and-demo-the-californians.html#cb61-2" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span>
+<span id="cb61-3"><a href="coding-and-demo-the-californians.html#cb61-3" tabindex="-1"></a></span>
+<span id="cb61-4"><a href="coding-and-demo-the-californians.html#cb61-4" tabindex="-1"></a>make_data <span class="ot">&lt;-</span> <span class="cf">function</span>(sim_size) { </span>
+<span id="cb61-5"><a href="coding-and-demo-the-californians.html#cb61-5" tabindex="-1"></a>    d <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
+<span id="cb61-6"><a href="coding-and-demo-the-californians.html#cb61-6" tabindex="-1"></a>      <span class="at">id              =</span> <span class="dv">1</span><span class="sc">:</span>sim_size,</span>
+<span id="cb61-7"><a href="coding-and-demo-the-californians.html#cb61-7" tabindex="-1"></a>      <span class="at">cal_stanford    =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&#39;cal&#39;</span>, <span class="st">&#39;stanford&#39;</span>), <span class="at">each =</span> sim_size<span class="sc">/</span><span class="dv">2</span>),</span>
+<span id="cb61-8"><a href="coding-and-demo-the-californians.html#cb61-8" tabindex="-1"></a>      <span class="at">affluence       =</span> <span class="fu">c</span>(</span>
+<span id="cb61-9"><a href="coding-and-demo-the-californians.html#cb61-9" tabindex="-1"></a>        <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>, <span class="at">size =</span> sim_size<span class="sc">/</span><span class="dv">2</span>, <span class="at">replace =</span> T, <span class="at">prob =</span> <span class="fu">c</span>(.<span class="dv">1</span>, .<span class="dv">2</span>, .<span class="dv">2</span>, .<span class="dv">2</span>, .<span class="dv">2</span>, .<span class="dv">05</span>, .<span class="dv">05</span>)),</span>
+<span id="cb61-10"><a href="coding-and-demo-the-californians.html#cb61-10" tabindex="-1"></a>        <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>, <span class="at">size =</span> sim_size<span class="sc">/</span><span class="dv">2</span>, <span class="at">replace =</span> T, <span class="at">prob =</span> <span class="fu">c</span>(.<span class="dv">05</span>, .<span class="dv">05</span>, .<span class="dv">05</span>, .<span class="dv">15</span>, .<span class="dv">2</span>, .<span class="dv">2</span>, .<span class="dv">3</span>))),       </span>
+<span id="cb61-11"><a href="coding-and-demo-the-californians.html#cb61-11" tabindex="-1"></a>      <span class="at">founder_motivation =</span> <span class="fu">rnorm</span>(sim_size, <span class="at">mean =</span> <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">7</span>), </span>
+<span id="cb61-12"><a href="coding-and-demo-the-californians.html#cb61-12" tabindex="-1"></a>      <span class="at">treatment_group =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), sim_size, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb61-13"><a href="coding-and-demo-the-californians.html#cb61-13" tabindex="-1"></a>      )</span>
+<span id="cb61-14"><a href="coding-and-demo-the-californians.html#cb61-14" tabindex="-1"></a></span>
+<span id="cb61-15"><a href="coding-and-demo-the-californians.html#cb61-15" tabindex="-1"></a>    d[ , capital_access <span class="sc">:=</span> <span class="fu">rnorm</span>(sim_size, <span class="at">mean =</span> d<span class="sc">$</span>affluence, <span class="at">sd =</span> <span class="dv">2</span>)]</span>
+<span id="cb61-16"><a href="coding-and-demo-the-californians.html#cb61-16" tabindex="-1"></a>    d[ , tau            <span class="sc">:=</span> <span class="fu">rnorm</span>(sim_size, <span class="at">mean =</span> <span class="dv">5</span> <span class="sc">+</span> <span class="dv">5</span><span class="sc">*</span><span class="fu">I</span>(cal_stanford <span class="sc">==</span> <span class="st">&#39;cal&#39;</span>) <span class="sc">+</span> affluence)]</span>
+<span id="cb61-17"><a href="coding-and-demo-the-californians.html#cb61-17" tabindex="-1"></a>    d[ , founding_prob  <span class="sc">:=</span>  founder_motivation <span class="sc">+</span> tau<span class="sc">*</span>treatment_group]</span>
+<span id="cb61-18"><a href="coding-and-demo-the-californians.html#cb61-18" tabindex="-1"></a>    </span>
+<span id="cb61-19"><a href="coding-and-demo-the-californians.html#cb61-19" tabindex="-1"></a>    <span class="fu">return</span>(d)</span>
+<span id="cb61-20"><a href="coding-and-demo-the-californians.html#cb61-20" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="coding-and-demo-the-californians.html#cb62-1" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">make_data</span>(<span class="at">sim_size =</span> <span class="dv">1000</span>)</span></code></pre></div>
 <div id="overall-treatment-effect" class="section level3 hasAnchor" number="7.3.1">
 <h3><span class="header-section-number">7.3.1</span> Overall Treatment Effect<a href="coding-and-demo-the-californians.html#overall-treatment-effect" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>What is the (unobserved) true average treatment effect? Estimate a model that includes only the treatment effect and interpret all the coefficients.</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="coding-and-demo-the-californians.html#cb64-1" tabindex="-1"></a>model_0 <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(founding_prob <span class="sc">~</span> treatment_group)]</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="coding-and-demo-the-californians.html#cb63-1" tabindex="-1"></a>model_0 <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(founding_prob <span class="sc">~</span> treatment_group)]</span></code></pre></div>
 </div>
 <div id="founder-motivation" class="section level3 hasAnchor" number="7.3.2">
 <h3><span class="header-section-number">7.3.2</span> Founder Motivation<a href="coding-and-demo-the-californians.html#founder-motivation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Estimate a model that includes the (nearly impossible to measure) variable about <code>motivation</code>. What happens to your estimates? Why does this happen?</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="coding-and-demo-the-californians.html#cb65-1" tabindex="-1"></a>model_1 <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(founding_prob <span class="sc">~</span> treatment_group <span class="sc">+</span> founder_motivation)]</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="coding-and-demo-the-californians.html#cb64-1" tabindex="-1"></a>model_1 <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(founding_prob <span class="sc">~</span> treatment_group <span class="sc">+</span> founder_motivation)]</span></code></pre></div>
 <p>Print these two modeles next to one another and describe what is happening and why.</p>
 <ul>
 <li>Are the intercept terms the same? Why or why not?</li>
@@ -477,13 +479,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 a model that only includes the treatment effects.</p>
 <p>Print these two models side by side, and tell me what is going
 on.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="coding-and-demo-the-californians.html#cb66-1" tabindex="-1"></a>model_cal      <span class="ot">&lt;-</span> d[cal_stanford <span class="sc">==</span> <span class="st">&#39;cal&#39;</span>, <span class="fu">lm</span>(founding_prob <span class="sc">~</span> treatment_group)]</span>
-<span id="cb66-2"><a href="coding-and-demo-the-californians.html#cb66-2" tabindex="-1"></a>model_stanford <span class="ot">&lt;-</span> d[cal_stanford <span class="sc">==</span> <span class="st">&#39;stanford&#39;</span>, <span class="fu">lm</span>(founding_prob <span class="sc">~</span> treatment_group)]</span>
-<span id="cb66-3"><a href="coding-and-demo-the-californians.html#cb66-3" tabindex="-1"></a></span>
-<span id="cb66-4"><a href="coding-and-demo-the-californians.html#cb66-4" tabindex="-1"></a><span class="fu">stargazer</span>(</span>
-<span id="cb66-5"><a href="coding-and-demo-the-californians.html#cb66-5" tabindex="-1"></a>  model_cal, model_stanford, </span>
-<span id="cb66-6"><a href="coding-and-demo-the-californians.html#cb66-6" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&#39;text&#39;</span></span>
-<span id="cb66-7"><a href="coding-and-demo-the-californians.html#cb66-7" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="coding-and-demo-the-californians.html#cb65-1" tabindex="-1"></a>model_cal      <span class="ot">&lt;-</span> d[cal_stanford <span class="sc">==</span> <span class="st">&#39;cal&#39;</span>, <span class="fu">lm</span>(founding_prob <span class="sc">~</span> treatment_group)]</span>
+<span id="cb65-2"><a href="coding-and-demo-the-californians.html#cb65-2" tabindex="-1"></a>model_stanford <span class="ot">&lt;-</span> d[cal_stanford <span class="sc">==</span> <span class="st">&#39;stanford&#39;</span>, <span class="fu">lm</span>(founding_prob <span class="sc">~</span> treatment_group)]</span>
+<span id="cb65-3"><a href="coding-and-demo-the-californians.html#cb65-3" tabindex="-1"></a></span>
+<span id="cb65-4"><a href="coding-and-demo-the-californians.html#cb65-4" tabindex="-1"></a><span class="fu">stargazer</span>(</span>
+<span id="cb65-5"><a href="coding-and-demo-the-californians.html#cb65-5" tabindex="-1"></a>  model_cal, model_stanford, </span>
+<span id="cb65-6"><a href="coding-and-demo-the-californians.html#cb65-6" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&#39;text&#39;</span></span>
+<span id="cb65-7"><a href="coding-and-demo-the-californians.html#cb65-7" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## 
 ## ===========================================================
 ##                                    Dependent variable:     
@@ -512,9 +514,9 @@ on.</p>
 <p>The models that you estimated above are extremely intuitive to talk about, and are probably the right models to report to collaborators, especially those who aren’t read into this class. <strong>But</strong>, they don’t include a formal statisical test.</p>
 <p>To conduct this test, we’re going to rely on the <strong>same model form</strong> as we used for treatment-by-treatment investigations – the difference in differences model.</p>
 <p>Estimate a model that interacts the treatment indicator with the <code>cal_stanford</code> indicator, and report what you see from this model.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="coding-and-demo-the-californians.html#cb68-1" tabindex="-1"></a>model_interaction <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(founding_prob <span class="sc">~</span> treatment_group <span class="sc">*</span> cal_stanford)]</span>
-<span id="cb68-2"><a href="coding-and-demo-the-californians.html#cb68-2" tabindex="-1"></a></span>
-<span id="cb68-3"><a href="coding-and-demo-the-californians.html#cb68-3" tabindex="-1"></a><span class="fu">summary</span>(model_interaction)</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="coding-and-demo-the-californians.html#cb67-1" tabindex="-1"></a>model_interaction <span class="ot">&lt;-</span> d[ , <span class="fu">lm</span>(founding_prob <span class="sc">~</span> treatment_group <span class="sc">*</span> cal_stanford)]</span>
+<span id="cb67-2"><a href="coding-and-demo-the-californians.html#cb67-2" tabindex="-1"></a></span>
+<span id="cb67-3"><a href="coding-and-demo-the-californians.html#cb67-3" tabindex="-1"></a><span class="fu">summary</span>(model_interaction)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = founding_prob ~ treatment_group * cal_stanford)
@@ -557,43 +559,43 @@ on.</p>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "serif",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "section",
-"scroll_highlight": true
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "serif",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true
+  }
 });
 });
 </script>

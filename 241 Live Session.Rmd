@@ -1,7 +1,7 @@
 ---
 title: "Experiments and Causality"
 cover-image: "images/coffee.jpeg"
-author: "The 241 Instructional Team^[David Reiley, D. Alex Hughes, David Broockman, Micah Gell-Redman, Scott Guenther, David Wheeler, Josue Martinez, Maya Duru]"
+author: "Alex Hughes"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 document_class: book 
@@ -11,7 +11,7 @@ biblatexoptions:
   - sortcites
 link-citations: yes
 github-repo: "UC-Berkeley-I-School/mids-w241-live-session"
-description: "This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called *Experiments and Causality*."
+description: "This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Information Management course called *Experiments and Causality*."
 tags: [Linear models, Econometrics, Causal Analysis, R Programming, Live Session Discussion]
 ---
 
@@ -28,6 +28,19 @@ theme_set(theme_minimal())
 
 This is the live session work space for the course. Our goal with this repository, is that we're able to communicate *ahead of time* our aims for each week, and that you can prepare accordingly. 
 
+
+<!--chapter:end:index.Rmd-->
+
+# Course Introduction {-}
+
+**Every research, product, or policy question that is interesting is actually a causal question.** 
+
+- Do messages that are targeted to low-propensity voters cause them to turnout? (Nope!)
+- Can cellphone trace data be used to successfully target aid to the world's poorest? [link](https://www.science.org/doi/full/10.1126/science.aac4420)
+- Does the changing climate have an impact on our wellbeing? [link](https://www.nature.com/articles/s41558-025-02407-w.epdf?sharing_token=1R7i7HQmZSSn5RoBQL9BcdRgN0jAjWel9jnR3ZoTv0NQU4QOz585FcTVcOtuamxH0qqRjWiYywlQS6ZiO9b7jdJXSD1HHqWa-qrk7ifWBIwQ_TxVIAiaipbCTGZSPUBF-wWr1cDcazGusjFvcS5LgbGhLS7jJ-d-oNOTa-W7VJs%3D), [link](https://www.science.org/doi/full/10.1126/sciadv.1601555)
+- Can design improve lives? [link](https://www.whitehouse.gov/presidential-actions/2025/08/improving-our-nation-through-better-design/) 
+- Does {this} product feature affect {that} KPI? 
+
 ## Bloom's Taxonomy {-}
 
 An effective rubric for student understanding is attributed to Bloom (1956). Referred to as *Bloom's Taxonomy*, this proposes that there is a hierarchy of student understanding; that a student may have one *level* of reasoning skill with a concept, but not another. The taxonomy proposes to be ordered: some levels of reasoning build upon other levels of reasoning. 
@@ -41,7 +54,7 @@ In the learning objective that we present in for each live session, we will also
 5. **Evaluate** A student can analyze multiple approaches, and from this analysis evaluate whether one or another approach has better succeeded at achieving its goals. 
 6. **Create** A student can create a new or novel method from axioms or experience, and can evaluate the performance of this new method against existing approaches or methods. 
 
-<!--chapter:end:index.Rmd-->
+<!--chapter:end:00-course-introduction.Rmd-->
 
 # Importance of Experimentation
 
