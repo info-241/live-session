@@ -2,7 +2,7 @@
 title: "Experiments and Causality"
 cover-image: "images/coffee.jpeg"
 author: "Alex Hughes"
-date: "`r Sys.Date()`"
+date: "Fall 2025"
 site: bookdown::bookdown_site
 document_class: book 
 bibliography: [book.bib]
@@ -28,3 +28,4 @@ theme_set(theme_minimal())
 
 This is the live session work space for the course. Our goal with this repository, is that we're able to communicate *ahead of time* our aims for each week, and that you can prepare accordingly. 
 
+![Coffee Sorting Experiment](./images/apollo_13.jpeg)

@@ -1,5 +1,7 @@
 # Course Introduction {-}
 
+![McCloud River, 2025](./images/mccloud.JPG)
+
 **Every research, product, or policy question that is interesting is actually a causal question.** 
 
 - Do messages that are targeted to low-propensity voters cause them to turnout? (Nope!)
@@ -7,10 +9,12 @@
 - Does the changing climate have an impact on our wellbeing? [[link](https://www.nature.com/articles/s41558-025-02407-w.epdf?sharing_token=1R7i7HQmZSSn5RoBQL9BcdRgN0jAjWel9jnR3ZoTv0NQU4QOz585FcTVcOtuamxH0qqRjWiYywlQS6ZiO9b7jdJXSD1HHqWa-qrk7ifWBIwQ_TxVIAiaipbCTGZSPUBF-wWr1cDcazGusjFvcS5LgbGhLS7jJ-d-oNOTa-W7VJs%3D)], [[link](https://www.science.org/doi/full/10.1126/sciadv.1601555)]
 - Can design improve lives? [[link](https://www.whitehouse.gov/presidential-actions/2025/08/improving-our-nation-through-better-design/)] 
 - What do people like in the design of a house? 
-- Are 
+- Does increasing login pressure increase compliance with cybersecurity training? 
 - Does {this} product feature affect {that} KPI? 
 
-**Deep knowledge is understanding how things work when they are taken apart.** 
+**Deep understanding is knowing how things work when they are taken apart.** 
+
+![duck](./images/duck.png)
 
 ## Core Questions 
 
@@ -87,7 +91,7 @@ We want to get you feedback *very* quickly after you turn your assignments.
 
 ### Office hour model for the class 
 
-- I will 
+- I will be holding a "lab" session every Tuesday from 11:00a - 12:00p. This will be a chance to write  code and support your learning, by doing. 
 - We will hold more than 10 hours of office hours every week; they will all be recorded, and any student is welcome in any office hour
 
 

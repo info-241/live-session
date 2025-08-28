@@ -158,7 +158,7 @@
 
 \title{Experiments and Causality}
 \author{Alex Hughes}
-\date{2025-08-28}
+\date{Fall 2025}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[section]
@@ -189,8 +189,20 @@
 
 This is the live session work space for the course. Our goal with this repository, is that we're able to communicate \emph{ahead of time} our aims for each week, and that you can prepare accordingly.
 
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio]{./images/apollo_13.jpeg}}
+\caption{Coffee Sorting Experiment}
+\end{figure}
+
 \section*{Course Introduction}\label{course-introduction}
 \addcontentsline{toc}{section}{Course Introduction}
+
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio]{./images/mccloud.JPG}}
+\caption{McCloud River, 2025}
+\end{figure}
 
 \textbf{Every research, product, or policy question that is interesting is actually a causal question.}
 
@@ -207,12 +219,18 @@ This is the live session work space for the course. Our goal with this repositor
 \item
   What do people like in the design of a house?
 \item
-  Are
+  Does increasing login pressure increase compliance with cybersecurity training?
 \item
   Does \{this\} product feature affect \{that\} KPI?
 \end{itemize}
 
-\textbf{Deep knowledge is understanding how things work when they are taken apart.}
+\textbf{Deep understanding is knowing how things work when they are taken apart.}
+
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio]{./images/duck.png}}
+\caption{duck}
+\end{figure}
 
 \subsection{Core Questions}\label{core-questions}
 
@@ -352,7 +370,7 @@ We want to get you feedback \emph{very} quickly after you turn your assignments.
 \begin{itemize}
 \tightlist
 \item
-  I will
+  I will be holding a ``lab'' session every Tuesday from 11:00a - 12:00p. This will be a chance to write code and support your learning, by doing.
 \item
   We will hold more than 10 hours of office hours every week; they will all be recorded, and any student is welcome in any office hour
 \end{itemize}
@@ -389,29 +407,11 @@ In the learning objective that we present in for each live session, we will also
 \caption{Point Reyes National Seashore}
 \end{figure}
 
-\subsection{Core Questions}\label{core-questions-1}
-
-This course is about designing experiments that we run in the \emph{real-world}.
-
-\begin{itemize}
-\tightlist
-\item
-  What is the value of making a causal statement?
-\item
-  Why do we conduct experiments?
-\item
-  This is a data science program. With enough data and a savvy enough model, can't we just generate a causal statement that will be right? Can't I generate a statement that converges in probability to the \emph{correct} value?
-\end{itemize}
-
 \subsection{Learning Objectives}\label{learning-objectives-1}
-
-At the end of this live session, students will be able to
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
-\item
-  \emph{Remember} (or find) the goals of the course, the assessment structure, and the learning model.
 \item
   \emph{Define}, in non-technical language, what it means for an action to cause an outcome.
 \item
@@ -421,120 +421,6 @@ At the end of this live session, students will be able to
 \end{enumerate}
 
 \subsection{Class Introductions}\label{class-introductions}
-
-\subsection{Student Introductions {[}Breakout One{]}}\label{student-introductions-breakout-one-1}
-
-In a breakout room of between three and four students introduce yourself!
-
-\begin{breakout}
-\textbf{Breakout One.} A \emph{name story} is the unique, and individual story that describes how you came to have the name that you do. While there may be many people are called the same thing, each of their name stories is unique.
-
-Please share: \emph{What is your name story?}
-
-\end{breakout}
-
-\subsection{Student Introductions {[}Breakout Two{]}}\label{student-introductions-breakout-two-1}
-
-In the same breakout room:
-
-\begin{breakout}
-\textbf{Breakout Two.}
-Like our names, the reasons that we joined this program, our goals and our histories are different.
-
-Please share: \emph{What is your data science story? How did you wind up here, in this room today?}
-
-\end{breakout}
-
-\subsection{Course Plan}\label{course-plan-1}
-
-The course is built out into three distinct phases
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Part 1} Develops causal theory, potential outcomes, and a permutation-based uncertainty measurement
-\item
-  \textbf{Part 2} Further develops the idea of a treatment effect, and teaches how the careful design of experiments can improve the efficiency, and easy of analysis
-\item
-  \textbf{Part 3} Presents practical considerations when conducting an experiment, including problems that may arise, and how to design an experiment in anticipation of those problems.
-\end{itemize}
-
-\subsection{Course Logistics}\label{course-logistics-1}
-
-\begin{itemize}
-\tightlist
-\item
-  bCourses
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Learning Modules attached to weeks
-  \item
-    Modules contain async lectures, coding exercises, and quizzes
-  \end{itemize}
-\item
-  GitHub
-
-  \begin{itemize}
-  \tightlist
-  \item
-    All the course materials are available in a GitHub repository
-  \item
-    We have protected the \texttt{main} branch, so you can't do anything destructive
-  \item
-    Use that as empowerment! This is your class, propose changes that you would like to see!
-  \end{itemize}
-\item
-  Github Classroom
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Assignments will all be applied programming assignments against simulated and real data
-  \item
-    All assignment code will be distributed through GitHub Classroom
-  \end{itemize}
-\item
-  Gradescope
-
-  \begin{itemize}
-  \tightlist
-  \item
-    All assignments will be submitted to Gradescope where we'll read your solutions and provide scores and feedback
-  \end{itemize}
-\end{itemize}
-
-\subsubsection{Learning model for the class}\label{learning-model-for-the-class-1}
-
-The course assignments are designed to put what we have learned in reading, async, and live session into practice in code. In our ideal version of your studying, we would have you working hard together with your classmates in a study group on the assignments, coming to office hours to talk candidly about what is and isn't working, and then \emph{every single student} arriving at a full solution.
-
-\subsubsection{Feedback model for the class}\label{feedback-model-for-the-class-1}
-
-We want to get you feedback \emph{very} quickly after you turn your assignments.
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  We will release a solution set the day that you turn your assignment in
-\item
-  We will hold a problem set debrief office hour the Friday (i.e.~next day) after the problem set it submitted
-\item
-  We will have light-feedback on your assignments within 7 days of when you submitted them.
-\item
-  You should bring your assignment to office hours after you have turned it in so that we can talk about any differences between your approach, and the instructors approach.
-\end{enumerate}
-
-\subsubsection{Office hour model for the class}\label{office-hour-model-for-the-class-1}
-
-\begin{itemize}
-\tightlist
-\item
-  We will hold office hours Sunday through Thursday at 5:30.
-\item
-  We will hold more than 10 hours of office hours every week; they will all be recorded, and any student is welcome in any office hour
-\end{itemize}
 
 \subsection{Article Discussion}\label{article-discussion}
 
@@ -1092,7 +978,7 @@ Y =
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 5.144887
+## [1] 4.780467
 \end{verbatim}
 
 \begin{itemize}
@@ -1179,13 +1065,13 @@ To begin with, lets work with a \emph{very} simple sample that has 100 observati
 \end{Shaded}
 
 \begin{verbatim}
-##       id        y0        y1
-##    <int>     <num>     <num>
-## 1:     1 0.5152015 0.7652015
-## 2:     2 0.8442073 1.0942073
-## 3:     3 0.6790792 0.9290792
-## 4:     4 0.6313609 0.8813609
-## 5:     5 0.9978208 1.2478208
+##       id         y0        y1
+##    <int>      <num>     <num>
+## 1:     1 0.72955249 0.9795525
+## 2:     2 0.94839618 1.1983962
+## 3:     3 0.73388353 0.9838835
+## 4:     4 0.75098642 1.0009864
+## 5:     5 0.08422338 0.3342234
 \end{verbatim}
 
 In this world, we've taken a sample of \texttt{100} individuals, and at this point, each of those individuals that we've sampled has both a potential outcome to control \textbf{and also} a potential outcome to treatment. We haven't talked at all about measurement yet; we're just asserting that both of these potential outcomes exist for each person.
@@ -1220,13 +1106,13 @@ Suppose that for each unit, you then toss a coin, placing the subject either int
 \end{Shaded}
 
 \begin{verbatim}
-##       id        y0        y1 experimental_assignment
-##    <int>     <num>     <num>                   <int>
-## 1:     1 0.5152015 0.7652015                       0
-## 2:     2 0.8442073 1.0942073                       0
-## 3:     3 0.6790792 0.9290792                       1
-## 4:     4 0.6313609 0.8813609                       1
-## 5:     5 0.9978208 1.2478208                       0
+##       id         y0        y1 experimental_assignment
+##    <int>      <num>     <num>                   <int>
+## 1:     1 0.72955249 0.9795525                       0
+## 2:     2 0.94839618 1.1983962                       0
+## 3:     3 0.73388353 0.9838835                       1
+## 4:     4 0.75098642 1.0009864                       1
+## 5:     5 0.08422338 0.3342234                       1
 \end{verbatim}
 
 As as comparison, suppose that instead of randomly assigning individuals into treatment and control we allowed individuals to select into treatment and control. And suppose that people with the lowest potential outcomes to control opt to take the treatment. You might think of this as being something like, ``The people who are the most tired are the most likely to drink a cup of coffee before they start class,'' if an example helps you ground this.
@@ -1241,13 +1127,13 @@ Specifically, suppose that any unit that has a potential outcome lower that \tex
 \end{Shaded}
 
 \begin{verbatim}
-##       id        y0        y1 experimental_assignment observational_selection
-##    <int>     <num>     <num>                   <int>                   <num>
-## 1:     1 0.5152015 0.7652015                       0                       0
-## 2:     2 0.8442073 1.0942073                       0                       0
-## 3:     3 0.6790792 0.9290792                       1                       0
-## 4:     4 0.6313609 0.8813609                       1                       0
-## 5:     5 0.9978208 1.2478208                       0                       0
+##       id         y0        y1 experimental_assignment observational_selection
+##    <int>      <num>     <num>                   <int>                   <num>
+## 1:     1 0.72955249 0.9795525                       0                       0
+## 2:     2 0.94839618 1.1983962                       0                       0
+## 3:     3 0.73388353 0.9838835                       1                       0
+## 4:     4 0.75098642 1.0009864                       1                       0
+## 5:     5 0.08422338 0.3342234                       1                       1
 \end{verbatim}
 
 These represent two different ways that you might conduct your research, each time with the same subject pool. Of course, in reality you probably would not be able to run these two studies at the same time, but since this is a simulation, we can stretch the confines of reality just a little bit.

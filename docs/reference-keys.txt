@@ -9,16 +9,8 @@ learning-model-for-the-class
 feedback-model-for-the-class
 office-hour-model-for-the-class
 importance-of-experimentation
-core-questions-1
 learning-objectives-1
 class-introductions
-student-introductions-breakout-one-1
-student-introductions-breakout-two-1
-course-plan-1
-course-logistics-1
-learning-model-for-the-class-1
-feedback-model-for-the-class-1
-office-hour-model-for-the-class-1
 article-discussion
 predict-or-cause
 do-the-suburbs-make-you-fat
