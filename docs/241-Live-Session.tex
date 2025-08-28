@@ -1,10 +1,12 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
-%
 \documentclass[
 ]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
@@ -35,8 +37,6 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
-\usepackage{xcolor}
-\usepackage[margin=1in]{geometry}
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -105,7 +105,6 @@
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{5}
 \usepackage{color}
 \usepackage{tcolorbox}
 
@@ -153,13 +152,13 @@
 \urlstyle{same}
 \hypersetup{
   pdftitle={Experiments and Causality},
-  pdfauthor={The 241 Instructional Team},
+  pdfauthor={Alex Hughes},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
 \title{Experiments and Causality}
-\author{The 241 Instructional Team\footnote{David Reiley, D. Alex Hughes, David Broockman, Micah Gell-Redman, Scott Guenther, David Wheeler, Josue Martinez, Maya Duru}}
-\date{2024-11-12}
+\author{Alex Hughes}
+\date{2025-08-28}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[section]
@@ -185,42 +184,35 @@
 \setcounter{tocdepth}{2}
 \tableofcontents
 }
-\section*{Live Session Introduction}\label{live-session-introduction}
-\addcontentsline{toc}{section}{Live Session Introduction}
+\section*{Live Session}\label{live-session}
+\addcontentsline{toc}{section}{Live Session}
 
 This is the live session work space for the course. Our goal with this repository, is that we're able to communicate \emph{ahead of time} our aims for each week, and that you can prepare accordingly.
 
-\subsection*{Bloom's Taxonomy}\label{blooms-taxonomy}
-\addcontentsline{toc}{subsection}{Bloom's Taxonomy}
+\section*{Course Introduction}\label{course-introduction}
+\addcontentsline{toc}{section}{Course Introduction}
 
-An effective rubric for student understanding is attributed to Bloom (1956). Referred to as \emph{Bloom's Taxonomy}, this proposes that there is a hierarchy of student understanding; that a student may have one \emph{level} of reasoning skill with a concept, but not another. The taxonomy proposes to be ordered: some levels of reasoning build upon other levels of reasoning.
+\textbf{Every research, product, or policy question that is interesting is actually a causal question.}
 
-In the learning objective that we present in for each live session, we will also identify the level of reasoning that we hope students will achieve at the conclusion of the live session.
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
+\begin{itemize}
 \tightlist
 \item
-  \textbf{Remember} A student can remember that the concept exists. This might require the student to define, duplicate, or memorize a set of concepts or facts.
+  Do messages that are targeted to low-propensity voters cause them to turnout? (Nope!)
 \item
-  \textbf{Understand} A student can understand the concept, and can produce a working technical and non-technical statement of the concept. The student can explain why the concept \emph{is}, or why the concept works in the way that it does.
+  Can cellphone trace data be used to successfully target aid to the world's poorest? {[}\href{https://www.science.org/doi/full/10.1126/science.aac4420}{link}{]}
 \item
-  \textbf{Apply} A student can use the concept as it is intended to be used against a novel problem.
+  Does the changing climate have an impact on our wellbeing? {[}\href{https://www.nature.com/articles/s41558-025-02407-w.epdf?sharing_token=1R7i7HQmZSSn5RoBQL9BcdRgN0jAjWel9jnR3ZoTv0NQU4QOz585FcTVcOtuamxH0qqRjWiYywlQS6ZiO9b7jdJXSD1HHqWa-qrk7ifWBIwQ_TxVIAiaipbCTGZSPUBF-wWr1cDcazGusjFvcS5LgbGhLS7jJ-d-oNOTa-W7VJs\%3D}{link}{]}, {[}\href{https://www.science.org/doi/full/10.1126/sciadv.1601555}{link}{]}
 \item
-  \textbf{Analyze} A student can assess whether the concept has worked as it should have. This requires both an understanding of the intended goal, an application against a novel problem, and then the ability to introspect or reflect on whether the result is as it should be.
+  Can design improve lives? {[}\href{https://www.whitehouse.gov/presidential-actions/2025/08/improving-our-nation-through-better-design/}{link}{]}
 \item
-  \textbf{Evaluate} A student can analyze multiple approaches, and from this analysis evaluate whether one or another approach has better succeeded at achieving its goals.
+  What do people like in the design of a house?
 \item
-  \textbf{Create} A student can create a new or novel method from axioms or experience, and can evaluate the performance of this new method against existing approaches or methods.
-\end{enumerate}
+  Are
+\item
+  Does \{this\} product feature affect \{that\} KPI?
+\end{itemize}
 
-\section{Importance of Experimentation}\label{importance-of-experimentation}
-
-\begin{figure}
-\centering
-\pandocbounded{\includegraphics[keepaspectratio]{./images/point_reyes.jpg}}
-\caption{Point Reyes National Seashore}
-\end{figure}
+\textbf{Deep knowledge is understanding how things work when they are taken apart.}
 
 \subsection{Core Questions}\label{core-questions}
 
@@ -233,27 +225,23 @@ This course is about designing experiments that we run in the \emph{real-world}.
 \item
   Why do we conduct experiments?
 \item
-  This is a data science program. With enough data and a savvy enough model, can't we just generate a causal statement that will be right? Can't I generate a statement that converges in probability to the \emph{correct} value?
+  This is a modern academic program -- we've got, you know, LLMs and stuff\ldots{} With enough data and a savvy enough model, can't we just generate a causal statement that will be right? Can't I generate a statement that converges in probability to the \emph{correct} value?
 \end{itemize}
 
 \subsection{Learning Objectives}\label{learning-objectives}
 
-At the end of this live session, students will be able to
+At the end of this conversation, students will be able to
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \emph{Remember} (or find) the goals of the course, the assessment structure, and the learning model.
+  \emph{Gain Access} to bCourses.
 \item
-  \emph{Define}, in non-technical language, what it means for an action to cause an outcome.
+  \emph{Understand} the course goals, and access course assessments
 \item
-  \emph{Understand} the difference between a causal statement, and an association statement.
-\item
-  \emph{Apply} the framework of causal thinking against a series of studies to determine whether the study has achieved the goal that it intends.
+  \emph{Understand} the course learning model
 \end{enumerate}
-
-\subsection{Class Introductions}\label{class-introductions}
 
 \subsection{Student Introductions {[}Breakout One{]}}\label{student-introductions-breakout-one}
 
@@ -352,6 +340,185 @@ We want to get you feedback \emph{very} quickly after you turn your assignments.
 \item
   We will release a solution set the day that you turn your assignment in
 \item
+  We will hold a problem set debrief office hour the Friday (i.e.~next day) after the problem set is submitted
+\item
+  We will have light-feedback on your assignments within 7 days of when you submitted them.
+\item
+  You should bring your assignment to office hours after you have turned it in so that we can talk about any differences between your approach, and my approach.
+\end{enumerate}
+
+\subsubsection{Office hour model for the class}\label{office-hour-model-for-the-class}
+
+\begin{itemize}
+\tightlist
+\item
+  I will
+\item
+  We will hold more than 10 hours of office hours every week; they will all be recorded, and any student is welcome in any office hour
+\end{itemize}
+
+\subsection*{Bloom's Taxonomy}\label{blooms-taxonomy}
+\addcontentsline{toc}{subsection}{Bloom's Taxonomy}
+
+An effective rubric for student understanding is attributed to Bloom (1956). Referred to as \emph{Bloom's Taxonomy}, this proposes that there is a hierarchy of student understanding; that a student may have one \emph{level} of reasoning skill with a concept, but not another. The taxonomy proposes to be ordered: some levels of reasoning build upon other levels of reasoning.
+
+In the learning objective that we present in for each live session, we will also identify the level of reasoning that we hope students will achieve at the conclusion of the live session.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Remember} A student can remember that the concept exists. This might require the student to define, duplicate, or memorize a set of concepts or facts.
+\item
+  \textbf{Understand} A student can understand the concept, and can produce a working technical and non-technical statement of the concept. The student can explain why the concept \emph{is}, or why the concept works in the way that it does.
+\item
+  \textbf{Apply} A student can use the concept as it is intended to be used against a novel problem.
+\item
+  \textbf{Analyze} A student can assess whether the concept has worked as it should have. This requires both an understanding of the intended goal, an application against a novel problem, and then the ability to introspect or reflect on whether the result is as it should be.
+\item
+  \textbf{Evaluate} A student can analyze multiple approaches, and from this analysis evaluate whether one or another approach has better succeeded at achieving its goals.
+\item
+  \textbf{Create} A student can create a new or novel method from axioms or experience, and can evaluate the performance of this new method against existing approaches or methods.
+\end{enumerate}
+
+\section{Importance of Experimentation}\label{importance-of-experimentation}
+
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio]{./images/point_reyes.jpg}}
+\caption{Point Reyes National Seashore}
+\end{figure}
+
+\subsection{Core Questions}\label{core-questions-1}
+
+This course is about designing experiments that we run in the \emph{real-world}.
+
+\begin{itemize}
+\tightlist
+\item
+  What is the value of making a causal statement?
+\item
+  Why do we conduct experiments?
+\item
+  This is a data science program. With enough data and a savvy enough model, can't we just generate a causal statement that will be right? Can't I generate a statement that converges in probability to the \emph{correct} value?
+\end{itemize}
+
+\subsection{Learning Objectives}\label{learning-objectives-1}
+
+At the end of this live session, students will be able to
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \emph{Remember} (or find) the goals of the course, the assessment structure, and the learning model.
+\item
+  \emph{Define}, in non-technical language, what it means for an action to cause an outcome.
+\item
+  \emph{Understand} the difference between a causal statement, and an association statement.
+\item
+  \emph{Apply} the framework of causal thinking against a series of studies to determine whether the study has achieved the goal that it intends.
+\end{enumerate}
+
+\subsection{Class Introductions}\label{class-introductions}
+
+\subsection{Student Introductions {[}Breakout One{]}}\label{student-introductions-breakout-one-1}
+
+In a breakout room of between three and four students introduce yourself!
+
+\begin{breakout}
+\textbf{Breakout One.} A \emph{name story} is the unique, and individual story that describes how you came to have the name that you do. While there may be many people are called the same thing, each of their name stories is unique.
+
+Please share: \emph{What is your name story?}
+
+\end{breakout}
+
+\subsection{Student Introductions {[}Breakout Two{]}}\label{student-introductions-breakout-two-1}
+
+In the same breakout room:
+
+\begin{breakout}
+\textbf{Breakout Two.}
+Like our names, the reasons that we joined this program, our goals and our histories are different.
+
+Please share: \emph{What is your data science story? How did you wind up here, in this room today?}
+
+\end{breakout}
+
+\subsection{Course Plan}\label{course-plan-1}
+
+The course is built out into three distinct phases
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Part 1} Develops causal theory, potential outcomes, and a permutation-based uncertainty measurement
+\item
+  \textbf{Part 2} Further develops the idea of a treatment effect, and teaches how the careful design of experiments can improve the efficiency, and easy of analysis
+\item
+  \textbf{Part 3} Presents practical considerations when conducting an experiment, including problems that may arise, and how to design an experiment in anticipation of those problems.
+\end{itemize}
+
+\subsection{Course Logistics}\label{course-logistics-1}
+
+\begin{itemize}
+\tightlist
+\item
+  bCourses
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Learning Modules attached to weeks
+  \item
+    Modules contain async lectures, coding exercises, and quizzes
+  \end{itemize}
+\item
+  GitHub
+
+  \begin{itemize}
+  \tightlist
+  \item
+    All the course materials are available in a GitHub repository
+  \item
+    We have protected the \texttt{main} branch, so you can't do anything destructive
+  \item
+    Use that as empowerment! This is your class, propose changes that you would like to see!
+  \end{itemize}
+\item
+  Github Classroom
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Assignments will all be applied programming assignments against simulated and real data
+  \item
+    All assignment code will be distributed through GitHub Classroom
+  \end{itemize}
+\item
+  Gradescope
+
+  \begin{itemize}
+  \tightlist
+  \item
+    All assignments will be submitted to Gradescope where we'll read your solutions and provide scores and feedback
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{Learning model for the class}\label{learning-model-for-the-class-1}
+
+The course assignments are designed to put what we have learned in reading, async, and live session into practice in code. In our ideal version of your studying, we would have you working hard together with your classmates in a study group on the assignments, coming to office hours to talk candidly about what is and isn't working, and then \emph{every single student} arriving at a full solution.
+
+\subsubsection{Feedback model for the class}\label{feedback-model-for-the-class-1}
+
+We want to get you feedback \emph{very} quickly after you turn your assignments.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  We will release a solution set the day that you turn your assignment in
+\item
   We will hold a problem set debrief office hour the Friday (i.e.~next day) after the problem set it submitted
 \item
   We will have light-feedback on your assignments within 7 days of when you submitted them.
@@ -359,7 +526,7 @@ We want to get you feedback \emph{very} quickly after you turn your assignments.
   You should bring your assignment to office hours after you have turned it in so that we can talk about any differences between your approach, and the instructors approach.
 \end{enumerate}
 
-\subsubsection{Office hour model for the class}\label{office-hour-model-for-the-class}
+\subsubsection{Office hour model for the class}\label{office-hour-model-for-the-class-1}
 
 \begin{itemize}
 \tightlist
@@ -454,7 +621,7 @@ In \emph{Cargo Cult Science}, Richard Feynman poses a view of science that is ab
 \caption{fruit salad}
 \end{figure}
 
-\subsection{Learning Objectives}\label{learning-objectives-1}
+\subsection{Learning Objectives}\label{learning-objectives-2}
 
 At the conclusion of this week's live session, student will be able to:
 
@@ -925,7 +1092,7 @@ Y =
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4.885482
+## [1] 5.144887
 \end{verbatim}
 
 \begin{itemize}
@@ -1012,13 +1179,13 @@ To begin with, lets work with a \emph{very} simple sample that has 100 observati
 \end{Shaded}
 
 \begin{verbatim}
-##       id          y0        y1
-##    <int>       <num>     <num>
-## 1:     1 0.006563012 0.2565630
-## 2:     2 0.818627354 1.0686274
-## 3:     3 0.544375357 0.7943754
-## 4:     4 0.514207404 0.7642074
-## 5:     5 0.362957955 0.6129580
+##       id        y0        y1
+##    <int>     <num>     <num>
+## 1:     1 0.5152015 0.7652015
+## 2:     2 0.8442073 1.0942073
+## 3:     3 0.6790792 0.9290792
+## 4:     4 0.6313609 0.8813609
+## 5:     5 0.9978208 1.2478208
 \end{verbatim}
 
 In this world, we've taken a sample of \texttt{100} individuals, and at this point, each of those individuals that we've sampled has both a potential outcome to control \textbf{and also} a potential outcome to treatment. We haven't talked at all about measurement yet; we're just asserting that both of these potential outcomes exist for each person.
@@ -1053,13 +1220,13 @@ Suppose that for each unit, you then toss a coin, placing the subject either int
 \end{Shaded}
 
 \begin{verbatim}
-##       id          y0        y1 experimental_assignment
-##    <int>       <num>     <num>                   <int>
-## 1:     1 0.006563012 0.2565630                       0
-## 2:     2 0.818627354 1.0686274                       0
-## 3:     3 0.544375357 0.7943754                       0
-## 4:     4 0.514207404 0.7642074                       0
-## 5:     5 0.362957955 0.6129580                       0
+##       id        y0        y1 experimental_assignment
+##    <int>     <num>     <num>                   <int>
+## 1:     1 0.5152015 0.7652015                       0
+## 2:     2 0.8442073 1.0942073                       0
+## 3:     3 0.6790792 0.9290792                       1
+## 4:     4 0.6313609 0.8813609                       1
+## 5:     5 0.9978208 1.2478208                       0
 \end{verbatim}
 
 As as comparison, suppose that instead of randomly assigning individuals into treatment and control we allowed individuals to select into treatment and control. And suppose that people with the lowest potential outcomes to control opt to take the treatment. You might think of this as being something like, ``The people who are the most tired are the most likely to drink a cup of coffee before they start class,'' if an example helps you ground this.
@@ -1074,13 +1241,13 @@ Specifically, suppose that any unit that has a potential outcome lower that \tex
 \end{Shaded}
 
 \begin{verbatim}
-##       id          y0        y1 experimental_assignment observational_selection
-##    <int>       <num>     <num>                   <int>                   <num>
-## 1:     1 0.006563012 0.2565630                       0                       1
-## 2:     2 0.818627354 1.0686274                       0                       0
-## 3:     3 0.544375357 0.7943754                       0                       0
-## 4:     4 0.514207404 0.7642074                       0                       0
-## 5:     5 0.362957955 0.6129580                       0                       0
+##       id        y0        y1 experimental_assignment observational_selection
+##    <int>     <num>     <num>                   <int>                   <num>
+## 1:     1 0.5152015 0.7652015                       0                       0
+## 2:     2 0.8442073 1.0942073                       0                       0
+## 3:     3 0.6790792 0.9290792                       1                       0
+## 4:     4 0.6313609 0.8813609                       1                       0
+## 5:     5 0.9978208 1.2478208                       0                       0
 \end{verbatim}
 
 These represent two different ways that you might conduct your research, each time with the same subject pool. Of course, in reality you probably would not be able to run these two studies at the same time, but since this is a simulation, we can stretch the confines of reality just a little bit.
@@ -1263,7 +1430,7 @@ What do each of these terms mean? Why is each necessary?
 
 \section{Quantifying Uncertainty}\label{quantifying-uncertainty}
 
-\subsection{Learning Objectives}\label{learning-objectives-2}
+\subsection{Learning Objectives}\label{learning-objectives-3}
 
 At the end of this week's live session, students will be able to
 
@@ -1668,7 +1835,7 @@ When assigning treatment to units, unless there are restrictions created by the 
 
 \emph{Clustering} is a circumstance that arises from a state of the world that \emph{requires} you to assign several similar units to the same condition, be it treatment or control. Through careful design, clustering might not hamper the power of an experiment; though realizing the necessity of a clustered design is typically met with the following statement, ``@\#\$\%, we've got to cluster.''
 
-\subsection{Learning Objectives}\label{learning-objectives-3}
+\subsection{Learning Objectives}\label{learning-objectives-4}
 
 At the end of this week, student will be able to
 
@@ -2055,7 +2222,7 @@ Imagine that an executive at Walmart gives you the keys to the pricing at the st
 Adding covariates to what we're measuring, even if those covariates are non experimental, can help us improve our
 measurement.''
 
-\subsection{Learning Objectives}\label{learning-objectives-4}
+\subsection{Learning Objectives}\label{learning-objectives-5}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2207,7 +2374,7 @@ Although this will produce numbers that are different than are reported in the b
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Learning Objectives}\label{learning-objectives-5}
+\subsection{Learning Objectives}\label{learning-objectives-6}
 
 At the end of today's session, student will be able to
 
@@ -2706,7 +2873,7 @@ When we consider heterogeneous treatment effects, we acknowledge that it is very
 
 How should we go about (a) looking for HTEs; (b) testings for HTEs with nominal p-value coverages; and (c) reporting HTEs to individuals in a way that make sense?
 
-\subsection{Learning Objectives}\label{learning-objectives-6}
+\subsection{Learning Objectives}\label{learning-objectives-7}
 
 At the end of this week, students will be able to
 
@@ -2997,7 +3164,7 @@ It might seem, at first, like we should just proceed by analyzing according to t
 
 This doesn't mean that all is lost however. We can redefine the causal quantity that we are estimating, and produce a reliable estimate of this new concept.We're going to present two such concepts this week. The first concept is the idea of the intent to treat effect (the ITT). The second concept is the idea of the treatment effect among compliers, which we will call the CACE.
 
-\subsection{Learning Objectives}\label{learning-objectives-7}
+\subsection{Learning Objectives}\label{learning-objectives-8}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -3296,7 +3463,7 @@ In previous weeks, we've engaged with how to evaluate whether a treatment has be
 
 There are two possibilities. First, we might design our experiment to minimize the effects of interference between units by re-designing or measuring differently. In doing so, we endeavor to maintain the measurement of an individual-level treatment effect, through a multi-group experiment. Second, we might acknowledge the existence of interference and expand our thinking about what \emph{is} a treatment effect.
 
-\subsection{Learning Objectives}\label{learning-objectives-8}
+\subsection{Learning Objectives}\label{learning-objectives-9}
 
 At the conclusion of this week, student will be able to:
 
@@ -3572,7 +3739,7 @@ Here is a link to the \href{https://github.com/UC-Berkeley-I-School/mids-w241/bl
 
 What happens if we cannot run an experiment? Perhaps we don't have the budget or time, perhaps the context is too fraught to conduct an experiment. Should we walk away and learn nothing?
 
-\subsection{Learning Objectives}\label{learning-objectives-9}
+\subsection{Learning Objectives}\label{learning-objectives-10}
 
 At the end of this weeks \emph{extensive} content, students should be able to
 
@@ -4090,7 +4257,7 @@ This has been \emph{very} fortunate data. There is no trend across the running v
 \caption{houston, we have a problem}
 \end{figure}
 
-\subsection{Learning Objectives}\label{learning-objectives-10}
+\subsection{Learning Objectives}\label{learning-objectives-11}
 
 At the conclusion of this week's live session, students will be able to:
 
@@ -4212,7 +4379,7 @@ Think about getting an experiment conducted either at work or in your lab.
 
 The theme for this week, as we mention in the async, is that these are \textbf{hard} problems -- in fact, each of these problems are so hard that we do not have an ability to place a clear, numerical answer on \emph{any} of them.
 
-\subsection{Learning Objectives}\label{learning-objectives-11}
+\subsection{Learning Objectives}\label{learning-objectives-12}
 
 At the conclusion of this week, students will be able to
 
@@ -4333,7 +4500,7 @@ Throughout the async, David Broockman highlights the extreme difficulty in gener
 
 \section{Applications of Experiments}\label{applications-of-experiments}
 
-\subsection{Learning Objectives}\label{learning-objectives-12}
+\subsection{Learning Objectives}\label{learning-objectives-13}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -4345,7 +4512,7 @@ Throughout the async, David Broockman highlights the extreme difficulty in gener
 
 \section{Review of the Course}\label{review-of-the-course}
 
-\subsection{Learning Objectives}\label{learning-objectives-13}
+\subsection{Learning Objectives}\label{learning-objectives-14}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}

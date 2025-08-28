@@ -1,189 +1,199 @@
-\contentsline {section}{Live Session Introduction}{3}{section*.2}%
-\contentsline {subsection}{Bloom's Taxonomy}{3}{section*.3}%
-\contentsline {section}{\numberline {1}Importance of Experimentation}{4}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Core Questions}{4}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Learning Objectives}{4}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}Class Introductions}{5}{subsection.1.3}%
-\contentsline {subsection}{\numberline {1.4}Student Introductions {[}Breakout One{]}}{5}{subsection.1.4}%
-\contentsline {subsection}{\numberline {1.5}Student Introductions {[}Breakout Two{]}}{5}{subsection.1.5}%
-\contentsline {subsection}{\numberline {1.6}Course Plan}{5}{subsection.1.6}%
-\contentsline {subsection}{\numberline {1.7}Course Logistics}{5}{subsection.1.7}%
-\contentsline {subsubsection}{\numberline {1.7.1}Learning model for the class}{5}{subsubsection.1.7.1}%
-\contentsline {subsubsection}{\numberline {1.7.2}Feedback model for the class}{6}{subsubsection.1.7.2}%
-\contentsline {subsubsection}{\numberline {1.7.3}Office hour model for the class}{6}{subsubsection.1.7.3}%
-\contentsline {subsection}{\numberline {1.8}Article Discussion}{6}{subsection.1.8}%
-\contentsline {subsubsection}{\numberline {1.8.1}Predict or Cause}{6}{subsubsection.1.8.1}%
-\contentsline {subsubsection}{\numberline {1.8.2}Do the suburbs make you fat?}{6}{subsubsection.1.8.2}%
-\contentsline {subsubsection}{\numberline {1.8.3}Nike Shoes}{6}{subsubsection.1.8.3}%
-\contentsline {subsubsection}{\numberline {1.8.4}What is Science: Feynman's View}{7}{subsubsection.1.8.4}%
-\contentsline {section}{\numberline {2}Apples to Apples}{7}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Learning Objectives}{7}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Revisiting Ideas of Science}{7}{subsection.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.1}From last week}{7}{subsubsection.2.2.1}%
-\contentsline {subsubsection}{\numberline {2.2.2}From this week: Lakatos}{9}{subsubsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.3}This Causes That}{9}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Working Cases of Causality}{9}{subsection.2.4}%
-\contentsline {subsubsection}{\numberline {2.4.1}Damn fine coffee}{9}{subsubsection.2.4.1}%
-\contentsline {subsubsection}{\numberline {2.4.2}Meditation for focus}{9}{subsubsection.2.4.2}%
-\contentsline {subsubsection}{\numberline {2.4.3}Selling coffee and meditation}{10}{subsubsection.2.4.3}%
-\contentsline {subsubsection}{\numberline {2.4.4}Limits of Behaviorist Reasoning}{10}{subsubsection.2.4.4}%
-\contentsline {subsubsection}{\numberline {2.4.5}Reflecting on Causes}{10}{subsubsection.2.4.5}%
-\contentsline {subsubsection}{\numberline {2.4.6}Evaluating Value}{10}{subsubsection.2.4.6}%
-\contentsline {subsubsection}{\numberline {2.4.7}Value of Theory}{11}{subsubsection.2.4.7}%
-\contentsline {subsubsection}{\numberline {2.4.8}Evaluating Theories}{11}{subsubsection.2.4.8}%
-\contentsline {subsection}{\numberline {2.5}Reading Discussion: The Power of Experiments}{11}{subsection.2.5}%
-\contentsline {subsubsection}{\numberline {2.5.1}Chapter One: The Power of Experiments}{11}{subsubsection.2.5.1}%
-\contentsline {subsubsection}{\numberline {2.5.2}Chapter Two: The Rise of Experimetnts in Psychology and Economics}{12}{subsubsection.2.5.2}%
-\contentsline {subsubsection}{\numberline {2.5.3}The Rise of Behavioral Experiments in Policymaking}{13}{subsubsection.2.5.3}%
-\contentsline {subsection}{\numberline {2.6}Potential Outcomes}{13}{subsection.2.6}%
-\contentsline {subsubsection}{\numberline {2.6.1}Defining Potential Outcomes}{13}{subsubsection.2.6.1}%
-\contentsline {subsection}{\numberline {2.7}Using Independence}{14}{subsection.2.7}%
-\contentsline {subsection}{\numberline {2.8}Use Randomization to Produce Independence}{15}{subsection.2.8}%
-\contentsline {subsection}{\numberline {2.9}Theoretical Justification}{15}{subsection.2.9}%
-\contentsline {subsection}{\numberline {2.10}Simulation Example}{16}{subsection.2.10}%
-\contentsline {subsubsection}{\numberline {2.10.1}Assign to Treatment and Control}{17}{subsubsection.2.10.1}%
-\contentsline {subsubsection}{\numberline {2.10.2}What if there is selection?}{22}{subsubsection.2.10.2}%
-\contentsline {subsection}{\numberline {2.11}Requirements of An Experiment}{23}{subsection.2.11}%
-\contentsline {subsubsection}{\numberline {2.11.1}Meta-Questions}{24}{subsubsection.2.11.1}%
-\contentsline {section}{\numberline {3}Quantifying Uncertainty}{24}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Learning Objectives}{24}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Power of Experiments}{24}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}Five Key Barriers to Experimentation}{24}{subsubsection.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.2}Experimental Ethics}{25}{subsubsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.3}Statistical Uncertainty -- Randomization Inference Style}{25}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Stating the sharp null}{25}{subsection.3.4}%
-\contentsline {subsection}{\numberline {3.5}Randomization Inference}{25}{subsection.3.5}%
-\contentsline {subsubsection}{\numberline {3.5.1}Stating the process of Randomization Inference}{25}{subsubsection.3.5.1}%
-\contentsline {subsubsection}{\numberline {3.5.2}Questions about Randomization Inference}{26}{subsubsection.3.5.2}%
-\contentsline {subsection}{\numberline {3.6}Applying Randomization Inference}{27}{subsection.3.6}%
-\contentsline {subsubsection}{\numberline {3.6.1}Make Data}{27}{subsubsection.3.6.1}%
-\contentsline {subsubsection}{\numberline {3.6.2}Plot Data}{27}{subsubsection.3.6.2}%
-\contentsline {subsubsection}{\numberline {3.6.3}Classic Test}{28}{subsubsection.3.6.3}%
-\contentsline {subsubsection}{\numberline {3.6.4}Randomization Inference Test}{28}{subsubsection.3.6.4}%
-\contentsline {subsection}{\numberline {3.7}Comparing Randomization Inference and Frequentist Inference}{29}{subsection.3.7}%
-\contentsline {subsubsection}{\numberline {3.7.1}Donations to a political campaign}{29}{subsubsection.3.7.1}%
-\contentsline {subsection}{\numberline {3.8}Statistical Power}{31}{subsection.3.8}%
-\contentsline {section}{\numberline {4}Blocking and Clustering}{31}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Learning Objectives}{31}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Setting terms: Blocking}{32}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Math: Block random assignment}{32}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Intuition: Block Random Assignment}{32}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}With this data, what does the distribution of outcomes look like?}{34}{subsection.4.5}%
-\contentsline {subsection}{\numberline {4.6}Technical Benefits of Blocking}{35}{subsection.4.6}%
-\contentsline {subsection}{\numberline {4.7}How should we block randomize?}{36}{subsection.4.7}%
-\contentsline {subsubsection}{\numberline {4.7.1}What makes a useful feature? (part 1)}{36}{subsubsection.4.7.1}%
-\contentsline {subsubsection}{\numberline {4.7.2}What makes a useful feature (part 2)}{37}{subsubsection.4.7.2}%
-\contentsline {subsubsection}{\numberline {4.7.3}Strategies of blocking}{37}{subsubsection.4.7.3}%
-\contentsline {subsection}{\numberline {4.8}Clustering}{37}{subsection.4.8}%
-\contentsline {subsection}{\numberline {4.9}Blocking or Clustering?}{37}{subsection.4.9}%
-\contentsline {subsubsection}{\numberline {4.9.1}Let is snow!}{37}{subsubsection.4.9.1}%
-\contentsline {subsubsection}{\numberline {4.9.2}Strolling through Berkeley}{38}{subsubsection.4.9.2}%
-\contentsline {subsubsection}{\numberline {4.9.3}Always low prices?}{38}{subsubsection.4.9.3}%
-\contentsline {section}{\numberline {5}Covariates and Regression}{38}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Learning Objectives}{38}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Covariates}{38}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Rescaling Outcomes}{39}{subsection.5.3}%
-\contentsline {subsubsection}{\numberline {5.3.1}Design One: Two Group Post-Test}{39}{subsubsection.5.3.1}%
-\contentsline {subsubsection}{\numberline {5.3.2}Design Two: One Group, Pre-test Post-test}{39}{subsubsection.5.3.2}%
-\contentsline {subsubsection}{\numberline {5.3.3}Evaluate the strengths of the two designs}{39}{subsubsection.5.3.3}%
-\contentsline {subsection}{\numberline {5.4}Combining Designs?}{39}{subsection.5.4}%
-\contentsline {subsubsection}{\numberline {5.4.1}Design Three: Two Group, Pre-test Post-test}{40}{subsubsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.5}Working with simple data}{40}{subsection.5.5}%
-\contentsline {subsubsection}{\numberline {5.5.1}Without blocking}{40}{subsubsection.5.5.1}%
-\contentsline {subsubsection}{\numberline {5.5.2}With blocking}{40}{subsubsection.5.5.2}%
-\contentsline {subsection}{\numberline {5.6}Using Measurements to Diagnose Problems}{40}{subsection.5.6}%
-\contentsline {section}{\numberline {6}Regression and Multifactor Experiments}{40}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Learning Objectives}{41}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Design Notation}{41}{subsection.6.2}%
-\contentsline {subsubsection}{\numberline {6.2.1}Design Notation}{41}{subsubsection.6.2.1}%
-\contentsline {subsection}{\numberline {6.3}Good Controls}{41}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}Bad Controls}{41}{subsection.6.4}%
-\contentsline {subsection}{\numberline {6.5}A Very Simple Example}{41}{subsection.6.5}%
-\contentsline {subsection}{\numberline {6.6}Make Data}{41}{subsection.6.6}%
-\contentsline {subsection}{\numberline {6.7}What is the causal model we hold?}{42}{subsection.6.7}%
-\contentsline {subsubsection}{\numberline {6.7.1}Do the estimates match the world?}{43}{subsubsection.6.7.1}%
-\contentsline {subsection}{\numberline {6.8}Robust Standard Errors}{43}{subsection.6.8}%
-\contentsline {subsection}{\numberline {6.9}What about clustered standard errors?}{45}{subsection.6.9}%
-\contentsline {subsection}{\numberline {6.10}Treatment by Treatment Interaction}{46}{subsection.6.10}%
-\contentsline {subsubsection}{\numberline {6.10.1}Recreate Data}{47}{subsubsection.6.10.1}%
-\contentsline {subsubsection}{\numberline {6.10.2}A more common estimating strategy}{48}{subsubsection.6.10.2}%
-\contentsline {subsection}{\numberline {6.11}Pre-Test, Post-Test}{48}{subsection.6.11}%
-\contentsline {subsubsection}{\numberline {6.11.1}The Difference in Differences Model}{48}{subsubsection.6.11.1}%
-\contentsline {section}{\numberline {7}Heterogeneous Treatment Effects}{48}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Learning Objectives}{48}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Reading and Discussion: Goodson}{49}{subsection.7.2}%
-\contentsline {subsection}{\numberline {7.3}Coding and Demo: The Californians}{49}{subsection.7.3}%
-\contentsline {subsubsection}{\numberline {7.3.1}Overall Treatment Effect}{49}{subsubsection.7.3.1}%
-\contentsline {subsubsection}{\numberline {7.3.2}Founder Motivation}{49}{subsubsection.7.3.2}%
-\contentsline {subsubsection}{\numberline {7.3.3}Subset Models}{50}{subsubsection.7.3.3}%
-\contentsline {subsubsection}{\numberline {7.3.4}Interaction Model To Test}{50}{subsubsection.7.3.4}%
-\contentsline {subsection}{\numberline {7.4}? anova}{51}{subsection.7.4}%
-\contentsline {subsection}{\numberline {7.5}Finally, use the results from model 5 to tell me what the treatment}{51}{subsection.7.5}%
-\contentsline {subsection}{\numberline {7.6}effect is for males and for californians.}{51}{subsection.7.6}%
-\contentsline {subsection}{\numberline {7.7}}{51}{subsection.7.7}%
-\contentsline {subsection}{\numberline {7.8}AT HOME:}{51}{subsection.7.8}%
-\contentsline {subsection}{\numberline {7.9}Work to examine what including the other affluence and literacy}{51}{subsection.7.9}%
-\contentsline {subsection}{\numberline {7.10}triggers does to your estimates.}{51}{subsection.7.10}%
-\contentsline {subsection}{\numberline {7.11}}{51}{subsection.7.11}%
-\contentsline {subsection}{\numberline {7.12}Coding and Discussion: Tips at a Restaurant}{51}{subsection.7.12}%
-\contentsline {subsection}{\numberline {7.13}Sleeeeeeeeeeeep\ldots {}}{52}{subsection.7.13}%
-\contentsline {section}{\numberline {8}Treatment Noncompliance}{52}{section.8}%
-\contentsline {subsection}{\numberline {8.1}Learning Objectives}{53}{subsection.8.1}%
-\contentsline {subsection}{\numberline {8.2}Starting conversation}{53}{subsection.8.2}%
-\contentsline {subsection}{\numberline {8.3}Non-compliance Discussion}{53}{subsection.8.3}%
-\contentsline {subsubsection}{\numberline {8.3.1}Setting Terms of Understanding}{53}{subsubsection.8.3.1}%
-\contentsline {subsubsection}{\numberline {8.3.2}Where Does Noncompliance Occur}{54}{subsubsection.8.3.2}%
-\contentsline {subsection}{\numberline {8.4}Estimating with Non-compliance}{54}{subsection.8.4}%
-\contentsline {subsubsection}{\numberline {8.4.1}Estimating with non-compliance}{54}{subsubsection.8.4.1}%
-\contentsline {subsubsection}{\numberline {8.4.2}Build Estimators}{55}{subsubsection.8.4.2}%
-\contentsline {paragraph}{\numberline {8.4.2.1}Estimate the Intent to Treat Effect}{55}{paragraph.8.4.2.1}%
-\contentsline {subsubsection}{\numberline {8.4.3}Estimate the Compliance Rate}{55}{subsubsection.8.4.3}%
-\contentsline {subsubsection}{\numberline {8.4.4}Compute the CACE}{55}{subsubsection.8.4.4}%
-\contentsline {subsection}{\numberline {8.5}Two Stage Least Squares}{56}{subsection.8.5}%
-\contentsline {subsubsection}{\numberline {8.5.1}First Stage}{56}{subsubsection.8.5.1}%
-\contentsline {subsubsection}{\numberline {8.5.2}Second stage}{56}{subsubsection.8.5.2}%
-\contentsline {section}{\numberline {9}Spillover and Interference}{57}{section.9}%
-\contentsline {subsection}{\numberline {9.1}Learning Objectives}{57}{subsection.9.1}%
-\contentsline {subsection}{\numberline {9.2}Defining Terms}{57}{subsection.9.2}%
-\contentsline {subsection}{\numberline {9.3}Defining Notation}{57}{subsection.9.3}%
-\contentsline {subsubsection}{\numberline {9.3.1}Identify concepts}{57}{subsubsection.9.3.1}%
-\contentsline {subsubsection}{\numberline {9.3.2}Classroom Assignments}{58}{subsubsection.9.3.2}%
-\contentsline {subsubsection}{\numberline {9.3.3}Working with a simple example}{58}{subsubsection.9.3.3}%
-\contentsline {subsubsection}{\numberline {9.3.4}Working with a more complex example}{58}{subsubsection.9.3.4}%
-\contentsline {subsection}{\numberline {9.4}Within subjects experiments}{59}{subsection.9.4}%
-\contentsline {subsubsection}{\numberline {9.4.1}Survey Experiments}{59}{subsubsection.9.4.1}%
-\contentsline {subsection}{\numberline {9.5}Discussing the reading: Blake and Coey (2014)}{60}{subsection.9.5}%
-\contentsline {subsection}{\numberline {9.6}Discussing the reading: Miguel and Kremer (2004)}{60}{subsection.9.6}%
-\contentsline {section}{\numberline {10}Causality from Observational Data}{60}{section.10}%
-\contentsline {subsection}{\numberline {10.1}Learning Objectives}{60}{subsection.10.1}%
-\contentsline {subsection}{\numberline {10.2}The Experimental Ideal}{61}{subsection.10.2}%
-\contentsline {subsection}{\numberline {10.3}A Continuum of Plausibility}{61}{subsection.10.3}%
-\contentsline {subsection}{\numberline {10.4}Natural Experiments}{61}{subsection.10.4}%
-\contentsline {subsubsection}{\numberline {10.4.1}Questions to consider}{62}{subsubsection.10.4.1}%
-\contentsline {subsubsection}{\numberline {10.4.2}Breakout activity}{62}{subsubsection.10.4.2}%
-\contentsline {subsubsection}{\numberline {10.4.3}How does one analyze a natural experiment?}{62}{subsubsection.10.4.3}%
-\contentsline {subsection}{\numberline {10.5}Can we fix this estimate?}{63}{subsection.10.5}%
-\contentsline {subsection}{\numberline {10.6}Regression Discontinuity}{67}{subsection.10.6}%
-\contentsline {subsubsection}{\numberline {10.6.1}Why do RDD designs ``work''?}{67}{subsubsection.10.6.1}%
-\contentsline {subsubsection}{\numberline {10.6.2}Just how common are opportunities for RDD}{67}{subsubsection.10.6.2}%
-\contentsline {subsubsection}{\numberline {10.6.3}Working with Regression Discontinuity Designs}{67}{subsubsection.10.6.3}%
-\contentsline {subsubsection}{\numberline {10.6.4}More realistic data}{69}{subsubsection.10.6.4}%
-\contentsline {subsubsection}{\numberline {10.6.5}What about even more challenging data?}{71}{subsubsection.10.6.5}%
-\contentsline {section}{\numberline {11}Problems and Diagnostics}{72}{section.11}%
-\contentsline {subsection}{\numberline {11.1}Learning Objectives}{72}{subsection.11.1}%
-\contentsline {subsection}{\numberline {11.2}Goals of an Expermient}{72}{subsection.11.2}%
-\contentsline {subsection}{\numberline {11.3}Problems with Randomization}{73}{subsection.11.3}%
-\contentsline {subsection}{\numberline {11.4}Placebo Test}{73}{subsection.11.4}%
-\contentsline {subsection}{\numberline {11.5}Manipulation Check}{73}{subsection.11.5}%
-\contentsline {subsection}{\numberline {11.6}Advocating for Experimentation}{74}{subsection.11.6}%
-\contentsline {subsubsection}{\numberline {11.6.1}Reasons for and against Experiments}{74}{subsubsection.11.6.1}%
-\contentsline {section}{\numberline {12}Attrition, Mediation, and Generalizability}{74}{section.12}%
-\contentsline {subsection}{\numberline {12.1}Learning Objectives}{74}{subsection.12.1}%
-\contentsline {subsection}{\numberline {12.2}Why doesn't mediation analysis work?}{74}{subsection.12.2}%
-\contentsline {subsection}{\numberline {12.3}Endless Chain of Why?}{76}{subsection.12.3}%
-\contentsline {subsection}{\numberline {12.4}Design an experiment to evaluate these possible causes}{76}{subsection.12.4}%
-\contentsline {subsection}{\numberline {12.5}Generalizability}{76}{subsection.12.5}%
-\contentsline {section}{\numberline {13}Applications of Experiments}{77}{section.13}%
-\contentsline {subsection}{\numberline {13.1}Learning Objectives}{77}{subsection.13.1}%
-\contentsline {section}{\numberline {14}Review of the Course}{77}{section.14}%
-\contentsline {subsection}{\numberline {14.1}Learning Objectives}{77}{subsection.14.1}%
+\contentsline {section}{Live Session}{3}{section*.2}%
+\contentsline {section}{Course Introduction}{3}{section*.3}%
+\contentsline {subsection}{\numberline {0.1}Core Questions}{4}{subsection.0.1}%
+\contentsline {subsection}{\numberline {0.2}Learning Objectives}{4}{subsection.0.2}%
+\contentsline {subsection}{\numberline {0.3}Student Introductions {[}Breakout One{]}}{4}{subsection.0.3}%
+\contentsline {subsection}{\numberline {0.4}Student Introductions {[}Breakout Two{]}}{4}{subsection.0.4}%
+\contentsline {subsection}{\numberline {0.5}Course Plan}{4}{subsection.0.5}%
+\contentsline {subsection}{\numberline {0.6}Course Logistics}{4}{subsection.0.6}%
+\contentsline {subsubsection}{\numberline {0.6.1}Learning model for the class}{5}{subsubsection.0.6.1}%
+\contentsline {subsubsection}{\numberline {0.6.2}Feedback model for the class}{5}{subsubsection.0.6.2}%
+\contentsline {subsubsection}{\numberline {0.6.3}Office hour model for the class}{5}{subsubsection.0.6.3}%
+\contentsline {subsection}{Bloom's Taxonomy}{5}{section*.4}%
+\contentsline {section}{\numberline {1}Importance of Experimentation}{6}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Core Questions}{6}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Learning Objectives}{6}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Class Introductions}{6}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Student Introductions {[}Breakout One{]}}{6}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Student Introductions {[}Breakout Two{]}}{7}{subsection.1.5}%
+\contentsline {subsection}{\numberline {1.6}Course Plan}{7}{subsection.1.6}%
+\contentsline {subsection}{\numberline {1.7}Course Logistics}{7}{subsection.1.7}%
+\contentsline {subsubsection}{\numberline {1.7.1}Learning model for the class}{7}{subsubsection.1.7.1}%
+\contentsline {subsubsection}{\numberline {1.7.2}Feedback model for the class}{7}{subsubsection.1.7.2}%
+\contentsline {subsubsection}{\numberline {1.7.3}Office hour model for the class}{8}{subsubsection.1.7.3}%
+\contentsline {subsection}{\numberline {1.8}Article Discussion}{8}{subsection.1.8}%
+\contentsline {subsubsection}{\numberline {1.8.1}Predict or Cause}{8}{subsubsection.1.8.1}%
+\contentsline {subsubsection}{\numberline {1.8.2}Do the suburbs make you fat?}{8}{subsubsection.1.8.2}%
+\contentsline {subsubsection}{\numberline {1.8.3}Nike Shoes}{8}{subsubsection.1.8.3}%
+\contentsline {subsubsection}{\numberline {1.8.4}What is Science: Feynman's View}{8}{subsubsection.1.8.4}%
+\contentsline {section}{\numberline {2}Apples to Apples}{9}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Learning Objectives}{9}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Revisiting Ideas of Science}{10}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}From last week}{10}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}From this week: Lakatos}{10}{subsubsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.3}This Causes That}{10}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Working Cases of Causality}{11}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}Damn fine coffee}{11}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.2}Meditation for focus}{11}{subsubsection.2.4.2}%
+\contentsline {subsubsection}{\numberline {2.4.3}Selling coffee and meditation}{11}{subsubsection.2.4.3}%
+\contentsline {subsubsection}{\numberline {2.4.4}Limits of Behaviorist Reasoning}{12}{subsubsection.2.4.4}%
+\contentsline {subsubsection}{\numberline {2.4.5}Reflecting on Causes}{12}{subsubsection.2.4.5}%
+\contentsline {subsubsection}{\numberline {2.4.6}Evaluating Value}{12}{subsubsection.2.4.6}%
+\contentsline {subsubsection}{\numberline {2.4.7}Value of Theory}{12}{subsubsection.2.4.7}%
+\contentsline {subsubsection}{\numberline {2.4.8}Evaluating Theories}{12}{subsubsection.2.4.8}%
+\contentsline {subsection}{\numberline {2.5}Reading Discussion: The Power of Experiments}{13}{subsection.2.5}%
+\contentsline {subsubsection}{\numberline {2.5.1}Chapter One: The Power of Experiments}{13}{subsubsection.2.5.1}%
+\contentsline {subsubsection}{\numberline {2.5.2}Chapter Two: The Rise of Experimetnts in Psychology and Economics}{13}{subsubsection.2.5.2}%
+\contentsline {subsubsection}{\numberline {2.5.3}The Rise of Behavioral Experiments in Policymaking}{14}{subsubsection.2.5.3}%
+\contentsline {subsection}{\numberline {2.6}Potential Outcomes}{15}{subsection.2.6}%
+\contentsline {subsubsection}{\numberline {2.6.1}Defining Potential Outcomes}{15}{subsubsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.7}Using Independence}{15}{subsection.2.7}%
+\contentsline {subsection}{\numberline {2.8}Use Randomization to Produce Independence}{17}{subsection.2.8}%
+\contentsline {subsection}{\numberline {2.9}Theoretical Justification}{17}{subsection.2.9}%
+\contentsline {subsection}{\numberline {2.10}Simulation Example}{18}{subsection.2.10}%
+\contentsline {subsubsection}{\numberline {2.10.1}Assign to Treatment and Control}{19}{subsubsection.2.10.1}%
+\contentsline {subsubsection}{\numberline {2.10.2}What if there is selection?}{24}{subsubsection.2.10.2}%
+\contentsline {subsection}{\numberline {2.11}Requirements of An Experiment}{25}{subsection.2.11}%
+\contentsline {subsubsection}{\numberline {2.11.1}Meta-Questions}{26}{subsubsection.2.11.1}%
+\contentsline {section}{\numberline {3}Quantifying Uncertainty}{26}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Learning Objectives}{26}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Power of Experiments}{26}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Five Key Barriers to Experimentation}{26}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Experimental Ethics}{27}{subsubsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.3}Statistical Uncertainty -- Randomization Inference Style}{27}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Stating the sharp null}{27}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Randomization Inference}{27}{subsection.3.5}%
+\contentsline {subsubsection}{\numberline {3.5.1}Stating the process of Randomization Inference}{27}{subsubsection.3.5.1}%
+\contentsline {subsubsection}{\numberline {3.5.2}Questions about Randomization Inference}{28}{subsubsection.3.5.2}%
+\contentsline {subsection}{\numberline {3.6}Applying Randomization Inference}{29}{subsection.3.6}%
+\contentsline {subsubsection}{\numberline {3.6.1}Make Data}{29}{subsubsection.3.6.1}%
+\contentsline {subsubsection}{\numberline {3.6.2}Plot Data}{29}{subsubsection.3.6.2}%
+\contentsline {subsubsection}{\numberline {3.6.3}Classic Test}{30}{subsubsection.3.6.3}%
+\contentsline {subsubsection}{\numberline {3.6.4}Randomization Inference Test}{30}{subsubsection.3.6.4}%
+\contentsline {subsection}{\numberline {3.7}Comparing Randomization Inference and Frequentist Inference}{31}{subsection.3.7}%
+\contentsline {subsubsection}{\numberline {3.7.1}Donations to a political campaign}{31}{subsubsection.3.7.1}%
+\contentsline {subsection}{\numberline {3.8}Statistical Power}{33}{subsection.3.8}%
+\contentsline {section}{\numberline {4}Blocking and Clustering}{33}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Learning Objectives}{33}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Setting terms: Blocking}{34}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Math: Block random assignment}{34}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Intuition: Block Random Assignment}{34}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}With this data, what does the distribution of outcomes look like?}{36}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Technical Benefits of Blocking}{37}{subsection.4.6}%
+\contentsline {subsection}{\numberline {4.7}How should we block randomize?}{38}{subsection.4.7}%
+\contentsline {subsubsection}{\numberline {4.7.1}What makes a useful feature? (part 1)}{38}{subsubsection.4.7.1}%
+\contentsline {subsubsection}{\numberline {4.7.2}What makes a useful feature (part 2)}{39}{subsubsection.4.7.2}%
+\contentsline {subsubsection}{\numberline {4.7.3}Strategies of blocking}{39}{subsubsection.4.7.3}%
+\contentsline {subsection}{\numberline {4.8}Clustering}{39}{subsection.4.8}%
+\contentsline {subsection}{\numberline {4.9}Blocking or Clustering?}{39}{subsection.4.9}%
+\contentsline {subsubsection}{\numberline {4.9.1}Let is snow!}{39}{subsubsection.4.9.1}%
+\contentsline {subsubsection}{\numberline {4.9.2}Strolling through Berkeley}{40}{subsubsection.4.9.2}%
+\contentsline {subsubsection}{\numberline {4.9.3}Always low prices?}{40}{subsubsection.4.9.3}%
+\contentsline {section}{\numberline {5}Covariates and Regression}{40}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Learning Objectives}{40}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Covariates}{40}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Rescaling Outcomes}{41}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}Design One: Two Group Post-Test}{41}{subsubsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.2}Design Two: One Group, Pre-test Post-test}{41}{subsubsection.5.3.2}%
+\contentsline {subsubsection}{\numberline {5.3.3}Evaluate the strengths of the two designs}{41}{subsubsection.5.3.3}%
+\contentsline {subsection}{\numberline {5.4}Combining Designs?}{41}{subsection.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.1}Design Three: Two Group, Pre-test Post-test}{42}{subsubsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.5}Working with simple data}{42}{subsection.5.5}%
+\contentsline {subsubsection}{\numberline {5.5.1}Without blocking}{42}{subsubsection.5.5.1}%
+\contentsline {subsubsection}{\numberline {5.5.2}With blocking}{42}{subsubsection.5.5.2}%
+\contentsline {subsection}{\numberline {5.6}Using Measurements to Diagnose Problems}{42}{subsection.5.6}%
+\contentsline {section}{\numberline {6}Regression and Multifactor Experiments}{42}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Learning Objectives}{43}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Design Notation}{43}{subsection.6.2}%
+\contentsline {subsubsection}{\numberline {6.2.1}Design Notation}{43}{subsubsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.3}Good Controls}{43}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Bad Controls}{43}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}A Very Simple Example}{43}{subsection.6.5}%
+\contentsline {subsection}{\numberline {6.6}Make Data}{43}{subsection.6.6}%
+\contentsline {subsection}{\numberline {6.7}What is the causal model we hold?}{44}{subsection.6.7}%
+\contentsline {subsubsection}{\numberline {6.7.1}Do the estimates match the world?}{45}{subsubsection.6.7.1}%
+\contentsline {subsection}{\numberline {6.8}Robust Standard Errors}{45}{subsection.6.8}%
+\contentsline {subsection}{\numberline {6.9}What about clustered standard errors?}{47}{subsection.6.9}%
+\contentsline {subsection}{\numberline {6.10}Treatment by Treatment Interaction}{48}{subsection.6.10}%
+\contentsline {subsubsection}{\numberline {6.10.1}Recreate Data}{49}{subsubsection.6.10.1}%
+\contentsline {subsubsection}{\numberline {6.10.2}A more common estimating strategy}{50}{subsubsection.6.10.2}%
+\contentsline {subsection}{\numberline {6.11}Pre-Test, Post-Test}{50}{subsection.6.11}%
+\contentsline {subsubsection}{\numberline {6.11.1}The Difference in Differences Model}{50}{subsubsection.6.11.1}%
+\contentsline {section}{\numberline {7}Heterogeneous Treatment Effects}{50}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Learning Objectives}{50}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Reading and Discussion: Goodson}{51}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Coding and Demo: The Californians}{51}{subsection.7.3}%
+\contentsline {subsubsection}{\numberline {7.3.1}Overall Treatment Effect}{51}{subsubsection.7.3.1}%
+\contentsline {subsubsection}{\numberline {7.3.2}Founder Motivation}{51}{subsubsection.7.3.2}%
+\contentsline {subsubsection}{\numberline {7.3.3}Subset Models}{52}{subsubsection.7.3.3}%
+\contentsline {subsubsection}{\numberline {7.3.4}Interaction Model To Test}{52}{subsubsection.7.3.4}%
+\contentsline {subsection}{\numberline {7.4}? anova}{53}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}Finally, use the results from model 5 to tell me what the treatment}{53}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.6}effect is for males and for californians.}{53}{subsection.7.6}%
+\contentsline {subsection}{\numberline {7.7}}{53}{subsection.7.7}%
+\contentsline {subsection}{\numberline {7.8}AT HOME:}{53}{subsection.7.8}%
+\contentsline {subsection}{\numberline {7.9}Work to examine what including the other affluence and literacy}{53}{subsection.7.9}%
+\contentsline {subsection}{\numberline {7.10}triggers does to your estimates.}{53}{subsection.7.10}%
+\contentsline {subsection}{\numberline {7.11}}{53}{subsection.7.11}%
+\contentsline {subsection}{\numberline {7.12}Coding and Discussion: Tips at a Restaurant}{53}{subsection.7.12}%
+\contentsline {subsection}{\numberline {7.13}Sleeeeeeeeeeeep\ldots {}}{54}{subsection.7.13}%
+\contentsline {section}{\numberline {8}Treatment Noncompliance}{54}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Learning Objectives}{55}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Starting conversation}{55}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Non-compliance Discussion}{55}{subsection.8.3}%
+\contentsline {subsubsection}{\numberline {8.3.1}Setting Terms of Understanding}{55}{subsubsection.8.3.1}%
+\contentsline {subsubsection}{\numberline {8.3.2}Where Does Noncompliance Occur}{56}{subsubsection.8.3.2}%
+\contentsline {subsection}{\numberline {8.4}Estimating with Non-compliance}{56}{subsection.8.4}%
+\contentsline {subsubsection}{\numberline {8.4.1}Estimating with non-compliance}{56}{subsubsection.8.4.1}%
+\contentsline {subsubsection}{\numberline {8.4.2}Build Estimators}{57}{subsubsection.8.4.2}%
+\contentsline {paragraph}{\numberline {8.4.2.1}Estimate the Intent to Treat Effect}{57}{paragraph.8.4.2.1}%
+\contentsline {subsubsection}{\numberline {8.4.3}Estimate the Compliance Rate}{57}{subsubsection.8.4.3}%
+\contentsline {subsubsection}{\numberline {8.4.4}Compute the CACE}{57}{subsubsection.8.4.4}%
+\contentsline {subsection}{\numberline {8.5}Two Stage Least Squares}{58}{subsection.8.5}%
+\contentsline {subsubsection}{\numberline {8.5.1}First Stage}{58}{subsubsection.8.5.1}%
+\contentsline {subsubsection}{\numberline {8.5.2}Second stage}{58}{subsubsection.8.5.2}%
+\contentsline {section}{\numberline {9}Spillover and Interference}{59}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Learning Objectives}{59}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Defining Terms}{59}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Defining Notation}{59}{subsection.9.3}%
+\contentsline {subsubsection}{\numberline {9.3.1}Identify concepts}{59}{subsubsection.9.3.1}%
+\contentsline {subsubsection}{\numberline {9.3.2}Classroom Assignments}{60}{subsubsection.9.3.2}%
+\contentsline {subsubsection}{\numberline {9.3.3}Working with a simple example}{60}{subsubsection.9.3.3}%
+\contentsline {subsubsection}{\numberline {9.3.4}Working with a more complex example}{60}{subsubsection.9.3.4}%
+\contentsline {subsection}{\numberline {9.4}Within subjects experiments}{61}{subsection.9.4}%
+\contentsline {subsubsection}{\numberline {9.4.1}Survey Experiments}{61}{subsubsection.9.4.1}%
+\contentsline {subsection}{\numberline {9.5}Discussing the reading: Blake and Coey (2014)}{62}{subsection.9.5}%
+\contentsline {subsection}{\numberline {9.6}Discussing the reading: Miguel and Kremer (2004)}{62}{subsection.9.6}%
+\contentsline {section}{\numberline {10}Causality from Observational Data}{62}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Learning Objectives}{62}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}The Experimental Ideal}{63}{subsection.10.2}%
+\contentsline {subsection}{\numberline {10.3}A Continuum of Plausibility}{63}{subsection.10.3}%
+\contentsline {subsection}{\numberline {10.4}Natural Experiments}{63}{subsection.10.4}%
+\contentsline {subsubsection}{\numberline {10.4.1}Questions to consider}{64}{subsubsection.10.4.1}%
+\contentsline {subsubsection}{\numberline {10.4.2}Breakout activity}{64}{subsubsection.10.4.2}%
+\contentsline {subsubsection}{\numberline {10.4.3}How does one analyze a natural experiment?}{64}{subsubsection.10.4.3}%
+\contentsline {subsection}{\numberline {10.5}Can we fix this estimate?}{65}{subsection.10.5}%
+\contentsline {subsection}{\numberline {10.6}Regression Discontinuity}{69}{subsection.10.6}%
+\contentsline {subsubsection}{\numberline {10.6.1}Why do RDD designs ``work''?}{69}{subsubsection.10.6.1}%
+\contentsline {subsubsection}{\numberline {10.6.2}Just how common are opportunities for RDD}{69}{subsubsection.10.6.2}%
+\contentsline {subsubsection}{\numberline {10.6.3}Working with Regression Discontinuity Designs}{69}{subsubsection.10.6.3}%
+\contentsline {subsubsection}{\numberline {10.6.4}More realistic data}{71}{subsubsection.10.6.4}%
+\contentsline {subsubsection}{\numberline {10.6.5}What about even more challenging data?}{73}{subsubsection.10.6.5}%
+\contentsline {section}{\numberline {11}Problems and Diagnostics}{74}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Learning Objectives}{74}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Goals of an Expermient}{74}{subsection.11.2}%
+\contentsline {subsection}{\numberline {11.3}Problems with Randomization}{75}{subsection.11.3}%
+\contentsline {subsection}{\numberline {11.4}Placebo Test}{75}{subsection.11.4}%
+\contentsline {subsection}{\numberline {11.5}Manipulation Check}{75}{subsection.11.5}%
+\contentsline {subsection}{\numberline {11.6}Advocating for Experimentation}{76}{subsection.11.6}%
+\contentsline {subsubsection}{\numberline {11.6.1}Reasons for and against Experiments}{76}{subsubsection.11.6.1}%
+\contentsline {section}{\numberline {12}Attrition, Mediation, and Generalizability}{76}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Learning Objectives}{76}{subsection.12.1}%
+\contentsline {subsection}{\numberline {12.2}Why doesn't mediation analysis work?}{76}{subsection.12.2}%
+\contentsline {subsection}{\numberline {12.3}Endless Chain of Why?}{78}{subsection.12.3}%
+\contentsline {subsection}{\numberline {12.4}Design an experiment to evaluate these possible causes}{78}{subsection.12.4}%
+\contentsline {subsection}{\numberline {12.5}Generalizability}{78}{subsection.12.5}%
+\contentsline {section}{\numberline {13}Applications of Experiments}{79}{section.13}%
+\contentsline {subsection}{\numberline {13.1}Learning Objectives}{79}{subsection.13.1}%
+\contentsline {section}{\numberline {14}Review of the Course}{79}{section.14}%
+\contentsline {subsection}{\numberline {14.1}Learning Objectives}{79}{subsection.14.1}%
