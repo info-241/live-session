@@ -31,6 +31,7 @@ At the end of this conversation, students will be able to
 1. *Gain Access* to bCourses. 
 2. *Understand* the course goals, and access course assessments 
 3. *Understand* the course learning model
+4. *Evaluate* an experiment they have run for themselves. 
 
 ## Student Introductions [Breakout One]
 
@@ -91,10 +92,33 @@ We want to get you feedback *very* quickly after you turn your assignments.
 
 ### Office hour model for the class 
 
-- I will be holding a "lab" session every Tuesday from 11:00a - 12:00p. This will be a chance to write  code and support your learning, by doing. 
-- We will hold more than 10 hours of office hours every week; they will all be recorded, and any student is welcome in any office hour
+- I will be holding an office hour session every Monday from 11:00a-12:00p. Come by! If we find that we need structure, I'll set up a signup form. 
+- I will be holding a lab session every Tuesday from 11:00a - 12:00p.
+  - It will also be a chance to write code: To support your learning, by doing. 
+- I think that we're going to be assigned a TA for this class as well. They will have office hours on Friday, the day after class so that you can talk about problem sets. 
 
+## Run Our Own Experiment 
 
+There's no actual magic to running an experiment. In fact, it is so core to how we think about the world that you can assuredly conduct an experiment here, today, in the next 30 minutes that checks all the boxes. 
+
+Experiment options: 
+
+1. Take action to cause an **increase** in heart rate. 
+2. Take action to cause a **decrease** in heart rate.
+3. Take action to **increase** the duration that we can hold our breaths. 
+
+### Decisions to make
+
+1. What experiment are we going to conduct? 
+2. What intervention are we going to choose? 
+3. What comparison are we going to make? 
+4. How are we going to randomize? 
+5. What are we going to measure? 
+6. How are we going to measure it? 
+7. What test are we going to conduct? 
+8. What evidence would be required for us to make a conclusion? 
+9. What could go wrong? 
+10. What *actually* went wrong? 
 
 ## Bloom's Taxonomy {-}
 

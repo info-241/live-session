@@ -9,18 +9,20 @@
 \contentsline {subsubsection}{\numberline {0.6.1}Learning model for the class}{6}{subsubsection.0.6.1}%
 \contentsline {subsubsection}{\numberline {0.6.2}Feedback model for the class}{6}{subsubsection.0.6.2}%
 \contentsline {subsubsection}{\numberline {0.6.3}Office hour model for the class}{7}{subsubsection.0.6.3}%
+\contentsline {subsection}{\numberline {0.7}Run Our Own Experiment}{7}{subsection.0.7}%
+\contentsline {subsubsection}{\numberline {0.7.1}Decisions to make}{7}{subsubsection.0.7.1}%
 \contentsline {subsection}{Bloom's Taxonomy}{7}{section*.4}%
-\contentsline {section}{\numberline {1}Importance of Experimentation}{7}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Learning Objectives}{7}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Class Introductions}{7}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}Article Discussion}{7}{subsection.1.3}%
-\contentsline {subsubsection}{\numberline {1.3.1}Predict or Cause}{7}{subsubsection.1.3.1}%
+\contentsline {section}{\numberline {1}Importance of Experimentation}{8}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Learning Objectives}{8}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Class Introductions}{8}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Article Discussion}{8}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Predict or Cause}{8}{subsubsection.1.3.1}%
 \contentsline {subsubsection}{\numberline {1.3.2}Do the suburbs make you fat?}{9}{subsubsection.1.3.2}%
 \contentsline {subsubsection}{\numberline {1.3.3}Nike Shoes}{9}{subsubsection.1.3.3}%
 \contentsline {subsubsection}{\numberline {1.3.4}What is Science: Feynman's View}{9}{subsubsection.1.3.4}%
 \contentsline {section}{\numberline {2}Apples to Apples}{9}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Learning Objectives}{9}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Revisiting Ideas of Science}{11}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.2}Revisiting Ideas of Science}{9}{subsection.2.2}%
 \contentsline {subsubsection}{\numberline {2.2.1}From last week}{11}{subsubsection.2.2.1}%
 \contentsline {subsubsection}{\numberline {2.2.2}From this week: Lakatos}{11}{subsubsection.2.2.2}%
 \contentsline {subsection}{\numberline {2.3}This Causes That}{11}{subsection.2.3}%
@@ -34,7 +36,7 @@
 \contentsline {subsubsection}{\numberline {2.4.7}Value of Theory}{13}{subsubsection.2.4.7}%
 \contentsline {subsubsection}{\numberline {2.4.8}Evaluating Theories}{13}{subsubsection.2.4.8}%
 \contentsline {subsection}{\numberline {2.5}Reading Discussion: The Power of Experiments}{13}{subsection.2.5}%
-\contentsline {subsubsection}{\numberline {2.5.1}Chapter One: The Power of Experiments}{14}{subsubsection.2.5.1}%
+\contentsline {subsubsection}{\numberline {2.5.1}Chapter One: The Power of Experiments}{13}{subsubsection.2.5.1}%
 \contentsline {subsubsection}{\numberline {2.5.2}Chapter Two: The Rise of Experimetnts in Psychology and Economics}{14}{subsubsection.2.5.2}%
 \contentsline {subsubsection}{\numberline {2.5.3}The Rise of Behavioral Experiments in Policymaking}{15}{subsubsection.2.5.3}%
 \contentsline {subsection}{\numberline {2.6}Potential Outcomes}{15}{subsection.2.6}%

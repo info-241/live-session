@@ -8,6 +8,8 @@ course-logistics
 learning-model-for-the-class
 feedback-model-for-the-class
 office-hour-model-for-the-class
+run-our-own-experiment
+decisions-to-make
 importance-of-experimentation
 learning-objectives-1
 class-introductions

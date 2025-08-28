@@ -259,6 +259,8 @@ At the end of this conversation, students will be able to
   \emph{Understand} the course goals, and access course assessments
 \item
   \emph{Understand} the course learning model
+\item
+  \emph{Evaluate} an experiment they have run for themselves.
 \end{enumerate}
 
 \subsection{Student Introductions {[}Breakout One{]}}\label{student-introductions-breakout-one}
@@ -370,10 +372,62 @@ We want to get you feedback \emph{very} quickly after you turn your assignments.
 \begin{itemize}
 \tightlist
 \item
-  I will be holding a ``lab'' session every Tuesday from 11:00a - 12:00p. This will be a chance to write code and support your learning, by doing.
+  I will be holding an office hour session every Monday from 11:00a-12:00p. Come by! If we find that we need structure, I'll set up a signup form.
 \item
-  We will hold more than 10 hours of office hours every week; they will all be recorded, and any student is welcome in any office hour
+  I will be holding a lab session every Tuesday from 11:00a - 12:00p.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    It will also be a chance to write code: To support your learning, by doing.
+  \end{itemize}
+\item
+  I think that we're going to be assigned a TA for this class as well. They will have office hours on Friday, the day after class so that you can talk about problem sets.
 \end{itemize}
+
+\subsection{Run Our Own Experiment}\label{run-our-own-experiment}
+
+There's no actual magic to running an experiment. In fact, it is so core to how we think about the world that you can assuredly conduct an experiment here, today, in the next 30 minutes that checks all the boxes.
+
+Experiment options:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Take action to cause an \textbf{increase} in heart rate.
+\item
+  Take action to cause a \textbf{decrease} in heart rate.
+\item
+  Take action to \textbf{increase} the duration that we can hold our breaths.
+\end{enumerate}
+
+\subsubsection{Decisions to make}\label{decisions-to-make}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  What experiment are we going to conduct?
+\item
+  What intervention are we going to choose?
+\item
+  What comparison are we going to make?
+\item
+  How are we going to randomize?
+\item
+  What are we going to measure?
+\item
+  How are we going to measure it?
+\item
+  What test are we going to conduct?
+\item
+  What evidence would be required for us to make a conclusion?
+\item
+  What could go wrong?
+\item
+  What \emph{actually} went wrong?
+\end{enumerate}
 
 \subsection*{Bloom's Taxonomy}\label{blooms-taxonomy}
 \addcontentsline{toc}{subsection}{Bloom's Taxonomy}
@@ -978,7 +1032,7 @@ Y =
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4.780467
+## [1] 4.944307
 \end{verbatim}
 
 \begin{itemize}
@@ -1065,13 +1119,13 @@ To begin with, lets work with a \emph{very} simple sample that has 100 observati
 \end{Shaded}
 
 \begin{verbatim}
-##       id         y0        y1
-##    <int>      <num>     <num>
-## 1:     1 0.72955249 0.9795525
-## 2:     2 0.94839618 1.1983962
-## 3:     3 0.73388353 0.9838835
-## 4:     4 0.75098642 1.0009864
-## 5:     5 0.08422338 0.3342234
+##       id        y0        y1
+##    <int>     <num>     <num>
+## 1:     1 0.7054674 0.9554674
+## 2:     2 0.4235482 0.6735482
+## 3:     3 0.8641622 1.1141622
+## 4:     4 0.7710945 1.0210945
+## 5:     5 0.9426160 1.1926160
 \end{verbatim}
 
 In this world, we've taken a sample of \texttt{100} individuals, and at this point, each of those individuals that we've sampled has both a potential outcome to control \textbf{and also} a potential outcome to treatment. We haven't talked at all about measurement yet; we're just asserting that both of these potential outcomes exist for each person.
@@ -1106,13 +1160,13 @@ Suppose that for each unit, you then toss a coin, placing the subject either int
 \end{Shaded}
 
 \begin{verbatim}
-##       id         y0        y1 experimental_assignment
-##    <int>      <num>     <num>                   <int>
-## 1:     1 0.72955249 0.9795525                       0
-## 2:     2 0.94839618 1.1983962                       0
-## 3:     3 0.73388353 0.9838835                       1
-## 4:     4 0.75098642 1.0009864                       1
-## 5:     5 0.08422338 0.3342234                       1
+##       id        y0        y1 experimental_assignment
+##    <int>     <num>     <num>                   <int>
+## 1:     1 0.7054674 0.9554674                       0
+## 2:     2 0.4235482 0.6735482                       0
+## 3:     3 0.8641622 1.1141622                       0
+## 4:     4 0.7710945 1.0210945                       1
+## 5:     5 0.9426160 1.1926160                       1
 \end{verbatim}
 
 As as comparison, suppose that instead of randomly assigning individuals into treatment and control we allowed individuals to select into treatment and control. And suppose that people with the lowest potential outcomes to control opt to take the treatment. You might think of this as being something like, ``The people who are the most tired are the most likely to drink a cup of coffee before they start class,'' if an example helps you ground this.
@@ -1127,13 +1181,13 @@ Specifically, suppose that any unit that has a potential outcome lower that \tex
 \end{Shaded}
 
 \begin{verbatim}
-##       id         y0        y1 experimental_assignment observational_selection
-##    <int>      <num>     <num>                   <int>                   <num>
-## 1:     1 0.72955249 0.9795525                       0                       0
-## 2:     2 0.94839618 1.1983962                       0                       0
-## 3:     3 0.73388353 0.9838835                       1                       0
-## 4:     4 0.75098642 1.0009864                       1                       0
-## 5:     5 0.08422338 0.3342234                       1                       1
+##       id        y0        y1 experimental_assignment observational_selection
+##    <int>     <num>     <num>                   <int>                   <num>
+## 1:     1 0.7054674 0.9554674                       0                       0
+## 2:     2 0.4235482 0.6735482                       0                       0
+## 3:     3 0.8641622 1.1141622                       0                       0
+## 4:     4 0.7710945 1.0210945                       1                       0
+## 5:     5 0.9426160 1.1926160                       1                       0
 \end{verbatim}
 
 These represent two different ways that you might conduct your research, each time with the same subject pool. Of course, in reality you probably would not be able to run these two studies at the same time, but since this is a simulation, we can stretch the confines of reality just a little bit.
