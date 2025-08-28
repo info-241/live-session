@@ -141,6 +141,8 @@ Experiment options:
 2. Take action to cause a **decrease** in heart rate.
 3. Take action to **increase** the duration that we can hold our breaths. 
 
+[[Data Collection Spreadsheet](https://docs.google.com/spreadsheets/d/1M3Q_AdYd1zBTP6FI2OGtQfjUsc5AKQJxmti2kp5_Fio/edit?usp=sharing) 
+
 ### Decisions to make
 
 1. What experiment are we going to conduct? 
